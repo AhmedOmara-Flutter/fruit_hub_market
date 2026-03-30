@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../core/utils/route_manager.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -9,6 +13,14 @@ class SplashViewBody extends StatefulWidget {
 }
 
 class _SplashViewBodyState extends State<SplashViewBody> {
+  Timer ?_timer;
+
+  @override
+  void initState() {
+    goToHome();
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -28,5 +40,14 @@ class _SplashViewBodyState extends State<SplashViewBody> {
         ),
       ],
     );
+  }
+
+
+  void goToHome() {
+    _timer = Timer(const Duration(seconds: 3),
+            () {
+          Navigator.pushNamedAndRemoveUntil(
+              context, RouteManager.onBoarding, (route) => false);
+        });
   }
 }
