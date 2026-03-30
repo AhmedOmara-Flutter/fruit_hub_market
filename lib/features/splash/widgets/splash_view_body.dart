@@ -42,12 +42,17 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     );
   }
 
-
   void goToHome() {
     _timer = Timer(const Duration(seconds: 3),
             () {
-          Navigator.pushNamedAndRemoveUntil(
-              context, RouteManager.onBoarding, (route) => false);
+              Navigator.pushReplacementNamed(
+                  context, RouteManager.onBoarding);
         });
+  }
+
+  @override
+  void dispose() {
+    _timer!.cancel();
+    super.dispose();
   }
 }
