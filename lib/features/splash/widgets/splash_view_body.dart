@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruit_hub_market/generated/assets.dart';
 
 import '../../../core/utils/route_manager.dart';
 
@@ -18,7 +19,6 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   @override
   void initState() {
     goToHome();
-
     super.initState();
   }
   @override
@@ -29,13 +29,13 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [SvgPicture.asset('assets/images/splash_top.svg')],
+          children: [SvgPicture.asset(Assets.images.splashTop.path)],
         ),
-        SvgPicture.asset('assets/images/splash_center.svg'),
+        SvgPicture.asset(Assets.images.splashCenter.path),
         Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SvgPicture.asset('assets/images/splash_bottom.svg',),
+            SvgPicture.asset(Assets.images.splashBottom.path,),
           ],
         ),
       ],

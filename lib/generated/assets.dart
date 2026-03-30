@@ -12,6 +12,18 @@ class Assets {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  final SvgGenImage onboardingBackground1 = const SvgGenImage(
+    'assets/images/onboarding_background_1.svg',
+  );
+  final SvgGenImage onboardingBackground2 = const SvgGenImage(
+    'assets/images/onboarding_background_2.svg',
+  );
+  final SvgGenImage onboardingLogo1 = const SvgGenImage(
+    'assets/images/onboarding_logo_1.svg',
+  );
+  final SvgGenImage onboardingLogo2 = const SvgGenImage(
+    'assets/images/onboarding_logo_2.svg',
+  );
   final SvgGenImage splashBottom = const SvgGenImage(
     'assets/images/splash_bottom.svg',
   );
