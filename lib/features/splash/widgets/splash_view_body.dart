@@ -28,7 +28,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [SvgPicture.asset(Assets.images.splashTop.path)],
         ),
         SvgPicture.asset(Assets.images.splashCenter.path),

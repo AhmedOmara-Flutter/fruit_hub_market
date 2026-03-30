@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fruit_hub_market/core/utils/style_manager.dart';
-
-import '../../../generated/assets.dart';
+import 'package:fruit_hub_market/features/onboarding_view/widgets/onboarding_background.dart';
+import 'package:fruit_hub_market/features/onboarding_view/widgets/onboarding_content.dart';
+import 'package:fruit_hub_market/features/onboarding_view/widgets/onboarding_image.dart';
+import 'package:fruit_hub_market/features/onboarding_view/widgets/onboarding_skip_button.dart';
 
 class OnBoardingViewBody extends StatelessWidget {
   const OnBoardingViewBody({super.key});
@@ -12,71 +12,15 @@ class OnBoardingViewBody extends StatelessWidget {
     return Column(
       children: [
         Stack(
+          alignment: Alignment.topCenter,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SvgPicture.asset(Assets.images.onboardingBackground2.path,fit: BoxFit.fill,),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-              child: Text('تخط', style: StyleManager.font13Weight400,),
-            ),
-            Positioned(
-              bottom: 0,
-                left: 0,
-                right: 0,
-                child: SvgPicture.asset(Assets.images.onboardingLogo2.path)
-            ),
+            OnBoardingBackground(),
+            OnBoardingSkipButton(),
+            OnBoardingImage(),
           ],
         ),
-        SizedBox(height: 45,),
-        RichText(
-          text: TextSpan(
-              text: 'مرحبًا بك في ',
-              style: StyleManager.font23Weight700,
-              children: [
-                TextSpan(
-                    text: 'Fruit',
-                    style: StyleManager.font23Weight700.copyWith(
-                        color: Color(0xff1B5E37)
-                    )
-                ),
-                TextSpan(
-                    text: 'Hub',
-                    style: StyleManager.font23Weight700.copyWith(
-                        color: Color(0xffF4A91F)
-                    )
-
-                ),
-              ]
-          ),
-
-        ),
-        Text(
-          'اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف مجموعتنا الواسعة من الفواكه الطازجة الممتازة واحصل على أفضل العروض والجودة العالية.'
-        ),
-        Row(
-          children: [
-            Container(
-              width: 10,
-              height: 10,
-              decoration: BoxDecoration(
-                color: Color(0xff1B5E37),
-                shape: BoxShape.circle,
-              ),
-            ),
-            Container(
-              width: 10,
-              height: 10,
-              decoration: BoxDecoration(
-                color: Color(0xff5DB957),
-                shape: BoxShape.circle,
-              ),
-            ),
-          ],
-        )
+        SizedBox(height: 60),
+        OnBoardingContent(),
       ],
     );
   }
