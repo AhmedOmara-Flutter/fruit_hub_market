@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruit_hub_market/core/utils/style_manager.dart';
+
 import '../../../generated/assets.dart';
 
 class OnBoardingViewBody extends StatelessWidget {
@@ -11,24 +12,23 @@ class OnBoardingViewBody extends StatelessWidget {
     return Column(
       children: [
         Stack(
-          alignment: Alignment.topCenter,
           children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal:20,vertical: 40),
-                child: Text('تخط',style: StyleManager.font13Weight400,),
-              ),
-            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SvgPicture.asset(Assets.images.onboardingBackground2.path,fit: BoxFit.fill,),
               ],
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+              child: Text('تخط', style: StyleManager.font13Weight400,),
+            ),
             Positioned(
-              bottom: 0.0,
-                child: SvgPicture.asset(Assets.images.onboardingLogo2.path)),
+              bottom: 0,
+                left: 0,
+                right: 0,
+                child: SvgPicture.asset(Assets.images.onboardingLogo2.path)
+            ),
           ],
         ),
         SizedBox(height: 45,),
