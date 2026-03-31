@@ -1,16 +1,15 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class OnBoardingDescription extends StatelessWidget {
+  final String description;
   const OnBoardingDescription({
-    super.key,
+    super.key, required this.description,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
-        'اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف مجموعتنا'
-            ' الواسعة من الفواكه الطازجة الممتازة'
-            ' واحصل على أفضل العروض والجودة العالية.',style: TextTheme.of(context).titleMedium!.copyWith(
+       description,style: TextTheme.of(context).titleMedium!.copyWith(
       height: 1.7
     ),
      textAlign: TextAlign.center,

@@ -1,23 +1,31 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class OnBoardingPageIndicator extends StatelessWidget {
-  final bool isActive;
+  final int currentIndex;
   const OnBoardingPageIndicator({
-    super.key, required this.isActive,
+    super.key, required this.currentIndex,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center, children: [
-      InActiveDot(),
-      SizedBox(width: 10,),
-      ActiveDot(),
-
-    ],
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(2, (index) => CustomDot(isActive: currentIndex== index),)
     );
   }
 }
+
+class CustomDot extends StatelessWidget {
+  final bool isActive;
+  const CustomDot({super.key, required this.isActive});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return isActive ? ActiveDot() : InActiveDot();
+  }
+}
+
 
 class ActiveDot extends StatelessWidget {
   const ActiveDot({

@@ -1,4 +1,5 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/core/utils/string_manager.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
   const OnBoardingViewBody({super.key});
@@ -8,17 +9,32 @@ class OnBoardingViewBody extends StatefulWidget {
 }
 
 class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
-  final int currentIndex = 0;
-  final List<PageViewModel> items = [];
+   int currentIndex = 0;
+  final List<PageViewModel> items = [
+    PageViewModel(image: Assets.images.onboardingLogo1.path,
+        title: StringManager.onBoardingTitle1,
+        description: StringManager.onBoardingDescription1,
+        background: Assets.images.onboardingBackground1.path
+    ),
+    PageViewModel(image: Assets.images.onboardingLogo2.path,
+        title: StringManager.onBoardingTitle2,
+        description: StringManager.onBoardingDescription2,
+        background: Assets.images.onboardingBackground2.path
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
-      itemBuilder: (context, index) => PageViewItem(),
+      itemBuilder: (context, index) => PageViewItem(pageViewModel: items[index],currentIndex:currentIndex),
       scrollDirection: Axis.horizontal,
       physics: BouncingScrollPhysics(),
-      onPageChanged: (index) {},
-      itemCount: 2,
+      onPageChanged: (index) {
+        setState(() {
+          currentIndex = index;
+        });
+      },
+      itemCount: items.length,
     );
   }
 }

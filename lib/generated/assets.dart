@@ -13,6 +13,7 @@ class Assets {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  final AssetGenImage img = const AssetGenImage('assets/images/img.png');
   final SvgGenImage onboardingBackground1 = const SvgGenImage(
     'assets/images/onboarding_background_1.svg',
   );

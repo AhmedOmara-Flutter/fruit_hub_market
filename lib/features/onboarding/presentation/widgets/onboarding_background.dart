@@ -1,8 +1,9 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class OnBoardingBackground extends StatelessWidget {
+  final String background;
   const OnBoardingBackground({
-    super.key,
+    super.key, required this.background,
   });
 
   @override
@@ -10,7 +11,7 @@ class OnBoardingBackground extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SvgPicture.asset(Assets.images.onboardingBackground1.path,fit: BoxFit.fill,),
+        SvgPicture.asset(background,fit: BoxFit.fill,),
       ],
     );
   }

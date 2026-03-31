@@ -1,8 +1,12 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class PageViewItem extends StatelessWidget {
+  final PageViewModel pageViewModel;
+  final int currentIndex;
+
+
   const PageViewItem({
-    super.key,
+    super.key, required this.pageViewModel, required this.currentIndex,
   });
 
   @override
@@ -12,13 +16,15 @@ class PageViewItem extends StatelessWidget {
         Stack(
           alignment: Alignment.topCenter,
           children: [
-            OnBoardingBackground(),
+            OnBoardingBackground(background: pageViewModel.background,),
             OnBoardingSkipButton(),
-            OnBoardingImage(),
+            OnBoardingImage(image: pageViewModel.image,),
           ],
         ),
         SizedBox(height: 60),
-        OnBoardingContent(),
+        OnBoardingContent(pageViewModel: pageViewModel,),
+        SizedBox(height: 50,),
+        OnBoardingPageIndicator(currentIndex: currentIndex,),
       ],
     );
   }

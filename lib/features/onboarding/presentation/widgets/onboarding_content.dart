@@ -1,8 +1,10 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class OnBoardingContent extends StatelessWidget {
+  final PageViewModel pageViewModel;
+
   const OnBoardingContent({
-    super.key,
+    super.key, required this.pageViewModel,
   });
 
   @override
@@ -11,11 +13,9 @@ class OnBoardingContent extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
         children: [
-          OnBoardingTitle(),
+          OnBoardingTitle(title: pageViewModel.title,),
           SizedBox(height: 30,),
-          OnBoardingDescription(),
-          SizedBox(height: 50,),
-          OnBoardingPageIndicator(isActive: true,),
+          OnBoardingDescription(description: pageViewModel.description,),
         ],
       ),
     );
