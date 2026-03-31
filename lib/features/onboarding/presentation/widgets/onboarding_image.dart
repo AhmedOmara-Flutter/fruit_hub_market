@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fruit_hub_market/generated/assets.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class OnBoardingImage extends StatelessWidget {
   const OnBoardingImage({

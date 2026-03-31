@@ -1,21 +1,24 @@
-import 'package:flutter/material.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class StyleManager {
-  static TextStyle font13Weight400 = TextStyle(
+  static TextStyle font15Weight400 = TextStyle(
     color: Color(0xff949D9E),
-    fontSize: 13,
+    fontFamily: 'Cairo',
+    fontSize: 15,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle font23Weight700 = TextStyle(
+  static TextStyle font25Weight700 = TextStyle(
     color: Color(0xff0C0D0D),
-    fontSize: 23,
+    fontFamily: 'Cairo',
+    fontSize: 25,
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle font13Weight600 = TextStyle(
+  static TextStyle font15Weight600 = TextStyle(
     color: Color(0xff4E5556),
-    fontSize: 13,
+    fontFamily: 'Cairo',
+    fontSize: 15,
     fontWeight: FontWeight.w600,
   );
 }

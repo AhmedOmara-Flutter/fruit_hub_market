@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import '../../features/onboarding_view/view/onboarding_view.dart';
-import '../../features/splash/view/splash_view.dart';
-
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 class RouteManager {
   static const String splash = '/splash';
   static const String onBoarding = '/onBoarding';

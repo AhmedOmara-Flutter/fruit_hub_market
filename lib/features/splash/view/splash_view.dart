@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:fruit_hub_market/features/splash/widgets/splash_view_body.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});

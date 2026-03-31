@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:fruit_hub_market/core/utils/theme_manager.dart';
 import 'core/utils/route_manager.dart';
 import 'generated/l10n.dart';
 void main() {
@@ -20,9 +21,7 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: Locale('ar'),
-      theme: ThemeData(
-        fontFamily: 'Cairo'
-      ),
+      theme: ThemeManager.lightTheme,
       onGenerateRoute: GenerateRoute.generateRoute,
       initialRoute: RouteManager.splash,
       debugShowCheckedModeBanner: false,
