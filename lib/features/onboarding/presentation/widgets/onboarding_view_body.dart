@@ -28,24 +28,31 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
       children: [
         SizedBox(
           height: MediaQuery.of(context).size.width*1.77,
-          child: PageView.builder(
-            itemBuilder: (context, index) =>
-                PageViewItem(pageViewModel: items[index],
-                  currentIndex: currentIndex,
-                  pageCount: items.length,),
-            scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
-            onPageChanged: (index) {
-              setState(() {
-                currentIndex = index;
-              });
-            },
-            itemCount: items.length,
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: PageView.builder(
+              itemBuilder: (context, index) =>
+                  PageViewItem(pageViewModel: items[index],
+                    currentIndex: currentIndex,
+                    pageCount: items.length,),
+              scrollDirection: Axis.horizontal,
+              physics: BouncingScrollPhysics(),
+
+              onPageChanged: (index) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+              itemCount: items.length,
+            ),
           ),
         ),
-        OnBoardingPageIndicator(
-          currentIndex: currentIndex,
-          pageCount: items.length,
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: OnBoardingPageIndicator(
+            currentIndex: currentIndex,
+            pageCount: items.length,
+          ),
         ),
         const SizedBox(height: 30),
         if(currentIndex == items.length-1)
