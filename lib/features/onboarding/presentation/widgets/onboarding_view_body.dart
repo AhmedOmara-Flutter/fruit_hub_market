@@ -30,7 +30,9 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           height: MediaQuery.of(context).size.width*1.77,
           child: PageView.builder(
             itemBuilder: (context, index) =>
-                PageViewItem(pageViewModel: items[index]),
+                PageViewItem(pageViewModel: items[index],
+                  currentIndex: currentIndex,
+                  pageCount: items.length,),
             scrollDirection: Axis.horizontal,
             physics: BouncingScrollPhysics(),
             onPageChanged: (index) {
@@ -48,7 +50,6 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         const SizedBox(height: 30),
         if(currentIndex == items.length-1)
         OnBoardingCustomButton(label: 'ابدأ الان',),
-        const SizedBox(height: 50),
       ],
     );
   }

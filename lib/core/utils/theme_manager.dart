@@ -6,10 +6,11 @@ class ThemeManager {
     ///elevated button
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.symmetric(horizontal: 20),
         backgroundColor: const Color(0xff1B5E37),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10)),
-        minimumSize: const Size(double.infinity, 60),
+        minimumSize: const Size(double.infinity, 65),
       ),
     ),
 

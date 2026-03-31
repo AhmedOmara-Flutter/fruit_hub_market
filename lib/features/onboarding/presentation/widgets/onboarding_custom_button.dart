@@ -8,9 +8,12 @@ class OnBoardingCustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed:onPressed,
-      child: Text(label, style: TextTheme.of(context).labelSmall),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: ElevatedButton(
+        onPressed:(){},
+        child: Text(label, style: Theme.of(context).textTheme.labelSmall),
+      ),
     );
   }
 }

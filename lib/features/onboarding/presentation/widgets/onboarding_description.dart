@@ -9,7 +9,7 @@ class OnBoardingDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-       description,style: TextTheme.of(context).titleMedium!.copyWith(
+       description,style:Theme.of(context).textTheme.titleMedium!.copyWith(
       height: 1.7
     ),
      textAlign: TextAlign.center,

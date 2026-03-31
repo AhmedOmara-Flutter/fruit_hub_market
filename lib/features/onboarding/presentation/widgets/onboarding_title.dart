@@ -11,17 +11,17 @@ class OnBoardingTitle extends StatelessWidget {
     return RichText(
       text: TextSpan(
         text: title,
-          style: TextTheme.of(context).titleLarge,
+          style: Theme.of(context).textTheme.titleLarge,
         // children: [
         //   TextSpan(
         //       text: 'Fruit',
-        //       style: TextTheme.of(context).titleLarge!.copyWith(
+        //       style: Theme.of(context).textTheme.titleLarge!.copyWith(
         //         color: Color(0xff1B5E37)
         //       )
         //   ),
         //   TextSpan(
         //       text: 'Hub',
-        //       style: TextTheme.of(context).titleLarge!.copyWith(
+        //       style: Theme.of(context).textTheme.titleLarge!.copyWith(
         //         color: Color(0xffF4A91F)
         //       )
         //

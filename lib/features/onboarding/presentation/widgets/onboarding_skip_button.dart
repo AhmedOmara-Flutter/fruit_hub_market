@@ -11,7 +11,7 @@ class OnBoardingSkipButton extends StatelessWidget {
       alignment: Alignment.topRight,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-        child: Text('تخط', style: TextTheme.of(context).titleSmall,),
+        child: Text('تخط', style: Theme.of(context).textTheme.titleSmall,),
       ),
     );
   }
