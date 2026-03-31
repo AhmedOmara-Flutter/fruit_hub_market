@@ -21,4 +21,10 @@ class StyleManager {
     fontSize: 15,
     fontWeight: FontWeight.w600,
   );
+  static TextStyle font18Weight700 = TextStyle(
+    color: Colors.white,
+    fontFamily: 'Cairo',
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+  );
 }

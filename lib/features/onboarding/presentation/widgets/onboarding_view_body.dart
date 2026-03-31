@@ -1,5 +1,4 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/core/utils/string_manager.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
   const OnBoardingViewBody({super.key});
@@ -25,16 +24,32 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      itemBuilder: (context, index) => PageViewItem(pageViewModel: items[index],currentIndex:currentIndex),
-      scrollDirection: Axis.horizontal,
-      physics: BouncingScrollPhysics(),
-      onPageChanged: (index) {
-        setState(() {
-          currentIndex = index;
-        });
-      },
-      itemCount: items.length,
+    return Column(
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.width*1.77,
+          child: PageView.builder(
+            itemBuilder: (context, index) =>
+                PageViewItem(pageViewModel: items[index]),
+            scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
+            onPageChanged: (index) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
+            itemCount: items.length,
+          ),
+        ),
+        OnBoardingPageIndicator(
+          currentIndex: currentIndex,
+          pageCount: items.length,
+        ),
+        const SizedBox(height: 30),
+        if(currentIndex == items.length-1)
+        OnBoardingCustomButton(label: 'ابدأ الان',),
+        const SizedBox(height: 50),
+      ],
     );
   }
 }
