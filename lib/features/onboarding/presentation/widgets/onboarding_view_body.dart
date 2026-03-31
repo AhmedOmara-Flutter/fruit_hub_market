@@ -9,14 +9,14 @@ class OnBoardingViewBody extends StatefulWidget {
 
 class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
    int currentIndex = 0;
-  final List<PageViewModel> items = [
+   late List<PageViewModel> items = [
     PageViewModel(image: Assets.images.onboardingLogo1.path,
-        title: StringManager.onBoardingTitle1,
+        title: StringManager.onBoardingTitle1(context),
         description: StringManager.onBoardingDescription1,
         background: Assets.images.onboardingBackground1.path
     ),
     PageViewModel(image: Assets.images.onboardingLogo2.path,
-        title: StringManager.onBoardingTitle2,
+        title: StringManager.onBoardingTitle2(context),
         description: StringManager.onBoardingDescription2,
         background: Assets.images.onboardingBackground2.path
     ),
@@ -28,35 +28,32 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
       children: [
         SizedBox(
           height: MediaQuery.of(context).size.width*1.77,
-          child: Directionality(
-            textDirection: TextDirection.ltr,
-            child: PageView.builder(
-              itemBuilder: (context, index) =>
-                  PageViewItem(pageViewModel: items[index],
-                    currentIndex: currentIndex,
-                    pageCount: items.length,),
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-
-              onPageChanged: (index) {
-                setState(() {
-                  currentIndex = index;
-                });
-              },
-              itemCount: items.length,
-            ),
+          child: PageView.builder(
+            itemBuilder: (context, index) =>
+                PageViewItem(pageViewModel: items[index],
+                  currentIndex: currentIndex,
+                  pageCount: items.length,),
+            scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
+            onPageChanged: (index) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
+            itemCount: items.length,
           ),
         ),
-        Directionality(
-          textDirection: TextDirection.ltr,
-          child: OnBoardingPageIndicator(
+
+        OnBoardingPageIndicator(
             currentIndex: currentIndex,
             pageCount: items.length,
           ),
-        ),
+
         const SizedBox(height: 30),
         if(currentIndex == items.length-1)
-        OnBoardingCustomButton(label: 'ابدأ الان',),
+          OnBoardingCustomButton(label: 'ابدأ الان', onPressed: () {
+            Navigator.pushNamed(context, RouteManager.login);
+          },),
       ],
     );
   }

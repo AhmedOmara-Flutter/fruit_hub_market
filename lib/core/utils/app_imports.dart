@@ -18,3 +18,5 @@ export 'package:fruit_hub_market/features/splash/widgets/splash_view_body.dart';
 export 'package:fruit_hub_market/generated/assets.dart';
 export 'package:fruit_hub_market/core/utils/string_manager.dart';
 export 'package:fruit_hub_market/features/onboarding/presentation/widgets/onboarding_custom_button.dart';
+export 'package:fruit_hub_market/features/login/presentation/widgets/login_view_body.dart';
+export 'package:fruit_hub_market/features/login/presentation/view/login_view.dart';

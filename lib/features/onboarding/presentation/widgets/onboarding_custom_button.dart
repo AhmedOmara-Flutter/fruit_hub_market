@@ -11,7 +11,7 @@ class OnBoardingCustomButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ElevatedButton(
-        onPressed:(){},
+        onPressed:onPressed,
         child: Text(label, style: Theme.of(context).textTheme.labelSmall),
       ),
     );

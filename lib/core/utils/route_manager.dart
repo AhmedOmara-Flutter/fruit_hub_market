@@ -13,6 +13,8 @@ class GenerateRoute {
         return MaterialPageRoute(builder: (_) => const SplashView());
         case RouteManager.onBoarding:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
+        case RouteManager.login:
+        return MaterialPageRoute(builder: (_) => const LoginView());
       default:
         return _errorRoute();
     }

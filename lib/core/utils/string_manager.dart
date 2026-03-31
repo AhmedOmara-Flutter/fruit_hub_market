@@ -1,6 +1,41 @@
+import 'app_imports.dart';
+
 class StringManager {
-  static const onBoardingTitle1 = 'مرحبًا بك في ';
-  static const onBoardingTitle2 = 'ابحث وتسوق';
+
+  static Widget onBoardingTitle1(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text('مرحبًا بك في ', style: Theme
+            .of(context)
+            .textTheme
+            .titleLarge,),
+        Text('Hub', style: Theme
+            .of(context)
+            .textTheme
+            .titleLarge!
+            .copyWith(
+            color: Color(0xffF4A91F)
+        )
+        ),
+        Text('Fruit', style: Theme
+            .of(context)
+            .textTheme
+            .titleLarge!
+            .copyWith(
+            color: Color(0xff1B5E37)
+        )),
+      ],
+    );
+  }
+
+  static Widget onBoardingTitle2(BuildContext context) {
+    return Text('ابحث وتسوق', style: Theme
+        .of(context)
+        .textTheme
+        .titleLarge);
+  }
+
 
   static const onBoardingDescription1 =
       'اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف\nمجموعتنا'
