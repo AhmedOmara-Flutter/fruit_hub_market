@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:fruit_hub_market/core/services/cache_helper.dart';
 import 'package:fruit_hub_market/core/utils/theme_manager.dart';
+import 'core/utils/constants.dart';
 import 'core/utils/route_manager.dart';
 import 'generated/l10n.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
+  Constants.onBoarding = CacheHelper.getData(key: 'onBoarding')??false;
+  print(Constants.onBoarding);
   runApp(MyApp());
 }
 

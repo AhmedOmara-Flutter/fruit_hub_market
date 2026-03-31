@@ -1,5 +1,7 @@
 import 'dart:async';
+
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/core/utils/constants.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -18,7 +20,6 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
   @override
   Widget build(BuildContext context) {
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -40,9 +41,15 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   void goToHome() {
     _timer = Timer(const Duration(seconds: 3),
             () {
-              Navigator.pushReplacementNamed(
-                  context, RouteManager.onBoarding);
-        });
+              if (Constants.onBoarding == true) {
+                Navigator.pushReplacementNamed(
+                    context, RouteManager.login);
+              } else {
+                Navigator.pushReplacementNamed(
+                    context, RouteManager.onBoarding);
+              }
+            }
+    );
   }
 
   @override

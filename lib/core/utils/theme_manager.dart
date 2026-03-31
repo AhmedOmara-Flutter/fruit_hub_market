@@ -3,6 +3,14 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 class ThemeManager {
   static ThemeData lightTheme = ThemeData(
 
+    ///appBar
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.white,
+      elevation: 0,
+      centerTitle: true,
+      titleTextStyle: StyleManager.font25Weight700,
+    ),
+
     ///elevated button
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -22,4 +30,6 @@ class ThemeManager {
         labelSmall: StyleManager.font18Weight700
     ),
   );
+
+
 }

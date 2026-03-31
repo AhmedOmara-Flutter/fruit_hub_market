@@ -1,4 +1,5 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/core/utils/utils.dart';
 
 class OnBoardingSkipButton extends StatelessWidget {
   const OnBoardingSkipButton({
@@ -11,7 +12,13 @@ class OnBoardingSkipButton extends StatelessWidget {
       alignment: Alignment.topRight,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-        child: Text('تخط', style: Theme.of(context).textTheme.titleSmall,),
+        child: GestureDetector(onTap: () {
+          Utils.submit();
+          Navigator.pushReplacementNamed(context, RouteManager.login);
+        }, child: Text('تخط', style: Theme
+            .of(context)
+            .textTheme
+            .titleSmall,)),
       ),
     );
   }
