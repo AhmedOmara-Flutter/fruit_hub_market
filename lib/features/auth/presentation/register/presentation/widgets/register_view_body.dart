@@ -1,8 +1,18 @@
+import 'package:fruit_hub_market/features/auth/data/repos/auth_repo_impl.dart';
 
 import '../../../../../../core/utils/app_imports.dart';
 
-class RegisterViewBody extends StatelessWidget {
+class RegisterViewBody extends StatefulWidget {
   const RegisterViewBody({super.key});
+
+  @override
+  State<RegisterViewBody> createState() => _RegisterViewBodyState();
+}
+
+class _RegisterViewBodyState extends State<RegisterViewBody> {
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +24,22 @@ class RegisterViewBody extends StatelessWidget {
           const SizedBox(height: 20),
           // full name
           TextFormField(
+            controller: nameController,
+            keyboardType: TextInputType.name,
             decoration: InputDecoration(hintText: "الاسم كامل"),
           ),
           const SizedBox(height: 15),
           // email
           TextFormField(
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(hintText: "البريد الإلكتروني"),
           ),
           const SizedBox(height: 15),
           // Password
           TextFormField(
+            controller: passwordController,
+            keyboardType: TextInputType.visiblePassword,
             obscureText: true,
             decoration: InputDecoration(
               hintText: "كلمة المرور",
@@ -76,26 +92,41 @@ class RegisterViewBody extends StatelessWidget {
               ]
           ),
           const SizedBox(height: 40),
-          CustomButton(label: 'إنشاء حساب جديد', onPressed: () {}),
+          CustomButton(label: 'إنشاء حساب جديد', onPressed: () {
+            AuthRepoImpl(authRemoteDataSource: AuthRemoteDataSourceImpl())
+                .createUserWithEmailAndPassword(
+                RegisterRequest(
+                    email: emailController.text,
+                    password: passwordController.text
+                ));
+          }),
           const SizedBox(height: 40),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 "تمتلك حساب بالفعل؟ ",
-                style: Theme.of(
+                style: Theme
+                    .of(
                   context,
-                ).textTheme.labelMedium!.copyWith(color: Color(0xff949D9E)),
+                )
+                    .textTheme
+                    .labelMedium!
+                    .copyWith(color: Color(0xff949D9E)),
               ),
               GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, RouteManager.login);
                 },
                 child: Text(
-                'تسجيل دخول',
-                  style: Theme.of(
+                  'تسجيل دخول',
+                  style: Theme
+                      .of(
                     context,
-                  ).textTheme.labelMedium!.copyWith(color: Color(0xff1B5E37)),
+                  )
+                      .textTheme
+                      .labelMedium!
+                      .copyWith(color: Color(0xff1B5E37)),
                 ),
               ),
             ],
