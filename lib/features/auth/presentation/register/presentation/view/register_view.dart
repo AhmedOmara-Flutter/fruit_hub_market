@@ -1,5 +1,8 @@
 
-import '../../../../../core/utils/app_imports.dart';
+
+import 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/register_view_body.dart';
+
+import '../../../../../../core/utils/app_imports.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});

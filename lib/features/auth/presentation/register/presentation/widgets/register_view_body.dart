@@ -1,4 +1,5 @@
-import '../../../../../core/utils/app_imports.dart';
+
+import '../../../../../../core/utils/app_imports.dart';
 
 class RegisterViewBody extends StatelessWidget {
   const RegisterViewBody({super.key});
