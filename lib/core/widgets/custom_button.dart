@@ -1,10 +1,10 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
-class OnBoardingCustomButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final String label;
-  final void Function()? onPressed;
+  final void Function() onPressed;
 
-  const OnBoardingCustomButton({super.key, required this.label, this.onPressed});
+  const CustomButton({super.key, required this.label,required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

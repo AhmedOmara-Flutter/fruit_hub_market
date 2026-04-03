@@ -1,4 +1,5 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+
 class RouteManager {
   static const String splash = '/splash';
   static const String onBoarding = '/onBoarding';
@@ -15,6 +16,8 @@ class GenerateRoute {
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
         case RouteManager.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
+        case RouteManager.register:
+        return MaterialPageRoute(builder: (_) => const RegisterView());
       default:
         return _errorRoute();
     }

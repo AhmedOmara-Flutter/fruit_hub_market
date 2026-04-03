@@ -1,37 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:fruit_hub_market/core/services/cache_helper.dart';
-import 'package:fruit_hub_market/core/utils/theme_manager.dart';
+
+import 'core/src/src.dart';
 import 'core/utils/constants.dart';
-import 'core/utils/route_manager.dart';
-import 'generated/l10n.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   await CacheHelper.init();
   Constants.onBoarding = CacheHelper.getData(key: 'onBoarding')??false;
   print(Constants.onBoarding);
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      locale: Locale('ar'),
-      theme: ThemeManager.lightTheme,
-      onGenerateRoute: GenerateRoute.generateRoute,
-      initialRoute: RouteManager.splash,
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}

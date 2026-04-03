@@ -54,7 +54,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
 
         const SizedBox(height: 30),
         if(currentIndex == items.length-1)
-          OnBoardingCustomButton(label: 'ابدأ الان', onPressed: () {
+          CustomButton(label: 'ابدأ الان', onPressed: () {
              Utils.submit();
             Navigator.pushReplacementNamed(context, RouteManager.login);
           },),

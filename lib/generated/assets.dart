@@ -13,6 +13,9 @@ class Assets {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  final SvgGenImage apple = const SvgGenImage('assets/images/apple.svg');
+  final SvgGenImage facebook = const SvgGenImage('assets/images/facebook.svg');
+  final SvgGenImage google = const SvgGenImage('assets/images/google.svg');
   final AssetGenImage img = const AssetGenImage('assets/images/img.png');
   final SvgGenImage onboardingBackground1 = const SvgGenImage(
     'assets/images/onboarding_background_1.svg',
