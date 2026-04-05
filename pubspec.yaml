@@ -38,6 +38,10 @@ dependencies:
   firebase_core: ^4.6.0
   dartz: ^0.10.1
   firebase_auth: ^6.3.0
+  bloc: ^9.2.0
+  flutter_bloc: ^9.1.1
+  cloud_firestore: ^6.2.0
+
 
 
 

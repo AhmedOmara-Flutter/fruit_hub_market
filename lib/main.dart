@@ -1,13 +1,16 @@
+import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fruit_hub_market/core/services/cache_helper.dart';
 
+import 'core/services/bloc_observer.dart';
 import 'core/src/src.dart';
 import 'core/utils/constants.dart';
 import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = BlocObserverReader();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
