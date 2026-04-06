@@ -1,25 +1,22 @@
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/features/auth/data/models/user_model.dart';
 
 class AuthRepoImpl implements AuthRepo {
-  final AuthRemoteDataSource authRemoteDataSource;
+  final AuthRemoteDataSource _authRemoteDataSource;
 
-  AuthRepoImpl({required this.authRemoteDataSource});
+  AuthRepoImpl(this._authRemoteDataSource);
 
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
     RegisterRequest registerRequest,
   ) async {
     try {
-      final user = await authRemoteDataSource.createUserWithEmailAndPassword(
+      final user = await _authRemoteDataSource.createUserWithEmailAndPassword(
         registerRequest,
       );
       return Right(
-        UserEntity(
-          userName: user.displayName ?? '',
-          email: user.email ?? '',
-          uId: user.uid,
-        ),
+        UserModel.fromJson(user)
       );
     } on Exception catch (e) {
       print(e);

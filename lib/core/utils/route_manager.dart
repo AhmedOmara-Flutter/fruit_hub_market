@@ -18,7 +18,7 @@ class GenerateRoute {
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
         case RouteManager.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
-        case RouteManager.register:
+      case RouteManager.register:
         return MaterialPageRoute(builder: (_) => const RegisterView());
       default:
         return _errorRoute();

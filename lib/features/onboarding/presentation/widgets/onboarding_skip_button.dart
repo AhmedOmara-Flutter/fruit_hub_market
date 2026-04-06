@@ -1,5 +1,5 @@
+import 'package:fruit_hub_market/core/helper_function/submit.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/core/utils/utils.dart';
 
 class OnBoardingSkipButton extends StatelessWidget {
   const OnBoardingSkipButton({
@@ -13,7 +13,7 @@ class OnBoardingSkipButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
         child: GestureDetector(onTap: () {
-          Utils.submit();
+          submit();
           Navigator.pushReplacementNamed(context, RouteManager.login);
         }, child: Text('تخط', style: Theme
             .of(context)

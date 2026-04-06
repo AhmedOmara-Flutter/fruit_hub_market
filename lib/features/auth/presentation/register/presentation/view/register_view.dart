@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hub_market/core/services/service_locator.dart';
 import 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/register_view_body.dart';
 
 import '../../../../../../core/utils/app_imports.dart';
@@ -14,9 +15,7 @@ class RegisterView extends StatelessWidget {
         appBar: AppBar(title: Text("حساب جديد"), centerTitle: true,
         ),
         body: BlocProvider(
-          create: (context) =>
-              RegisterCubit(AuthRepoImpl(
-                  authRemoteDataSource: AuthRemoteDataSourceImpl())),
+          create: (context) => RegisterCubit(instance()),
           child: BlocConsumer<RegisterCubit, RegisterState>(
             listener: (context, state) {
               if (state is RegisterSuccess) {

@@ -1,7 +1,5 @@
+import 'package:fruit_hub_market/core/helper_function/submit.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/core/utils/utils.dart';
-
-import '../../../../core/services/cache_helper.dart';
 
 class OnBoardingViewBody extends StatefulWidget {
   const OnBoardingViewBody({super.key});
@@ -55,7 +53,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         const SizedBox(height: 30),
         if(currentIndex == items.length-1)
           CustomButton(label: 'ابدأ الان', onPressed: () {
-             Utils.submit();
+            submit();
             Navigator.pushReplacementNamed(context, RouteManager.login);
           },),
       ],
