@@ -2,9 +2,9 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class CustomButton extends StatelessWidget {
   final String label;
-  final void Function() onPressed;
+  final void Function()? onPressed;
 
-  const CustomButton({super.key, required this.label,required this.onPressed});
+  const CustomButton({super.key, required this.label,this.onPressed});
 
   @override
   Widget build(BuildContext context) {

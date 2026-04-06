@@ -23,3 +23,10 @@ export 'package:fruit_hub_market/features/auth/domain/entities/user_entity.dart'
 export 'package:fruit_hub_market/features/auth/domain/repos/auth_repo.dart';
 export 'package:fruit_hub_market/features/auth/data/requests/auth_request.dart';
 export 'package:fruit_hub_market/features/auth/data/data_source/auth_remote_data_source.dart';
+export 'package:flutter_bloc/flutter_bloc.dart';
+export 'package:fruit_hub_market/core/helper_function/custom_show_snake_bar.dart';
+export 'package:fruit_hub_market/features/auth/presentation/register/presentation/view_model/register_cubit.dart';
+export 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/custom_auth_footer.dart';
+export 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/custom_password_field.dart';
+export 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/custom_terms_and_conditions.dart';
+export 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/custom_text_form_field.dart';

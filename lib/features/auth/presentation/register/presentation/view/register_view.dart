@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hub_market/core/helper_function/custom_show_snake_bar.dart';
 import 'package:fruit_hub_market/core/services/service_locator.dart';
 import 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/register_view_body.dart';
 
 import '../../../../../../core/utils/app_imports.dart';
-import '../../../../data/repos/auth_repo_impl.dart';
 import '../view_model/register_cubit.dart';
 
 class RegisterView extends StatelessWidget {
@@ -18,25 +18,24 @@ class RegisterView extends StatelessWidget {
           create: (context) => RegisterCubit(instance()),
           child: BlocConsumer<RegisterCubit, RegisterState>(
             listener: (context, state) {
+              if(state is RegisterLoading){
+                CircularProgressIndicator();
+              }
               if (state is RegisterSuccess) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(backgroundColor: Colors.green,
-                      content: Text(
-                          'Registration done successfully'
-                      ),));
+                customShowSnakeBar(
+                    context, color: Colors.green, label: 'تم انشاء الحساب بنجاح');
+                Navigator.pushNamed(context, RouteManager.login);
               }
               if (state is RegisterError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(backgroundColor: Colors.red,
-                      content: Text(
-                          state.errMessage
-                      ),));
+                customShowSnakeBar(
+                    context, color: Colors.red, label: state.errMessage);
               }
             },
             builder: (context, state) {
               return RegisterViewBody();
             },
           ),
-        ));
+        )
+    );
   }
 }
