@@ -14,16 +14,17 @@ class _RegisterFormState extends State<RegisterForm> {
   final _formKey = GlobalKey<FormState>();
   bool isTermsAndConditionsSelected = false;
   bool isPasswordVisible = false;
-  bool isFormValid() {
-    return emailController.text.isNotEmpty &&
-        passwordController.text.isNotEmpty &&
-        nameController.text.isNotEmpty;
-  }
+  bool isValid = false;
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
+      onChanged: () {
+        setState(() {
+          isValid = _formKey.currentState?.validate() ?? false;
+        });
+      },
       child: Column(
         children: [
           CustomTextFormField(
@@ -84,10 +85,11 @@ class _RegisterFormState extends State<RegisterForm> {
             },
           ),
           const SizedBox(height: 40),
-          CustomButton(
-            label: 'إنشاء حساب جديد',
-            onPressed: isTermsAndConditionsSelected && isFormValid()
-                ? () {
+          BlocBuilder<RegisterCubit, RegisterState>(
+            builder: (context, state) {
+              return CustomButton(
+                onPressed: isTermsAndConditionsSelected && isValid
+                    ? () {
                     if (_formKey.currentState!.validate()) {
                       if (isTermsAndConditionsSelected == true) {
                         BlocProvider.of<RegisterCubit>(context).register(
@@ -105,6 +107,14 @@ class _RegisterFormState extends State<RegisterForm> {
                     }
                   }
                 : null,
+                child: state is! RegisterLoading
+                    ? Text(
+                        'إنشاء حساب جديد',
+                        style: Theme.of(context).textTheme.labelSmall,
+                      )
+                    : CircularProgressIndicator(color: Colors.white),
+              );
+            },
           ),
         ],
       ),

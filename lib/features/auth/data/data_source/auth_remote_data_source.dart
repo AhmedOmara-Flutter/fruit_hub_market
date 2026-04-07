@@ -23,21 +23,44 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       return credential.user!;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        throw CustomException('The password provided is too weak.');
+        throw CustomException('كلمة المرور يجب ألا تقل عن 6 أحرف');
       } else if (e.code == 'email-already-in-use') {
-        throw CustomException('The account already exists for that email.');
+        throw CustomException('هذا البريد الإلكتروني مستخدم بالفعل');
+      }
+      else if (e.code == 'network-request-failed') {
+        throw CustomException('لا يوجد اتصال بالإنترنت، تأكد من الشبكة');
       } else {
-        throw CustomException(e.code);
+        print(e.code);
+        throw CustomException('حدث خطأ غير متوقع، حاول مرة أخرى');
       }
     } catch (e) {
       print(e);
-      throw CustomException('Something went wrong');
+      throw CustomException('حدث خطأ غير متوقع، حاول مرة أخرى');
     }
   }
 
   @override
-  Future<User> signInWithEmailAndPassword(LoginRequest loginRequest) {
-    // TODO: implement signInWithEmailAndPassword
-    throw UnimplementedError();
+  Future<User> signInWithEmailAndPassword(LoginRequest loginRequest) async{
+    try {
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+        email: loginRequest.email,
+        password: loginRequest.password,
+      );
+      return credential.user!;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-credential') {
+        throw CustomException('البريد الإلكتروني أو كلمة المرور غير صحيحة');
+      }
+      else if (e.code == 'network-request-failed') {
+        throw CustomException('لا يوجد اتصال بالإنترنت');
+      } else {
+        print(e.code);
+        throw CustomException('حدث خطأ غير متوقع');
+      }
+    } catch (e) {
+      print(e);
+      throw CustomException('حدث خطأ غير متوقع');
+    }
   }
 }

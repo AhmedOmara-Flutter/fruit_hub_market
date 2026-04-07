@@ -26,9 +26,19 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
-    LoginRequest loginRequest,
-  ) {
-    // TODO: implement signInWithEmailAndPassword
-    throw UnimplementedError();
+    LoginRequest loginRequest,) async {
+    try {
+      final user = await _authRemoteDataSource.signInWithEmailAndPassword(
+        loginRequest,
+      );
+      return Right(
+          UserModel.fromJson(user)
+      );
+    } on Exception catch (e) {
+      print(e);
+      return Left(ServerFailure(errMessage: e.toString()));
+    }
+
+
   }
 }

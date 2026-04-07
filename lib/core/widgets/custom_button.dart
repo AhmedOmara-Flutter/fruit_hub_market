@@ -1,10 +1,10 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class CustomButton extends StatelessWidget {
-  final String label;
+  final Widget child;
   final void Function()? onPressed;
 
-  const CustomButton({super.key, required this.label,this.onPressed});
+  const CustomButton({super.key, required this.child,this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ElevatedButton(
         onPressed:onPressed,
-        child: Text(label, style: Theme.of(context).textTheme.labelSmall),
+        child: child,
       ),
     );
   }

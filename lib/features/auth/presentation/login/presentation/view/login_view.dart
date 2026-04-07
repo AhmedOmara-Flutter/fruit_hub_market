@@ -1,4 +1,6 @@
+import 'package:fruit_hub_market/core/services/service_locator.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/features/auth/presentation/login/presentation/view_model/login_cubit.dart';
 import 'package:fruit_hub_market/features/auth/presentation/login/presentation/widgets/login_view_body.dart';
 
 class LoginView extends StatelessWidget {
@@ -9,10 +11,29 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title:  Text("تسجيل دخول",),
+        title: Text("تسجيل دخول",),
         centerTitle: true,
       ),
-      body: LoginViewBody(),
+      body: BlocProvider(
+        create: (context) => LoginCubit(instance()),
+        child: BlocConsumer<LoginCubit, LoginState>(
+          listener: (context, state) {
+            if (state is LoginSuccess) {
+              customShowSnakeBar(
+                  context, color: Colors.green,
+                  label: 'تم التسجيل الدخول بنجاح');
+              Navigator.pushNamed(context, RouteManager.home);
+            }
+            if (state is LoginError) {
+              customShowSnakeBar(
+                  context, color: Colors.red, label: state.errMessage);
+            }
+          },
+          builder: (context, state) {
+            return LoginViewBody();
+          },
+        ),
+      ),
     );
   }
 

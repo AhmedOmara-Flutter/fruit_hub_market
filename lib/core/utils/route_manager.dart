@@ -1,12 +1,16 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/features/auth/presentation/forget_password/view/forget_password_view.dart';
 import 'package:fruit_hub_market/features/auth/presentation/login/presentation/view/login_view.dart';
 import 'package:fruit_hub_market/features/auth/presentation/register/presentation/view/register_view.dart';
+import 'package:fruit_hub_market/features/home/view/home_view.dart';
 
 class RouteManager {
   static const String splash = '/splash';
   static const String onBoarding = '/onBoarding';
   static const String login = '/login';
   static const String register = '/register';
+  static const String forgetPassword = '/forgetPassword';
+  static const String home = '/home';
 }
 
 class GenerateRoute {
@@ -20,6 +24,11 @@ class GenerateRoute {
         return MaterialPageRoute(builder: (_) => const LoginView());
       case RouteManager.register:
         return MaterialPageRoute(builder: (_) => const RegisterView());
+      case RouteManager.forgetPassword:
+        return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
+      case RouteManager.home:
+        return MaterialPageRoute(builder: (_) => const HomeView());
+
       default:
         return _errorRoute();
     }
