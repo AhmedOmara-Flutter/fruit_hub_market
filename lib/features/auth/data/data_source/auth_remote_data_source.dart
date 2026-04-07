@@ -1,13 +1,14 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-
-
+import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthRemoteDataSource {
   Future<User> createUserWithEmailAndPassword(RegisterRequest registerRequest);
   Future<User> signInWithEmailAndPassword(LoginRequest loginRequest);
+  Future<User> signInWithGoogle();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
+
   @override
   Future<User> createUserWithEmailAndPassword(
       RegisterRequest registerRequest,
@@ -60,5 +61,26 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       print(e);
       throw CustomException('حدث خطأ غير متوقع');
     }
+  }
+
+  @override
+  Future<User> signInWithGoogle() async {
+    final googleSignIn = GoogleSignIn.instance;
+
+    await googleSignIn.initialize(
+      serverClientId: '483648490647-htosbo706shgradj88qql1u8kd60a048.apps.googleusercontent.com'
+    );
+
+    final googleUser = await googleSignIn.authenticate();
+    final googleAuth = googleUser.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      idToken: googleAuth.idToken,
+    );
+
+    final userCredential =
+    await FirebaseAuth.instance.signInWithCredential(credential);
+
+    return userCredential.user!;
   }
 }

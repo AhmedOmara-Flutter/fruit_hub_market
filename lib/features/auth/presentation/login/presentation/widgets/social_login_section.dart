@@ -5,38 +5,48 @@ class SocialLoginSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Column(
           children: [
-            Expanded(child: Divider(color: Color(0xffDDDFDF))),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                "أو",
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .labelMedium!,
-              ),
+            Row(
+              children: [
+                Expanded(child: Divider(color: Color(0xffDDDFDF))),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(
+                    "أو",
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .labelMedium!,
+                  ),
+                ),
+                Expanded(child: Divider(color: Color(0xffDDDFDF))),
+              ],
             ),
-            Expanded(child: Divider(color: Color(0xffDDDFDF))),
+            const SizedBox(height: 30),
+            CustomSocialButton(
+              text: "تسجيل بواسطة جوجل",
+              image: Assets.images.google.path,
+              onPressed: () {
+                context.read<LoginCubit>().signInWithGoogle();
+              },
+            ),
+            CustomSocialButton(
+              text: "تسجيل بواسطة أبل",
+              image: Assets.images.apple.path,
+              onPressed: () {},
+            ),
+            CustomSocialButton(
+              text: "تسجيل بواسطة فيسبوك",
+              image: Assets.images.facebook.path,
+              onPressed: () {},
+            )
           ],
-        ),
-        const SizedBox(height: 30),
-        CustomSocialButton(
-          text: "تسجيل بواسطة جوجل",
-          image: Assets.images.google.path,
-        ),
-        CustomSocialButton(
-          text: "تسجيل بواسطة أبل",
-          image: Assets.images.apple.path,
-        ),
-        CustomSocialButton(
-          text: "تسجيل بواسطة فيسبوك",
-          image: Assets.images.facebook.path,
-        )
-      ],
+        );
+      },
     );
   }
 }

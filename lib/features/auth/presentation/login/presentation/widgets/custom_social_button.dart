@@ -3,11 +3,13 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 class CustomSocialButton extends StatelessWidget {
   final String image;
   final String text;
+  final void Function() onPressed;
 
   const CustomSocialButton({
     super.key,
     required this.image,
     required this.text,
+    required this.onPressed,
   });
 
   @override
@@ -15,7 +17,7 @@ class CustomSocialButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: OutlinedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         child: Stack(
           alignment: Alignment.center,
           children: [
