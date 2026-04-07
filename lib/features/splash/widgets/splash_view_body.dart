@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/core/utils/constants.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});

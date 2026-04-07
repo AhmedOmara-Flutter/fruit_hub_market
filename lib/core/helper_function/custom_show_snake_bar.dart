@@ -1,4 +1,4 @@
-import '../utils/app_imports.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 void customShowSnakeBar(
   BuildContext context, {

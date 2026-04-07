@@ -1,8 +1,4 @@
-import 'package:fruit_hub_market/features/auth/presentation/login/presentation/widgets/dont_have_account_section.dart';
-import 'package:fruit_hub_market/features/auth/presentation/login/presentation/widgets/login_form.dart';
-import 'package:fruit_hub_market/features/auth/presentation/login/presentation/widgets/social_login_section.dart';
-
-import '../../../../../../core/utils/app_imports.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});

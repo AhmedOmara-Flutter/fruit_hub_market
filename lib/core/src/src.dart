@@ -1,8 +1,4 @@
-import 'package:flutter_localizations/flutter_localizations.dart';
-
-import '../../generated/l10n.dart';
-import '../utils/app_imports.dart';
-import '../utils/theme_manager.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

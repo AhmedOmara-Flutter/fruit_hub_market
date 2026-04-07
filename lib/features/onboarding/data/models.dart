@@ -1,4 +1,4 @@
-import '../../../core/utils/app_imports.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class PageViewModel{
   final String image;

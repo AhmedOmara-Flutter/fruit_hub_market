@@ -1,10 +1,4 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruit_hub_market/core/helper_function/custom_show_snake_bar.dart';
-import 'package:fruit_hub_market/core/services/service_locator.dart';
-import 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/register_view_body.dart';
-
-import '../../../../../../core/utils/app_imports.dart';
-import '../view_model/register_cubit.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});

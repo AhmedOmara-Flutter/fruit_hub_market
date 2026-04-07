@@ -1,13 +1,4 @@
-import 'package:bloc/bloc.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:fruit_hub_market/core/services/cache_helper.dart';
-
-import 'core/services/bloc_observer.dart';
-import 'core/services/service_locator.dart';
-import 'core/src/src.dart';
-import 'core/utils/constants.dart';
-import 'firebase_options.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

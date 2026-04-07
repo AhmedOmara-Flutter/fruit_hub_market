@@ -1,5 +1,4 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/register_form.dart';
 
 class RegisterViewBody extends StatelessWidget {
   const RegisterViewBody({super.key,});

@@ -1,5 +1,4 @@
-import 'package:fruit_hub_market/features/auth/presentation/login/presentation/widgets/custom_social_button.dart';
-import '../../../../../../core/utils/app_imports.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class SocialLoginSection extends StatelessWidget {
   const SocialLoginSection({super.key});

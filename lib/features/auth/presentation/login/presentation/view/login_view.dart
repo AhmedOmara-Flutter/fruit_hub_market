@@ -1,7 +1,4 @@
-import 'package:fruit_hub_market/core/services/service_locator.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/features/auth/presentation/login/presentation/view_model/login_cubit.dart';
-import 'package:fruit_hub_market/features/auth/presentation/login/presentation/widgets/login_view_body.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});

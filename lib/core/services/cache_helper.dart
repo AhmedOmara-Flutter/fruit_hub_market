@@ -1,4 +1,4 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class CacheHelper {
   static late SharedPreferences _sharedPreferences;

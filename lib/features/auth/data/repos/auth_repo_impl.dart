@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/features/auth/data/models/user_model.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final AuthRemoteDataSource _authRemoteDataSource;

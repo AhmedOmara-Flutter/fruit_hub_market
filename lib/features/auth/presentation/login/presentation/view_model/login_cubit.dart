@@ -1,7 +1,4 @@
-import 'package:bloc/bloc.dart';
-import 'package:fruit_hub_market/features/auth/data/requests/auth_request.dart';
-import 'package:fruit_hub_market/features/auth/domain/repos/auth_repo.dart';
-import 'package:meta/meta.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 part 'login_state.dart';
 
