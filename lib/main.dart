@@ -1,5 +1,6 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initAppModule();

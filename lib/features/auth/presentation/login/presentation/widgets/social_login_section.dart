@@ -6,7 +6,15 @@ class SocialLoginSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is SignInWithGoogleError){
+          customShowSnakeBar(context, color: Colors.red, label: state.errMessage);
+        }
+        if(state is SignInWithFacebookError){
+          customShowSnakeBar(context, color: Colors.red, label: state.errMessage);
+        }
+
+      },
       builder: (context, state) {
         return Column(
           children: [
@@ -42,7 +50,9 @@ class SocialLoginSection extends StatelessWidget {
             CustomSocialButton(
               text: "تسجيل بواسطة فيسبوك",
               image: Assets.images.facebook.path,
-              onPressed: () {},
+              onPressed: () {
+                context.read<LoginCubit>().signInWithFacebook();
+              },
             )
           ],
         );

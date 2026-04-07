@@ -1,3 +1,4 @@
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -5,6 +6,8 @@ abstract class AuthRemoteDataSource {
   Future<User> createUserWithEmailAndPassword(RegisterRequest registerRequest);
   Future<User> signInWithEmailAndPassword(LoginRequest loginRequest);
   Future<User> signInWithGoogle();
+
+  Future<User> signInWithFacebook();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -82,5 +85,16 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     await FirebaseAuth.instance.signInWithCredential(credential);
 
     return userCredential.user!;
+  }
+
+  @override
+  Future<User> signInWithFacebook() async {
+    final LoginResult loginResult = await FacebookAuth.instance.login(
+      permissions: ['email', 'public_profile'],
+    );
+    final OAuthCredential facebookAuthCredential = FacebookAuthProvider
+        .credential(loginResult.accessToken!.tokenString);
+    return (await FirebaseAuth.instance.signInWithCredential(
+        facebookAuthCredential)).user!;
   }
 }

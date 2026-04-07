@@ -57,4 +57,23 @@ class AuthRepoImpl implements AuthRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithFacebook() async {
+    try {
+      final user = await _authRemoteDataSource.signInWithFacebook();
+      return Right(
+          UserModel.fromJson(user)
+      );
+    } catch (e) {
+      // if (e.code == GoogleSignInExceptionCode.canceled) {
+      //   return Left(ServerFailure(errMessage: 'تم إلغاء تسجيل الدخول من قبل المستخدم'));
+      // } else {
+      // return Left(ServerFailure(errMessage: 'حدث خطأ أثناء تسجيل الدخول'));
+      return Left(ServerFailure(errMessage: e.toString()));
+      //}
+    }
+  }
+
+
 }
