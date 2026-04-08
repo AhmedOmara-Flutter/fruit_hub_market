@@ -60,4 +60,5 @@ export 'package:fruit_hub_market/core/errors/exception.dart';
 export 'package:fruit_hub_market/features/auth/data/models/user_model.dart';
 export 'package:fruit_hub_market/features/auth/presentation/login/presentation/widgets/custom_social_button.dart';
 export 'package:cloud_firestore/cloud_firestore.dart';
-export 'package:fruit_hub_market/core/helper_function/submit.dart';
+export 'package:fruit_hub_market/core/helper_function/onboarding_viewed.dart';
+export 'package:fruit_hub_market/core/helper_function/login_viewed.dart';

@@ -5,6 +5,13 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("Home"), centerTitle: true));
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("home"),
+          centerTitle: true,
+            automaticallyImplyLeading: false,
+        ),
+    );
   }
 }
+

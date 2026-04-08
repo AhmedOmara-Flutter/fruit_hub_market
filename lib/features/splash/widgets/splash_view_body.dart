@@ -40,8 +40,12 @@ class _SplashViewBodyState extends State<SplashViewBody> {
     _timer = Timer(const Duration(seconds: 3),
             () {
               if (Constants.onBoarding == true) {
-                Navigator.pushReplacementNamed(
-                    context, RouteManager.login);
+                if (Constants.login == true) {
+                  Navigator.pushReplacementNamed(context, RouteManager.home);
+                } else {
+                  Navigator.pushReplacementNamed(
+                      context, RouteManager.login);
+                }
               } else {
                 Navigator.pushReplacementNamed(
                     context, RouteManager.onBoarding);

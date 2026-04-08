@@ -1,5 +1,5 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
-void submit() async {
+void onBoardingViewed() async {
   await CacheHelper.saveData(key: 'onBoarding', value: true);
 }

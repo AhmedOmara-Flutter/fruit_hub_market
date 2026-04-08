@@ -40,12 +40,9 @@ class LoginCubit extends Cubit<LoginState> {
     final data = await _authRepo.signInWithFacebook();
     data.fold(
       (failure) {
-        print('cubiiiiiiiiiiiiiiiiiiiiiiiit ${failure.errMessage}');
         emit(SignInWithFacebookError(failure.errMessage));
       },
       (data) {
-        print(data.userName);
-        print(data.email);
         emit(SignInWithFacebookSuccess());
       },
     );

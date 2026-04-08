@@ -12,7 +12,7 @@ class OnBoardingSkipButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
         child: GestureDetector(onTap: () {
-          submit();
+          onBoardingViewed();
           Navigator.pushReplacementNamed(context, RouteManager.login);
         }, child: Text('تخط', style: Theme
             .of(context)

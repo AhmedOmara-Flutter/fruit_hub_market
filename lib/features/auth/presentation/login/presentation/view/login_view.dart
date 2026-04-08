@@ -19,6 +19,7 @@ class LoginView extends StatelessWidget {
               customShowSnakeBar(
                   context, color: Colors.green,
                   label: 'تم التسجيل الدخول بنجاح');
+              loginViewed();
               Navigator.pushNamed(context, RouteManager.home);
             }
             if (state is LoginError) {

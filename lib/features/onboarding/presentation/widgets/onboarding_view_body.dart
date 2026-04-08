@@ -55,7 +55,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
               .of(context)
               .textTheme
               .labelSmall), onPressed: () {
-            submit();
+            onBoardingViewed();
             Navigator.pushReplacementNamed(context, RouteManager.login);
           },),
       ],
