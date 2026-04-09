@@ -4,21 +4,37 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final AuthRemoteDataSource _authRemoteDataSource;
+  final DatabaseRemoteDataSource _databaseRemoteDataSource;
 
-  AuthRepoImpl(this._authRemoteDataSource);
+
+  AuthRepoImpl(this._authRemoteDataSource, this._databaseRemoteDataSource);
 
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
     RegisterRequest registerRequest,
   ) async {
+    User ?user;
     try {
-      final user = await _authRemoteDataSource.createUserWithEmailAndPassword(
+      user = await _authRemoteDataSource.createUserWithEmailAndPassword(
         registerRequest,
       );
-      return Right(
-        UserModel.fromJson(user)
+      UserEntity userEntity = UserEntity(
+        userName: registerRequest.userName,
+        email: registerRequest.email,
+        uId: user.uid,
       );
-    } on Exception catch (e) {
+      await addData(userEntity);
+      return Right(userEntity);
+    } on CustomException catch (e) {
+      if (user != null) {
+        await _authRemoteDataSource.deleteUser();
+      }
+      print(e);
+      return Left(ServerFailure(errMessage: e.toString()));
+    } catch (e) {
+      if (user != null) {
+        await _authRemoteDataSource.deleteUser();
+      }
       print(e);
       return Left(ServerFailure(errMessage: e.toString()));
     }
@@ -32,7 +48,7 @@ class AuthRepoImpl implements AuthRepo {
         loginRequest,
       );
       return Right(
-          UserModel.fromJson(user)
+          UserModel.fromFirebaseUser(user)
       );
     } on Exception catch (e) {
       print(e);
@@ -47,7 +63,7 @@ class AuthRepoImpl implements AuthRepo {
     try {
       final user = await _authRemoteDataSource.signInWithGoogle();
       return Right(
-          UserModel.fromJson(user)
+          UserModel.fromFirebaseUser(user)
       );
     } on GoogleSignInException  catch (e) {
       if (e.code == GoogleSignInExceptionCode.canceled) {
@@ -63,7 +79,7 @@ class AuthRepoImpl implements AuthRepo {
     try {
       final user = await _authRemoteDataSource.signInWithFacebook();
       return Right(
-          UserModel.fromJson(user)
+          UserModel.fromFirebaseUser(user)
       );
     } catch (e) {
       // if (e.code == GoogleSignInExceptionCode.canceled) {
@@ -75,5 +91,14 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 
+  @override
+  Future<void> addData(UserEntity user) async {
+    await _databaseRemoteDataSource.addData(path: 'users', data: user.toMap());
+  }
 
+  @override
+  Future<UserEntity> getUserData({required String uId}) async {
+    var user = await _databaseRemoteDataSource.getData(path: 'users', uId: uId);
+    return UserModel.fromJson(user);
+  }
 }

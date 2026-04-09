@@ -43,11 +43,6 @@ class SocialLoginSection extends StatelessWidget {
               },
             ),
             CustomSocialButton(
-              text: "تسجيل بواسطة أبل",
-              image: Assets.images.apple.path,
-              onPressed: () {},
-            ),
-            CustomSocialButton(
               text: "تسجيل بواسطة فيسبوك",
               image: Assets.images.facebook.path,
               onPressed: () {

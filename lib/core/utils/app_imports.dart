@@ -62,3 +62,6 @@ export 'package:fruit_hub_market/features/auth/presentation/login/presentation/w
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:fruit_hub_market/core/helper_function/onboarding_viewed.dart';
 export 'package:fruit_hub_market/core/helper_function/login_viewed.dart';
+export 'package:fruit_hub_market/features/home/widgets/home_view_body.dart';
+export 'package:fruit_hub_market/features/home/widgets/custom_app_bar.dart';
+export 'package:fruit_hub_market/features/auth/data/data_source/database_remote_data_source.dart';

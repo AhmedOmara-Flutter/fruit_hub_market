@@ -7,6 +7,9 @@ void initAppModule() {
   instance.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(),
   );
+  instance.registerLazySingleton<DatabaseRemoteDataSource>(
+    () => DatabaseRemoteDataSourceImpl(),
+  );
 
-  instance.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(instance()));
+  instance.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(instance(),instance()));
 }

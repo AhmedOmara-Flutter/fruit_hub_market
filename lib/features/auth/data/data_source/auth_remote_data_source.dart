@@ -6,11 +6,16 @@ abstract class AuthRemoteDataSource {
   Future<User> createUserWithEmailAndPassword(RegisterRequest registerRequest);
   Future<User> signInWithEmailAndPassword(LoginRequest loginRequest);
   Future<User> signInWithGoogle();
-
   Future<User> signInWithFacebook();
+  Future<void>deleteUser();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
+
+  @override
+  Future<void> deleteUser() async {
+    await FirebaseAuth.instance.currentUser!.delete();
+  }
 
   @override
   Future<User> createUserWithEmailAndPassword(
@@ -97,4 +102,5 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     return (await FirebaseAuth.instance.signInWithCredential(
         facebookAuthCredential)).user!;
   }
+
 }
