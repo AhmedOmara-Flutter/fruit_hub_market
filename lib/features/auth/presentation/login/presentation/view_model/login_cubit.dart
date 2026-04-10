@@ -17,7 +17,7 @@ class LoginCubit extends Cubit<LoginState> {
         emit(LoginError(failure.errMessage));
       },
       (data) {
-        emit(LoginSuccess(data.uId));
+        emit(LoginSuccess(data));
       },
     );
   }
@@ -47,4 +47,5 @@ class LoginCubit extends Cubit<LoginState> {
       },
     );
   }
+
 }

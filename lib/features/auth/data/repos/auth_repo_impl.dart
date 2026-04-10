@@ -11,8 +11,7 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
-    RegisterRequest registerRequest,
-  ) async {
+      RegisterRequest registerRequest) async {
     User ?user;
     try {
       user = await _authRemoteDataSource.createUserWithEmailAndPassword(
@@ -42,13 +41,14 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
-    LoginRequest loginRequest,) async {
+      LoginRequest loginRequest) async {
     try {
       final user = await _authRemoteDataSource.signInWithEmailAndPassword(
         loginRequest,
       );
+      final data = await getUserData(uId: user.uid);
       return Right(
-          UserModel.fromFirebaseUser(user)
+          data
       );
     } on Exception catch (e) {
       print(e);
@@ -93,7 +93,12 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<void> addData(UserEntity user) async {
-    await _databaseRemoteDataSource.addData(path: 'users', data: user.toMap());
+    await _databaseRemoteDataSource.addData
+      (
+      path: 'users',
+      data: user.toMap(),
+      uId: user.uId,
+    );
   }
 
   @override

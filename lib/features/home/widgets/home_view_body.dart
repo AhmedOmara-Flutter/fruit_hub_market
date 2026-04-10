@@ -1,7 +1,9 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+
+  const HomeViewBody({super.key,});
+
 
   @override
   Widget build(BuildContext context) {

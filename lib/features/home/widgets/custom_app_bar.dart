@@ -5,6 +5,14 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<HomeCubit, HomeState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        final cubit = HomeCubit
+            .get(context)
+            .userEntity;
     return Row(
       children: [
         CircleAvatar(
@@ -22,11 +30,15 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
             Text(
-              'أحمد عماره',
-              style: Theme.of(
+              cubit?.userName ?? 'جاري التحميل...',
+              style: Theme
+                  .of(
                 context,
-              ).textTheme.labelSmall!.copyWith(color: Color(0xff0C0D0D)),
-            ),
+              )
+                  .textTheme
+                  .labelSmall!
+                  .copyWith(color: Color(0xff0C0D0D)),
+            )
           ],
         ),
         Spacer(),
@@ -54,6 +66,8 @@ class CustomAppBar extends StatelessWidget {
           ),
         ),
       ],
+    );
+      },
     );
   }
 }

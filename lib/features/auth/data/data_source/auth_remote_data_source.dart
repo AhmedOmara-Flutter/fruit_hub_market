@@ -35,6 +35,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         throw CustomException('هذا البريد الإلكتروني مستخدم بالفعل');
       }
       else if (e.code == 'network-request-failed') {
+        print(e.code);
         throw CustomException('لا يوجد اتصال بالإنترنت، تأكد من الشبكة');
       } else {
         print(e.code);

@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -39,16 +40,15 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   void goToHome() {
     _timer = Timer(const Duration(seconds: 3),
             () {
-              if (Constants.onBoarding == true) {
-                if (Constants.login == true) {
-                  Navigator.pushReplacementNamed(context, RouteManager.home);
-                } else {
-                  Navigator.pushReplacementNamed(
-                      context, RouteManager.login);
-                }
-              } else {
+              if (!Constants.onBoarding) {
                 Navigator.pushReplacementNamed(
                     context, RouteManager.onBoarding);
+              }
+              else if (Constants.uId.isNotEmpty) {
+                Navigator.pushReplacementNamed(context, RouteManager.home);
+              }
+              else {
+                Navigator.pushReplacementNamed(context, RouteManager.login);
               }
             }
     );

@@ -14,16 +14,24 @@ class GenerateRoute {
     switch (settings.name) {
       case RouteManager.splash:
         return MaterialPageRoute(builder: (_) => const SplashView());
-        case RouteManager.onBoarding:
+      case RouteManager.onBoarding:
         return MaterialPageRoute(builder: (_) => const OnBoardingView());
-        case RouteManager.login:
+      case RouteManager.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case RouteManager.register:
         return MaterialPageRoute(builder: (_) => const RegisterView());
       case RouteManager.forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
       case RouteManager.home:
-        return MaterialPageRoute(builder: (_) => const HomeView());
+        return MaterialPageRoute(builder: (_) {
+          print(Constants.uId);
+          return BlocProvider(
+            create: (context) =>
+            HomeCubit(instance())
+              ..getProfileData(),
+            child: HomeView(),
+          );
+        });
 
       default:
         return _errorRoute();
