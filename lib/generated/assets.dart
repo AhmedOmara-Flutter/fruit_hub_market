@@ -32,6 +32,7 @@ class $AssetsImagesGen {
   final SvgGenImage onboardingLogo2 = const SvgGenImage(
     'assets/images/onboarding_logo_2.svg',
   );
+  final SvgGenImage search = const SvgGenImage('assets/images/search.svg');
   final SvgGenImage splashBottom = const SvgGenImage(
     'assets/images/splash_bottom.svg',
   );
