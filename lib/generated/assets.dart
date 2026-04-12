@@ -14,7 +14,11 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   final SvgGenImage apple = const SvgGenImage('assets/images/apple.svg');
+  final SvgGenImage bannerBackground = const SvgGenImage(
+    'assets/images/banner_background.svg',
+  );
   final SvgGenImage facebook = const SvgGenImage('assets/images/facebook.svg');
+  final SvgGenImage filter = const SvgGenImage('assets/images/filter.svg');
   final SvgGenImage google = const SvgGenImage('assets/images/google.svg');
   final AssetGenImage homeImage = const AssetGenImage(
     'assets/images/home_image.png',
@@ -41,6 +45,9 @@ class $AssetsImagesGen {
   );
   final SvgGenImage splashTop = const SvgGenImage(
     'assets/images/splash_top.svg',
+  );
+  final AssetGenImage strawberry = const AssetGenImage(
+    'assets/images/strawberry.png',
   );
 }
 

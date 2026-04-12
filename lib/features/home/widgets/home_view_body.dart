@@ -1,5 +1,7 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/features/home/widgets/banner_section.dart';
+import 'package:fruit_hub_market/features/home/widgets/best_selling_header.dart';
+import 'package:fruit_hub_market/features/home/widgets/featured_list.dart';
+import 'package:fruit_hub_market/features/home/widgets/products_grid_view.dart';
 import 'package:fruit_hub_market/features/home/widgets/search_section.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -9,19 +11,20 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-          children: [
-            SizedBox(height: 30),
-            HomeHeader(),
-            SizedBox(height: 20,),
-            SearchSection(),
-            SizedBox(height: 20,),
-            BannerSection(),
+    return CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+                children: [
+                  HomeHeader(),
+                  SearchSection(),
+                  FeaturedList(),
+                  BestSellingHeader(),
+                ]),
+          ),
+          ProductsGridView(),
 
-
-          ]),
+        ]
     );
   }
 }

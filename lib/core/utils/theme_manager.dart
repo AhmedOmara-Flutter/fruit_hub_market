@@ -51,6 +51,9 @@ class ThemeManager {
       labelSmall: StyleManager.font16Weight700,
       //googleButton && text under button
       labelMedium: StyleManager.font16Weight600,
+      //button in featured item
+      labelLarge: StyleManager.font13Weight700,
+
     ),
 
       /// input decoration theme

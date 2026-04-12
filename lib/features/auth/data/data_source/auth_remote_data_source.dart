@@ -104,4 +104,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         facebookAuthCredential)).user!;
   }
 
+  bool isLoggedIn() {
+    return FirebaseAuth.instance.currentUser != null;
+  }
+
 }
+

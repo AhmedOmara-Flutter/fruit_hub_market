@@ -40,12 +40,13 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   void goToHome() {
     _timer = Timer(const Duration(seconds: 3),
             () {
-              if (!Constants.onBoarding) {
-                Navigator.pushReplacementNamed(
-                    context, RouteManager.onBoarding);
-              }
-              else if (Constants.uId.isNotEmpty) {
-                Navigator.pushReplacementNamed(context, RouteManager.home);
+              if (Constants.onBoarding) {
+                var isLogged = isLoggedIn();
+                if (isLogged && Constants.uId.isNotEmpty) {
+                  Navigator.pushReplacementNamed(context, RouteManager.home);
+                } else {
+                  Navigator.pushReplacementNamed(context, RouteManager.login);
+                }
               }
               else {
                 Navigator.pushReplacementNamed(context, RouteManager.login);

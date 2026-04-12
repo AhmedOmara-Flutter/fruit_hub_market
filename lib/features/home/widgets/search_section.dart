@@ -5,39 +5,42 @@ class SearchSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      decoration: InputDecoration(
-        hintText: 'ابحث عن...',
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: TextFormField(
+        decoration: InputDecoration(
+          hintText: 'ابحث عن...',
 
-        prefixIcon: Icon(
-          Icons.search,
-          color: Colors.green,
-        ),
-
-        filled: true,
-        fillColor: Colors.white,
-        suffixIcon: Icon(
-          Icons.filter_list_sharp
-        ),
-
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(
-             color:  Colors.grey.shade100
+          prefixIcon: Icon(
+            Icons.search,
+            color: Colors.green,
           ),
-        ),
 
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide:  BorderSide(
-              color:  Colors.grey.shade100
+          filled: true,
+          fillColor: Colors.white,
+          suffixIcon: Icon(
+            Icons.filter_list_sharp
           ),
-        ),
 
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide:  BorderSide(
-              color:   Colors.grey.shade100
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide: BorderSide(
+               color:  Colors.grey.shade100
+            ),
+          ),
+
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide:  BorderSide(
+                color:  Colors.grey.shade100
+            ),
+          ),
+
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(16),
+            borderSide:  BorderSide(
+                color:   Colors.grey.shade100
+            ),
           ),
         ),
       ),

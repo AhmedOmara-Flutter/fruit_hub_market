@@ -29,6 +29,7 @@ class StyleManager {
     fontWeight: FontWeight.w700,
   );
 
+
   static TextStyle font19Weight700 = TextStyle(
     color: Colors.black,
     fontFamily: 'Cairo',
@@ -37,11 +38,12 @@ class StyleManager {
   );
 
   static TextStyle font13Weight700 = TextStyle(
-    color: Color(0xff949D9E),
+    color: Color(0xff1B5E37),
     fontFamily: 'Cairo',
     fontSize: 13,
     fontWeight: FontWeight.w700,
   );
+
   static TextStyle font16Weight600 = TextStyle(
     color: Colors.black,
     fontFamily: 'Cairo',

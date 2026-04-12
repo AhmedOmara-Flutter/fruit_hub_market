@@ -22,7 +22,6 @@ class LoginView extends StatelessWidget {
               CacheHelper.saveData(key: 'uId', value: state.user.uId).then((value){
                 Constants.uId=state.user.uId;
               });
-              loginViewed();
               Navigator.pushNamed(context, RouteManager.home,arguments: state.user);
             }
             if (state is LoginError) {
