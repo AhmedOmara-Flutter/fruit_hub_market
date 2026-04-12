@@ -1,3 +1,4 @@
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class HomeHeader extends StatelessWidget {
@@ -5,14 +6,6 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit, HomeState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
-      builder: (context, state) {
-        final cubit = HomeCubit
-            .get(context)
-            .userEntity;
     return Padding(
       padding: const EdgeInsets.only(left: 20,right: 20,top: 50,bottom: 20),
       child: Row(
@@ -32,7 +25,7 @@ class HomeHeader extends StatelessWidget {
                 ),
               ),
               Text(
-                cubit?.userName ?? 'جاري التحميل...',
+                getUser().userName,
                 style: Theme
                     .of(
                   context,
@@ -69,8 +62,6 @@ class HomeHeader extends StatelessWidget {
           ),
         ],
       ),
-    );
-      },
     );
   }
 }

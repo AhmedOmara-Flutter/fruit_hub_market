@@ -42,7 +42,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
             () {
               if (Constants.onBoarding) {
                 var isLogged = isLoggedIn();
-                if (isLogged && Constants.uId.isNotEmpty) {
+                if (isLogged) {
                   Navigator.pushReplacementNamed(context, RouteManager.home);
                 } else {
                   Navigator.pushReplacementNamed(context, RouteManager.login);

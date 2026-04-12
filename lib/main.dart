@@ -12,6 +12,7 @@ void main() async {
 
   await CacheHelper.init();
   Constants.onBoarding =await CacheHelper.getData(key: 'onBoarding')??false;
+
   Constants.uId = await CacheHelper.getData(key: 'uId') ?? '';
   runApp(MyApp());
 }

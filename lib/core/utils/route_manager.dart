@@ -25,12 +25,7 @@ class GenerateRoute {
       case RouteManager.home:
         return MaterialPageRoute(builder: (_) {
           print(Constants.uId);
-          return BlocProvider(
-            create: (context) =>
-            HomeCubit(instance())
-              ..getProfileData(),
-            child: HomeView(),
-          );
+          return HomeView();
         });
 
       default:
