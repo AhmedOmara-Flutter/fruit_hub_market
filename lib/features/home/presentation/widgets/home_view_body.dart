@@ -1,8 +1,8 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/features/home/widgets/best_selling_header.dart';
-import 'package:fruit_hub_market/features/home/widgets/featured_list.dart';
-import 'package:fruit_hub_market/features/home/widgets/products_grid_view.dart';
-import 'package:fruit_hub_market/features/home/widgets/search_section.dart';
+import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_header.dart';
+import 'package:fruit_hub_market/features/home/presentation/widgets/featured_list.dart';
+import 'package:fruit_hub_market/features/home/presentation/widgets/products_grid_view.dart';
+import 'package:fruit_hub_market/features/home/presentation/widgets/search_section.dart';
 
 class HomeViewBody extends StatelessWidget {
 

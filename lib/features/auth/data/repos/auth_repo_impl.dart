@@ -6,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final AuthRemoteDataSource _authRemoteDataSource;
-  final DatabaseRemoteDataSource _databaseRemoteDataSource;
+  final DatabaseServices _databaseRemoteDataSource;
 
 
   AuthRepoImpl(this._authRemoteDataSource, this._databaseRemoteDataSource);

@@ -1,6 +1,7 @@
-import 'package:fruit_hub_market/features/home/widgets/featured_item.dart';
+import 'package:fruit_hub_market/features/home/presentation/widgets/featured_item.dart';
 
-import '../../../core/utils/app_imports.dart';
+import '../../../../core/utils/app_imports.dart';
+
 
 class FeaturedList extends StatelessWidget {
   const FeaturedList({super.key});

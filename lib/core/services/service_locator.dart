@@ -7,8 +7,8 @@ void initAppModule() {
   instance.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(),
   );
-  instance.registerLazySingleton<DatabaseRemoteDataSource>(
-    () => DatabaseRemoteDataSourceImpl(),
+  instance.registerLazySingleton<DatabaseServices>(
+    () => FirestoreDatabase(),
   );
 
   instance.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(instance(),instance()));
