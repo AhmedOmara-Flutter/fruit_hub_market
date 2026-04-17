@@ -7,7 +7,7 @@ class ProductModel extends ProductEntity {
     required super.code,
     required super.price,
     required super.description,
-    required super.imageFile,
+    super.imageFile,
     required super.isFeatured,
     super.image,
     required super.expirationMonth,
@@ -36,6 +36,23 @@ class ProductModel extends ProductEntity {
     );
   }
 
+  ProductEntity toEntity() {
+    return ProductEntity(
+      name: name,
+      price: price,
+      image: image,
+      code: code,
+      description: description,
+      isFeatured: isFeatured,
+      expirationMonth: expirationMonth,
+      unitAmount: unitAmount,
+      numberOfCalories: numberOfCalories,
+      isOrganic: isOrganic,
+      rating: rating,
+      reviews: reviews,
+      imageFile: imageFile,
+    );
+  }
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       name: json['name'],

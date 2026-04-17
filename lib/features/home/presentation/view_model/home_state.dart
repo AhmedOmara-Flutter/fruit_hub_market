@@ -18,3 +18,17 @@ final class GetProfileDataErrorState extends HomeState {
 
   GetProfileDataErrorState({required this.error});
 }
+
+final class GetProductsLoadingState extends HomeState {}
+
+final class GetProductsErrorState extends HomeState {
+  final String errMessage;
+
+  GetProductsErrorState({required this.errMessage});
+}
+
+final class GetProductsSuccessState extends HomeState {
+  final List<ProductEntity> products;
+
+  GetProductsSuccessState({required this.products});
+}

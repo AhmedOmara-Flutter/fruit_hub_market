@@ -4,11 +4,20 @@ import 'package:fruit_hub_market/features/home/presentation/widgets/featured_lis
 import 'package:fruit_hub_market/features/home/presentation/widgets/products_grid_view.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/search_section.dart';
 
-class HomeViewBody extends StatelessWidget {
+class HomeViewBody extends StatefulWidget {
 
   const HomeViewBody({super.key,});
 
+  @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
 
+class _HomeViewBodyState extends State<HomeViewBody> {
+  @override
+  void initState() {
+    BlocProvider.of<HomeCubit>(context).getProducts();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(

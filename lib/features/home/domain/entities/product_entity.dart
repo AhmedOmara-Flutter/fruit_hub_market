@@ -5,7 +5,7 @@ class ProductEntity {
   final String code;
   final num price;
   final String description;
-  final File imageFile;
+  final File ?imageFile;
   final bool isFeatured;
   String? image;
   final num expirationMonth;
@@ -20,7 +20,7 @@ class ProductEntity {
     required this.code,
     required this.price,
     required this.description,
-    required this.imageFile,
+     this.imageFile,
     required this.isFeatured,
     this.image,
     required this.expirationMonth,

@@ -12,13 +12,12 @@ class HomeRepoImpl implements HomeRepo {
   HomeRepoImpl(this._databaseServices);
 
   @override
-  Future<Either<Failure, List<ProductEntity>>> getFeaturedProducts() async {
+  Future<Either<Failure, List<ProductEntity>>> getProducts() async {
     try {
-      final data = await _databaseServices.getData(path: 'products');
-      final products = data
-          .map((product) => ProductModel.fromJson(product))
+      final data = await _databaseServices.getData(path: 'products')as List<Map<String, dynamic>>;
+      List<ProductEntity> products = data
+          .map((product) => ProductModel.fromJson(product).toEntity())
           .toList();
-      print(products);
       return Right(products);
     } on Exception catch (e) {
       print(e);
