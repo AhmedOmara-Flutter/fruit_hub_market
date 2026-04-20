@@ -16,6 +16,7 @@ class ProductModel extends ProductEntity {
     super.isOrganic = false,
     super.rating = 0.0,
     super.reviews = 0,
+    super.sellingCount=0,
   });
 
   factory ProductModel.fromEntity(ProductEntity entity) {
@@ -33,6 +34,7 @@ class ProductModel extends ProductEntity {
       isOrganic: entity.isOrganic,
       rating: entity.rating,
       reviews: entity.reviews,
+      sellingCount: entity.sellingCount,
     );
   }
 
@@ -51,6 +53,7 @@ class ProductModel extends ProductEntity {
       rating: rating,
       reviews: reviews,
       imageFile: imageFile,
+      sellingCount: sellingCount,
     );
   }
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -68,6 +71,7 @@ class ProductModel extends ProductEntity {
       isOrganic: json['isOrganic'],
       rating: json['rating'],
       reviews: json['reviews'],
+      sellingCount: json['sellingCount'],
     );
   }
 
@@ -85,6 +89,7 @@ class ProductModel extends ProductEntity {
       'isOrganic': isOrganic,
       'rating': rating,
       'reviews': reviews,
+      'sellingCount': sellingCount,
     };
   }
 }

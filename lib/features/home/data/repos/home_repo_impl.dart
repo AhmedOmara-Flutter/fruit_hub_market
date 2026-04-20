@@ -26,8 +26,20 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, List<ProductEntity>>> getSellingProducts() {
-    // TODO: implement getSellingProducts
-    throw UnimplementedError();
+  Future<Either<Failure, List<ProductEntity>>> getSellingProducts()async{
+    try {
+      final data = await _databaseServices.getData(
+        path: 'products',
+        query: {'limit': true},
+
+      )as List<Map<String, dynamic>>;
+      List<ProductEntity> products = data
+          .map((product) => ProductModel.fromJson(product).toEntity())
+          .toList();
+      return Right(products);
+    } on Exception catch (e) {
+      print(e);
+      return Left(ServerFailure(errMessage: e.toString()));
+    }
   }
 }

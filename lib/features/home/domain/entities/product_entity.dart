@@ -14,6 +14,9 @@ class ProductEntity {
   final bool isOrganic;
   final double rating;
   final int reviews;
+  final int sellingCount;
+
+
 
   ProductEntity({
     required this.name,
@@ -28,6 +31,6 @@ class ProductEntity {
     required this.numberOfCalories,
     this.isOrganic = false,
     this.rating = 0.0,
-    this.reviews = 0,
+    this.reviews = 0, required this.sellingCount,
   });
 }

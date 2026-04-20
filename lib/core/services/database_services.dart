@@ -36,6 +36,9 @@ class FirestoreDatabase implements DatabaseServices {
         if (users.docs.isEmpty) {
           throw Exception('المستخدم ليس موجود في قاعده البيانات');
         }
+
+
+
         return users.docs.map((user) => user.data()).toList();
       }
 
