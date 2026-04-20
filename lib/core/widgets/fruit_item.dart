@@ -1,7 +1,10 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/features/home/domain/entities/product_entity.dart';
 
 class FruitItem extends StatelessWidget {
-  const FruitItem({super.key});
+  final ProductEntity product;
+
+  const FruitItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +24,21 @@ class FruitItem extends StatelessWidget {
             ),
           ),
           Positioned.fill(
+            top: 25,
             child: Column(
               children: [
                 const SizedBox(height: 20),
-                Image.asset(Assets.images.strawberry.path),
+                Image.network(
+                  product.image ?? '',
+                  width: MediaQuery.of(context).size.width * 0.28,
+                  height: MediaQuery.of(context).size.height * 0.11,
+                  fit: BoxFit.cover,
+                ),
                 const SizedBox(height: 24),
+                Spacer(),
                 ListTile(
                   title: Text(
-                    'فراوله',
+                    product.name,
                     textAlign: TextAlign.right,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
@@ -36,7 +46,7 @@ class FruitItem extends StatelessWidget {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: '30جنية / ',
+                          text: '${product.price}جنية / ',
                           style: Theme.of(context).textTheme.labelLarge!
                               .copyWith(color: Color(0xffF4A91F)),
                         ),

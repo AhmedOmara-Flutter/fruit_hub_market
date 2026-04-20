@@ -6,20 +6,37 @@ class ProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
-      sliver: SliverGrid.builder(
-        itemCount: 7,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio:0.7,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 16,
-        ),
-        itemBuilder: (context, index) {
-          return FruitItem();
-        },
-      ),
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        if (state is GetProductsSuccessState) {
+          return SliverPadding(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+            sliver: SliverGrid.builder(
+              itemCount: state.products.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.7,
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 16,
+              ),
+              itemBuilder: (context, index) {
+                return FruitItem(product: state.products[index]);
+              },
+            ),
+          );
+        } else if (state is GetProductsErrorState) {
+          return SliverToBoxAdapter(
+            child: Center(
+              child: Text(state.errMessage),
+            ),);
+        } else {
+          return SliverToBoxAdapter(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+      },
     );
   }
 }

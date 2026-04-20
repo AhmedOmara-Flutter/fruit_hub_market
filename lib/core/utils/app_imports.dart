@@ -66,3 +66,6 @@ export 'package:fruit_hub_market/features/home/presentation/widgets/home_header.
 export 'package:fruit_hub_market/core/services/database_services.dart';
 export 'package:fruit_hub_market/features/home/presentation/view_model/home_cubit.dart';
 export 'package:fruit_hub_market/core/widgets/custom_text_form_field.dart';
+export 'package:fruit_hub_market/features/home/data/repos/home_repo_impl.dart';
+export 'package:fruit_hub_market/features/home/presentation/widgets/custom_bottom_nav_bar.dart';
+
