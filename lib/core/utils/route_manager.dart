@@ -6,7 +6,7 @@ class RouteManager {
   static const String login = '/login';
   static const String register = '/register';
   static const String forgetPassword = '/forgetPassword';
-  static const String home = '/home';
+  static const String home = '/main';
 }
 
 class GenerateRoute {
@@ -25,7 +25,7 @@ class GenerateRoute {
       case RouteManager.home:
         return MaterialPageRoute(builder: (_) {
           print(Constants.uId);
-          return HomeView();
+          return MainView();
         });
 
       default:

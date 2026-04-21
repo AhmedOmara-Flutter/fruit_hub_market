@@ -35,7 +35,7 @@ export 'package:fruit_hub_market/features/auth/presentation/register/presentatio
 export 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/custom_terms_and_conditions.dart';
 export 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/register_form.dart';
 export 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/register_view_body.dart';
-export 'package:fruit_hub_market/features/home/presentation/view/home_view.dart';
+export 'package:fruit_hub_market/features/main/presentation/view/main_view.dart';
 export 'package:fruit_hub_market/features/onboarding/data/models.dart';
 export 'package:fruit_hub_market/features/onboarding/presentation/view/onboarding_view.dart';
 export 'package:fruit_hub_market/features/onboarding/presentation/widgets/onboarding_background.dart';
@@ -61,11 +61,19 @@ export 'package:fruit_hub_market/features/auth/presentation/login/presentation/w
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:fruit_hub_market/core/helper_function/onboarding_viewed.dart';
 export 'package:fruit_hub_market/core/helper_function/is_logged_in.dart';
-export 'package:fruit_hub_market/features/home/presentation/widgets/home_view_body.dart';
-export 'package:fruit_hub_market/features/home/presentation/widgets/home_header.dart';
+export 'package:fruit_hub_market/features/main/presentation/widgets/home_view_body.dart';
+export 'package:fruit_hub_market/features/main/presentation/widgets/home_header.dart';
 export 'package:fruit_hub_market/core/services/database_services.dart';
-export 'package:fruit_hub_market/features/home/presentation/view_model/home_cubit.dart';
+export 'package:fruit_hub_market/features/main/presentation/view_model/main_cubit.dart';
 export 'package:fruit_hub_market/core/widgets/custom_text_form_field.dart';
-export 'package:fruit_hub_market/features/home/data/repos/home_repo_impl.dart';
-export 'package:fruit_hub_market/features/home/presentation/widgets/custom_bottom_nav_bar.dart';
-
+export 'package:fruit_hub_market/features/main/data/repos/main_repo_impl.dart';
+export 'package:fruit_hub_market/features/main/presentation/widgets/custom_bottom_nav_bar.dart';
+export 'package:fruit_hub_market/features/main/domain/entities/product_entity.dart';
+export 'package:fruit_hub_market/features/main/data/models/product_model.dart';
+export 'package:fruit_hub_market/features/main/domain/repos/main_repo.dart';
+export 'package:fruit_hub_market/features/main/presentation/widgets/featured_item_button.dart';
+export 'package:fruit_hub_market/features/main/presentation/widgets/featured_item.dart';
+export 'package:fruit_hub_market/features/main/presentation/widgets/best_selling_header.dart';
+export 'package:fruit_hub_market/features/main/presentation/widgets/featured_list.dart';
+export 'package:fruit_hub_market/features/main/presentation/widgets/products_grid_view.dart';
+export 'package:fruit_hub_market/features/main/presentation/widgets/search_section.dart';

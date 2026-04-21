@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failure.dart';
 import '../entities/product_entity.dart';
 
-abstract class HomeRepo {
+abstract class MainRepo {
   Future<Either<Failure, List<ProductEntity>>> getProducts();
   Future<Either<Failure, List<ProductEntity>>> getSellingProducts();
 }

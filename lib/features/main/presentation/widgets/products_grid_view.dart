@@ -6,7 +6,7 @@ class ProductsGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocBuilder<MainCubit, MainState>(
       builder: (context, state) {
         if (state is GetProductsSuccessState) {
           return SliverPadding(

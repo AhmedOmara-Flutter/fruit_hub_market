@@ -1,5 +1,4 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/features/home/domain/entities/product_entity.dart';
 
 class FruitItem extends StatelessWidget {
   final ProductEntity product;

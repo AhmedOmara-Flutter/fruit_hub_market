@@ -32,14 +32,25 @@ class FirestoreDatabase implements DatabaseServices {
         return user.data() as Map<String, dynamic>;
       }
       else{
-        final users = await FirebaseFirestore.instance.collection(path).get();
-        if (users.docs.isEmpty) {
+        Query<Map<String, dynamic>> data = FirebaseFirestore.instance
+            .collection(path);
+
+        if (query != null) {
+          final limit = query['limit'];
+          final orderBy = query['orderBy'];
+          final descending = query['descending'];
+          if (orderBy != null) {
+            data = data.orderBy(orderBy, descending: descending);
+          }
+          if (limit != null) {
+            data = data.limit(limit);
+          }
+        }
+        var result = await data.get();
+        if (result.docs.isEmpty) {
           throw Exception('المستخدم ليس موجود في قاعده البيانات');
         }
-
-
-
-        return users.docs.map((user) => user.data()).toList();
+        return result.docs.map((user) => user.data()).toList();
       }
 
     } on Exception catch (e) {

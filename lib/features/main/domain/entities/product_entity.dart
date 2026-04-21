@@ -12,8 +12,8 @@ class ProductEntity {
   final num unitAmount;
   final num numberOfCalories;
   final bool isOrganic;
-  final double rating;
-  final int reviews;
+  final double avgRating;
+  final int ratingCount;
   final int sellingCount;
 
 
@@ -30,7 +30,8 @@ class ProductEntity {
     required this.unitAmount,
     required this.numberOfCalories,
     this.isOrganic = false,
-    this.rating = 0.0,
-    this.reviews = 0, required this.sellingCount,
+    this.avgRating = 0.0,
+    this.ratingCount = 0,
+    this.sellingCount = 0,
   });
 }
