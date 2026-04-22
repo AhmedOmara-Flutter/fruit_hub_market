@@ -61,8 +61,8 @@ export 'package:fruit_hub_market/features/auth/presentation/login/presentation/w
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:fruit_hub_market/core/helper_function/onboarding_viewed.dart';
 export 'package:fruit_hub_market/core/helper_function/is_logged_in.dart';
-export 'package:fruit_hub_market/features/main/presentation/widgets/home_view_body.dart';
-export 'package:fruit_hub_market/features/main/presentation/widgets/home_header.dart';
+export 'package:fruit_hub_market/features/main/presentation/view/pages/home/view/home_view.dart';
+export 'package:fruit_hub_market/features/main/presentation/view/pages/home/widgets/home_header.dart';
 export 'package:fruit_hub_market/core/services/database_services.dart';
 export 'package:fruit_hub_market/features/main/presentation/view_model/main_cubit.dart';
 export 'package:fruit_hub_market/core/widgets/custom_text_form_field.dart';
@@ -71,9 +71,9 @@ export 'package:fruit_hub_market/features/main/presentation/widgets/custom_botto
 export 'package:fruit_hub_market/features/main/domain/entities/product_entity.dart';
 export 'package:fruit_hub_market/features/main/data/models/product_model.dart';
 export 'package:fruit_hub_market/features/main/domain/repos/main_repo.dart';
-export 'package:fruit_hub_market/features/main/presentation/widgets/featured_item_button.dart';
-export 'package:fruit_hub_market/features/main/presentation/widgets/featured_item.dart';
-export 'package:fruit_hub_market/features/main/presentation/widgets/best_selling_header.dart';
-export 'package:fruit_hub_market/features/main/presentation/widgets/featured_list.dart';
-export 'package:fruit_hub_market/features/main/presentation/widgets/products_grid_view.dart';
-export 'package:fruit_hub_market/features/main/presentation/widgets/search_section.dart';
+export 'package:fruit_hub_market/features/main/presentation/view/pages/home/widgets/featured_item_button.dart';
+export 'package:fruit_hub_market/features/main/presentation/view/pages/home/widgets/featured_item.dart';
+export 'package:fruit_hub_market/features/main/presentation/view/pages/home/widgets/best_selling_header.dart';
+export 'package:fruit_hub_market/features/main/presentation/view/pages/home/widgets/featured_list.dart';
+export 'package:fruit_hub_market/features/main/presentation/view/pages/home/widgets/products_grid_view.dart';
+export 'package:fruit_hub_market/features/main/presentation/view/pages/home/widgets/search_section.dart';

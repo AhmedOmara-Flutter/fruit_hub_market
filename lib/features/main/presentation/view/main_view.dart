@@ -12,7 +12,7 @@ class MainView extends StatelessWidget {
           MainCubit(MainRepoImpl(FirestoreDatabase())),
       child: Scaffold(
         bottomNavigationBar: CustomBottomNavBar(),
-        body: HomeViewBody(),
+        body:HomeView(),
       ),
     );
   }

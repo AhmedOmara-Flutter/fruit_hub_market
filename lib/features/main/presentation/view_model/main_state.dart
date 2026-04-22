@@ -5,18 +5,18 @@ sealed class MainState {}
 
 final class MainInitial extends MainState {}
 
-final class GetProfileDataLoadingState extends MainState {}
+final class GetSellingProductsLoadingState extends MainState {}
 
-final class GetProfileDataSuccessState extends MainState {
-  final UserEntity userEntity;
+final class GetSellingProductsSuccessState extends MainState {
+  final List<ProductEntity> sellingProducts;
 
-  GetProfileDataSuccessState({required this.userEntity});
+  GetSellingProductsSuccessState({required this.sellingProducts});
 }
 
-final class GetProfileDataErrorState extends MainState {
-  final String error;
+final class GetSellingProductsErrorState extends MainState {
+  final String errMessage;
 
-  GetProfileDataErrorState({required this.error});
+  GetSellingProductsErrorState({required this.errMessage});
 }
 
 final class GetProductsLoadingState extends MainState {}
