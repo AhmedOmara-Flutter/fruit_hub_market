@@ -15,10 +15,14 @@ ProductEntity getDummyProduct = ProductEntity(
   avgRating: 4.5,
   ratingCount: 120,
   sellingCount: 300,
+  reviews: [],
 );
 
 List<ProductEntity> getDummyProducts() {
   return [
+    getDummyProduct,
+    getDummyProduct,
+    getDummyProduct,
     getDummyProduct,
     getDummyProduct,
     getDummyProduct,

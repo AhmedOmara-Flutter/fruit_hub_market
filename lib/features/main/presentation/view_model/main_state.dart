@@ -5,6 +5,8 @@ sealed class MainState {}
 
 final class MainInitial extends MainState {}
 
+final class ChangeBottomNavState extends MainState {}
+
 final class GetSellingProductsLoadingState extends MainState {}
 
 final class GetSellingProductsSuccessState extends MainState {
@@ -32,3 +34,4 @@ final class GetProductsSuccessState extends MainState {
 
   GetProductsSuccessState({required this.products});
 }
+

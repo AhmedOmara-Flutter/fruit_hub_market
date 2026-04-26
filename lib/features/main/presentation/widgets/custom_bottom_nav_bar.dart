@@ -10,33 +10,37 @@ class CustomBottomNavBar extends StatefulWidget {
 }
 
 class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
-  int currentIndex=0;
   @override
   Widget build(BuildContext context) {
-    return SalomonBottomBar(
-      currentIndex: currentIndex,
-      onTap: (i) => setState(() => currentIndex = i),
-      selectedItemColor: Color(0xff1B5E37),
-      unselectedItemColor: Color(0xff4E5556),
-      margin: EdgeInsets.symmetric(vertical: 15,horizontal: 10),
-      items: [
-        SalomonBottomBarItem(
-          icon: Icon(Icons.home),
-          title: Text("الرئيسية"),
-        ),
-        SalomonBottomBarItem(
-          icon: Icon(Icons.dashboard),
-          title: Text("المنتجات"),
-        ),
-        SalomonBottomBarItem(
-          icon: Icon(Icons.shopping_cart),
-          title: Text("السلة"),
-        ),
-        SalomonBottomBarItem(
-          icon: Icon(Icons.person),
-          title: Text("حسابي"),
-        ),
-      ],
+    return BlocBuilder<MainCubit, MainState>(
+      builder: (context, state) {
+        return SalomonBottomBar(
+          currentIndex: context.read<MainCubit>().currentIndex,
+          onTap: (i) =>
+            context.read<MainCubit>().changeBottomNav(i),
+          selectedItemColor: Color(0xff1B5E37),
+          unselectedItemColor: Color(0xff4E5556),
+          margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+          items: [
+            SalomonBottomBarItem(
+              icon: Icon(Icons.home),
+              title: Text("الرئيسية"),
+            ),
+            SalomonBottomBarItem(
+              icon: Icon(Icons.dashboard),
+              title: Text("المنتجات"),
+            ),
+            SalomonBottomBarItem(
+              icon: Icon(Icons.shopping_cart),
+              title: Text("السلة"),
+            ),
+            SalomonBottomBarItem(
+              icon: Icon(Icons.person),
+              title: Text("حسابي"),
+            ),
+          ],
+        );
+      },
     );
   }
 }

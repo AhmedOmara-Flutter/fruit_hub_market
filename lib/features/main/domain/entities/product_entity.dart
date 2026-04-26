@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:fruit_hub_market/features/main/domain/entities/review_entity.dart';
+
 class ProductEntity {
   final String name;
   final String code;
@@ -15,6 +17,8 @@ class ProductEntity {
   final double avgRating;
   final int ratingCount;
   final int sellingCount;
+  final List<ReviewEntity> reviews ;
+
 
 
 
@@ -32,6 +36,6 @@ class ProductEntity {
     this.isOrganic = false,
     this.avgRating = 0.0,
     this.ratingCount = 0,
-    this.sellingCount = 0,
+    this.sellingCount = 0, required this.reviews,
   });
 }

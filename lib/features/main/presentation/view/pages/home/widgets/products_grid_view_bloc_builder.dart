@@ -10,10 +10,6 @@ class ProductsGridViewBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<MainCubit, MainState>(
       builder: (context, state) {
-        return Skeletonizer.sliver(
-          enabled: true,
-          child: ProductsGridView(sellingProducts: getDummyProducts()),
-        );
         if (state is GetSellingProductsSuccessState) {
           return ProductsGridView(sellingProducts: state.sellingProducts);
         } else if (state is GetSellingProductsErrorState) {

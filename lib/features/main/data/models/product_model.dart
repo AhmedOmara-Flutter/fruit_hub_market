@@ -1,3 +1,5 @@
+import 'package:fruit_hub_market/core/helper_function/get_average_rating.dart';
+import 'package:fruit_hub_market/features/main/data/models/review_model.dart';
 
 import '../../domain/entities/product_entity.dart';
 
@@ -17,6 +19,7 @@ class ProductModel extends ProductEntity {
     super.avgRating = 0.0,
     super.ratingCount = 0,
     super.sellingCount=0,
+    required super.reviews,
   });
 
   factory ProductModel.fromEntity(ProductEntity entity) {
@@ -35,6 +38,7 @@ class ProductModel extends ProductEntity {
       avgRating: entity.avgRating,
       ratingCount: entity.ratingCount,
       sellingCount: entity.sellingCount,
+      reviews: entity.reviews,
     );
   }
 
@@ -54,8 +58,10 @@ class ProductModel extends ProductEntity {
       ratingCount: ratingCount,
       imageFile: imageFile,
       sellingCount: sellingCount,
+        reviews: reviews
     );
   }
+
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       name: json['name'],
@@ -69,9 +75,17 @@ class ProductModel extends ProductEntity {
       unitAmount: json['unitAmount'],
       numberOfCalories: json['numberOfCalories'],
       isOrganic: json['isOrganic'],
-      avgRating: json['avgRating'],
+      //todo handle it
+      avgRating: getAverageRating(json['reviews'] is List ?
+      (json['reviews'] as List)
+          .map((e) => ReviewModel.fromJson(e).toEntity())
+          .toList() : [],),
       ratingCount: json['ratingCount'],
       sellingCount: json['sellingCount'],
+      reviews: json['reviews'] is List ?
+      (json['reviews'] as List)
+          .map((e) => ReviewModel.fromJson(e).toEntity())
+          .toList() : [],
     );
   }
 
@@ -90,6 +104,9 @@ class ProductModel extends ProductEntity {
       'avgRating': avgRating,
       'ratingCount': ratingCount,
       'sellingCount': sellingCount,
+      'reviews': reviews
+          .map((e) => ReviewModel.fromEntity(e).toJson())
+          .toList(),
     };
   }
 }
