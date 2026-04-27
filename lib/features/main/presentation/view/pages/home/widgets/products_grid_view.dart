@@ -5,15 +5,15 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../../../core/helper_function/get_dummy_products.dart';
 
 class ProductsGridView extends StatelessWidget {
-  final List<ProductEntity> sellingProducts;
-  const ProductsGridView({super.key, required this.sellingProducts});
+  final List<ProductEntity> products;
+  const ProductsGridView({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {
     return  SliverPadding(
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 20),
       sliver: SliverGrid.builder(
-        itemCount: sellingProducts.length,
+        itemCount: products.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 0.7,
@@ -21,7 +21,7 @@ class ProductsGridView extends StatelessWidget {
           crossAxisSpacing: 16,
         ),
         itemBuilder: (context, index) {
-          return FruitItem(product:sellingProducts[index]);
+          return FruitItem(product:products[index]);
         },
       ),
     );

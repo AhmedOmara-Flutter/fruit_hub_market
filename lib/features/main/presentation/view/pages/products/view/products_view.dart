@@ -1,3 +1,4 @@
+import 'package:fruit_hub_market/features/main/presentation/view/pages/products/widgets/product_view_body.dart';
 import '../../../../../../../core/utils/app_imports.dart';
 
 class ProductsView extends StatelessWidget {
@@ -5,10 +6,9 @@ class ProductsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Products'),
-      ),
+    return BlocProvider(
+      create: (context) => ProductCubit(MainRepoImpl(FirestoreDatabase())),
+      child: ProductViewBody(),
     );
   }
 }

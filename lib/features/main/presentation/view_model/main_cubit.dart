@@ -7,8 +7,7 @@ import '../view/pages/profile/view/profile_view.dart';
 part 'main_state.dart';
 
 class MainCubit extends Cubit<MainState> {
-  MainCubit(this._mainRepo) : super(MainInitial());
-  final MainRepo _mainRepo;
+  MainCubit() : super(MainInitial());
    int currentIndex=0;
    List<Widget>pages=[
      HomeView(),
@@ -21,23 +20,4 @@ class MainCubit extends Cubit<MainState> {
      emit(ChangeBottomNavState());
    }
 
-  Future<void> getProducts() async {
-    emit(GetProductsLoadingState());
-    final products = await _mainRepo.getProducts();
-    products.fold((failure) {
-      emit(GetProductsErrorState(errMessage: failure.errMessage));
-    }, (data) {
-      emit(GetProductsSuccessState(products: data));
-    });
-  }
-
-  Future<void> getSellingProducts() async {
-    emit(GetSellingProductsLoadingState());
-    final products = await _mainRepo.getSellingProducts();
-    products.fold((failure) {
-      emit(GetSellingProductsErrorState(errMessage: failure.errMessage));
-    }, (data) {
-      emit(GetSellingProductsSuccessState(sellingProducts: data));
-    });
-  }
 }

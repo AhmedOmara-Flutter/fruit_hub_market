@@ -27,15 +27,15 @@ class FruitItem extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 20),
-                Image.network(
-                  product.image ?? '',
-                  width: MediaQuery.of(context).size.width * 0.28,
-                  height: MediaQuery.of(context).size.height * 0.11,
-                  fit: BoxFit.cover,
+                Flexible(
+                  child: Image.network(
+                    product.image ?? '',
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 const SizedBox(height: 24),
-                Spacer(),
                 ListTile(
+                  dense: true,
                   title: Text(
                     product.name,
                     textAlign: TextAlign.right,

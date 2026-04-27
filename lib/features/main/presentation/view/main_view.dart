@@ -9,7 +9,7 @@ class MainView extends StatelessWidget {
     //todo add get_it
     return BlocProvider(
       create: (context) =>
-          MainCubit(MainRepoImpl(FirestoreDatabase())),
+          MainCubit(),
       child: Scaffold(
         bottomNavigationBar: CustomBottomNavBar(),
         body: BlocBuilder<MainCubit, MainState>(
