@@ -1,7 +1,7 @@
-import 'package:fruit_hub_market/core/helper_function/get_average_rating.dart';
-import 'package:fruit_hub_market/features/main/data/models/review_model.dart';
 
-import '../../domain/entities/product_entity.dart';
+import 'package:fruit_hub_market/core/helper_function/get_average_rating.dart';
+import 'package:fruit_hub_market/features/product/data/models/review_model.dart';
+import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
 
 class ProductModel extends ProductEntity {
   ProductModel({

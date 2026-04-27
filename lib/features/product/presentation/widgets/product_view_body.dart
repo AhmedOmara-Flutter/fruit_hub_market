@@ -1,4 +1,8 @@
+import 'package:fruit_hub_market/features/product/presentation/widgets/items_count_label.dart';
 import '../../../../../../../core/utils/app_imports.dart';
+import '../../../../core/widgets/products_grid_view.dart';
+import '../../../../core/widgets/search_section.dart';
+import '../view_model/product_cubit.dart';
 
 class ProductViewBody extends StatefulWidget {
   const ProductViewBody({super.key});

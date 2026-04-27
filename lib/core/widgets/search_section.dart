@@ -1,5 +1,5 @@
 
-import '../../../../../../../core/utils/app_imports.dart';
+import '../../../../core/utils/app_imports.dart';
 
 class SearchSection extends StatelessWidget {
   const SearchSection({super.key});

@@ -1,4 +1,5 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
 
 ProductEntity getDummyProduct = ProductEntity(
   name: 'Organic Apple',

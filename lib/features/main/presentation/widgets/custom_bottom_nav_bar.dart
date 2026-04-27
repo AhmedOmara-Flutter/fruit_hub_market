@@ -2,14 +2,9 @@ import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../core/utils/app_imports.dart';
 
-class CustomBottomNavBar extends StatefulWidget {
+class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({super.key});
 
-  @override
-  State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
-}
-
-class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MainCubit, MainState>(

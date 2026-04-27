@@ -1,3 +1,4 @@
+import 'package:fruit_hub_market/features/home/presentation/widgets/featured_item.dart';
 import '../../../../../../../core/utils/app_imports.dart';
 
 

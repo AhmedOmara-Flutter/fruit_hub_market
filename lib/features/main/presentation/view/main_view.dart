@@ -1,4 +1,6 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/features/home/presentation/view_model/home_cubit.dart';
+import 'package:fruit_hub_market/features/product/presentation/view_model/product_cubit.dart';
 
 
 class MainView extends StatelessWidget {
@@ -6,19 +8,21 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo add get_it
-    return BlocProvider(
-      create: (context) =>
-          MainCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => MainCubit(),),
+        BlocProvider(create: (context) => HomeCubit(instance()),),
+        BlocProvider(create: (context) => ProductCubit(instance()),),
+      ],
       child: Scaffold(
         bottomNavigationBar: CustomBottomNavBar(),
         body: BlocBuilder<MainCubit, MainState>(
           builder: (context, state) {
-            return context
-                .read<MainCubit>()
-                .pages[context
-                .read<MainCubit>()
-                .currentIndex];
+            var cubit = context.read<MainCubit>();
+            return IndexedStack(
+              index: cubit.currentIndex,
+              children: cubit.pages,
+            );
           },
         ),
       ),

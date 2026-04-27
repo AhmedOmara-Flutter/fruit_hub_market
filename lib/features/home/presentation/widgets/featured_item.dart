@@ -1,5 +1,6 @@
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg;
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/features/home/presentation/widgets/featured_item_button.dart';
 
 class FeaturedItem extends StatelessWidget {
   const FeaturedItem({super.key});
