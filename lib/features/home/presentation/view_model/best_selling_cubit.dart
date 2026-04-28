@@ -1,27 +1,30 @@
 import 'package:bloc/bloc.dart';
-import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
-import 'package:fruit_hub_market/features/product/domain/repos/product_repo.dart';
+import 'package:meta/meta.dart';
 
-import '../../../../core/utils/app_imports.dart';
+import '../../../product/domain/entities/product_entity.dart';
+import '../../../product/domain/repos/product_repo.dart';
 
-part 'home_state.dart';
+part 'best_selling_state.dart';
 
-class HomeCubit extends Cubit<HomeState> {
-  HomeCubit(this._productRepo) : super(HomeInitial());
+class BestSellingCubit extends Cubit<BestSellingState> {
+  BestSellingCubit(this._productRepo) : super(BestSellingInitial());
   final ProductRepo _productRepo;
   List<ProductEntity> sellingProducts = [];
 
+
   Future<void> getSellingProducts() async {
     emit(GetSellingProductsLoadingState());
+
     final products = await _productRepo.getSellingProducts();
     products.fold(
-      (failure) {
+          (failure) {
         emit(GetSellingProductsErrorState(errMessage: failure.errMessage));
       },
-      (data) {
+          (data) {
         sellingProducts = data;
         emit(GetSellingProductsSuccessState(sellingProducts: data));
       },
     );
   }
+
 }

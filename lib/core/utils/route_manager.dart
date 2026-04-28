@@ -1,8 +1,6 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
 
-import '../../features/home/presentation/view_model/home_cubit.dart';
-
 class RouteManager {
   static const String splash = '/splash';
   static const String onBoarding = '/onBoarding';

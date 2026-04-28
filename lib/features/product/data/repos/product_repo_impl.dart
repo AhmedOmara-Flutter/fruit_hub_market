@@ -33,15 +33,14 @@ class ProductRepoImpl implements ProductRepo {
           'orderBy': 'sellingCount',
           'descending': true,
         },
-
       )as List<Map<String, dynamic>>;
       List<ProductEntity> products = data
           .map((product) => ProductModel.fromJson(product).toEntity())
           .toList();
       return Right(products);
-    } on Exception catch (e) {
+    } catch (e) {
       print(e);
-      return Left(ServerFailure(errMessage: e.toString()));
+      return Left(ServerFailure(errMessage: e.toString().replaceAll('Exception: ', '')));
     }
   }
 }

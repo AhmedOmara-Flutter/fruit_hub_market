@@ -1,6 +1,7 @@
+import 'package:fruit_hub_market/features/home/presentation/view_model/best_selling_cubit.dart';
+
 import '../../../../core/utils/app_imports.dart';
 import '../../../../core/widgets/products_grid_view.dart';
-import '../view_model/home_cubit.dart';
 
 class BestSellingMoreViewBody extends StatefulWidget {
   const BestSellingMoreViewBody({super.key});
@@ -13,7 +14,7 @@ class BestSellingMoreViewBody extends StatefulWidget {
 class _BestSellingMoreViewBodyState extends State<BestSellingMoreViewBody> {
   @override
   void initState() {
-    final cubit = context.read<HomeCubit>();
+    final cubit = context.read<BestSellingCubit>();
 
     if (cubit.sellingProducts.isEmpty) {
       cubit.getSellingProducts();
@@ -28,7 +29,7 @@ class _BestSellingMoreViewBodyState extends State<BestSellingMoreViewBody> {
         SliverToBoxAdapter(
           child: InfoActionRow(text: 'الأكثر مبيعا', isBack: true),
         ),
-        BlocBuilder<HomeCubit, HomeState>(
+        BlocBuilder<BestSellingCubit, BestSellingState>(
           builder: (context, state) {
             if (state is GetSellingProductsSuccessState) {
               return ProductsGridView(

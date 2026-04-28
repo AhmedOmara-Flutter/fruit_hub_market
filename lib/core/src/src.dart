@@ -1,6 +1,6 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-
-import '../../features/home/presentation/view_model/home_cubit.dart';
+import 'package:fruit_hub_market/features/home/presentation/view_model/best_selling_cubit.dart';
+import 'package:fruit_hub_market/features/home/presentation/view_model/featured_cubit.dart';
 import '../../features/product/presentation/view_model/product_cubit.dart';
 
 class MyApp extends StatelessWidget {
@@ -11,7 +11,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => MainCubit(),),
-          BlocProvider(create: (context) => HomeCubit(instance()),),
+          BlocProvider(create: (context) => BestSellingCubit(instance()),),
+          BlocProvider(create: (context) => FeaturedCubit(instance()),),
           BlocProvider(create: (context) => ProductCubit(instance()),),
         ],
       child: MaterialApp(
