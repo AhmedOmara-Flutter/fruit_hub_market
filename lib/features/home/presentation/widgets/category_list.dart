@@ -9,12 +9,17 @@ class CategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      scrollDirection: Axis.horizontal,
-      itemBuilder: (context, index) => CategoryItem(productEntity: products[index],),
-      separatorBuilder: (context, index) => SizedBox(width: 10,),
-      itemCount: products.length,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.15,
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) => CategoryItem(productEntity: products[index],),
+        separatorBuilder: (context, index) => SizedBox(width: 10,),
+        itemCount: products.length,
+      ),
     );
   }
 }
