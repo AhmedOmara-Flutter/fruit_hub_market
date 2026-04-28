@@ -5,24 +5,35 @@ class BestSellingHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: GestureDetector(
-        onTap: (){},
-        child: Row(
-          children: [
-             Text(
-              'الأكثر مبيعًا',
-              textAlign: TextAlign.right,
-              style: Theme.of(context).textTheme.labelSmall!.copyWith(color: Colors.black),
-            ),
-            const Spacer(),
-            Text(
-              'المزيد',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleSmall,
-            )
-          ],
-        ),
+      padding: const EdgeInsets.only(right: 20, left: 8),
+      child: Row(
+        children: [
+          Text(
+            'الأكثر مبيعًا',
+            textAlign: TextAlign.right,
+            style: Theme
+                .of(context)
+                .textTheme
+                .labelSmall!
+                .copyWith(color: Colors.black),
+          ),
+          const Spacer(),
+          TextButton(
+              style: TextButton.styleFrom(
+                foregroundColor: Color(0xff1B5E37),
+              ),
+
+              onPressed: () {
+                Navigator.pushNamed(context, RouteManager.bestSellingMore,);
+              },
+              child: Text('المزيد',
+                textAlign: TextAlign.center,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .titleSmall,
+              ))
+        ],
       ),
     );
   }

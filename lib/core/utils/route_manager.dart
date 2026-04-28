@@ -1,4 +1,7 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
+
+import '../../features/home/presentation/view_model/home_cubit.dart';
 
 class RouteManager {
   static const String splash = '/splash';
@@ -7,6 +10,7 @@ class RouteManager {
   static const String register = '/register';
   static const String forgetPassword = '/forgetPassword';
   static const String home = '/main';
+  static const String bestSellingMore = '/bestSellingMore';
 }
 
 class GenerateRoute {
@@ -24,9 +28,13 @@ class GenerateRoute {
         return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
       case RouteManager.home:
         return MaterialPageRoute(builder: (_) {
-          print(Constants.uId);
           return MainView();
         });
+      case RouteManager.bestSellingMore:
+        return MaterialPageRoute(builder: (context) {
+          return BestSellingMoreView();
+        });
+
 
       default:
         return _errorRoute();

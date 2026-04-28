@@ -9,6 +9,7 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._productRepo) : super(HomeInitial());
   final ProductRepo _productRepo;
+  List<ProductEntity> sellingProducts = [];
 
   Future<void> getSellingProducts() async {
     emit(GetSellingProductsLoadingState());
@@ -18,6 +19,7 @@ class HomeCubit extends Cubit<HomeState> {
         emit(GetSellingProductsErrorState(errMessage: failure.errMessage));
       },
       (data) {
+        sellingProducts = data;
         emit(GetSellingProductsSuccessState(sellingProducts: data));
       },
     );

@@ -8,23 +8,16 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => MainCubit(),),
-        BlocProvider(create: (context) => HomeCubit(instance()),),
-        BlocProvider(create: (context) => ProductCubit(instance()),),
-      ],
-      child: Scaffold(
-        bottomNavigationBar: CustomBottomNavBar(),
-        body: BlocBuilder<MainCubit, MainState>(
-          builder: (context, state) {
-            var cubit = context.read<MainCubit>();
-            return IndexedStack(
-              index: cubit.currentIndex,
-              children: cubit.pages,
-            );
-          },
-        ),
+    return Scaffold(
+      bottomNavigationBar: CustomBottomNavBar(),
+      body: BlocBuilder<MainCubit, MainState>(
+        builder: (context, state) {
+          var cubit = context.read<MainCubit>();
+          return IndexedStack(
+            index: cubit.currentIndex,
+            children: cubit.pages,
+          );
+        },
       ),
     );
   }

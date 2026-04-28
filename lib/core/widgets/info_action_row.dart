@@ -4,7 +4,7 @@ class InfoActionRow extends StatelessWidget {
   final String text;
   final bool isBack;
 
-  const InfoActionRow({super.key, required this.text,this.isBack=false});
+  const InfoActionRow({super.key, required this.text,this.isBack=false,});
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +15,23 @@ class InfoActionRow extends StatelessWidget {
         children: [
           !isBack?SizedBox():ClipRRect(
             borderRadius: BorderRadius.circular(100),
-            child: InkWell(
-              onTap: () {},
-              child: Container(
-                height: 60,
-                width: 60,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  border: Border.all(
-                    color: Color(0xffF1F1F5)
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: (){
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    border: Border.all(
+                      color: Color(0xffF1F1F5)
+                    ),
                   ),
+                  child: Center(child: SvgPicture.asset(Assets.images.arrowBack.path,)),
                 ),
-                child: Center(child: SvgPicture.asset(Assets.images.arrowBack.path,)),
               ),
             ),
           ),

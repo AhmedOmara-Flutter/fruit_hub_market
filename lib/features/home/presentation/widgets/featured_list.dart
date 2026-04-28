@@ -8,7 +8,7 @@ class FeaturedList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 10,vertical:20 ),
+      padding: EdgeInsets.symmetric(horizontal: 10,),
       scrollDirection: Axis.horizontal,
       child: Row(
         children: List.generate(4, (index) => Padding(

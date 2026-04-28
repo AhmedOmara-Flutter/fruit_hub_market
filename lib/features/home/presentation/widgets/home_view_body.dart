@@ -4,6 +4,7 @@ import 'package:fruit_hub_market/features/home/presentation/view_model/home_cubi
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_header.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/featured_list.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/home_header.dart';
+
 import '../../../../../../../core/utils/app_imports.dart';
 
 class HomeViewBody extends StatefulWidget {
@@ -29,9 +30,11 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             children: [
               HomeHeader(),
               SearchSection(),
-              FeaturedList(),
-              BestSellingHeader(),
               SizedBox(height: 20),
+              FeaturedList(),
+              SizedBox(height: 10),
+              BestSellingHeader(),
+              SizedBox(height: 10),
             ],
           ),
         ),
