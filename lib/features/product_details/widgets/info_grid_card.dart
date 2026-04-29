@@ -1,4 +1,3 @@
-import '../../../core/helper_function/format_month.dart';
 import '../../../core/utils/app_imports.dart';
 
 class InfoGridCard extends StatelessWidget {
@@ -25,24 +24,28 @@ class InfoGridCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-               title,
-                style: Theme.of(
-                  context,
-                ).textTheme.labelSmall!.copyWith(color: Color(0xff23AA49)),
-              ),
-              SizedBox(height: 8),
-              Text(
-                sub,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium!.copyWith(color: Color(0xff979899)),
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelSmall!.copyWith(color: Color(0xff23AA49)),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  sub,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleMedium!.copyWith(color: Color(0xff979899)),
+                ),
+              ],
+            ),
           ),
           Center(child: SvgPicture.asset(iconImage)),
         ],
