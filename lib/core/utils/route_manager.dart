@@ -1,5 +1,8 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
+import 'package:fruit_hub_market/features/product_details/view/product_details_view.dart';
+
+import '../../features/product/domain/entities/product_entity.dart';
 
 class RouteManager {
   static const String splash = '/splash';
@@ -9,6 +12,7 @@ class RouteManager {
   static const String forgetPassword = '/forgetPassword';
   static const String home = '/main';
   static const String bestSellingMore = '/bestSellingMore';
+  static const String productDetails = '/productDetails';
 }
 
 class GenerateRoute {
@@ -32,6 +36,14 @@ class GenerateRoute {
         return MaterialPageRoute(builder: (context) {
           return BestSellingMoreView();
         });
+        case RouteManager.productDetails:
+          return MaterialPageRoute(builder: (context) {
+            final product = settings.arguments as ProductEntity;
+
+            return ProductDetailsView(
+              product: product,
+            );
+          });
 
 
       default:

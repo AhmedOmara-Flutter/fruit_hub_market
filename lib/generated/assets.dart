@@ -20,6 +20,8 @@ class $AssetsImagesGen {
   final SvgGenImage bannerBackground = const SvgGenImage(
     'assets/images/banner_background.svg',
   );
+  final SvgGenImage calendar = const SvgGenImage('assets/images/calendar.svg');
+  final SvgGenImage calories = const SvgGenImage('assets/images/calories.svg');
   final SvgGenImage facebook = const SvgGenImage('assets/images/facebook.svg');
   final SvgGenImage filter = const SvgGenImage('assets/images/filter.svg');
   final SvgGenImage filter2 = const SvgGenImage('assets/images/filter2.svg');
@@ -40,6 +42,11 @@ class $AssetsImagesGen {
   final SvgGenImage onboardingLogo2 = const SvgGenImage(
     'assets/images/onboarding_logo_2.svg',
   );
+  final SvgGenImage organic = const SvgGenImage('assets/images/organic.svg');
+  final SvgGenImage productDetailsBg = const SvgGenImage(
+    'assets/images/productDetailsBg.svg',
+  );
+  final SvgGenImage rating = const SvgGenImage('assets/images/rating.svg');
   final SvgGenImage search = const SvgGenImage('assets/images/search.svg');
   final SvgGenImage splashBottom = const SvgGenImage(
     'assets/images/splash_bottom.svg',

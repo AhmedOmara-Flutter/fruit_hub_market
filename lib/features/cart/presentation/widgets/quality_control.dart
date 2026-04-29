@@ -2,8 +2,9 @@
 import '../../../../core/utils/app_imports.dart';
 
 class QualityControl extends StatelessWidget {
+  final double buttonSize;
   const QualityControl({
-    super.key,
+    super.key, this.buttonSize = 35,
   });
 
   @override
@@ -13,10 +14,10 @@ class QualityControl extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 35,
-          height: 35,
+          width: buttonSize,
+          height: buttonSize,
           decoration: const BoxDecoration(
-            color: Colors.green,
+            color: Color(0xff1B5E37),
             shape: BoxShape.circle,
           ),
           child: IconButton(
@@ -25,12 +26,12 @@ class QualityControl extends StatelessWidget {
             icon: Icon(
               Icons.add,
               color: Colors.white,
-              size: width * 0.045,
+              size: buttonSize * 0.5,
             ),
           ),
         ),
 
-        SizedBox(width: 5),
+        SizedBox(width: 15),
 
         Text(
           '3',
@@ -39,11 +40,11 @@ class QualityControl extends StatelessWidget {
           ).textTheme.labelSmall!.copyWith(color: Colors.black),
         ),
 
-        SizedBox(width: width * 0.02),
+        SizedBox(width: 15),
 
         Container(
-          width: 35,
-          height: 35,
+          width: buttonSize,
+          height: buttonSize,
           decoration: BoxDecoration(
             color: Colors.grey.shade200,
             shape: BoxShape.circle,
@@ -51,7 +52,7 @@ class QualityControl extends StatelessWidget {
           child: IconButton(
             padding: EdgeInsets.zero,
             onPressed: () {},
-            icon: Icon(Icons.remove, size: width * 0.045),
+            icon: Icon(Icons.remove, size: buttonSize * 0.5),
           ),
         ),
       ],

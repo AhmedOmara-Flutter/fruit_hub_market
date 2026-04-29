@@ -1,4 +1,5 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/core/widgets/custom_back_button.dart';
 
 class InfoActionRow extends StatelessWidget {
   final String text;
@@ -16,28 +17,8 @@ class InfoActionRow extends StatelessWidget {
           !isBack?SizedBox(
             height: 60,
             width: 60,
-          ):ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: (){
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  height: 60,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    border: Border.all(
-                      color: Color(0xffF1F1F5)
-                    ),
-                  ),
-                  child: Center(child: SvgPicture.asset(Assets.images.arrowBack.path,)),
-                ),
-              ),
-            ),
-          ),
+          ):CustomBackButton(),
+
           Text(text, style: Theme.of(context).textTheme.displaySmall),
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
