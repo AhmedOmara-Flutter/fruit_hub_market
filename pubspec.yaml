@@ -83,7 +83,6 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
-    - lib/features/main/presentation/view/pages/profile/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

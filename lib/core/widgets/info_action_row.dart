@@ -13,7 +13,10 @@ class InfoActionRow extends StatelessWidget {
       child: Row(
         mainAxisAlignment:MainAxisAlignment.spaceBetween,
         children: [
-          !isBack?SizedBox():ClipRRect(
+          !isBack?SizedBox(
+            height: 60,
+            width: 60,
+          ):ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: Material(
               color: Colors.transparent,
