@@ -1,14 +1,17 @@
+import 'package:fruit_hub_market/features/cart/domain/entities/cart_item_entity.dart';
 import 'package:fruit_hub_market/features/cart/presentation/widgets/quality_control.dart';
 
 import '../../../../core/utils/app_imports.dart';
+import '../view_model/cart_cubit.dart';
 import 'cart_item_image.dart';
 
 class CartItem extends StatelessWidget {
-  const CartItem({super.key});
+  final CartItemEntity cartItemEntity;
+
+  const CartItem({super.key, required this.cartItemEntity});
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       decoration: const BoxDecoration(
@@ -20,7 +23,7 @@ class CartItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CartItemImage(),
+          CartItemImage(image: cartItemEntity.product.image!),
           SizedBox(width: 20),
           Expanded(
             child: Column(
@@ -30,21 +33,25 @@ class CartItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'فراوله',
+                      cartItemEntity.product.name,
                       style: Theme.of(
                         context,
                       ).textTheme.labelLarge!.copyWith(color: Colors.black),
                     ),
-                    Icon(
-                      Icons.delete_outline,
-                      color: Colors.grey,
-                      size: width * 0.06,
+                    IconButton(
+                      onPressed: () {
+                        context.read<CartCubit>().deleteCartItem(
+                            cartItemEntity);
+                      },
+                      icon: Icon(Icons.delete_outline,
+                        color: Colors.grey,
+                        size: 25,),
                     ),
                   ],
                 ),
                 SizedBox(height: 10),
                 Text(
-                  '3 كجم',
+                  cartItemEntity.totalWeightText,
                   style: Theme.of(
                     context,
                   ).textTheme.titleSmall!.copyWith(color: Color(0xffF4A91F)),
@@ -53,9 +60,9 @@ class CartItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    QualityControl(),
+                    QualityControl(cartItemEntity: cartItemEntity),
                     Text(
-                      '60 جنيه',
+                      '${cartItemEntity.totalPrice} جنيه',
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                         color: Color(0xffF4A91F),
                       ),

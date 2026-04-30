@@ -1,16 +1,19 @@
+import 'package:fruit_hub_market/features/cart/domain/entities/cart_item_entity.dart';
 
 import '../../../../core/utils/app_imports.dart';
+import '../view_model/cart_cubit.dart';
 
 class QualityControl extends StatelessWidget {
+  final CartItemEntity cartItemEntity;
   final double buttonSize;
   const QualityControl({
-    super.key, this.buttonSize = 35,
+    super.key, this.buttonSize = 35, required this.cartItemEntity,
   });
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-
+    return BlocBuilder<CartCubit, CartState>(
+  builder: (context, state) {
     return Row(
       children: [
         Container(
@@ -22,7 +25,10 @@ class QualityControl extends StatelessWidget {
           ),
           child: IconButton(
             padding: EdgeInsets.zero,
-            onPressed: () {},
+            onPressed: () {
+              cartItemEntity.increase();
+              context.read<CartCubit>().updateCartItem();
+            },
             icon: Icon(
               Icons.add,
               color: Colors.white,
@@ -34,7 +40,7 @@ class QualityControl extends StatelessWidget {
         SizedBox(width: 15),
 
         Text(
-          '3',
+          '${cartItemEntity.quantity}',
           style: Theme.of(
             context,
           ).textTheme.labelSmall!.copyWith(color: Colors.black),
@@ -51,11 +57,16 @@ class QualityControl extends StatelessWidget {
           ),
           child: IconButton(
             padding: EdgeInsets.zero,
-            onPressed: () {},
+            onPressed: () {
+              cartItemEntity.decrease();
+              context.read<CartCubit>().updateCartItem();
+            },
             icon: Icon(Icons.remove, size: buttonSize * 0.5),
           ),
         ),
       ],
     );
+  },
+);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
+import '../../features/cart/presentation/view_model/cart_cubit.dart';
 import '../../features/product/domain/entities/product_entity.dart';
 
 class FruitItem extends StatelessWidget {
@@ -65,7 +66,9 @@ class FruitItem extends StatelessWidget {
                       textAlign: TextAlign.right,
                     ),
                     trailing: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context.read<CartCubit>().addProduct(product);
+                      },
                       child: const CircleAvatar(
                         backgroundColor: Color(0xff1B5E37),
                         child: Icon(Icons.add, color: Colors.white),

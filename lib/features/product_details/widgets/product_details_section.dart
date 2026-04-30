@@ -53,7 +53,7 @@ class ProductDetailsSection extends StatelessWidget {
                     ))
                   ],
                 ),
-                QualityControl(buttonSize: 50,),
+               // QualityControl(buttonSize: 50, cartItemEntity: ,),
               ],
             ),
             const SizedBox(height: 10),

@@ -2,7 +2,9 @@
 import '../../../../core/utils/app_imports.dart';
 
 class CartItemImage extends StatelessWidget {
-  const CartItemImage({super.key});
+  final String image;
+
+  const CartItemImage({super.key, required this.image,});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class CartItemImage extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(6),
-        child: Image.asset(Assets.images.strawberry.path, fit: BoxFit.contain),
+        child: Image.network(image, fit: BoxFit.contain),
       ),
     );
   }
