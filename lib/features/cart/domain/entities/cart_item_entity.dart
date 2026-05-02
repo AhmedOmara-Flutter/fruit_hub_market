@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
 
-class CartItemEntity extends Equatable {
+class CartItemEntity extends Equatable  {
   final ProductEntity product;
   int quantity;
 

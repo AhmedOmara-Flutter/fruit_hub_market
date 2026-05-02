@@ -4,10 +4,9 @@ import '../../../product/domain/entities/product_entity.dart';
 import 'cart_item_entity.dart';
 
 class CartEntity extends Equatable{
-  //فيها كل items الموجوده ف ال cart
   final List<CartItemEntity> cartItems;
 
-  CartEntity({required this.cartItems});
+  const CartEntity({required this.cartItems});
 
   void addCartItem(CartItemEntity cartItem) {
     cartItems.add(cartItem);
@@ -34,6 +33,5 @@ class CartEntity extends Equatable{
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [cartItems];
 }
