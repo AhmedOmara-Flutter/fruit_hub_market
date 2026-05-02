@@ -38,7 +38,6 @@ class CartViewBody extends StatelessWidget {
                           .labelSmall,
                     ),
                     onPressed: () {
-
                     },
                   ),
                 ],

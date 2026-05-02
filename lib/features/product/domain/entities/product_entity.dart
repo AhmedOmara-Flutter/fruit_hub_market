@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:fruit_hub_market/features/product/domain/entities/review_entity.dart';
 
+// ignore_for_file: must_be_immutable
 class ProductEntity extends Equatable {
   final String name;
   final String code;

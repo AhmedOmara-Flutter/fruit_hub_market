@@ -13,7 +13,8 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
-      RegisterRequest registerRequest) async {
+      RegisterRequest registerRequest) async
+  {
     User ?user;
     try {
       user = await _authRemoteDataSource.createUserWithEmailAndPassword(
@@ -43,7 +44,8 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
-      LoginRequest loginRequest) async {
+      LoginRequest loginRequest)
+  async {
     try {
       final user = await _authRemoteDataSource.signInWithEmailAndPassword(
         loginRequest,

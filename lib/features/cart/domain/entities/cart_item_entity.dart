@@ -1,13 +1,14 @@
 import 'package:equatable/equatable.dart';
 import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
 
+// ignore_for_file: must_be_immutable
 class CartItemEntity extends Equatable  {
   final ProductEntity product;
   int quantity;
 
   CartItemEntity({
     required this.product,
-    this.quantity = 0,
+    this.quantity = 1,
   });
 
   void increase() {

@@ -14,6 +14,7 @@ class QualityControl extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, CartState>(
   builder: (context, state) {
+    var cubit = context.read<CartCubit>();
     return Row(
       children: [
         Container(
@@ -26,8 +27,7 @@ class QualityControl extends StatelessWidget {
           child: IconButton(
             padding: EdgeInsets.zero,
             onPressed: () {
-              cartItemEntity.increase();
-              context.read<CartCubit>().updateCartItem();
+             cubit.increaseCartItem(cartItemEntity);
             },
             icon: Icon(
               Icons.add,
@@ -36,9 +36,7 @@ class QualityControl extends StatelessWidget {
             ),
           ),
         ),
-
         SizedBox(width: 15),
-
         Text(
           '${cartItemEntity.quantity}',
           style: Theme.of(
@@ -58,8 +56,7 @@ class QualityControl extends StatelessWidget {
           child: IconButton(
             padding: EdgeInsets.zero,
             onPressed: () {
-              cartItemEntity.decrease();
-              context.read<CartCubit>().updateCartItem();
+             cubit.decreaseCartItem(cartItemEntity);
             },
             icon: Icon(Icons.remove, size: buttonSize * 0.5),
           ),
