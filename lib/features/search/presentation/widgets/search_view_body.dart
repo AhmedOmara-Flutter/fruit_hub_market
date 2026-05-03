@@ -1,4 +1,4 @@
-import 'package:fruit_hub_market/core/widgets/custom_text_field.dart';
+import 'package:fruit_hub_market/features/search/presentation/widgets/custom_text_field.dart';
 import 'package:fruit_hub_market/core/widgets/products_grid_view.dart';
 import 'package:fruit_hub_market/features/search/presentation/view_model/search_cubit.dart';
 import 'package:fruit_hub_market/features/search/presentation/widgets/build_search_initial.dart';

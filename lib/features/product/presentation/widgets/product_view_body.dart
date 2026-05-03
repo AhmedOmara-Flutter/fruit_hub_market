@@ -1,6 +1,7 @@
 import 'package:fruit_hub_market/features/product/presentation/widgets/items_count_label.dart';
 
 import '../../../../../../../core/utils/app_imports.dart';
+import '../../../../core/widgets/custom_refresh_indicator.dart';
 import '../../../../core/widgets/products_grid_view.dart';
 import '../../../../core/widgets/search_section.dart';
 import '../view_model/product_cubit.dart';
@@ -25,7 +26,7 @@ class _ProductViewBodyState extends State<ProductViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
+    return CustomRefreshIndicator(
       onRefresh: () async {
         final productCubit = context.read<ProductCubit>();
         await productCubit.getProducts();

@@ -1,6 +1,7 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
 import 'package:fruit_hub_market/features/product_details/view/product_details_view.dart';
+import 'package:fruit_hub_market/features/product_details/widgets/reviews_view.dart';
 
 import '../../features/product/domain/entities/product_entity.dart';
 import '../../features/search/presentation/view/search_view.dart';
@@ -15,6 +16,7 @@ class RouteManager {
   static const String bestSellingMore = '/bestSellingMore';
   static const String productDetails = '/productDetails';
   static const String search = '/search';
+  static const String reviews = '/reviews';
 }
 
 class GenerateRoute {
@@ -46,10 +48,13 @@ class GenerateRoute {
               product: product,
             );
           });
-
-          case RouteManager.search:
-        return MaterialPageRoute(builder: (context) {
+        case RouteManager.search:
+          return MaterialPageRoute(builder: (context) {
           return SearchView();
+        });
+          case RouteManager.reviews:
+        return MaterialPageRoute(builder: (context) {
+          return ReviewsView();
         });
 
 

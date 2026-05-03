@@ -22,8 +22,6 @@ class PopularProductsSection extends StatelessWidget {
                 border:Border.all(color: Color(0xffEAEBEB))
             ),
             child: SvgPicture.asset(Assets.images.filter2.path),
-
-
           )
         ],
       ),

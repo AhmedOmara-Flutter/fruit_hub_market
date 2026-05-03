@@ -1,11 +1,8 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:fruit_hub_market/features/product/domain/repos/product_repo.dart';
 import 'package:meta/meta.dart';
-
 import '../../../product/domain/entities/product_entity.dart';
-
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {

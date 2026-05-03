@@ -1,6 +1,5 @@
 import 'package:fruit_hub_market/features/product_details/widgets/rating_and_reviews.dart';
 import '../../../core/utils/app_imports.dart';
-import '../../cart/presentation/widgets/quality_control.dart';
 import '../../product/domain/entities/product_entity.dart';
 
 class ProductDetailsSection extends StatelessWidget {

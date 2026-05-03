@@ -6,6 +6,7 @@ import 'package:fruit_hub_market/features/home/presentation/widgets/featured_lis
 import 'package:fruit_hub_market/features/home/presentation/widgets/home_header.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/popular_products_section.dart';
 import '../../../../../../../core/utils/app_imports.dart';
+import '../../../../core/widgets/custom_refresh_indicator.dart';
 import 'best_selling_products_bloc_builder.dart';
 import 'featured_products_bloc_builder.dart';
 
@@ -28,13 +29,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      backgroundColor:Color(0xff1B5E37),
-      color: Color(0xffFFFFFF),
+    return CustomRefreshIndicator(
       onRefresh: () async {
         final bestSellingCubit = context.read<BestSellingCubit>();
         final featuredCubit = context.read<FeaturedCubit>();
-
         await bestSellingCubit.getSellingProducts();
         await featuredCubit.getFeaturedProducts();
       },

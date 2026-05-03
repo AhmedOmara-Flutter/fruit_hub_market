@@ -28,12 +28,17 @@ class RatingAndReviews extends StatelessWidget {
               color: Color(0xff9796A1)
           ),),
         SizedBox(width: 10),
-        Text(
-            "المراجعه",
-            style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                color: const Color(0xff1B5E37),
-              decoration: TextDecoration.underline
-            )
+        GestureDetector(
+          onTap: (){
+            Navigator.pushNamed(context, RouteManager.reviews);
+          },
+          child: Text(
+              "المراجعه",
+              style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                  color: const Color(0xff1B5E37),
+                decoration: TextDecoration.underline
+              )
+          ),
         ),
       ],
     );

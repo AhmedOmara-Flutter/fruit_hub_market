@@ -1,5 +1,5 @@
 
-import 'package:fruit_hub_market/core/widgets/custom_text_field.dart';
+import 'package:fruit_hub_market/features/search/presentation/widgets/custom_text_field.dart';
 
 import '../../../../core/utils/app_imports.dart';
 

@@ -1,0 +1,23 @@
+import '../utils/app_imports.dart';
+
+class CustomRefreshIndicator extends StatelessWidget {
+  final Future<void> Function() onRefresh;
+  final Widget child;
+
+  const CustomRefreshIndicator({
+    super.key,
+    required this.onRefresh,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator(
+      backgroundColor: Color(0xff1B5E37),
+      color: Color(0xffFFFFFF),
+
+      onRefresh: onRefresh,
+      child: child,
+    );
+  }
+}
