@@ -39,22 +39,31 @@ class FirestoreDatabase implements DatabaseServices {
           final limit = query['limit'];
           final orderBy = query['orderBy'];
           final descending = query['descending'];
+          final startAt = query['startAt'];
+          final endAt = query['endAt'];
+
+
           if (orderBy != null) {
             data = data.orderBy(orderBy, descending: descending);
           }
           if (limit != null) {
             data = data.limit(limit);
           }
+          if (startAt != null) {
+            data = data.startAt([startAt]);
+          }
+          if (endAt != null) {
+            data = data.endAt([endAt]);
+          }
         }
+
         var result = await data.get();
-        if (result.docs.isEmpty) {
-          throw Exception('المستخدم ليس موجود في قاعده البيانات');
-        }
+
         return result.docs.map((user) => user.data()).toList();
       }
 
-    } on Exception catch (e) {
-      throw (e.toString());
+    }  catch (e) {
+      throw Exception(e.toString());
     }
   }
 }

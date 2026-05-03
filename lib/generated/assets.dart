@@ -14,52 +14,29 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   final SvgGenImage apple = const SvgGenImage('assets/images/apple.svg');
-  final SvgGenImage arrowBack = const SvgGenImage(
-    'assets/images/arrow back.svg',
-  );
-  final SvgGenImage bannerBackground = const SvgGenImage(
-    'assets/images/banner_background.svg',
-  );
+  final SvgGenImage arrowBack = const SvgGenImage('assets/images/arrow back.svg');
+  final SvgGenImage bannerBackground = const SvgGenImage('assets/images/banner_background.svg');
   final SvgGenImage calendar = const SvgGenImage('assets/images/calendar.svg');
   final SvgGenImage calories = const SvgGenImage('assets/images/calories.svg');
   final SvgGenImage facebook = const SvgGenImage('assets/images/facebook.svg');
   final SvgGenImage filter = const SvgGenImage('assets/images/filter.svg');
   final SvgGenImage filter2 = const SvgGenImage('assets/images/filter2.svg');
   final SvgGenImage google = const SvgGenImage('assets/images/google.svg');
-  final AssetGenImage homeImage = const AssetGenImage(
-    'assets/images/home_image.png',
-  );
+  final AssetGenImage homeImage = const AssetGenImage('assets/images/home_image.png');
   final AssetGenImage img = const AssetGenImage('assets/images/img.png');
-  final SvgGenImage onboardingBackground1 = const SvgGenImage(
-    'assets/images/onboarding_background_1.svg',
-  );
-  final SvgGenImage onboardingBackground2 = const SvgGenImage(
-    'assets/images/onboarding_background_2.svg',
-  );
-  final SvgGenImage onboardingLogo1 = const SvgGenImage(
-    'assets/images/onboarding_logo_1.svg',
-  );
-  final SvgGenImage onboardingLogo2 = const SvgGenImage(
-    'assets/images/onboarding_logo_2.svg',
-  );
+  final SvgGenImage onboardingBackground1 = const SvgGenImage('assets/images/onboarding_background_1.svg');
+  final SvgGenImage onboardingBackground2 = const SvgGenImage('assets/images/onboarding_background_2.svg');
+  final SvgGenImage onboardingLogo1 = const SvgGenImage('assets/images/onboarding_logo_1.svg');
+  final SvgGenImage onboardingLogo2 = const SvgGenImage('assets/images/onboarding_logo_2.svg');
   final SvgGenImage organic = const SvgGenImage('assets/images/organic.svg');
-  final SvgGenImage productDetailsBg = const SvgGenImage(
-    'assets/images/productDetailsBg.svg',
-  );
+  final SvgGenImage productDetailsBg = const SvgGenImage('assets/images/productDetailsBg.svg');
   final SvgGenImage rating = const SvgGenImage('assets/images/rating.svg');
   final SvgGenImage search = const SvgGenImage('assets/images/search.svg');
-  final SvgGenImage splashBottom = const SvgGenImage(
-    'assets/images/splash_bottom.svg',
-  );
-  final SvgGenImage splashCenter = const SvgGenImage(
-    'assets/images/splash_center.svg',
-  );
-  final SvgGenImage splashTop = const SvgGenImage(
-    'assets/images/splash_top.svg',
-  );
-  final AssetGenImage strawberry = const AssetGenImage(
-    'assets/images/strawberry.png',
-  );
+  final SvgGenImage searchImage = const SvgGenImage('assets/images/searchImage.svg');
+  final SvgGenImage splashBottom = const SvgGenImage('assets/images/splash_bottom.svg');
+  final SvgGenImage splashCenter = const SvgGenImage('assets/images/splash_center.svg');
+  final SvgGenImage splashTop = const SvgGenImage('assets/images/splash_top.svg');
+  final AssetGenImage strawberry = const AssetGenImage('assets/images/strawberry.png');
 }
 
 class $AssetsFontsGen {
@@ -79,6 +56,7 @@ class AssetGenImage {
   const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
+
 
   final Size? size;
   final Set<String> flavors;
@@ -136,8 +114,15 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
   }
 
   Widget custom({
@@ -160,47 +145,46 @@ class SvgGenImage {
 
   final String _assetName;
 
-  SvgPicture svg({
-    Key? key,
-    bool matchTextDirection = false,
-    AssetBundle? bundle,
-    String? package,
-    double? width,
-    double? height,
-    BoxFit fit = BoxFit.contain,
-    AlignmentGeometry alignment = Alignment.center,
-    bool allowDrawingOutsideViewBox = false,
-    WidgetBuilder? placeholderBuilder,
-    String? semanticsLabel,
-    bool excludeFromSemantics = false,
-    SvgTheme? theme,
-    Clip clipBehavior = Clip.hardEdge,
-    Color? color,
-    BlendMode colorBlendMode = BlendMode.srcIn,
-    bool cacheColorFilter = false,
-  }) {
-    return SvgPicture.asset(
-      _assetName,
-      key: key,
-      matchTextDirection: matchTextDirection,
-      bundle: bundle,
-      package: package,
-      width: width,
-      height: height,
-      fit: fit,
-      alignment: alignment,
-      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
-      placeholderBuilder: placeholderBuilder,
-      semanticsLabel: semanticsLabel,
-      excludeFromSemantics: excludeFromSemantics,
-      theme: theme,
-      color: color,
-      colorBlendMode: colorBlendMode,
-      clipBehavior: clipBehavior,
-      cacheColorFilter: cacheColorFilter,
-    );
-  }
-
+SvgPicture svg({
+  Key? key,
+  bool matchTextDirection = false,
+  AssetBundle? bundle,
+  String? package,
+  double? width,
+  double? height,
+  BoxFit fit = BoxFit.contain,
+  AlignmentGeometry alignment = Alignment.center,
+  bool allowDrawingOutsideViewBox = false,
+  WidgetBuilder? placeholderBuilder,
+  String? semanticsLabel,
+  bool excludeFromSemantics = false,
+  SvgTheme? theme,
+  Clip clipBehavior = Clip.hardEdge,
+  Color? color,
+  BlendMode colorBlendMode = BlendMode.srcIn,
+  bool cacheColorFilter = false,
+}) {
+  return SvgPicture.asset(
+    _assetName,
+    key: key,
+    matchTextDirection: matchTextDirection,
+    bundle: bundle,
+    package: package,
+    width: width,
+    height: height,
+    fit: fit,
+    alignment: alignment,
+    allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
+    placeholderBuilder: placeholderBuilder,
+    semanticsLabel: semanticsLabel,
+    excludeFromSemantics: excludeFromSemantics,
+    theme: theme,
+    color: color,
+    colorBlendMode: colorBlendMode,
+    clipBehavior: clipBehavior,
+    cacheColorFilter: cacheColorFilter,
+  );
+}
   Widget custom({
     Key? key,
     required Widget Function(BuildContext context, String assetPath) builder,

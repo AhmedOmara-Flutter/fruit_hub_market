@@ -1,4 +1,6 @@
 
+import 'package:fruit_hub_market/core/widgets/custom_text_field.dart';
+
 import '../../../../core/utils/app_imports.dart';
 
 class SearchSection extends StatelessWidget {
@@ -6,45 +8,11 @@ class SearchSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: TextFormField(
-        decoration: InputDecoration(
-          hintText: 'ابحث عن...',
-
-          prefixIcon: Icon(
-            Icons.search,
-            color: Colors.green,
-          ),
-
-          filled: true,
-          fillColor: Colors.white,
-          suffixIcon: Icon(
-            Icons.filter_list_sharp
-          ),
-
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(
-               color:  Colors.grey.shade100
-            ),
-          ),
-
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide:  BorderSide(
-                color:  Colors.grey.shade100
-            ),
-          ),
-
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(16),
-            borderSide:  BorderSide(
-                color:   Colors.grey.shade100
-            ),
-          ),
-        ),
-      ),
+    return CustomTextField(
+      onTap: () {
+        Navigator.pushNamed(context, RouteManager.search);
+      },
+      readOnly: true,
     );
   }
 }

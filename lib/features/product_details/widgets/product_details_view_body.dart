@@ -23,7 +23,7 @@ class ProductDetailsViewBody extends StatelessWidget {
           ProductImageSection(product: product,),
           ProductDetailsSection(product: product),
           ProductInfoGridSection(product: product,),
-          ProductButtonSection(),
+          ProductButtonSection(product: product,),
         ],
       ),
     );

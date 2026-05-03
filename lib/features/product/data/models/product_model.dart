@@ -62,33 +62,58 @@ class ProductModel extends ProductEntity {
     );
   }
 
+  // factory ProductModel.fromJson(Map<String, dynamic> json) {
+  //   return ProductModel(
+  //     name: json['name'],
+  //     code: json['code'],
+  //     price: json['price'],
+  //     description: json['description'],
+  //     //imageFile: json['imageFile'],
+  //     isFeatured: json['isFeatured'],
+  //     image: json['image'],
+  //     expirationMonth: json['expirationMonth'],
+  //     unitAmount: json['unitAmount'],
+  //     numberOfCalories: json['numberOfCalories'],
+  //     isOrganic: json['isOrganic'],
+  //     //todo handle it
+  //     avgRating: getAverageRating(json['reviews'] is List ?
+  //     (json['reviews'] as List)
+  //         .map((e) => ReviewModel.fromJson(e).toEntity())
+  //         .toList() : [],),
+  //     ratingCount: json['ratingCount'],
+  //     sellingCount: json['sellingCount'],
+  //     reviews: json['reviews'] is List ?
+  //     (json['reviews'] as List)
+  //         .map((e) => ReviewModel.fromJson(e).toEntity())
+  //         .toList() : [],
+  //   );
+  // }
+
   factory ProductModel.fromJson(Map<String, dynamic> json) {
+    final reviewsList = (json['reviews'] as List<dynamic>?)
+        ?.where((e) => e != null)
+        .map((e) => ReviewModel.fromJson(e).toEntity())
+        .toList() ??
+        [];
+
     return ProductModel(
-      name: json['name'],
-      code: json['code'],
-      price: json['price'],
-      description: json['description'],
-      imageFile: json['imageFile'],
-      isFeatured: json['isFeatured'],
+      name: json['name'] ?? '',
+      code: json['code'] ?? '',
+      price: json['price'] ?? 0,
+      description: json['description'] ?? '',
+      // imageFile: null, // ❌ ماينفعش ييجي من Firebase أصلاً
+      isFeatured: json['isFeatured'] ?? false,
       image: json['image'],
-      expirationMonth: json['expirationMonth'],
-      unitAmount: json['unitAmount'],
-      numberOfCalories: json['numberOfCalories'],
-      isOrganic: json['isOrganic'],
-      //todo handle it
-      avgRating: getAverageRating(json['reviews'] is List ?
-      (json['reviews'] as List)
-          .map((e) => ReviewModel.fromJson(e).toEntity())
-          .toList() : [],),
-      ratingCount: json['ratingCount'],
-      sellingCount: json['sellingCount'],
-      reviews: json['reviews'] is List ?
-      (json['reviews'] as List)
-          .map((e) => ReviewModel.fromJson(e).toEntity())
-          .toList() : [],
+      expirationMonth: json['expirationMonth'] ?? 0,
+      unitAmount: json['unitAmount'] ?? 0,
+      numberOfCalories: json['numberOfCalories'] ?? 0,
+      isOrganic: json['isOrganic'] ?? false,
+      avgRating: getAverageRating(reviewsList),
+      ratingCount: json['ratingCount'] ?? 0,
+      sellingCount: json['sellingCount'] ?? 0,
+      reviews: reviewsList,
     );
   }
-
   Map<String, dynamic> toJson() {
     return {
       'name': name,

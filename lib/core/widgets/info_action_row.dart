@@ -4,8 +4,10 @@ import 'package:fruit_hub_market/core/widgets/custom_back_button.dart';
 class InfoActionRow extends StatelessWidget {
   final String text;
   final bool isBack;
+  final bool isNotification;
 
-  const InfoActionRow({super.key, required this.text,this.isBack=false,});
+  const InfoActionRow(
+      {super.key, required this.text, this.isBack = false, this.isNotification = false,});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,11 @@ class InfoActionRow extends StatelessWidget {
           ):CustomBackButton(),
 
           Text(text, style: Theme.of(context).textTheme.displaySmall),
-          ClipRRect(
+
+          !isNotification ? SizedBox(
+            height: 60,
+            width: 60,
+          ) : ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: Material(
               color: Color(0xffEEF8ED),
