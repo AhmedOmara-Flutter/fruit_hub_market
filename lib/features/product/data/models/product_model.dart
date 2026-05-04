@@ -1,6 +1,5 @@
 
 import 'package:fruit_hub_market/core/helper_function/get_average_rating.dart';
-import 'package:fruit_hub_market/features/product/data/models/review_model.dart';
 import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
 
 class ProductModel extends ProductEntity {
@@ -18,12 +17,12 @@ class ProductModel extends ProductEntity {
     super.isOrganic = false,
     super.avgRating = 0.0,
     super.ratingCount = 0,
-    super.sellingCount=0,
-    required super.reviews,
+    super.sellingCount=0, required super.id,
   });
 
   factory ProductModel.fromEntity(ProductEntity entity) {
     return ProductModel(
+      id: entity.id,
       name: entity.name,
       code: entity.code,
       price: entity.price,
@@ -38,12 +37,12 @@ class ProductModel extends ProductEntity {
       avgRating: entity.avgRating,
       ratingCount: entity.ratingCount,
       sellingCount: entity.sellingCount,
-      reviews: entity.reviews,
     );
   }
 
   ProductEntity toEntity() {
     return ProductEntity(
+      id: id,
       name: name,
       price: price,
       image: image,
@@ -58,7 +57,6 @@ class ProductModel extends ProductEntity {
       ratingCount: ratingCount,
       imageFile: imageFile,
       sellingCount: sellingCount,
-        reviews: reviews
     );
   }
 
@@ -90,13 +88,9 @@ class ProductModel extends ProductEntity {
   // }
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
-    final reviewsList = (json['reviews'] as List<dynamic>?)
-        ?.where((e) => e != null)
-        .map((e) => ReviewModel.fromJson(e).toEntity())
-        .toList() ??
-        [];
 
     return ProductModel(
+      id: json['id'] ?? '',
       name: json['name'] ?? '',
       code: json['code'] ?? '',
       price: json['price'] ?? 0,
@@ -108,14 +102,14 @@ class ProductModel extends ProductEntity {
       unitAmount: json['unitAmount'] ?? 0,
       numberOfCalories: json['numberOfCalories'] ?? 0,
       isOrganic: json['isOrganic'] ?? false,
-      avgRating: getAverageRating(reviewsList),
+      avgRating: json['avgRating'] ?? 0,
       ratingCount: json['ratingCount'] ?? 0,
       sellingCount: json['sellingCount'] ?? 0,
-      reviews: reviewsList,
     );
   }
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': name,
       'code': code,
       'price': price,
@@ -129,9 +123,6 @@ class ProductModel extends ProductEntity {
       'avgRating': avgRating,
       'ratingCount': ratingCount,
       'sellingCount': sellingCount,
-      'reviews': reviews
-          .map((e) => ReviewModel.fromEntity(e).toJson())
-          .toList(),
     };
   }
 }

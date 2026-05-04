@@ -1,6 +1,7 @@
-import '../../../core/utils/app_imports.dart';
-import '../../../core/widgets/custom_back_button.dart';
-import '../../product/domain/entities/product_entity.dart';
+
+import '../../../../core/utils/app_imports.dart';
+import '../../../../core/widgets/custom_back_button.dart';
+import '../../../product/domain/entities/product_entity.dart';
 
 class ProductImageSection extends StatelessWidget {
   const ProductImageSection({

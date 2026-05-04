@@ -1,15 +1,25 @@
-import 'package:fruit_hub_market/features/product_details/widgets/custom_review_field.dart';
-import 'package:fruit_hub_market/features/product_details/widgets/rating_bar_item.dart';
-import 'package:fruit_hub_market/features/product_details/widgets/review_item.dart';
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
+import 'package:fruit_hub_market/features/product_details/presentation/widgets/rating_bar_item.dart';
+import 'package:fruit_hub_market/features/product_details/presentation/widgets/review_item.dart';
 
-import '../../../core/utils/app_imports.dart';
-import '../../product/domain/entities/review_entity.dart';
+import '../../../../core/utils/app_imports.dart';
+import '../../domain/entities/review_entity.dart';
+import '../view_model/product_details_cubit.dart';
+import 'custom_review_field.dart';
 
 class ReviewsViewBody extends StatelessWidget {
-  const ReviewsViewBody({super.key});
+  final String productId;
+
+  const ReviewsViewBody({super.key, required this.productId,});
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => ProductDetailsCubit(instance())..getReviews(productId),
+      child: BlocConsumer<ProductDetailsCubit, ProductDetailsState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          var cubit = context.read<ProductDetailsCubit>();
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(child: InfoActionRow(text: 'المراجعه', isBack: true)),
@@ -19,10 +29,21 @@ class ReviewsViewBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomReviewField(),
+                CustomReviewField(
+                  controller: cubit.reviewController,
+                  onPressed: () {
+                    cubit.addReview(ReviewEntity(
+                        image: '',
+                        date: DateTime.now().toString(),
+                        reviewDescription: cubit.reviewController.text,
+                        rating: 4.2,
+                        name: getUser().userName
+                    ), productId);
+                    cubit.reviewController.clear();
+                  },),
                 const SizedBox(height: 15),
                 Text(
-                  "324 مراجعه",
+                  "${cubit.reviews.length} مراجعه",
                   style: Theme.of(
                     context,
                   ).textTheme.labelLarge!.copyWith(color: Colors.black),
@@ -38,7 +59,6 @@ class ReviewsViewBody extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                // Rating Section
                 Row(
                   children: [
                     Column(
@@ -89,19 +109,15 @@ class ReviewsViewBody extends StatelessWidget {
         ),
         SliverList.separated(
           itemBuilder: (context, index) =>  ReviewItem(
-            review: ReviewEntity(
-              name: "Ahmed Omara",
-              image: '',
-              date: '25/06/2020',
-              reviewDescription:
-              "هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيُشتت القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات",
-              rating: 4.0,
-            ),
+            review: cubit.reviews[index],
           ),
           separatorBuilder: (context, index) => SizedBox(height: 10),
-          itemCount: 5,
+          itemCount: cubit.reviews.length,
         ),
       ],
+    );
+        },
+      ),
     );
   }
 }

@@ -7,7 +7,6 @@ class UserModel extends UserEntity {
     required super.uId,
   });
 
-//   هياخد user الي جاي من ال firebase وهيحوله model وخلي بالك خوا بيورث من userEntity يعني الuserEntity return
   factory UserModel.fromFirebaseUser(User user) {
     return UserModel(
       userName: user.displayName ?? '',

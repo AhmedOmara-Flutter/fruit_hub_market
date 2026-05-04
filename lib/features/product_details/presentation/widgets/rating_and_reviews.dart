@@ -1,5 +1,6 @@
-import '../../../core/utils/app_imports.dart';
-import '../../product/domain/entities/product_entity.dart';
+
+import '../../../../core/utils/app_imports.dart';
+import '../../../product/domain/entities/product_entity.dart';
 
 class RatingAndReviews extends StatelessWidget {
   const RatingAndReviews({
@@ -30,7 +31,7 @@ class RatingAndReviews extends StatelessWidget {
         SizedBox(width: 10),
         GestureDetector(
           onTap: (){
-            Navigator.pushNamed(context, RouteManager.reviews);
+            Navigator.pushNamed(context, RouteManager.reviews,arguments: product.id);
           },
           child: Text(
               "المراجعه",

@@ -1,9 +1,8 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
-import 'package:fruit_hub_market/features/product_details/view/product_details_view.dart';
-import 'package:fruit_hub_market/features/product_details/widgets/reviews_view.dart';
-
 import '../../features/product/domain/entities/product_entity.dart';
+import '../../features/product_details/presentation/view/product_details_view.dart';
+import '../../features/product_details/presentation/widgets/reviews_view.dart';
 import '../../features/search/presentation/view/search_view.dart';
 
 class RouteManager {
@@ -54,7 +53,8 @@ class GenerateRoute {
         });
           case RouteManager.reviews:
         return MaterialPageRoute(builder: (context) {
-          return ReviewsView();
+          final productId = settings.arguments as String;
+          return ReviewsView(productId: productId);
         });
 
 

@@ -1,5 +1,5 @@
 
-import 'package:fruit_hub_market/features/product/domain/entities/review_entity.dart';
+import 'package:fruit_hub_market/features/product_details/domain/entities/review_entity.dart';
 
 double getAverageRating(List<ReviewEntity> reviewEntity) {
   if (reviewEntity.isEmpty) return 0.0;

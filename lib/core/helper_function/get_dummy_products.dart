@@ -16,7 +16,7 @@ ProductEntity getDummyProduct = ProductEntity(
   avgRating: 4.5,
   ratingCount: 120,
   sellingCount: 300,
-  reviews: [],
+  id: '',
 );
 
 List<ProductEntity> getDummyProducts() {

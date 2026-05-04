@@ -1,7 +1,8 @@
 import 'package:fruit_hub_market/features/cart/presentation/view_model/cart_cubit.dart';
 import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
 
-import '../../../core/utils/app_imports.dart';
+import '../../../../core/utils/app_imports.dart';
+
 
 class ProductButtonSection extends StatelessWidget {
   final ProductEntity product;

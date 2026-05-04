@@ -58,8 +58,13 @@ class FirestoreDatabase implements DatabaseServices {
         }
 
         var result = await data.get();
+        return result.docs.map((user) {
 
-        return result.docs.map((user) => user.data()).toList();
+          return {
+            'id': user.id,
+            ...user.data(),
+          };
+        }).toList();
       }
 
     }  catch (e) {

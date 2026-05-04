@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
-import 'package:fruit_hub_market/features/product/domain/entities/review_entity.dart';
+import 'package:fruit_hub_market/features/product_details/domain/entities/review_entity.dart';
 
 // ignore_for_file: must_be_immutable
 class ProductEntity extends Equatable {
+  final String id;
   final String name;
   final String code;
   final num price;
@@ -19,7 +20,6 @@ class ProductEntity extends Equatable {
   final double avgRating;
   final int ratingCount;
   final int sellingCount;
-  final List<ReviewEntity> reviews ;
 
 
 
@@ -38,7 +38,7 @@ class ProductEntity extends Equatable {
     this.isOrganic = false,
     this.avgRating = 0.0,
     this.ratingCount = 0,
-    this.sellingCount = 0, required this.reviews,
+    this.sellingCount = 0, required this.id,
   });
 
   @override

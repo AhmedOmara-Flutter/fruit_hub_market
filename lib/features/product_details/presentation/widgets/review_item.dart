@@ -1,6 +1,5 @@
-import '../../../core/utils/app_imports.dart';
-import '../../product/domain/entities/review_entity.dart';
-
+import '../../../../core/utils/app_imports.dart';
+import '../../domain/entities/review_entity.dart';
 class ReviewItem extends StatelessWidget {
   final ReviewEntity review;
 
