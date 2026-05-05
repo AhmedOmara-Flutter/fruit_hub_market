@@ -5,14 +5,17 @@ class InfoActionRow extends StatelessWidget {
   final String text;
   final bool isBack;
   final bool isNotification;
+  final double bottomPadding;
+
 
   const InfoActionRow(
-      {super.key, required this.text, this.isBack = false, this.isNotification = false,});
+      {super.key, required this.text, this.isBack = false, this.isNotification = false, this.bottomPadding = 20,});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 50, bottom: 20),
+      padding: EdgeInsets.only(
+          left: 20, right: 20, top: 40, bottom: bottomPadding),
       child: Row(
         mainAxisAlignment:MainAxisAlignment.spaceBetween,
         children: [

@@ -11,7 +11,7 @@ class _LoginFormState extends State<LoginForm> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool isPasswordVisible = false;
+  bool isPasswordVisible = true;
   bool isValid = false;
 
   @override

@@ -1,4 +1,5 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -7,6 +8,11 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Supabase.initialize(
+    url: 'https://wplubouwksawibitfhlj.supabase.co',
+    anonKey: 'sb_publishable_28OdrvHF22OZhJIOnmQGFQ_T98mgadn',
+  );
+
 
   await CacheHelper.init();
   Constants.onBoarding =await CacheHelper.getData(key: 'onBoarding')??false;

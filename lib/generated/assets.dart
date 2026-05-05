@@ -13,6 +13,7 @@ class Assets {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  final SvgGenImage camera = const SvgGenImage('assets/images/Camera.svg');
   final SvgGenImage apple = const SvgGenImage('assets/images/apple.svg');
   final SvgGenImage arrowBack = const SvgGenImage(
     'assets/images/arrow back.svg',
@@ -20,16 +21,28 @@ class $AssetsImagesGen {
   final SvgGenImage bannerBackground = const SvgGenImage(
     'assets/images/banner_background.svg',
   );
+  final SvgGenImage box = const SvgGenImage('assets/images/box.svg');
   final SvgGenImage calendar = const SvgGenImage('assets/images/calendar.svg');
   final SvgGenImage calories = const SvgGenImage('assets/images/calories.svg');
+  final SvgGenImage emptyWallet = const SvgGenImage(
+    'assets/images/empty-wallet.svg',
+  );
   final SvgGenImage facebook = const SvgGenImage('assets/images/facebook.svg');
   final SvgGenImage filter = const SvgGenImage('assets/images/filter.svg');
   final SvgGenImage filter2 = const SvgGenImage('assets/images/filter2.svg');
+  final SvgGenImage global = const SvgGenImage('assets/images/global.svg');
   final SvgGenImage google = const SvgGenImage('assets/images/google.svg');
+  final SvgGenImage heart = const SvgGenImage('assets/images/heart.svg');
   final AssetGenImage homeImage = const AssetGenImage(
     'assets/images/home_image.png',
   );
   final AssetGenImage img = const AssetGenImage('assets/images/img.png');
+  final SvgGenImage infoCircle = const SvgGenImage(
+    'assets/images/info-circle.svg',
+  );
+  final SvgGenImage notification = const SvgGenImage(
+    'assets/images/notification.svg',
+  );
   final SvgGenImage onboardingBackground1 = const SvgGenImage(
     'assets/images/onboarding_background_1.svg',
   );
@@ -66,6 +79,7 @@ class $AssetsImagesGen {
   final AssetGenImage strawberry = const AssetGenImage(
     'assets/images/strawberry.png',
   );
+  final SvgGenImage user = const SvgGenImage('assets/images/user.svg');
 }
 
 class $AssetsFontsGen {
