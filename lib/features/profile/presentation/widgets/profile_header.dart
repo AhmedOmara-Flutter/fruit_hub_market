@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg;
 import 'package:image_picker/image_picker.dart';
 
@@ -20,12 +19,6 @@ class _ProfileHeaderState extends State<ProfileHeader> {
   File? imagePath;
 
   @override
-  void initState() {
-    super.initState();
-    context.read<ProfileCubit>().getImage();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
@@ -35,7 +28,10 @@ class _ProfileHeaderState extends State<ProfileHeader> {
             alignment: Alignment.center,
             children: [
               CircleAvatar(radius: 50, backgroundColor: Colors.white),
-              ProfileImageBloc(),
+              CircleAvatar(
+                radius: 40,
+                backgroundImage: AssetImage(Assets.images.homeImage.path),
+              ),
               Positioned(
                 bottom: -5,
                 child: CircleAvatar(backgroundColor: Colors.white, radius: 18),
@@ -57,8 +53,6 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                     } catch (e) {
                       print(e);
                     }
-
-                    context.read<ProfileCubit>().addImage(imagePath!);
                   },
                   child: Container(
                     height: 35,
@@ -98,43 +92,4 @@ class _ProfileHeaderState extends State<ProfileHeader> {
       ),
     );
   }
-}
-
-class ProfileImageBloc extends StatelessWidget {
-  const ProfileImageBloc({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ProfileCubit, ProfileState>(
-      builder: (context, state) {
-        final cubit = context.read<ProfileCubit>();
-
-        if (cubit.imageUrl != null && cubit.imageUrl!.isNotEmpty) {
-          return CircleAvatar(
-            radius: 40,
-            child: ClipOval(
-              child: CachedNetworkImage(
-                imageUrl: cubit.imageUrl!,
-                width: 80,
-                height: 80,
-                fit: BoxFit.cover,
-                placeholder: (context, url) =>
-                const Skeletonizer(child: CircleAvatar(
-                  radius: 40,
-                )),
-                errorWidget: (context, url, error) =>
-                    Image.asset(Assets.images.homeImage.path),
-              ),
-            ),
-          );
-        }
-
-        return CircleAvatar(
-          radius: 40,
-          backgroundImage: AssetImage(Assets.images.homeImage.path),
-        );
-      },
-    );  }
 }

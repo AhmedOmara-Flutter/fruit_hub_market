@@ -1,9 +1,6 @@
+import 'package:flutter/services.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/cart/presentation/view_model/cart_cubit.dart';
-
-import '../../../../core/services/storage_services.dart';
-import '../../../profile/data/repos/profile_repo_impl.dart';
-import '../../../profile/presentation/view_model/profile_cubit.dart';
 
 
 class MainView extends StatelessWidget {
@@ -11,14 +8,21 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          ProfileCubit(
-              ProfileRepoImpl(SupabaseStorage(), FirestoreDatabase())),
+    return PopScope(
+      canPop: false, // نتحكم إحنا في الباك
+      onPopInvoked: (didPop) {
+        final cubit = context.read<MainCubit>();
+
+        if (cubit.currentIndex != 0) {
+          cubit.changeBottomNav(0);
+        } else {
+          // يقفل الابلكيشن
+          SystemNavigator.pop();
+        }
+      },
 
       child: Scaffold(
         bottomNavigationBar: CustomBottomNavBar(),
-
         body: BlocListener<CartCubit, CartState>(
           listener: (context, state) {
             if (state is CartAdded) {

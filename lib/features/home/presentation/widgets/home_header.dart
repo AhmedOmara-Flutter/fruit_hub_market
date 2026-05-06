@@ -1,6 +1,5 @@
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/features/profile/presentation/widgets/profile_header.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
@@ -11,7 +10,10 @@ class HomeHeader extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20,right: 20,top: 50,bottom: 20),
       child: Row(
         children: [
-         ProfileImageBloc(),
+          CircleAvatar(
+            radius: 40,
+            backgroundImage: AssetImage(Assets.images.homeImage.path),
+          ),
           SizedBox(width: 10),
           Column(
             children: [
