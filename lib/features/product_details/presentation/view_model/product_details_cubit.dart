@@ -14,9 +14,16 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
 
   TextEditingController reviewController = TextEditingController();
 
+  void updateReviewField(String text) {
+   final isTyped = text.trim().isNotEmpty;
+
+    emit(ProductDetailsUpdateReviewField(isTyped:isTyped));
+  }
+
   List<dynamic> reviews = [];
 
   void addReview(ReviewEntity review, String productId) async {
+    // دي خلي بالك عشان لو عدل review مكيعملش واحد تاني بل يعدل علي القديم
     final userId = getUser().uId;
 
     await _databaseServices.addData(

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg;
 import 'package:image_picker/image_picker.dart';
 import '../../../../core/helper_function/get_user.dart';
@@ -26,10 +27,18 @@ class _ProfileHeaderState extends State<ProfileHeader> {
             alignment: Alignment.center,
             children: [
               CircleAvatar(radius: 50, backgroundColor: Colors.white),
-              CircleAvatar(
-                radius: 40,
-                backgroundImage: AssetImage(Assets.images.homeImage.path),
-              ),
+              ClipOval(
+                child: CachedNetworkImage(
+                  imageUrl: getUser().image,
+                  width: 80,
+                  height: 80,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) =>
+                      Skeletonizer(child: Container(
+                      ),),
+                  errorWidget: (context, url, error) =>
+                      Icon(Icons.error, color: Colors.red),
+                ),),
               Positioned(
                 bottom: -5,
                 child: CircleAvatar(backgroundColor: Colors.white, radius: 18),

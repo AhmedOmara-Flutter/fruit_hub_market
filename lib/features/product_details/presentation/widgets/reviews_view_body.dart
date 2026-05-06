@@ -1,26 +1,28 @@
-import 'package:fruit_hub_market/core/helper_function/get_user.dart';
-import 'package:fruit_hub_market/features/product_details/presentation/widgets/rating_bar_item.dart';
-import 'package:fruit_hub_market/features/product_details/presentation/widgets/review_item.dart';
+  import 'package:fruit_hub_market/core/helper_function/get_user.dart';
+  import 'package:fruit_hub_market/features/product_details/presentation/widgets/rating_bar_item.dart';
+  import 'package:fruit_hub_market/features/product_details/presentation/widgets/review_item.dart';
 
-import '../../../../core/utils/app_imports.dart';
-import '../../domain/entities/review_entity.dart';
-import '../view_model/product_details_cubit.dart';
-import 'custom_review_field.dart';
+  import '../../../../core/utils/app_imports.dart';
+  import '../../domain/entities/review_entity.dart';
+  import '../view_model/product_details_cubit.dart';
+  import 'custom_review_field.dart';
 
-class ReviewsViewBody extends StatelessWidget {
-  final String productId;
+  class ReviewsViewBody extends StatelessWidget {
+    final String productId;
 
-  const ReviewsViewBody({super.key, required this.productId,});
+    const ReviewsViewBody({super.key, required this.productId,});
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ProductDetailsCubit(instance())..getReviews(productId),
-      child: BlocConsumer<ProductDetailsCubit, ProductDetailsState>(
-        listener: (context, state) {},
+    @override
+    Widget build(BuildContext context) {
+      return BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
         builder: (context, state) {
           var cubit = context.read<ProductDetailsCubit>();
-    return CustomScrollView(
+          bool isTyped = false;
+
+          if (state is ProductDetailsUpdateReviewField) {
+            isTyped = state.isTyped;
+          }
+          return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(child: InfoActionRow(text: 'المراجعه', isBack: true)),
         SliverToBoxAdapter(
@@ -31,9 +33,13 @@ class ReviewsViewBody extends StatelessWidget {
               children: [
                 CustomReviewField(
                   controller: cubit.reviewController,
-                  onPressed: () {
+                  onChanged: (text){
+                    cubit.updateReviewField(text);
+                  },
+                  isTyped: isTyped,
+                  onSuffixPressed: () {
                     cubit.addReview(ReviewEntity(
-                        image: '',
+                        image: getUser().image,
                         date: DateTime.now().toString(),
                         reviewDescription: cubit.reviewController.text,
                         rating: 4.2,
@@ -115,10 +121,9 @@ class ReviewsViewBody extends StatelessWidget {
           itemCount: cubit.reviews.length,
         ),
       ],
-    );
+            );
         },
-      ),
-    );
+      );
+    }
   }
-}
-
+  

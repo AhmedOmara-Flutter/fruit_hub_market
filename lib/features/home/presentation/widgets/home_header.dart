@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
@@ -10,11 +11,19 @@ class HomeHeader extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20,right: 20,top: 50,bottom: 20),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 40,
-            backgroundImage: AssetImage(Assets.images.homeImage.path),
-          ),
-          SizedBox(width: 10),
+          ClipOval(
+            child: CachedNetworkImage(
+              imageUrl: getUser().image,
+              width: 80,
+              height: 80,
+              fit: BoxFit.cover,
+              placeholder: (context, url) =>
+                  Skeletonizer(child: Container(
+                  ),),
+              errorWidget: (context, url, error) =>
+                  Icon(Icons.error, color: Colors.red),
+            ),
+          ), SizedBox(width: 10),
           Column(
             children: [
               Text(

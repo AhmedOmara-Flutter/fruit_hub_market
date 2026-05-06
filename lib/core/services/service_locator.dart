@@ -1,3 +1,4 @@
+import 'package:fruit_hub_market/core/services/storage_services.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/product/data/repos/product_repo_impl.dart';
 import 'package:fruit_hub_market/features/product/domain/repos/product_repo.dart';
@@ -12,8 +13,10 @@ void initAppModule() {
   instance.registerLazySingleton<DatabaseServices>(
     () => FirestoreDatabase(),
   );
-
-  instance.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(instance(),instance()));
+instance.registerLazySingleton<StorageServices>(
+    () => SupabaseStorage(),
+);
+  instance.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(instance(),instance(),instance()));
 
   instance.registerLazySingleton<ProductRepo>(() => ProductRepoImpl(instance()));
 }

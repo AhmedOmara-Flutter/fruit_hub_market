@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../../../../core/utils/app_imports.dart';
 import '../../domain/entities/review_entity.dart';
 class ReviewItem extends StatelessWidget {
@@ -17,7 +19,18 @@ class ReviewItem extends StatelessWidget {
             Stack(
               alignment: Alignment.bottomRight,
               children: [
-                CircleAvatar(radius: 27, backgroundColor: Colors.red),
+                ClipOval(
+                  child: CachedNetworkImage(
+                    imageUrl: review.image,
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) =>
+                        Skeletonizer(child: Container(
+                        ),),
+                    errorWidget: (context, url, error) =>
+                        Icon(Icons.error, color: Colors.red),
+                  ),),
                 Container(
                   margin: EdgeInsets.only(bottom: 5),
                   height: 15,
@@ -43,17 +56,18 @@ class ReviewItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${review.name}',
+                    review.name,
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                   Text(
-                    '${review.date}',
+                    review.date,
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   SizedBox(height: 8),
                   Text(
-                    '${review.reviewDescription}',
+                    review.reviewDescription,
                     style: Theme.of(context).textTheme.titleSmall,
+                    textAlign: TextAlign.end,
                   ),
                 ],
               ),

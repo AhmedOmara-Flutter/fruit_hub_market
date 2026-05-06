@@ -149,6 +149,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             email: emailController.text,
                             password: passwordController.text,
                             userName: nameController.text,
+                            imageFile: imagePath!,
                           );
                         }else{
                           customShowSnakeBar(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 part 'register_state.dart';
 
@@ -9,10 +11,11 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String email,
     required String password,
     required String userName,
+    required File imageFile,
   }) async {
     emit(RegisterLoading());
     final data = await _authRepo.createUserWithEmailAndPassword(
-      RegisterRequest(email: email, password: password, userName: userName),
+      RegisterRequest(email: email, password: password, userName: userName, imageFile: imageFile),
     );
     data.fold(
       (failure) {

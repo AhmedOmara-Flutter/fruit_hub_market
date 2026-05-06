@@ -4,12 +4,16 @@ import 'package:dartz/dartz.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../../../core/services/storage_services.dart';
+
 class AuthRepoImpl implements AuthRepo {
   final AuthRemoteDataSource _authRemoteDataSource;
   final DatabaseServices _databaseRemoteDataSource;
+  final StorageServices _storageServices;
 
 
-  AuthRepoImpl(this._authRemoteDataSource, this._databaseRemoteDataSource);
+  AuthRepoImpl(this._authRemoteDataSource, this._databaseRemoteDataSource,
+      this._storageServices);
 
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
@@ -17,6 +21,10 @@ class AuthRepoImpl implements AuthRepo {
   {
     User ?user;
     try {
+      final imageUrl = await _storageServices.uploadImage(
+        registerRequest.imageFile,
+        'profileImage',
+      );
       user = await _authRemoteDataSource.createUserWithEmailAndPassword(
         registerRequest,
       );
@@ -24,6 +32,7 @@ class AuthRepoImpl implements AuthRepo {
         userName: registerRequest.userName,
         email: registerRequest.email,
         uId: user.uid,
+        image: imageUrl,
       );
       await addData(userEntity);
       return Right(userEntity);

@@ -4,7 +4,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class StorageServices {
   Future<String> uploadImage(File imageFile,String path);
-
 }
 
 
