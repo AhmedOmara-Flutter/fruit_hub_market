@@ -1,4 +1,8 @@
+import 'dart:io';
+
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+
+import '../../../../../../core/helper_function/pick_image.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
@@ -13,8 +17,9 @@ class _RegisterFormState extends State<RegisterForm> {
   var passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool isTermsAndConditionsSelected = false;
-  bool isPasswordVisible = false;
+  bool isPasswordVisible = true;
   bool isValid = false;
+  File? imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +32,52 @@ class _RegisterFormState extends State<RegisterForm> {
       },
       child: Column(
         children: [
+          GestureDetector(
+            onTap: () async {
+              final image = await pickImage();
+              if (image != null) {
+                setState(() {
+                  imagePath = image;
+                });
+              }
+            },
+            child: Stack(
+              alignment: Alignment.bottomRight,
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: Color(0xffF9FAFA),
+                    image: imagePath != null
+                        ? DecorationImage(
+                            image: FileImage(imagePath!),
+                            fit: BoxFit.cover,
+                          )
+                        : null,
+                    border: Border.all(color: Color(0xffE6E9EA)),
+                    shape: BoxShape.circle,
+                  ),
+                  child: imagePath != null
+                      ? null
+                      : Icon(
+                          Icons.add_a_photo_outlined,
+                          size: 40,
+                          color: Color(0xff1B5E37),
+                        ),
+                ),
+                if (imagePath != null)
+                  CircleAvatar(radius: 15, backgroundColor: Colors.white),
+                if (imagePath != null)
+                  CircleAvatar(
+                    radius: 13.5,
+                    backgroundColor: Color(0xff1B5E37),
+                    child: Icon(Icons.edit, size: 15, color: Colors.white),
+                  ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 25),
           CustomTextFormField(
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
@@ -88,15 +139,24 @@ class _RegisterFormState extends State<RegisterForm> {
           BlocBuilder<RegisterCubit, RegisterState>(
             builder: (context, state) {
               return CustomButton(
-                onPressed: isTermsAndConditionsSelected && isValid
+                onPressed:
+                    isTermsAndConditionsSelected && isValid && imagePath != null
                     ? () {
                     if (_formKey.currentState!.validate()) {
                       if (isTermsAndConditionsSelected == true) {
-                        BlocProvider.of<RegisterCubit>(context).register(
-                          email: emailController.text,
-                          password: passwordController.text,
-                          userName: nameController.text,
-                        );
+                        if(imagePath!=null){
+                          BlocProvider.of<RegisterCubit>(context).register(
+                            email: emailController.text,
+                            password: passwordController.text,
+                            userName: nameController.text,
+                          );
+                        }else{
+                          customShowSnakeBar(
+                            context,
+                            color: Colors.red,
+                            label: 'يرجى اختيار صورة الملف الشخصي',
+                          );
+                        }
                       } else {
                         customShowSnakeBar(
                           context,

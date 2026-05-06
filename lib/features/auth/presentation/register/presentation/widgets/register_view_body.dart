@@ -10,7 +10,6 @@ class RegisterViewBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 20),
             RegisterForm(),
             const SizedBox(height: 40),
             const CustomAuthFooter(),

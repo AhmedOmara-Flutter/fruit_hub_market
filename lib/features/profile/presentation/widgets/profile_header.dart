@@ -1,11 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg;
 import 'package:image_picker/image_picker.dart';
-
 import '../../../../core/helper_function/get_user.dart';
+import '../../../../core/helper_function/pick_image.dart';
 import '../../../../core/utils/app_imports.dart';
-import '../view_model/profile_cubit.dart';
 
 class ProfileHeader extends StatefulWidget {
   const ProfileHeader({super.key});
@@ -40,18 +38,11 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                 bottom: -5,
                 child: GestureDetector(
                   onTap: () async {
-                    try {
-                      final ImagePicker picker = ImagePicker();
-                      final XFile? image = await picker.pickImage(
-                        source: ImageSource.camera,
-                      );
-                      if (image != null) {
-                        setState(() {
-                          imagePath = File(image.path);
-                        });
-                      }
-                    } catch (e) {
-                      print(e);
+                    final image = await pickImage();
+                    if (image != null) {
+                      setState(() {
+                        imagePath = image;
+                      });
                     }
                   },
                   child: Container(
