@@ -1,5 +1,6 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
+
 import '../../features/product/domain/entities/product_entity.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
 import '../../features/product_details/presentation/widgets/reviews_view.dart';
@@ -42,7 +43,6 @@ class GenerateRoute {
         case RouteManager.productDetails:
           return MaterialPageRoute(builder: (context) {
             final product = settings.arguments as ProductEntity;
-
             return ProductDetailsView(
               product: product,
             );
@@ -56,8 +56,6 @@ class GenerateRoute {
           final productId = settings.arguments as String;
           return ReviewsView(productId: productId);
         });
-
-
       default:
         return _errorRoute();
     }

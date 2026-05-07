@@ -31,7 +31,12 @@ class CustomReviewField extends StatelessWidget {
               height: 40,
               fit: BoxFit.cover,
               placeholder: (context, url) =>
-                  Skeletonizer(child: Container(
+                  Skeletonizer(
+                    enabled: true,
+                    child: Container(
+                    width: 40,
+                    height: 40,
+                    color: Colors.grey[300],
                   ),),
               errorWidget: (context, url, error) =>
                   Icon(Icons.error, color: Colors.red),

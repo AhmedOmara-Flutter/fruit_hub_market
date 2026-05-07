@@ -7,7 +7,6 @@ import 'package:fruit_hub_market/features/home/presentation/widgets/home_header.
 import 'package:fruit_hub_market/features/home/presentation/widgets/popular_products_section.dart';
 import '../../../../../../../core/utils/app_imports.dart';
 import '../../../../core/widgets/custom_refresh_indicator.dart';
-import '../../../profile/presentation/view_model/profile_cubit.dart';
 import 'best_selling_products_bloc_builder.dart';
 import 'featured_products_bloc_builder.dart';
 

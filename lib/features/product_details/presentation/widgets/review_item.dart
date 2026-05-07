@@ -26,7 +26,11 @@ class ReviewItem extends StatelessWidget {
                     height: 50,
                     fit: BoxFit.cover,
                     placeholder: (context, url) =>
-                        Skeletonizer(child: Container(
+                        Skeletonizer(enabled: true,
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          color: Colors.grey,
                         ),),
                     errorWidget: (context, url, error) =>
                         Icon(Icons.error, color: Colors.red),

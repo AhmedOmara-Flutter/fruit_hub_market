@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
@@ -21,20 +22,30 @@ class AuthRepoImpl implements AuthRepo {
   {
     User ?user;
     try {
+      final compressedImage = await _storageServices.compressedImage(
+          registerRequest.imageFile);
       final imageUrl = await _storageServices.uploadImage(
-        registerRequest.imageFile,
+        compressedImage,
         'profileImage',
       );
+
+      //1- create auth first
       user = await _authRemoteDataSource.createUserWithEmailAndPassword(
         registerRequest,
       );
+
+      // 2- create temporary user
       UserEntity userEntity = UserEntity(
         userName: registerRequest.userName,
         email: registerRequest.email,
         uId: user.uid,
         image: imageUrl,
       );
+
+      // 3- save user مباشرة
       await addData(userEntity);
+
+
       return Right(userEntity);
     } on CustomException catch (e) {
       if (user != null) {

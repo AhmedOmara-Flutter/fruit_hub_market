@@ -18,7 +18,12 @@ class HomeHeader extends StatelessWidget {
               height: 80,
               fit: BoxFit.cover,
               placeholder: (context, url) =>
-                  Skeletonizer(child: Container(
+                  Skeletonizer(
+                    enabled: true,
+                    child: Container(
+                    width: 80,
+                    height: 80,
+                 color: Colors.red,
                   ),),
               errorWidget: (context, url, error) =>
                   Icon(Icons.error, color: Colors.red),
