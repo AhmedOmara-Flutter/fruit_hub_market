@@ -41,6 +41,7 @@ class CartViewBody extends StatelessWidget {
                           .labelSmall,
                     ),
                     onPressed: () {
+                      Navigator.pushNamed(context, RouteManager.checkout);
                     },
                   ),
                 ],

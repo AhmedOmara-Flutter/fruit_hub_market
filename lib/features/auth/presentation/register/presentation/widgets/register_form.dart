@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/image_picker_bottom_sheet.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../../../core/helper_function/pick_image.dart';
 
@@ -33,13 +35,48 @@ class _RegisterFormState extends State<RegisterForm> {
       child: Column(
         children: [
           GestureDetector(
-            onTap: () async {
-              final image = await pickImage();
-              if (image != null) {
-                setState(() {
-                  imagePath = image;
-                });
-              }
+            onTap: () {
+              showModalBottomSheet(
+                context: context,
+                backgroundColor: Colors.transparent,
+                builder: (context) {
+                  return Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20,),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(25),
+                      ),
+                    ),
+                    child: ImagePickerBottomSheet(
+                      onCameraTap: () async {
+                        Navigator.pop(context);
+
+                        final image = await pickImage();
+
+                        if (image != null) {
+                          setState(() {
+                            imagePath = image;
+                          });
+                        }
+                      },
+                      onGalleryTap: () async {
+                        Navigator.pop(context);
+
+                        final image =
+                        await pickImage(source: ImageSource.gallery);
+
+                        if (image != null) {
+                          setState(() {
+                            imagePath = image;
+                          });
+                        }
+                      },
+                    ),
+                  );
+                },
+              );
             },
             child: Stack(
               alignment: Alignment.bottomRight,

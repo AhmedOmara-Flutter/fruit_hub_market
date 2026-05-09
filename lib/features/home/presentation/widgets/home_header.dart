@@ -28,8 +28,10 @@ class HomeHeader extends StatelessWidget {
               errorWidget: (context, url, error) =>
                   Icon(Icons.error, color: Colors.red),
             ),
-          ), SizedBox(width: 10),
+          ),
+          SizedBox(width: 10),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'صباح الخير !..',
