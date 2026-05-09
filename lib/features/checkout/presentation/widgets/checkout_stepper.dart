@@ -22,8 +22,8 @@ class CheckoutStepper extends StatelessWidget {
         (index) => GestureDetector(
           onTap: () => onTap(index),
           child: CheckoutStepperItem(
-            isSelected: currentIndex == index,
-            index: index + 1,
+            currentIndex: currentIndex,
+            index: index,
             text: stepperTitles[index],
           ),
         ),

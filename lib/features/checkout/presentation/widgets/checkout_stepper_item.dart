@@ -3,21 +3,34 @@ import 'active_step_item.dart';
 import 'inactive_step_item.dart';
 
 class CheckoutStepperItem extends StatelessWidget {
-  final bool isSelected;
   final String text;
   final int index;
+  final int currentIndex;
 
   const CheckoutStepperItem({
     super.key,
-    required this.isSelected,
     required this.text,
     required this.index,
+    required this.currentIndex,
   });
 
   @override
   Widget build(BuildContext context) {
-    return isSelected
-        ? ActiveStepItem(text: text)
-        : InActiveStepItem(text: text, index: index);
+    // step الحالي
+    if (index == currentIndex ) {
+      return ActiveStepItem(text: text);
+    }
+
+    // step خلص
+    if (index < currentIndex ) {
+      return ActiveStepItem(text: text);
+    }
+
+    // step لسه
+    return InActiveStepItem(
+      text: text,
+      index: index+1,
+    );
+
   }
 }
