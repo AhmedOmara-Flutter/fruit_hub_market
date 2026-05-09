@@ -1,8 +1,8 @@
 import '../../../../core/utils/app_imports.dart';
 import '../view/address_page_view.dart';
-import '../view/cart_page_view.dart';
 import '../view/order_tracking_page_view.dart';
 import '../view/payment_page_view.dart';
+import '../view/shipping_page_view.dart';
 import 'checkout_stepper.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -23,7 +23,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   ];
 
   final List<Widget> stepperPages = const [
-    CartPageView(),
+    ShippingPageView(),
     AddressPageView(),
     PaymentPageView(),
     OrderTrackingPageView(),
@@ -84,7 +84,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     );
   }
 }
-// import 'package:fruit_hub_market/features/checkout/presentation/view/cart_page_view.dart';
+// import 'package:fruit_hub_market/features/checkout/presentation/view/shipping_page_view.dart';
 // import 'package:fruit_hub_market/features/checkout/presentation/view/payment_page_view.dart';
 //
 // import '../../../../core/utils/app_imports.dart';
