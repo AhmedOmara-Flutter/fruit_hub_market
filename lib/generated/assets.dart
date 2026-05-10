@@ -14,6 +14,10 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   final SvgGenImage camera = const SvgGenImage('assets/images/Camera.svg');
+  final SvgGenImage mastercard = const SvgGenImage(
+    'assets/images/Mastercard.svg',
+  );
+  final SvgGenImage paypal = const SvgGenImage('assets/images/Paypal.svg');
   final SvgGenImage apple = const SvgGenImage('assets/images/apple.svg');
   final SvgGenImage arrowBack = const SvgGenImage(
     'assets/images/arrow back.svg',
@@ -24,6 +28,16 @@ class $AssetsImagesGen {
   final SvgGenImage box = const SvgGenImage('assets/images/box.svg');
   final SvgGenImage calendar = const SvgGenImage('assets/images/calendar.svg');
   final SvgGenImage calories = const SvgGenImage('assets/images/calories.svg');
+  final SvgGenImage checkCircle = const SvgGenImage(
+    'assets/images/checkCircle.svg',
+  );
+  final SvgGenImage delivered = const SvgGenImage(
+    'assets/images/delivered.svg',
+  );
+  final SvgGenImage deliveryTruck = const SvgGenImage(
+    'assets/images/deliveryTruck.svg',
+  );
+  final SvgGenImage edit = const SvgGenImage('assets/images/edit.svg');
   final SvgGenImage emptyWallet = const SvgGenImage(
     'assets/images/empty-wallet.svg',
   );
@@ -40,6 +54,7 @@ class $AssetsImagesGen {
   final SvgGenImage infoCircle = const SvgGenImage(
     'assets/images/info-circle.svg',
   );
+  final SvgGenImage location = const SvgGenImage('assets/images/location.svg');
   final SvgGenImage notification = const SvgGenImage(
     'assets/images/notification.svg',
   );
@@ -55,7 +70,14 @@ class $AssetsImagesGen {
   final SvgGenImage onboardingLogo2 = const SvgGenImage(
     'assets/images/onboarding_logo_2.svg',
   );
+  final SvgGenImage openPackage = const SvgGenImage(
+    'assets/images/openPackage.svg',
+  );
   final SvgGenImage organic = const SvgGenImage('assets/images/organic.svg');
+  final SvgGenImage package = const SvgGenImage('assets/images/package.svg');
+  final SvgGenImage paymentSuccess = const SvgGenImage(
+    'assets/images/paymentSuccess.svg',
+  );
   final SvgGenImage productDetailsBg = const SvgGenImage(
     'assets/images/productDetailsBg.svg',
   );
@@ -66,6 +88,9 @@ class $AssetsImagesGen {
   final SvgGenImage search = const SvgGenImage('assets/images/search.svg');
   final SvgGenImage searchImage = const SvgGenImage(
     'assets/images/searchImage.svg',
+  );
+  final SvgGenImage shippingTracking = const SvgGenImage(
+    'assets/images/shippingTracking.svg',
   );
   final SvgGenImage splashBottom = const SvgGenImage(
     'assets/images/splash_bottom.svg',

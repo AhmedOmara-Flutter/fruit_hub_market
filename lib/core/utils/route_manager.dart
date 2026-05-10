@@ -2,6 +2,8 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
 
 import '../../features/checkout/presentation/view/checkout_view.dart';
+import '../../features/checkout/presentation/view/order_tracking_view.dart';
+import '../../features/checkout/presentation/view/payment_success_view.dart';
 import '../../features/product/domain/entities/product_entity.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
 import '../../features/product_details/presentation/widgets/reviews_view.dart';
@@ -19,6 +21,8 @@ class RouteManager {
   static const String search = '/search';
   static const String reviews = '/reviews';
   static const String checkout = '/checkout';
+  static const String paymentSuccess = '/paymentSuccess';
+  static const String orderTracking = '/orderTracking';
 }
 
 class GenerateRoute {
@@ -62,6 +66,15 @@ class GenerateRoute {
           return MaterialPageRoute(builder: (context) {
             return CheckoutView();
           });
+      case RouteManager.paymentSuccess:
+        return MaterialPageRoute(builder: (context) {
+          return PaymentSuccessView();
+        });
+        case RouteManager.orderTracking:
+          return MaterialPageRoute(builder: (context) {
+            return OrderTrackingView();
+          });
+
       default:
         return _errorRoute();
     }

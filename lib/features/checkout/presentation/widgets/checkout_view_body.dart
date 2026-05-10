@@ -1,7 +1,8 @@
 import '../../../../core/utils/app_imports.dart';
 import '../view/address_page_view.dart';
-import '../view/order_tracking_page_view.dart';
+import '../view/order_tracking_view.dart';
 import '../view/payment_page_view.dart';
+import '../view/review_page_view.dart';
 import '../view/shipping_page_view.dart';
 import 'checkout_stepper.dart';
 
@@ -21,12 +22,18 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     'الدفع',
     'المراجعة',
   ];
+  final List<String> stepperButtonLabels = [
+    'التالي',
+    'التالي',
+    'تأكيد & استمرار',
+    'تأكيد الطلب',
+  ];
 
   final List<Widget> stepperPages = const [
     ShippingPageView(),
     AddressPageView(),
     PaymentPageView(),
-    OrderTrackingPageView(),
+    ReviewPageView(),
   ];
 
   int currentIndex = 0;
@@ -41,6 +48,17 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
+  }
+
+  void nextPage() {
+    if (currentIndex == stepperPages.length - 1) {
+       Navigator.pushNamed(context, RouteManager.paymentSuccess);
+    }else {
+      _pageController.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+    }
   }
 
   @override
@@ -76,6 +94,18 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                     },
                   ),
                 ),
+                CustomButton(
+                    onPressed: () {
+                      nextPage();
+                    },
+                    child: Text(
+                      stepperButtonLabels[currentIndex],
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .labelSmall,
+                    )),
+                SizedBox(height: 20),
               ],
             ),
           ),
@@ -89,7 +119,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
 //
 // import '../../../../core/utils/app_imports.dart';
 // import '../view/address_page_view.dart';
-// import '../view/order_tracking_page_view.dart';
+// import '../view/order_tracking_view.dart';
 //
 // class CheckoutViewBody extends StatefulWidget {
 //   const CheckoutViewBody({super.key});

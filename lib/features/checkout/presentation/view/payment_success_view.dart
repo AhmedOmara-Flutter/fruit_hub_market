@@ -1,0 +1,60 @@
+import '../../../../core/utils/app_imports.dart';
+
+class PaymentSuccessView extends StatelessWidget {
+  const PaymentSuccessView({super.key,});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          InfoActionRow(text: 'الدفع'),
+          SizedBox(height: 35),
+          AspectRatio(
+            aspectRatio: 3,
+            child: SvgPicture.asset(Assets.images.paymentSuccess.path),
+          ),
+          SizedBox(height: 30),
+          Text(
+            'تم بنجاح !',
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall!.copyWith(color: Colors.black),
+          ),
+          SizedBox(height: 15),
+          Text(
+            'رقم الطلب : 1245789663#',
+            style: Theme.of(
+              context,
+            ).textTheme.titleSmall!.copyWith(color: Color(0xff4E5556)),
+          ),
+          Spacer(),
+          GestureDetector(
+            onTap: (){
+
+              Navigator.pushNamed(context, RouteManager.home,);
+            },
+            child: Text(
+                "الرئيسيه",
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                    color: const Color(0xff1B5E37),
+                    decoration: TextDecoration.underline
+                )
+            ),
+          ),
+          SizedBox(height: 10,),
+          CustomButton(
+            onPressed: () {
+              Navigator.pushNamed(context, RouteManager.orderTracking);
+            },
+            child: Text(
+              'تتبع الطلب',
+              style: Theme.of(context).textTheme.labelSmall,
+            ),
+          ),
+          SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+}
