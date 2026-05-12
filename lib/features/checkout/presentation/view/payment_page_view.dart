@@ -40,7 +40,7 @@ class PaymentPageView extends StatelessWidget {
                 },
               ),
               Spacer(),
-            PaymentButtonSection(),
+              PaymentButtonSection(),
               SizedBox(height: 30),
             ],
           ),

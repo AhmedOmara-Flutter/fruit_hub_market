@@ -1,6 +1,7 @@
 import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
 
 import '../../../../core/utils/app_imports.dart';
+import '../../domain/repos/checkout_repo.dart';
 import '../view/address_page_view.dart';
 import '../view/payment_page_view.dart';
 import '../view/shipping_page_view.dart';
@@ -8,7 +9,10 @@ import '../view/shipping_page_view.dart';
 part 'checkout_state.dart';
 
 class CheckoutCubit extends Cubit<CheckoutState> {
-  CheckoutCubit(this.orderEntity) : super(CheckoutInitial());
+  CheckoutCubit(this.orderEntity, this._checkoutRepo)
+    : super(CheckoutInitial());
+  final CheckoutRepo _checkoutRepo;
+
   OrderEntity orderEntity;
   final PageController pageController = PageController();
   int currentIndex = 0;
@@ -46,5 +50,14 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   void selectShipping(bool value) {
     isCashOnDelivery = value;
     emit(CheckoutSelectShipping());
+  }
+
+  void addOrder(OrderEntity orderEntity) async {
+    final result = await _checkoutRepo.addOrder(orderEntity);
+    emit(CheckoutAddOrderLoading());
+    result.fold(
+      (failure) => emit(CheckoutAddOrderError(failure.errMessage)),
+      (data) => emit(CheckoutAddOrderSuccess()),
+    );
   }
 }

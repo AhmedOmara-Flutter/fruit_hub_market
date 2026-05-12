@@ -1,3 +1,4 @@
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
@@ -67,7 +68,7 @@ class GenerateRoute {
         });
         case RouteManager.checkout:
           return MaterialPageRoute(builder: (context) {
-            return CheckoutView(orderEntity: OrderEntity(cartEntity: settings.arguments as CartEntity,));
+            return CheckoutView(orderEntity: OrderEntity(cartEntity: settings.arguments as CartEntity,uId: getUser().uId));
           });
       case RouteManager.paymentSuccess:
         return MaterialPageRoute(builder: (context) {

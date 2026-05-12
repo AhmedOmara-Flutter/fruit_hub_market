@@ -2,7 +2,7 @@ import '../../../cart/domain/entities/cart_entity.dart';
 import 'address_entity.dart';
 
 class OrderEntity {
-  final String ?uId;
+  final String uId;
   final CartEntity cartEntity;
   bool ?isCashOnDelivery;
   AddressEntity ?addressEntity;
@@ -11,15 +11,24 @@ class OrderEntity {
     required this.cartEntity,
      this.isCashOnDelivery,
      this.addressEntity,
-    this.uId,
+    required this.uId,
   });
 
 
   @override
-  String toString(){
-    String data='OrderEntity(cartEntity: $cartEntity, isCashOnDelivery: $isCashOnDelivery, addressEntity: $addressEntity)';
-    print(data);
-    return data ;
+  String toString() {
+    return '''
+OrderEntity(
+  uId: $uId,
+  isCashOnDelivery: $isCashOnDelivery,
+
+  address:
+  $addressEntity,
+
+  cart:
+  $cartEntity
+)
+''';
   }
 
   String getFullAddress(){

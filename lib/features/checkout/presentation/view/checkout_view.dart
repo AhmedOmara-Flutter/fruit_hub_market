@@ -1,5 +1,6 @@
 import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
 import '../../../../core/utils/app_imports.dart';
+import '../../data/repos/checkout_repo_impl.dart';
 import '../view_model/checkout_cubit.dart';
 import '../widgets/checkout_view_body.dart';
 
@@ -11,7 +12,8 @@ class CheckoutView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CheckoutCubit(orderEntity),
+      create: (context) => CheckoutCubit(orderEntity,
+          CheckoutRepoImpl(FirestoreDatabase())),
       child: Scaffold(
         body: CheckoutViewBody(),
       ),

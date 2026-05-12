@@ -7,3 +7,10 @@ final class CheckoutInitial extends CheckoutState {}
 final class CheckoutChangePage extends CheckoutState {}
 final class CheckoutSelectShipping extends CheckoutState {}
 final class CheckoutOrderConfirmed extends CheckoutState {}
+
+final class CheckoutAddOrderLoading extends CheckoutState {}
+final class CheckoutAddOrderError extends CheckoutState {
+  final String error;
+  CheckoutAddOrderError(this.error);
+}
+final class CheckoutAddOrderSuccess extends CheckoutState {}

@@ -33,5 +33,15 @@ class CartEntity extends Equatable{
   }
 
   @override
+  String toString() {
+    return '''
+CartEntity(
+  totalPrice: ${getTotalPrice()},
+  items: $cartItems
+)
+''';
+  }
+
+  @override
   List<Object?> get props => [cartItems];
 }

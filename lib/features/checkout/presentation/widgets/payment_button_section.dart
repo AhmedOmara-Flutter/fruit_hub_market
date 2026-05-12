@@ -1,3 +1,5 @@
+import 'package:fruit_hub_market/features/checkout/presentation/view_model/checkout_cubit.dart';
+
 import '../../../../core/utils/app_imports.dart';
 
 class PaymentButtonSection extends StatelessWidget {
@@ -5,12 +7,20 @@ class PaymentButtonSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomButton(
-      onPressed: (){
-        Navigator.pushNamed(context, RouteManager.paymentSuccess);
-
+    return BlocBuilder<CheckoutCubit, CheckoutState>(
+      builder: (context, state) {
+        final cubit = context.read<CheckoutCubit>();
+        return CustomButton(
+          onPressed: () {
+            cubit.addOrder(cubit.orderEntity);
+            Navigator.pushNamed(context, RouteManager.paymentSuccess);
+          },
+          child: Text('تاكيد الطلب', style: Theme
+              .of(context)
+              .textTheme
+              .labelSmall),
+        );
       },
-      child: Text('تاكيد الطلب', style: Theme.of(context).textTheme.labelSmall),
     );
   }
 }
