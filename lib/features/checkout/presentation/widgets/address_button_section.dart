@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 
 import '../../../../core/utils/app_imports.dart';
 
-class CheckoutNavigationButtons extends StatelessWidget {
-  const CheckoutNavigationButtons({
+class AddressButtonSection extends StatelessWidget {
+  const AddressButtonSection({
     super.key,
     required this.onBack,
     required this.onNext,

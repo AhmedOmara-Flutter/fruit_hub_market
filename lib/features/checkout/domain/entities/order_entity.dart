@@ -1,26 +1,28 @@
-import 'package:fruit_hub_market/features/cart/presentation/widgets/cart_item.dart';
-
 import '../../../cart/domain/entities/cart_entity.dart';
 import 'address_entity.dart';
 
 class OrderEntity {
+  final String ?uId;
   final CartEntity cartEntity;
   bool ?isCashOnDelivery;
-   AddressEntity ?addressEntity;
+  AddressEntity ?addressEntity;
 
   OrderEntity({
     required this.cartEntity,
      this.isCashOnDelivery,
      this.addressEntity,
+    this.uId,
   });
 
 
   @override
   String toString(){
-    return 'OrderEntity(cartEntity: $cartEntity, isCashOnDelivery: $isCashOnDelivery, addressEntity: $addressEntity)';
+    String data='OrderEntity(cartEntity: $cartEntity, isCashOnDelivery: $isCashOnDelivery, addressEntity: $addressEntity)';
+    print(data);
+    return data ;
   }
 
   String getFullAddress(){
-    return '${addressEntity!.country}, ${addressEntity!.apartment}';
+    return '${addressEntity!.address}, ${addressEntity!.country}, ${addressEntity!.apartment}';
   }
 }

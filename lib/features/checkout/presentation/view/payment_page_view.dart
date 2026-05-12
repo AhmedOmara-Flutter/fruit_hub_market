@@ -1,8 +1,8 @@
-import 'package:fruit_hub_market/core/widgets/custom_loading.dart';
+import 'package:fruit_hub_market/features/checkout/presentation/widgets/payment_button_section.dart';
 
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/checkout_cubit.dart';
-import '../widgets/checkout_navigation_buttons.dart';
+import '../widgets/address_button_section.dart';
 import '../widgets/delivery_address_section.dart';
 import '../widgets/order_summary_section.dart';
 
@@ -40,22 +40,7 @@ class PaymentPageView extends StatelessWidget {
                 },
               ),
               Spacer(),
-              BlocBuilder<CheckoutCubit, CheckoutState>(
-                builder: (context, state) {
-                  final cubit = context.read<CheckoutCubit>();
-                  return CheckoutNavigationButtons(
-                    onBack: () {
-                      cubit.pageController.previousPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                    onNext: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => CustomLoading(),));
-                    },
-                  );
-                },
-              ),
+            PaymentButtonSection(),
               SizedBox(height: 30),
             ],
           ),

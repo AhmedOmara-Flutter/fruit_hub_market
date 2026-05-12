@@ -63,14 +63,15 @@ class DeliveryAddressSection extends StatelessWidget {
                 color: Color(0xff6C7275),
               ),
               SizedBox(width: 5),
-
-              Text(
-                fullAddress,
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .labelMedium!
-                    .copyWith(color: Color(0xff4E5556)),
+              Expanded(
+                child: Text(
+                  fullAddress,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .labelMedium!
+                      .copyWith(color: Color(0xff4E5556)),
+                ),
               ),
             ],
           ),

@@ -3,7 +3,7 @@ import 'package:fruit_hub_market/features/checkout/domain/entities/address_entit
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/checkout_cubit.dart';
 import '../widgets/address_form_section.dart';
-import '../widgets/checkout_navigation_buttons.dart';
+import '../widgets/address_button_section.dart';
 
 class AddressPageView extends StatefulWidget {
   const AddressPageView({super.key});
@@ -12,7 +12,7 @@ class AddressPageView extends StatefulWidget {
   State<AddressPageView> createState() => _AddressPageViewState();
 }
 
-class _AddressPageViewState extends State<AddressPageView> {
+class _AddressPageViewState extends State<AddressPageView> with AutomaticKeepAliveClientMixin{
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var addressController = TextEditingController();
@@ -24,6 +24,7 @@ class _AddressPageViewState extends State<AddressPageView> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SafeArea(
       child: Form(
         key: formKey,
@@ -48,7 +49,7 @@ class _AddressPageViewState extends State<AddressPageView> {
                     BlocBuilder<CheckoutCubit, CheckoutState>(
                       builder: (context, state) {
                         final cubit = context.read<CheckoutCubit>();
-                        return CheckoutNavigationButtons(onBack: () {
+                        return AddressButtonSection(onBack: () {
                           cubit.pageController.previousPage(
                             duration: const Duration(milliseconds: 300),
                             curve: Curves.easeInOut,);
@@ -77,6 +78,7 @@ class _AddressPageViewState extends State<AddressPageView> {
                         },);
                       },
                     ),
+                    SizedBox(height: 30,),
                   ],
                                 ),
                 ),
@@ -86,5 +88,9 @@ class _AddressPageViewState extends State<AddressPageView> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
 
