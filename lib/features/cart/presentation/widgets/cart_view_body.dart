@@ -41,7 +41,7 @@ class CartViewBody extends StatelessWidget {
                           .labelSmall,
                     ),
                     onPressed: () {
-                      Navigator.pushNamed(context, RouteManager.checkout);
+                      Navigator.pushNamed(context, RouteManager.checkout,arguments:cubit.cart );
                     },
                   ),
                 ],

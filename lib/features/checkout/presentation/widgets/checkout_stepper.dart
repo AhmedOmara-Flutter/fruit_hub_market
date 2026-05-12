@@ -4,13 +4,11 @@ import 'checkout_stepper_item.dart';
 class CheckoutStepper extends StatelessWidget {
   final int currentIndex;
   final List<String> stepperTitles;
-  final ValueChanged<int> onTap;
 
   const CheckoutStepper({
     super.key,
     required this.currentIndex,
     required this.stepperTitles,
-    required this.onTap,
   });
 
   @override
@@ -20,7 +18,6 @@ class CheckoutStepper extends StatelessWidget {
       children: List.generate(
         stepperTitles.length,
         (index) => GestureDetector(
-          onTap: () => onTap(index),
           child: CheckoutStepperItem(
             currentIndex: currentIndex,
             index: index,

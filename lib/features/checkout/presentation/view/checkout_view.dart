@@ -1,13 +1,20 @@
+import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
 import '../../../../core/utils/app_imports.dart';
+import '../view_model/checkout_cubit.dart';
 import '../widgets/checkout_view_body.dart';
 
 class CheckoutView extends StatelessWidget {
-  const CheckoutView({super.key});
+  final OrderEntity orderEntity;
+
+  const CheckoutView({super.key, required this.orderEntity});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CheckoutViewBody(),
+    return BlocProvider(
+      create: (context) => CheckoutCubit(orderEntity),
+      child: Scaffold(
+        body: CheckoutViewBody(),
+      ),
     );
   }
 }

@@ -1,6 +1,9 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
 
+import '../../features/cart/domain/entities/cart_entity.dart';
+import '../../features/cart/presentation/widgets/cart_item.dart';
 import '../../features/checkout/presentation/view/checkout_view.dart';
 import '../../features/checkout/presentation/view/order_tracking_view.dart';
 import '../../features/checkout/presentation/view/payment_success_view.dart';
@@ -64,7 +67,7 @@ class GenerateRoute {
         });
         case RouteManager.checkout:
           return MaterialPageRoute(builder: (context) {
-            return CheckoutView();
+            return CheckoutView(orderEntity: OrderEntity(cartEntity: settings.arguments as CartEntity,));
           });
       case RouteManager.paymentSuccess:
         return MaterialPageRoute(builder: (context) {
