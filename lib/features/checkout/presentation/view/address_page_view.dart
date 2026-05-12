@@ -24,53 +24,64 @@ class _AddressPageViewState extends State<AddressPageView> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      autovalidateMode: autoValidateMode,
-      child: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 30),
-            AddressFormSection(nameController: nameController,
-                emailController: emailController,
-                addressController: addressController,
-                countryController: countryController,
-                apartmentController: apartmentController),
-            Spacer(),
-            BlocBuilder<CheckoutCubit, CheckoutState>(
-              builder: (context, state) {
-                final cubit = context.read<CheckoutCubit>();
-                return CheckoutNavigationButtons(onBack: () {
-                  cubit.pageController.previousPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,);
-                }, onNext: () {
-                  if (formKey.currentState!.validate()) {
-                    cubit.pageController.nextPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                    );
-                    cubit.orderEntity.addressEntity = AddressEntity(
-                        name: nameController.text,
-                        email: emailController.text,
-                        address: addressController.text,
-                        country: countryController.text,
-                        apartment: apartmentController.text);
-                  } else {
-                    customShowSnakeBar(
-                      context,
-                      color: Colors.red,
-                      label: 'يرجي ملئ بياناتك',
-                    );
-                    setState(() {
-                      autoValidateMode = AutovalidateMode.disabled;
-                    });
-                  }
-                },);
-              },
+    return SafeArea(
+      child: Form(
+        key: formKey,
+        autovalidateMode: autoValidateMode,
+        child: LayoutBuilder(
+          builder:(context, constraints) =>  SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
+              ),
+                child: IntrinsicHeight(
+                  child: Column(
+                  children: [
+                    const SizedBox(height: 30),
+                    AddressFormSection(nameController: nameController,
+                          emailController: emailController,
+                          addressController: addressController,
+                          countryController: countryController,
+                          apartmentController: apartmentController),
+                    SizedBox(height: 30,),
+                    Spacer(),
+                    BlocBuilder<CheckoutCubit, CheckoutState>(
+                      builder: (context, state) {
+                        final cubit = context.read<CheckoutCubit>();
+                        return CheckoutNavigationButtons(onBack: () {
+                          cubit.pageController.previousPage(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,);
+                        }, onNext: () {
+                          if (formKey.currentState!.validate()) {
+                            cubit.pageController.nextPage(
+                              duration: const Duration(milliseconds: 300),
+                              curve: Curves.easeInOut,
+                            );
+                            cubit.orderEntity.addressEntity = AddressEntity(
+                                name: nameController.text,
+                                email: emailController.text,
+                                address: addressController.text,
+                                country: countryController.text,
+                                apartment: apartmentController.text);
+                          } else {
+                            customShowSnakeBar(
+                              context,
+                              color: Colors.red,
+                              label: 'يرجي ملئ بياناتك',
+                            );
+                            setState(() {
+                              autoValidateMode = AutovalidateMode.disabled;
+                            });
+                          }
+                        },);
+                      },
+                    ),
+                  ],
+                                ),
+                ),
             ),
-            SizedBox(height: 30),
-          ],
+          ),
         ),
       ),
     );

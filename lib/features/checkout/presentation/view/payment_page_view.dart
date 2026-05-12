@@ -1,3 +1,5 @@
+import 'package:fruit_hub_market/core/widgets/custom_loading.dart';
+
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/checkout_cubit.dart';
 import '../widgets/checkout_navigation_buttons.dart';
@@ -49,7 +51,7 @@ class PaymentPageView extends StatelessWidget {
                       );
                     },
                     onNext: () {
-                      Navigator.pushNamed(context, RouteManager.paymentSuccess);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CustomLoading(),));
                     },
                   );
                 },
