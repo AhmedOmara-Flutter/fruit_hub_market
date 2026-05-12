@@ -27,49 +27,51 @@ class _AddressPageViewState extends State<AddressPageView> {
     return Form(
       key: formKey,
       autovalidateMode: autoValidateMode,
-      child: Column(
-        children: [
-          const SizedBox(height: 30),
-          AddressFormSection(nameController: nameController,
-              emailController: emailController,
-              addressController: addressController,
-              countryController: countryController,
-              apartmentController: apartmentController),
-          Spacer(),
-          BlocBuilder<CheckoutCubit, CheckoutState>(
-            builder: (context, state) {
-              final cubit = context.read<CheckoutCubit>();
-              return CheckoutNavigationButtons(onBack: () {
-                cubit.pageController.previousPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,);
-              }, onNext: () {
-                if (formKey.currentState!.validate()) {
-                  cubit.pageController.nextPage(
+      child: SafeArea(
+        child: Column(
+          children: [
+            const SizedBox(height: 30),
+            AddressFormSection(nameController: nameController,
+                emailController: emailController,
+                addressController: addressController,
+                countryController: countryController,
+                apartmentController: apartmentController),
+            Spacer(),
+            BlocBuilder<CheckoutCubit, CheckoutState>(
+              builder: (context, state) {
+                final cubit = context.read<CheckoutCubit>();
+                return CheckoutNavigationButtons(onBack: () {
+                  cubit.pageController.previousPage(
                     duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                  cubit.orderEntity.addressEntity = AddressEntity(
-                      name: nameController.text,
-                      email: emailController.text,
-                      address: addressController.text,
-                      country: countryController.text,
-                      apartment: apartmentController.text);
-                } else {
-                  customShowSnakeBar(
-                    context,
-                    color: Colors.red,
-                    label: 'يرجي ملئ بياناتك',
-                  );
-                  setState(() {
-                    autoValidateMode = AutovalidateMode.disabled;
-                  });
-                }
-              },);
-            },
-          ),
-          SizedBox(height: 20),
-        ],
+                    curve: Curves.easeInOut,);
+                }, onNext: () {
+                  if (formKey.currentState!.validate()) {
+                    cubit.pageController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                    );
+                    cubit.orderEntity.addressEntity = AddressEntity(
+                        name: nameController.text,
+                        email: emailController.text,
+                        address: addressController.text,
+                        country: countryController.text,
+                        apartment: apartmentController.text);
+                  } else {
+                    customShowSnakeBar(
+                      context,
+                      color: Colors.red,
+                      label: 'يرجي ملئ بياناتك',
+                    );
+                    setState(() {
+                      autoValidateMode = AutovalidateMode.disabled;
+                    });
+                  }
+                },);
+              },
+            ),
+            SizedBox(height: 30),
+          ],
+        ),
       ),
     );
   }

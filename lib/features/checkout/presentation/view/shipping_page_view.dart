@@ -17,14 +17,16 @@ class _ShippingPageViewState extends State<ShippingPageView> {
   Widget build(BuildContext context) {
     return BlocBuilder<CheckoutCubit, CheckoutState>(
       builder: (context, state) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 30),
-            ShippingMethodsSection(),
-            ShippingButtonSection(),
-            SizedBox(height: 20),
-          ],
+        return SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 30),
+              ShippingMethodsSection(),
+              ShippingButtonSection(),
+              SizedBox(height: 30),
+            ],
+          ),
         );
       },
     );

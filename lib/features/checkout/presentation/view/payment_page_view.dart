@@ -12,47 +12,51 @@ class PaymentPageView extends StatelessWidget {
     return BlocBuilder<CheckoutCubit, CheckoutState>(
       builder: (context, state) {
         final cubit = context.read<CheckoutCubit>();
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 30),
-            Text(
-              'ملخص الطلب :',
-              style: Theme.of(
-                context,
-              ).textTheme.labelLarge!.copyWith(color: Colors.black),
-            ),
-            SizedBox(height: 20),
-            OrderSummarySection(
-              totalPrice: cubit.orderEntity.cartEntity.getTotalPrice(),
-            ),
-            SizedBox(height: 10),
-            DeliveryAddressSection(
-              fullAddress: cubit.orderEntity.getFullAddress(),
-              onEdit: () {
-                cubit.pageController.previousPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              },
-            ),
-            Spacer(),
-            BlocBuilder<CheckoutCubit, CheckoutState>(
-              builder: (context, state) {
-                final cubit = context.read<CheckoutCubit>();
-                return CheckoutNavigationButtons(
-                  onBack: () {
-                    cubit.pageController.previousPage(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                    );
-                  },
-                  onNext: () {},
-                );
-              },
-            ),
-            SizedBox(height: 20),
-          ],
+        return SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 30),
+              Text(
+                'ملخص الطلب :',
+                style: Theme.of(
+                  context,
+                ).textTheme.labelLarge!.copyWith(color: Colors.black),
+              ),
+              SizedBox(height: 20),
+              OrderSummarySection(
+                totalPrice: cubit.orderEntity.cartEntity.getTotalPrice(),
+              ),
+              SizedBox(height: 10),
+              DeliveryAddressSection(
+                fullAddress: cubit.orderEntity.getFullAddress(),
+                onEdit: () {
+                  cubit.pageController.previousPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                },
+              ),
+              Spacer(),
+              BlocBuilder<CheckoutCubit, CheckoutState>(
+                builder: (context, state) {
+                  final cubit = context.read<CheckoutCubit>();
+                  return CheckoutNavigationButtons(
+                    onBack: () {
+                      cubit.pageController.previousPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    },
+                    onNext: () {
+                      Navigator.pushNamed(context, RouteManager.paymentSuccess);
+                    },
+                  );
+                },
+              ),
+              SizedBox(height: 30),
+            ],
+          ),
         );
       },
     );
