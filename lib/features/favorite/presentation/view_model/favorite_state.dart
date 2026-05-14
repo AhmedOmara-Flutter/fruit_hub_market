@@ -27,4 +27,5 @@ final class FavoriteToggledErrorState extends FavoriteState {
   FavoriteToggledErrorState({required this.errMessage});
 }
 
-final class FavoriteToggledState extends FavoriteState {}
+final class FavoriteDeletedState extends FavoriteState {}
+final class FavoriteAddedState extends FavoriteState {}

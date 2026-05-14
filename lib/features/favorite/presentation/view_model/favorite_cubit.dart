@@ -11,6 +11,7 @@ part 'favorite_state.dart';
 class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit(this._favoriteRepo) : super(FavoriteInitial());
   final FavoriteRepo _favoriteRepo;
+  Map<String, bool> favorites = {};
 
   Future toggleFavorite(ProductEntity product) async {
     final data = await _favoriteRepo.toggleFavorite(product);
@@ -20,6 +21,13 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         emit(FavoriteToggledErrorState(errMessage: l));
       },
       (r) async {
+        favorites[product.id] = r;
+
+        if(r){
+          emit(FavoriteAddedState());
+        }else{
+          emit(FavoriteDeletedState());
+        }
         await getFavorites();
       },
     );
@@ -35,6 +43,10 @@ class FavoriteCubit extends Cubit<FavoriteState> {
           emit(GetFavoriteErrorState(error: l));
         },
         (favoritesProducts) {
+          favorites.clear();
+          for (var product in favoritesProducts) {
+            favorites[product.id] = true;
+          }
           if (favoritesProducts.isEmpty) {
             emit(GetFavoriteEmptyState());
             return;

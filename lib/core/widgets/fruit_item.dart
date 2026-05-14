@@ -24,8 +24,10 @@ class FruitItem extends StatelessWidget {
           children: [
             BlocBuilder<FavoriteCubit, FavoriteState>(
               builder: (context, state) {
-                final cubit = context.read<FavoriteCubit>();
-                final isFavorite = false;
+                final cubit = context.watch<FavoriteCubit>();
+
+                final isFavorite =
+                    cubit.favorites[product.id] ?? false;
                 return Positioned(
               top: 0,
               right: 0,
