@@ -23,7 +23,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       (r) async {
         favorites[product.id] = r;
 
-        if(r){
+        if(r==true){
           emit(FavoriteAddedState());
         }else{
           emit(FavoriteDeletedState());
