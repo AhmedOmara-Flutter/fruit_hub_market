@@ -1,3 +1,4 @@
+import 'package:fruit_hub_market/core/utils/app_color.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 import '../../features/cart/presentation/view_model/cart_cubit.dart';
@@ -81,8 +82,8 @@ class FruitItem extends StatelessWidget {
                       onTap: () {
                         context.read<CartCubit>().addProduct(product);
                       },
-                      child: const CircleAvatar(
-                        backgroundColor: Color(0xff1B5E37),
+                      child: CircleAvatar(
+                        backgroundColor: AppColor.mainColor,
                         child: Icon(Icons.add, color: Colors.white),
                       ),
                     ),

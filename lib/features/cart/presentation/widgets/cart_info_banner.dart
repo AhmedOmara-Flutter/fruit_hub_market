@@ -10,12 +10,12 @@ class CartInfoBanner extends StatelessWidget {
       width: double.infinity,
 
       padding: EdgeInsets.symmetric(vertical: 12),
-      color: Color(0xffEBF9F1),
+      color: AppColor.mainColor.withOpacity(0.1),
       child: Text(
         'لديك $productsInCart منتجات في سلة التسوق',
         style: Theme.of(
           context,
-        ).textTheme.titleSmall!.copyWith(color: Color(0xff1B5E37)),
+        ).textTheme.titleSmall!.copyWith(color: AppColor.mainColor),
         textAlign: TextAlign.center,
       ),
     );

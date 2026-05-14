@@ -38,7 +38,7 @@ class InActiveStepItem extends StatelessWidget {
               .textTheme
               .labelLarge!
               .copyWith(
-            color: const Color(0xff1B5E37),
+            color: AppColor.mainColor,
           ),
         ),
       ],

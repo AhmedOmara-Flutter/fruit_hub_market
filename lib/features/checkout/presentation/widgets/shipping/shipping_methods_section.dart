@@ -1,7 +1,7 @@
-import 'package:fruit_hub_market/features/checkout/presentation/widgets/shipping_method_item.dart';
+import 'package:fruit_hub_market/features/checkout/presentation/widgets/shipping/shipping_method_item.dart';
 
-import '../../../../core/utils/app_imports.dart';
-import '../view_model/checkout_cubit.dart';
+import '../../../../../core/utils/app_imports.dart';
+import '../../view_model/checkout_cubit.dart';
 
 class ShippingMethodsSection extends StatelessWidget {
   const ShippingMethodsSection({super.key});

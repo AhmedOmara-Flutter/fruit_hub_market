@@ -100,7 +100,7 @@ class _RegisterFormState extends State<RegisterForm> {
                       : Icon(
                           Icons.add_a_photo_outlined,
                           size: 40,
-                          color: Color(0xff1B5E37),
+                          color: AppColor.mainColor,
                         ),
                 ),
                 if (imagePath != null)
@@ -108,7 +108,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 if (imagePath != null)
                   CircleAvatar(
                     radius: 13.5,
-                    backgroundColor: Color(0xff1B5E37),
+                    backgroundColor: AppColor.mainColor,
                     child: Icon(Icons.edit, size: 15, color: Colors.white),
                   ),
               ],
@@ -191,14 +191,14 @@ class _RegisterFormState extends State<RegisterForm> {
                         }else{
                           customShowSnakeBar(
                             context,
-                            color: Colors.red,
+                            color: AppColor.red,
                             label: 'يرجى اختيار صورة الملف الشخصي',
                           );
                         }
                       } else {
                         customShowSnakeBar(
                           context,
-                          color: Colors.red,
+                          color: AppColor.red,
                           label: 'يرجى الموافقة على الشروط والأحكام للمتابعه',
                         );
                       }

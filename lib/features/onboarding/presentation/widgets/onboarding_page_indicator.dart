@@ -30,8 +30,8 @@ class CustomDot extends StatelessWidget {
       height: isActive ? 15 : 12,
       decoration: BoxDecoration(
         color: isActive
-            ? const Color(0xff1B5E37)
-            : const Color(0xff5DB957),
+            ?  AppColor.mainColor
+            : AppColor.mainColor.withOpacity(0.5),
         shape: BoxShape.circle,
       ),
     );

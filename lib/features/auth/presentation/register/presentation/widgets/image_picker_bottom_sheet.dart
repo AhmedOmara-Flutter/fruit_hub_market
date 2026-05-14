@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../../core/utils/app_color.dart';
+
 class ImagePickerBottomSheet extends StatelessWidget {
   const ImagePickerBottomSheet({
     super.key,
@@ -66,7 +68,7 @@ class ImagePickerBottomSheet extends StatelessWidget {
   }) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: const Color(0xff1B5E37),
+        backgroundColor: AppColor.mainColor,
         child: Icon(
           icon,
           color: Colors.white,

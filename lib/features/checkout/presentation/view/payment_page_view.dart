@@ -1,10 +1,10 @@
-import 'package:fruit_hub_market/features/checkout/presentation/widgets/payment_button_section.dart';
+import 'package:fruit_hub_market/features/checkout/presentation/widgets/payment/payment_button_section.dart';
 
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/checkout_cubit.dart';
-import '../widgets/address_button_section.dart';
-import '../widgets/delivery_address_section.dart';
-import '../widgets/order_summary_section.dart';
+import '../widgets/address/address_button_section.dart';
+import '../widgets/payment/delivery_address_section.dart';
+import '../widgets/payment/order_summary_section.dart';
 
 class PaymentPageView extends StatelessWidget {
   const PaymentPageView({super.key});

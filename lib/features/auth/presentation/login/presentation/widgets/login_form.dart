@@ -69,7 +69,7 @@ class _LoginFormState extends State<LoginForm> {
                 "نسيت كلمة المرور؟",
                 style: Theme.of(
                   context,
-                ).textTheme.titleMedium!.copyWith(color: Color(0xff2D9F5D)),
+                ).textTheme.titleMedium!.copyWith(color: AppColor.mainColor.withOpacity(0.7)),
               ),
             ),
           ),

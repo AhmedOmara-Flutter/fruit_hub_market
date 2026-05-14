@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+import 'package:fruit_hub_market/core/widgets/info_action_row.dart';
+
+import '../../../../generated/assets.dart';
+
+class EmptyCartWidget extends StatefulWidget {
+  const EmptyCartWidget({super.key});
+
+  @override
+  State<EmptyCartWidget> createState() => _EmptyCartWidgetState();
+}
+
+class _EmptyCartWidgetState extends State<EmptyCartWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          InfoActionRow(text: 'السله'),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(Assets.images.emptyCart.path),
+                const SizedBox(height: 24),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: Text(
+                    "سلة المشتريات فارغة. ابدأ بإضافة فواكه طازجة واستمتع بتجربة تسوق صحية",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

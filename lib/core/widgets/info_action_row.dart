@@ -43,7 +43,7 @@ class InfoActionRow extends StatelessWidget {
                       Icon(
                         Icons.notifications_none_outlined,
                         size: 30,
-                        color: Color(0xff1B5E37),
+                        color: AppColor.mainColor,
                       ),
                       CircleAvatar(
                         radius: 4,

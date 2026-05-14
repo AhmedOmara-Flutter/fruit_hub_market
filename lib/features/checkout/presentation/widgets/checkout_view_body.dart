@@ -14,13 +14,10 @@ class CheckoutViewBody extends StatelessWidget {
       listener: (context, state) {
         if (state is CheckoutAddOrderSuccess) {
           customShowSnakeBar(
-              context, color: Color(0xff1B5E37), label: 'تم تأكيد طلبك بنجاح');
-          Navigator.pushNamed(
-            context,
-            RouteManager.paymentSuccess,
-          );
+              context, color: AppColor.mainColor, label: 'تم تأكيد طلبك بنجاح');
+          Navigator.pushNamed(context,RouteManager.paymentSuccess,);
         } else if (state is CheckoutAddOrderError) {
-          customShowSnakeBar(context, color: Colors.red, label: state.error);
+          customShowSnakeBar(context, color: AppColor.red, label: state.error);
         }
       },
       builder: (context, state) {
@@ -66,7 +63,6 @@ class CheckoutViewBody extends StatelessWidget {
               Positioned.fill(
                 child: AbsorbPointer(
                   absorbing: true,
-
                   child: Container(
                       color: Colors.black.withOpacity(0.3),
                       child: LoadingWidget()

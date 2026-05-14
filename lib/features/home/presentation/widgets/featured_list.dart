@@ -66,7 +66,7 @@ class _FeaturedListState extends State<FeaturedList> {
               width: currentIndex == index ? 14 : 8,
               height: 8,
               decoration: BoxDecoration(
-                color: currentIndex == index ? Colors.green : Colors.grey,
+                color: currentIndex == index ? AppColor.mainColor: Colors.grey,
                 borderRadius: BorderRadius.circular(10),
               ),
             );

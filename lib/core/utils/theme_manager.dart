@@ -18,7 +18,7 @@ class ThemeManager {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(horizontal: 20),
-        backgroundColor: const Color(0xff1B5E37),
+        backgroundColor: AppColor.mainColor,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16)),
         minimumSize: const Size(double.infinity, 65),
@@ -74,7 +74,7 @@ class ThemeManager {
           borderRadius: BorderRadius.circular(4),
         ),
         errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red),
+          borderSide: BorderSide(color: AppColor.red),
           borderRadius: BorderRadius.circular(4),
         ),
         focusedErrorBorder: OutlineInputBorder(

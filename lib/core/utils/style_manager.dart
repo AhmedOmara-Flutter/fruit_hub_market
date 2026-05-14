@@ -38,7 +38,7 @@ class StyleManager {
   );
 
   static TextStyle font13Weight700 = TextStyle(
-    color: Color(0xff1B5E37),
+    color: AppColor.mainColor,
     fontFamily: 'Cairo',
     fontSize: 13,
     fontWeight: FontWeight.w700,

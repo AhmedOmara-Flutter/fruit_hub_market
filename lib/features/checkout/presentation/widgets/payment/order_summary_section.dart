@@ -1,4 +1,4 @@
-import '../../../../core/utils/app_imports.dart';
+import '../../../../../core/utils/app_imports.dart';
 
 class OrderSummarySection extends StatelessWidget {
   final double totalPrice;

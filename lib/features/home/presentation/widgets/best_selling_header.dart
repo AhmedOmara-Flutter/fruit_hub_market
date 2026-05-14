@@ -20,7 +20,7 @@ class BestSellingHeader extends StatelessWidget {
           const Spacer(),
           TextButton(
               style: TextButton.styleFrom(
-                foregroundColor: Color(0xff1B5E37),
+                foregroundColor: AppColor.mainColor,
               ),
 
               onPressed: () {

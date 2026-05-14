@@ -23,7 +23,12 @@ class CartItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CartItemImage(image: cartItemEntity.product.image!),
+
+          GestureDetector(
+              onTap:(){
+                Navigator.pushNamed(context, RouteManager.productDetails, arguments: cartItemEntity.product);
+              },
+              child: CartItemImage(image: cartItemEntity.product.image!)),
           SizedBox(width: 20),
           Expanded(
             child: Column(

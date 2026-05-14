@@ -2,6 +2,7 @@ import '../../../cart/domain/entities/cart_entity.dart';
 import 'address_entity.dart';
 
 class OrderEntity {
+  final String ?id;
   final String uId;
   final CartEntity cartEntity;
   bool ?isCashOnDelivery;
@@ -11,7 +12,7 @@ class OrderEntity {
     required this.cartEntity,
      this.isCashOnDelivery,
      this.addressEntity,
-    required this.uId,
+    required this.uId,this.id,
   });
 
 

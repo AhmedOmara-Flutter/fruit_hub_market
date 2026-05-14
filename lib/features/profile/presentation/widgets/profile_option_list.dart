@@ -27,7 +27,7 @@ class ProfileOptionsList extends StatelessWidget {
           children: [
             Row(
               children: [
-                SvgPicture.asset(image, color: Color(0xff1B5E37)),
+                SvgPicture.asset(image, color:AppColor.mainColor),
                 SizedBox(width: 10),
                 Text(
                   text,

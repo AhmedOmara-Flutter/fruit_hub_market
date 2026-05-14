@@ -2,8 +2,8 @@ import 'package:fruit_hub_market/features/checkout/domain/entities/address_entit
 
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/checkout_cubit.dart';
-import '../widgets/address_form_section.dart';
-import '../widgets/address_button_section.dart';
+import '../widgets/address/address_button_section.dart';
+import '../widgets/address/address_form_section.dart';
 
 class AddressPageView extends StatefulWidget {
   const AddressPageView({super.key});
@@ -68,7 +68,7 @@ class _AddressPageViewState extends State<AddressPageView> with AutomaticKeepAli
                           } else {
                             customShowSnakeBar(
                               context,
-                              color: Colors.red,
+                              color: AppColor.red,
                               label: 'يرجي ملئ بياناتك',
                             );
                             setState(() {

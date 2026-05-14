@@ -17,12 +17,12 @@ class RegisterView extends StatelessWidget {
               }
               if (state is RegisterSuccess) {
                 customShowSnakeBar(
-                    context, color: Colors.green, label: 'تم انشاء الحساب بنجاح');
+                    context, color:AppColor.mainColor, label: 'تم انشاء الحساب بنجاح');
                 Navigator.pushNamed(context, RouteManager.login);
               }
               if (state is RegisterError) {
                 customShowSnakeBar(
-                    context, color: Colors.red, label: state.errMessage);
+                    context, color: AppColor.red, label: state.errMessage);
               }
             },
             builder: (context, state) {

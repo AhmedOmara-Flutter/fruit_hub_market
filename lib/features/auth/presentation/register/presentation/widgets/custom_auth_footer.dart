@@ -29,7 +29,7 @@ class CustomAuthFooter extends StatelessWidget {
             )
                 .textTheme
                 .labelMedium!
-                .copyWith(color: Color(0xff1B5E37)),
+                .copyWith(color: AppColor.mainColor),
           ),
         ),
       ],

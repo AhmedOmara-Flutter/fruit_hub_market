@@ -12,6 +12,8 @@ class OrderModel {
   final num totalPrice;
   final AddressModel address;
   final List<OrderItemModel> items;
+  String ?id;
+
 
   OrderModel({
     required this.uId,
@@ -20,11 +22,13 @@ class OrderModel {
      required this.items,
     required this.totalPrice,
     this.createdAt,
+    this.id,
   });
 
   factory OrderModel.fromEntity(OrderEntity entity) {
     return OrderModel(
       uId: entity.uId,
+      id: entity.id,
       paymentMethod: entity.isCashOnDelivery == true ? 'Cash' : 'Online',
       createdAt: DateTime.now(),
       address: AddressModel.fromEntity(entity.addressEntity!),
@@ -37,6 +41,7 @@ class OrderModel {
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     return OrderModel(
       uId: json['uId'],
+      id: json['id'],
       totalPrice: json['totalPrice'],
       createdAt: (json['createdAt'] as Timestamp?)?.toDate(),
       address: AddressModel.fromJson(json['address']),
@@ -53,6 +58,7 @@ class OrderModel {
       'createdAt': createdAt ?? FieldValue.serverTimestamp(),
       'address': address.toJson(),
       'items': items.map((item) => item.toJson()).toList(),
+      'id':id,
     };
   }
 }

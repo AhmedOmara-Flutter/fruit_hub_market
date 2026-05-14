@@ -8,7 +8,7 @@ class ProfileInfoBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: Color(0xffEBF9F1),
+      color: AppColor.mainColor.withOpacity(0.1),
       padding: EdgeInsets.symmetric(vertical: 12),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -18,12 +18,12 @@ class ProfileInfoBanner extends StatelessWidget {
             'تسجيل الخروج',
             style: Theme.of(
               context,
-            ).textTheme.titleMedium!.copyWith(color: Color(0xff1B5E37)),
+            ).textTheme.titleMedium!.copyWith(color: AppColor.mainColor),
             textAlign: TextAlign.center,
           ),
           Transform.scale(
             scaleX: -1,
-            child: Icon(Icons.logout, color: Color(0xff53B175)),
+            child: Icon(Icons.logout, color: AppColor.mainColor.withOpacity(0.3)),
           ),
         ],
       ),

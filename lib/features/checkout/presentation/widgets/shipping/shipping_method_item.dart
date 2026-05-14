@@ -1,4 +1,4 @@
-import '../../../../core/utils/app_imports.dart';
+import '../../../../../core/utils/app_imports.dart';
 
 class ShippingMethodItem extends StatelessWidget {
   const ShippingMethodItem({
@@ -20,11 +20,11 @@ class ShippingMethodItem extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: isSelected
-              ? const Color(0xff1B5E37).withOpacity(0.1)
+              ? AppColor.mainColor.withOpacity(0.1)
               : Colors.white,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-            color: isSelected ? const Color(0xff1B5E37) : Colors.grey.shade300,
+            color: isSelected ? AppColor.mainColor : Colors.grey.shade300,
           ),
         ),
         child: Row(
@@ -41,7 +41,7 @@ class ShippingMethodItem extends StatelessWidget {
                 Icons.circle,
                 size: 16,
                 color: isSelected
-                    ? const Color(0xff1B5E37)
+                    ? AppColor.mainColor
                     : Colors.white,
               )
                   : null,
@@ -71,7 +71,7 @@ class ShippingMethodItem extends StatelessWidget {
                 Text(
                   item["price"]!,
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                    color: const Color(0xff1B5E37),
+                    color: AppColor.mainColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

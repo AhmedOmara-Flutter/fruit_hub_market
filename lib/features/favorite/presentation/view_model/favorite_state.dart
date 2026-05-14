@@ -21,6 +21,8 @@ final class GetFavoriteErrorState extends FavoriteState {
 
 final class GetFavoriteEmptyState extends FavoriteState {}
 
+final class FavoriteToggledLoadingState extends FavoriteState {}
+
 final class FavoriteToggledErrorState extends FavoriteState {
   final String errMessage;
 

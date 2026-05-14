@@ -37,7 +37,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                       Skeletonizer(child: Container(
                       ),),
                   errorWidget: (context, url, error) =>
-                      Icon(Icons.error, color: Colors.red),
+                      Icon(Icons.error, color: AppColor.red),
                 ),),
               Positioned(
                 bottom: -5,
@@ -61,7 +61,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                       shape: BoxShape.circle,
                       color: Color(0xffF9F9F9),
                       image: DecorationImage(
-                        image: svg.Svg(Assets.images.camera.path),
+                        image: svg.Svg(Assets.images.camera.path,),
                       ),
                     ),
                   ),

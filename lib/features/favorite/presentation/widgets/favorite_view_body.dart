@@ -1,4 +1,5 @@
 import 'package:fruit_hub_market/features/favorite/presentation/view_model/favorite_cubit.dart';
+import 'package:fruit_hub_market/features/favorite/presentation/widgets/empty_favorite_widget.dart';
 
 import '../../../../core/utils/app_imports.dart';
 import '../../../../core/widgets/products_grid_view.dart';
@@ -29,12 +30,7 @@ class FavoriteViewBody extends StatelessWidget {
             }
 
             if (state is GetFavoriteEmptyState) {
-              return const SliverToBoxAdapter(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [Text('لا يوجد منتجات مفضله')],
-                ),
-              );
+              return EmptyFavoriteWidget();
             }
 
             return const SliverToBoxAdapter(child: SizedBox());

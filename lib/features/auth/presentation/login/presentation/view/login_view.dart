@@ -17,7 +17,7 @@ class LoginView extends StatelessWidget {
           listener: (context, state) {
             if (state is LoginSuccess) {
               customShowSnakeBar(
-                  context, color: Colors.green,
+                  context, color: AppColor.mainColor,
                   label: 'تم التسجيل الدخول بنجاح');
               CacheHelper.saveData(key: 'uId', value: state.user.uId).then((value){
                 Constants.uId=state.user.uId;
@@ -26,7 +26,7 @@ class LoginView extends StatelessWidget {
             }
             if (state is LoginError) {
               customShowSnakeBar(
-                  context, color: Colors.red, label: state.errMessage);
+                  context, color: AppColor.red, label: state.errMessage);
             }
           },
           builder: (context, state) {

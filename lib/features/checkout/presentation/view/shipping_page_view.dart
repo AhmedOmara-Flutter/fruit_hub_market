@@ -1,8 +1,8 @@
 import 'package:fruit_hub_market/features/checkout/presentation/view_model/checkout_cubit.dart';
 
 import '../../../../core/utils/app_imports.dart';
-import '../widgets/shipping_button_section.dart';
-import '../widgets/shipping_methods_section.dart';
+import '../widgets/shipping/shipping_button_section.dart';
+import '../widgets/shipping/shipping_methods_section.dart';
 
 class ShippingPageView extends StatefulWidget {
   const ShippingPageView({super.key});

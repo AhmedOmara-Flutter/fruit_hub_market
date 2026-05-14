@@ -19,7 +19,6 @@ class ProductModel extends ProductEntity {
     super.ratingCount = 0,
     super.sellingCount=0,
     required super.id,
-    super.isFavorite=false,
   });
 
   factory ProductModel.fromEntity(ProductEntity entity) {
@@ -39,7 +38,6 @@ class ProductModel extends ProductEntity {
       avgRating: entity.avgRating,
       ratingCount: entity.ratingCount,
       sellingCount: entity.sellingCount,
-      isFavorite: entity.isFavorite,
     );
   }
 
@@ -60,7 +58,6 @@ class ProductModel extends ProductEntity {
       ratingCount: ratingCount,
       imageFile: imageFile,
       sellingCount: sellingCount,
-      isFavorite: isFavorite,
     );
   }
 
@@ -81,7 +78,6 @@ class ProductModel extends ProductEntity {
       avgRating: json['avgRating'] ?? 0,
       ratingCount: json['ratingCount'] ?? 0,
       sellingCount: json['sellingCount'] ?? 0,
-      isFavorite: json['isFavorite'] ?? false,
     );
   }
   Map<String, dynamic> toJson() {
@@ -100,7 +96,6 @@ class ProductModel extends ProductEntity {
       'avgRating': avgRating,
       'ratingCount': ratingCount,
       'sellingCount': sellingCount,
-      'isFavorite': isFavorite,
     };
   }
 }

@@ -1,5 +1,5 @@
-import '../../../../core/utils/app_imports.dart';
-import '../view_model/checkout_cubit.dart';
+import '../../../../../core/utils/app_imports.dart';
+import '../../view_model/checkout_cubit.dart';
 
 class ShippingButtonSection extends StatelessWidget {
   const ShippingButtonSection({super.key,});
@@ -21,7 +21,7 @@ class ShippingButtonSection extends StatelessWidget {
         } else {
           customShowSnakeBar(
             context,
-            color: Colors.red,
+            color: AppColor.red,
             label: 'يرجي اختيار طريقه الدفع',
           );
         }

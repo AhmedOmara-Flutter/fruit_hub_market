@@ -18,7 +18,7 @@ class CustomTextField extends StatelessWidget {
           hintText: 'ابحث عن...',
           prefixIcon: Icon(
             Icons.search,
-            color: Colors.green,
+            color: AppColor.mainColor.withOpacity(0.3),
           ),
 
           filled: true,

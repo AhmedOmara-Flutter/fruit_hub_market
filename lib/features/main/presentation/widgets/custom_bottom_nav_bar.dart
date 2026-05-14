@@ -13,7 +13,7 @@ class CustomBottomNavBar extends StatelessWidget {
           currentIndex: context.read<MainCubit>().currentIndex,
           onTap: (i) =>
             context.read<MainCubit>().changeBottomNav(i),
-          selectedItemColor: Color(0xff1B5E37),
+          selectedItemColor:AppColor.mainColor,
           unselectedItemColor: Color(0xff4E5556),
           margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
           items: [

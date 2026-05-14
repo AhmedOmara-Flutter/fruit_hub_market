@@ -23,7 +23,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
       (r) async {
         favorites[product.id] = r;
 
-        if(r){
+        if(r==true){
           emit(FavoriteAddedState());
         }else{
           emit(FavoriteDeletedState());
@@ -47,6 +47,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
           for (var product in favoritesProducts) {
             favorites[product.id] = true;
           }
+
           if (favoritesProducts.isEmpty) {
             emit(GetFavoriteEmptyState());
             return;

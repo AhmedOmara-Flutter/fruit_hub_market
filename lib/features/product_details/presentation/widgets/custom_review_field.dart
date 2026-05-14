@@ -39,14 +39,14 @@ class CustomReviewField extends StatelessWidget {
                     color: Colors.grey[300],
                   ),),
               errorWidget: (context, url, error) =>
-                  Icon(Icons.error, color: Colors.red),
+                  Icon(Icons.error, color: AppColor.red),
             ),),
         ),
         suffixIcon: Padding(
           padding: const EdgeInsets.only(left:10),
           child: IconButton(
               onPressed:isTyped? onSuffixPressed:null,
-              icon: Icon(Icons.send_rounded,color:isTyped? Color(0xff1B5E37):null)),
+              icon: Icon(Icons.send_rounded,color:isTyped? AppColor.mainColor:null)),
         ),
         hintStyle: Theme.of(
           context,

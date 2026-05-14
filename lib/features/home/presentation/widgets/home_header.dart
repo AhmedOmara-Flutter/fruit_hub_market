@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
+
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
 
@@ -23,10 +24,10 @@ class HomeHeader extends StatelessWidget {
                     child: Container(
                     width: 80,
                     height: 80,
-                 color: Colors.red,
+                 color: AppColor.red,
                   ),),
               errorWidget: (context, url, error) =>
-                  Icon(Icons.error, color: Colors.red),
+                  Icon(Icons.error, color: AppColor.red),
             ),
           ),
           SizedBox(width: 10),
@@ -56,7 +57,7 @@ class HomeHeader extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: Material(
-              color: Color(0xffEEF8ED),
+              color: AppColor.mainColor.withOpacity(0.5),
               child: InkWell(
                 onTap: () {},
                 child: Container(
@@ -67,9 +68,9 @@ class HomeHeader extends StatelessWidget {
                       Icon(
                         Icons.notifications_none_outlined,
                         size: 30,
-                        color: Color(0xff1B5E37),
+                        color: AppColor.mainColor,
                       ),
-                      CircleAvatar(radius: 4, backgroundColor: Color(0xffF24135)),
+                      CircleAvatar(radius: 4, backgroundColor: AppColor.red),
                     ],
                   ),
                 ),

@@ -11,7 +11,7 @@ import '../../features/checkout/presentation/view/payment_success_view.dart';
 import '../../features/favorite/presentation/view/favorite_view.dart';
 import '../../features/product/domain/entities/product_entity.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
-import '../../features/product_details/presentation/widgets/reviews_view.dart';
+import '../../features/product_details/presentation/view/reviews_view.dart';
 import '../../features/search/presentation/view/search_view.dart';
 
 class RouteManager {

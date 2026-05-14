@@ -1,3 +1,4 @@
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/widgets/search_section.dart';
 import 'package:fruit_hub_market/features/home/presentation/view_model/best_selling_cubit.dart';
 import 'package:fruit_hub_market/features/home/presentation/view_model/featured_cubit.dart';
@@ -23,6 +24,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<BestSellingCubit>().getSellingProducts();
       context.read<FeaturedCubit>().getFeaturedProducts();
+
     });
     super.initState();
   }
@@ -35,6 +37,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
         final featuredCubit = context.read<FeaturedCubit>();
         await bestSellingCubit.getSellingProducts();
         await featuredCubit.getFeaturedProducts();
+        await getUser();
       },
       child: CustomScrollView(
         slivers: [

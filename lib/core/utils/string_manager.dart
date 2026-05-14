@@ -23,7 +23,7 @@ class StringManager {
             .textTheme
             .titleLarge!
             .copyWith(
-            color: Color(0xff1B5E37)
+            color: AppColor.mainColor
         )),
       ],
     );

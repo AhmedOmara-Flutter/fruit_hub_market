@@ -36,7 +36,7 @@ class RatingAndReviews extends StatelessWidget {
           child: Text(
               "المراجعه",
               style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                  color: const Color(0xff1B5E37),
+                  color: AppColor.mainColor,
                 decoration: TextDecoration.underline
               )
           ),

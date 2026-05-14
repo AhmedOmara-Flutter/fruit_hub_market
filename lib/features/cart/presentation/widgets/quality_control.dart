@@ -21,7 +21,7 @@ class QualityControl extends StatelessWidget {
           width: buttonSize,
           height: buttonSize,
           decoration: const BoxDecoration(
-            color: Color(0xff1B5E37),
+            color: AppColor.mainColor,
             shape: BoxShape.circle,
           ),
           child: IconButton(

@@ -20,7 +20,6 @@ class ProductEntity extends Equatable {
   final double avgRating;
   final int ratingCount;
   final int sellingCount;
-  bool isFavorite;
 
 
 
@@ -41,7 +40,6 @@ class ProductEntity extends Equatable {
     this.ratingCount = 0,
     this.sellingCount = 0,
     required this.id,
-    this.isFavorite=false,
   });
 
 

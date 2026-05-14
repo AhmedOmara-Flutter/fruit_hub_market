@@ -22,7 +22,7 @@ class DontHaveAccountSection extends StatelessWidget {
             "قم بإنشاء حساب",
             style: Theme.of(
               context,
-            ).textTheme.labelMedium!.copyWith(color: Color(0xff1B5E37)),
+            ).textTheme.labelMedium!.copyWith(color: AppColor.mainColor),
           ),
         ),
       ],

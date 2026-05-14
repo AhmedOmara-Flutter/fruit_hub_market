@@ -16,7 +16,7 @@ class ActiveStepItem extends StatelessWidget {
           height: 30,
           width: 30,
           decoration: const BoxDecoration(
-            color: Color(0xff1B5E37),
+            color: AppColor.mainColor,
             shape: BoxShape.circle,
           ),
           child: const Icon(
@@ -32,7 +32,7 @@ class ActiveStepItem extends StatelessWidget {
               .textTheme
               .labelLarge!
               .copyWith(
-            color: const Color(0xff1B5E37),
+            color: AppColor.mainColor,
           ),
         ),
       ],

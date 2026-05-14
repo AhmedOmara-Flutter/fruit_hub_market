@@ -8,10 +8,10 @@ class SocialLoginSection extends StatelessWidget {
     return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
         if(state is SignInWithGoogleError){
-          customShowSnakeBar(context, color: Colors.red, label: state.errMessage);
+          customShowSnakeBar(context, color: AppColor.red, label: state.errMessage);
         }
         if(state is SignInWithFacebookError){
-          customShowSnakeBar(context, color: Colors.red, label: state.errMessage);
+          customShowSnakeBar(context, color: AppColor.red, label: state.errMessage);
         }
 
       },

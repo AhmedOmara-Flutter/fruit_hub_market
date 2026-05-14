@@ -18,10 +18,16 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   final SvgGenImage camera = const SvgGenImage('assets/images/Camera.svg');
+  final AssetGenImage emptyWishlist = const AssetGenImage(
+    'assets/images/Empty Wishlist.png',
+  );
   final SvgGenImage mastercard = const SvgGenImage(
     'assets/images/Mastercard.svg',
   );
   final SvgGenImage paypal = const SvgGenImage('assets/images/Paypal.svg');
+  final AssetGenImage appIcon = const AssetGenImage(
+    'assets/images/appIcon.png',
+  );
   final SvgGenImage apple = const SvgGenImage('assets/images/apple.svg');
   final SvgGenImage arrowBack = const SvgGenImage(
     'assets/images/arrow back.svg',
@@ -42,6 +48,12 @@ class $AssetsImagesGen {
     'assets/images/deliveryTruck.svg',
   );
   final SvgGenImage edit = const SvgGenImage('assets/images/edit.svg');
+  final AssetGenImage emptyCart = const AssetGenImage(
+    'assets/images/empty cart.png',
+  );
+  final AssetGenImage emptyReview = const AssetGenImage(
+    'assets/images/empty review.png',
+  );
   final SvgGenImage emptyWallet = const SvgGenImage(
     'assets/images/empty-wallet.svg',
   );
@@ -51,10 +63,7 @@ class $AssetsImagesGen {
   final SvgGenImage global = const SvgGenImage('assets/images/global.svg');
   final SvgGenImage google = const SvgGenImage('assets/images/google.svg');
   final SvgGenImage heart = const SvgGenImage('assets/images/heart.svg');
-  final AssetGenImage homeImage = const AssetGenImage(
-    'assets/images/home_image.png',
-  );
-  final AssetGenImage img = const AssetGenImage('assets/images/img.png');
+  final AssetGenImage icon = const AssetGenImage('assets/images/icon.png');
   final SvgGenImage infoCircle = const SvgGenImage(
     'assets/images/info-circle.svg',
   );

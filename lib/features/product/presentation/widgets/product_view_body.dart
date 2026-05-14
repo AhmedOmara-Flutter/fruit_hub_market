@@ -1,4 +1,5 @@
 import 'package:fruit_hub_market/features/product/presentation/widgets/items_count_label.dart';
+import 'package:fruit_hub_market/features/product/presentation/widgets/produt_empty_widget.dart';
 
 import '../../../../../../../core/utils/app_imports.dart';
 import '../../../../core/widgets/custom_refresh_indicator.dart';
@@ -51,12 +52,17 @@ class _ProductViewBodyState extends State<ProductViewBody> {
             builder: (context, state) {
               if (state is GetProductsSuccessState) {
                 productsNumber = state.products.length;
-                return ProductsGridView(products: state.products);
+                if(state.products.isNotEmpty){
+                  return ProductsGridView(products:state.products);
+                }else{
+                  return ProductEmptyWidget();
+                }
+
               } else if (state is GetProductsErrorState) {
                 return SliverToBoxAdapter(
                   child: Center(child: Text(state.errMessage)),
                 );
-              } else {
+                } else {
                 return Skeletonizer.sliver(
                   enabled: true,
                   child: ProductsGridView(products: getDummyProducts()),
@@ -69,3 +75,5 @@ class _ProductViewBodyState extends State<ProductViewBody> {
     );
   }
 }
+
+

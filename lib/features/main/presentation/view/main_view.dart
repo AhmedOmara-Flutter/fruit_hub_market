@@ -21,14 +21,13 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: false, // نتحكم إحنا في الباك
+      canPop: false,
       onPopInvoked: (didPop) {
         final cubit = context.read<MainCubit>();
 
         if (cubit.currentIndex != 0) {
           cubit.changeBottomNav(0);
         } else {
-          // يقفل الابلكيشن
           SystemNavigator.pop();
         }
       },
@@ -39,11 +38,11 @@ class _MainViewState extends State<MainView> {
           listeners: [
             BlocListener<CartCubit, CartState>(listener: (context, state) {
               if (state is CartAdded) {
-                customShowSnakeBar(context, color: Color(0xff1B5E37),
+                customShowSnakeBar(context, color: AppColor.mainColor,
                     label: 'تم إضافة المنتج إلى السلة');
               }
               if (state is CartRemoved) {
-                customShowSnakeBar(context, color: Color(0xff1B5E37),
+                customShowSnakeBar(context, color:AppColor.mainColor,
                     label: 'تم حذف المنتج من السلة');
               }
             },),
@@ -51,12 +50,12 @@ class _MainViewState extends State<MainView> {
               listener: (context, state) {
                 if (state is FavoriteAddedState) {
                   customShowSnakeBar(
-                      context, color: Color(0xff1B5E37),
+                      context, color:AppColor.mainColor,
                       label: 'تمت الإضافة للمفضلة');
                 }
                 if (state is FavoriteDeletedState) {
                   customShowSnakeBar(
-                      context, color: Colors.red, label: 'تم الحذف من المفضله');
+                      context, color: AppColor.red, label: 'تم الحذف من المفضله');
                 }
               },),
           ],

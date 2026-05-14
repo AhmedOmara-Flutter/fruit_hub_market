@@ -36,7 +36,7 @@ class InfoGridCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(
                     context,
-                  ).textTheme.labelSmall!.copyWith(color: Color(0xff23AA49)),
+                  ).textTheme.labelSmall!.copyWith(color: AppColor.mainColor),
                 ),
                 SizedBox(height: 8),
                 Text(

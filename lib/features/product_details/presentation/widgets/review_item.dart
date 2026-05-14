@@ -33,7 +33,7 @@ class ReviewItem extends StatelessWidget {
                           color: Colors.grey,
                         ),),
                     errorWidget: (context, url, error) =>
-                        Icon(Icons.error, color: Colors.red),
+                        Icon(Icons.error, color: AppColor.red),
                   ),),
                 Container(
                   margin: EdgeInsets.only(bottom: 5),

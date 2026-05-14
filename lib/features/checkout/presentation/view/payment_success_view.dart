@@ -37,7 +37,7 @@ class PaymentSuccessView extends StatelessWidget {
             child: Text(
                 "الرئيسيه",
                 style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                    color: const Color(0xff1B5E37),
+                    color: AppColor.mainColor,
                     decoration: TextDecoration.underline
                 )
             ),

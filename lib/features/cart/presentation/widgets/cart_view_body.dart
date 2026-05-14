@@ -1,6 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:fruit_hub_market/features/cart/presentation/widgets/cart_info_banner.dart';
-import 'package:fruit_hub_market/features/cart/presentation/widgets/empty_cart_view.dart';
+import 'package:fruit_hub_market/features/cart/presentation/widgets/empty_cart_widget.dart';
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/cart_cubit.dart';
 import 'cart_item_list.dart';
@@ -48,7 +48,7 @@ class CartViewBody extends StatelessWidget {
               ),
             ),
           ],
-            ), fallback: (context) => EmptyCartView(),);
+            ), fallback: (context) => EmptyCartWidget(),);
       },
     );
   }
