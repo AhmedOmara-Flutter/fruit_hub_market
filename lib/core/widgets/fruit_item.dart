@@ -1,6 +1,7 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 import '../../features/cart/presentation/view_model/cart_cubit.dart';
+import '../../features/favorite/presentation/view_model/favorite_cubit.dart';
 import '../../features/product/domain/entities/product_entity.dart';
 
 class FruitItem extends StatelessWidget {
@@ -21,13 +22,22 @@ class FruitItem extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            Positioned(
+            BlocBuilder<FavoriteCubit, FavoriteState>(
+              builder: (context, state) {
+                final cubit = context.read<FavoriteCubit>();
+                final isFavorite = false;
+                return Positioned(
               top: 0,
               right: 0,
               child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.favorite_outline),
-              ),
+                onPressed: () {
+                  context.read<FavoriteCubit>().toggleFavorite(product,);
+                },
+                icon: isFavorite ? const Icon(
+                    Icons.favorite, color: Color(0xffEB5757)) : const Icon(
+                    Icons.favorite_border),)
+                );
+              },
             ),
             Positioned.fill(
               top: 25,

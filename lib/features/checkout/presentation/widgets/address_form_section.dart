@@ -48,13 +48,13 @@ class AddressFormSection extends StatelessWidget {
               return 'من فضلك أدخل البريد الإلكتروني';
             }
 
-            final emailRegex = RegExp(
-              r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-            );
-
-            if (!emailRegex.hasMatch(value.trim())) {
-              return 'البريد الإلكتروني غير صحيح';
-            }
+            // final emailRegex = RegExp(
+            //   r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+            // );
+            //
+            // if (!emailRegex.hasMatch(value.trim())) {
+            //   return 'البريد الإلكتروني غير صحيح';
+            // }
 
             return null;
           },

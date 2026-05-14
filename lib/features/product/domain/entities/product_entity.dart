@@ -20,6 +20,7 @@ class ProductEntity extends Equatable {
   final double avgRating;
   final int ratingCount;
   final int sellingCount;
+  bool isFavorite;
 
 
 
@@ -38,8 +39,11 @@ class ProductEntity extends Equatable {
     this.isOrganic = false,
     this.avgRating = 0.0,
     this.ratingCount = 0,
-    this.sellingCount = 0, required this.id,
+    this.sellingCount = 0,
+    required this.id,
+    this.isFavorite=false,
   });
+
 
   @override
   // TODO: implement props

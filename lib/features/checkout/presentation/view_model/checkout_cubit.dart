@@ -53,8 +53,9 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   }
 
   void addOrder(OrderEntity orderEntity) async {
-    final result = await _checkoutRepo.addOrder(orderEntity);
     emit(CheckoutAddOrderLoading());
+
+    final result = await _checkoutRepo.addOrder(orderEntity);
     result.fold(
       (failure) => emit(CheckoutAddOrderError(failure.errMessage)),
       (data) => emit(CheckoutAddOrderSuccess()),

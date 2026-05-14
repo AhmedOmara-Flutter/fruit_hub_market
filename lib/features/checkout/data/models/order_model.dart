@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../../../core/utils/constants.dart';
 import '../../domain/entities/order_entity.dart';
 import 'address_model.dart';
 import 'order_item_model.dart';
@@ -27,7 +28,7 @@ class OrderModel {
       paymentMethod: entity.isCashOnDelivery == true ? 'Cash' : 'Online',
       createdAt: DateTime.now(),
       address: AddressModel.fromEntity(entity.addressEntity!),
-      totalPrice: entity.cartEntity.getTotalPrice(),
+      totalPrice: entity.cartEntity.getTotalPrice() + Constants.delivery,
       items: entity.cartEntity.cartItems.map((cartItem) => OrderItemModel.fromEntity(cartItem)).toList(),
     );
 

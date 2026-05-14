@@ -65,12 +65,21 @@ class ShippingMethodItem extends StatelessWidget {
                 ],
               ),
             ),
-            Text(
-              item["price"]!,
-              style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                color: const Color(0xff1B5E37),
-                fontWeight: FontWeight.bold,
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  item["price"]!,
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    color: const Color(0xff1B5E37),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  '+${Constants.delivery}',
+                  style: Theme.of(context).textTheme.titleSmall!.copyWith(),
+                ),
+              ],
             ),
           ],
         ),

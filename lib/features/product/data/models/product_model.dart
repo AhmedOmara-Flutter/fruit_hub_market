@@ -17,7 +17,9 @@ class ProductModel extends ProductEntity {
     super.isOrganic = false,
     super.avgRating = 0.0,
     super.ratingCount = 0,
-    super.sellingCount=0, required super.id,
+    super.sellingCount=0,
+    required super.id,
+    super.isFavorite=false,
   });
 
   factory ProductModel.fromEntity(ProductEntity entity) {
@@ -37,6 +39,7 @@ class ProductModel extends ProductEntity {
       avgRating: entity.avgRating,
       ratingCount: entity.ratingCount,
       sellingCount: entity.sellingCount,
+      isFavorite: entity.isFavorite,
     );
   }
 
@@ -57,35 +60,9 @@ class ProductModel extends ProductEntity {
       ratingCount: ratingCount,
       imageFile: imageFile,
       sellingCount: sellingCount,
+      isFavorite: isFavorite,
     );
   }
-
-  // factory ProductModel.fromJson(Map<String, dynamic> json) {
-  //   return ProductModel(
-  //     name: json['name'],
-  //     code: json['code'],
-  //     price: json['price'],
-  //     description: json['description'],
-  //     //imageFile: json['imageFile'],
-  //     isFeatured: json['isFeatured'],
-  //     image: json['image'],
-  //     expirationMonth: json['expirationMonth'],
-  //     unitAmount: json['unitAmount'],
-  //     numberOfCalories: json['numberOfCalories'],
-  //     isOrganic: json['isOrganic'],
-  //     //todo handle it
-  //     avgRating: getAverageRating(json['reviews'] is List ?
-  //     (json['reviews'] as List)
-  //         .map((e) => ReviewModel.fromJson(e).toEntity())
-  //         .toList() : [],),
-  //     ratingCount: json['ratingCount'],
-  //     sellingCount: json['sellingCount'],
-  //     reviews: json['reviews'] is List ?
-  //     (json['reviews'] as List)
-  //         .map((e) => ReviewModel.fromJson(e).toEntity())
-  //         .toList() : [],
-  //   );
-  // }
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
 
@@ -95,7 +72,6 @@ class ProductModel extends ProductEntity {
       code: json['code'] ?? '',
       price: json['price'] ?? 0,
       description: json['description'] ?? '',
-      // imageFile: null, // ❌ ماينفعش ييجي من Firebase أصلاً
       isFeatured: json['isFeatured'] ?? false,
       image: json['image'],
       expirationMonth: json['expirationMonth'] ?? 0,
@@ -105,6 +81,7 @@ class ProductModel extends ProductEntity {
       avgRating: json['avgRating'] ?? 0,
       ratingCount: json['ratingCount'] ?? 0,
       sellingCount: json['sellingCount'] ?? 0,
+      isFavorite: json['isFavorite'] ?? false,
     );
   }
   Map<String, dynamic> toJson() {
@@ -123,6 +100,7 @@ class ProductModel extends ProductEntity {
       'avgRating': avgRating,
       'ratingCount': ratingCount,
       'sellingCount': sellingCount,
+      'isFavorite': isFavorite,
     };
   }
 }

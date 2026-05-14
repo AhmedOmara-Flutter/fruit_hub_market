@@ -2,6 +2,7 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/home/presentation/view_model/best_selling_cubit.dart';
 import 'package:fruit_hub_market/features/home/presentation/view_model/featured_cubit.dart';
 import '../../features/cart/presentation/view_model/cart_cubit.dart';
+import '../../features/favorite/presentation/view_model/favorite_cubit.dart';
 import '../../features/product/presentation/view_model/product_cubit.dart';
 
 class MyApp extends StatelessWidget {
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => BestSellingCubit(instance()),),
           BlocProvider(create: (context) => FeaturedCubit(instance()),),
           BlocProvider(create: (context) => ProductCubit(instance()),),
-          BlocProvider(create: (context) => CartCubit(),)
+          BlocProvider(create: (context) => CartCubit(),),
+          BlocProvider(create: (context) => FavoriteCubit(instance())..getFavorites())
         ],
       child: MaterialApp(
         localizationsDelegates: [

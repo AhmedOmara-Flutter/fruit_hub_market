@@ -19,7 +19,6 @@ class CheckoutRepoImpl implements CheckoutRepo {
       final order = await _databaseServices.addData(
         path: 'orders',
         data: OrderModel.fromEntity(orderEntity).toJson(),
-        uId: getUser().uId,
       );
       return Right(order);
     } catch (e) {

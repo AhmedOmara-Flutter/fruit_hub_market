@@ -13,7 +13,6 @@ class PaymentButtonSection extends StatelessWidget {
         return CustomButton(
           onPressed: () {
             cubit.addOrder(cubit.orderEntity);
-            Navigator.pushNamed(context, RouteManager.paymentSuccess);
           },
           child: Text('تاكيد الطلب', style: Theme
               .of(context)

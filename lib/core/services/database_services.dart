@@ -1,37 +1,58 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 abstract class DatabaseServices {
-  Future<void> addData({required String path, required Map<String, dynamic> data, required String uId,});
+  Future<void> addData({
+    required String path,
+    required Map<String, dynamic> data,
+    String? uId,
+  });
 
-  Future<dynamic> getData(
-      {required String path, String ?uId, Map<String, dynamic>?query});
+  Future<dynamic> getData({
+    required String path,
+    String? uId,
+    Map<String, dynamic>? query,
+  });
+
+  Future<void> deleteData({required String path, required String uId});
+
+  Future<bool> checkExists({required String path, required String uId});
 }
-
 
 class FirestoreDatabase implements DatabaseServices {
   @override
-  Future<void> addData({required String path, required Map<String, dynamic> data,required String uId}) async {
+  Future<void> addData({
+    required String path,
+    required Map<String, dynamic> data,
+    String? uId,
+  }) async {
     try {
-      await FirebaseFirestore.instance.collection(path).doc(uId).set(data);
-
+      if (uId != null) {
+        await FirebaseFirestore.instance.collection(path).doc(uId).set(data);
+      } else {
+        await FirebaseFirestore.instance.collection(path).add(data);
+      }
     } on Exception catch (e) {
       throw (e.toString());
     }
   }
 
-
   @override
-  Future<dynamic> getData(
-      {required String path, String ?uId, Map<String, dynamic>?query}) async {
+  Future<dynamic> getData({
+    required String path,
+    String? uId,
+    Map<String, dynamic>? query,
+  }) async {
     try {
-      if (uId!=null) {
-        final user = await FirebaseFirestore.instance.collection(path).doc(uId).get();
+      if (uId != null) {
+        final user = await FirebaseFirestore.instance
+            .collection(path)
+            .doc(uId)
+            .get();
         if (!user.exists || user.data() == null) {
           throw Exception('المستخدم ليس موجود في قاعده البيانات');
         }
         return user.data() as Map<String, dynamic>;
-      }
-      else{
+      } else {
         Query<Map<String, dynamic>> data = FirebaseFirestore.instance
             .collection(path);
 
@@ -41,7 +62,6 @@ class FirestoreDatabase implements DatabaseServices {
           final descending = query['descending'];
           final startAt = query['startAt'];
           final endAt = query['endAt'];
-
 
           if (orderBy != null) {
             data = data.orderBy(orderBy, descending: descending);
@@ -59,16 +79,26 @@ class FirestoreDatabase implements DatabaseServices {
 
         var result = await data.get();
         return result.docs.map((user) {
-
-          return {
-            'id': user.id,
-            ...user.data(),
-          };
+          return {'id': user.id, ...user.data()};
         }).toList();
       }
-
-    }  catch (e) {
+    } catch (e) {
       throw Exception(e.toString());
     }
+  }
+
+  @override
+  Future<bool> checkExists({required String path, required String uId}) async {
+    final doc = await FirebaseFirestore.instance
+        .collection(path)
+        .doc(uId)
+        .get();
+
+    return doc.exists;
+  }
+
+  @override
+  Future<void> deleteData({required String path, required String uId}) async {
+    await FirebaseFirestore.instance.collection(path).doc(uId).delete();
   }
 }

@@ -55,7 +55,7 @@ class OrderSummarySection extends StatelessWidget {
                         .copyWith(color: Colors.black),
                   ),
                   Text(
-                    '30 جنيه',
+                    '${Constants.delivery} جنيه',
                     style: Theme
                         .of(context)
                         .textTheme
@@ -89,7 +89,7 @@ class OrderSummarySection extends StatelessWidget {
                     .copyWith(color: Colors.black),
               ),
               Text(
-                '${totalPrice + 30} جنيه',
+                '${totalPrice + Constants.delivery} جنيه',
                 style: Theme
                     .of(
                   context,

@@ -8,6 +8,7 @@ import '../../features/cart/presentation/widgets/cart_item.dart';
 import '../../features/checkout/presentation/view/checkout_view.dart';
 import '../../features/checkout/presentation/view/order_tracking_view.dart';
 import '../../features/checkout/presentation/view/payment_success_view.dart';
+import '../../features/favorite/presentation/view/favorite_view.dart';
 import '../../features/product/domain/entities/product_entity.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
 import '../../features/product_details/presentation/widgets/reviews_view.dart';
@@ -27,6 +28,7 @@ class RouteManager {
   static const String checkout = '/checkout';
   static const String paymentSuccess = '/paymentSuccess';
   static const String orderTracking = '/orderTracking';
+  static const String favorite = '/favorite';
 }
 
 class GenerateRoute {
@@ -78,6 +80,11 @@ class GenerateRoute {
           return MaterialPageRoute(builder: (context) {
             return OrderTrackingView();
           });
+          case RouteManager.favorite:
+            return MaterialPageRoute(builder: (context) {
+              return FavoriteView();
+            });
+
 
       default:
         return _errorRoute();

@@ -1,7 +1,12 @@
 import 'package:fruit_hub_market/core/services/storage_services.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/features/checkout/domain/repos/checkout_repo.dart';
 import 'package:fruit_hub_market/features/product/data/repos/product_repo_impl.dart';
 import 'package:fruit_hub_market/features/product/domain/repos/product_repo.dart';
+
+import '../../features/checkout/data/repos/checkout_repo_impl.dart';
+import '../../features/favorite/app/repos/favorite_repo_impl.dart';
+import '../../features/favorite/domain/repos/favorite_repo.dart';
 
 
 final instance = GetIt.instance;
@@ -19,6 +24,12 @@ instance.registerLazySingleton<StorageServices>(
   instance.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(instance(),instance(),instance()));
 
   instance.registerLazySingleton<ProductRepo>(() => ProductRepoImpl(instance()));
+
+  instance.registerLazySingleton<FavoriteRepo>(() =>
+      FavoriteRepoImpl(instance()));
+  instance.registerLazySingleton<CheckoutRepo>(() =>
+      CheckoutRepoImpl(instance()));
+
 }
 
 

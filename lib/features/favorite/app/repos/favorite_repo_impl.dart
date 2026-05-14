@@ -1,0 +1,58 @@
+import 'package:dartz/dartz.dart';
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
+import 'package:fruit_hub_market/features/favorite/domain/repos/favorite_repo.dart';
+import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
+
+import '../../../../core/utils/app_imports.dart';
+import '../../../product/data/models/product_model.dart';
+
+class FavoriteRepoImpl implements FavoriteRepo {
+  final DatabaseServices _databaseServices;
+
+  FavoriteRepoImpl(this._databaseServices);
+  final path = 'users/${getUser().uId}/favorites';
+
+  @override
+  Future<Either<String, bool>> toggleFavorite(ProductEntity product) async {
+    try {
+      final productId = product.id;
+      final exists = await _databaseServices.checkExists(
+        path: path,
+        uId: productId,
+      );
+      if (exists) {
+        await _databaseServices.deleteData(path: path, uId: productId);
+        return const Right(false);
+      } else {
+        await _databaseServices.addData(
+          path: path,
+          uId: productId,
+          data: ProductModel.fromEntity(product).toJson(),
+        );
+
+        return const Right(true);
+      }
+    } catch (e) {
+      //todo show this
+      // return Left(ServerFailure(errMessage: e.toString()));
+      return Left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, List<ProductEntity>>> getFavoriteProducts() async {
+    try {
+      final favorites = await _databaseServices.getData(
+        path: path,
+      );
+
+      final result = (favorites as List)
+          .map((e) => ProductModel.fromJson(e).toEntity())
+          .toList();
+
+      return Right(result);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+}
