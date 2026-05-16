@@ -15,34 +15,43 @@ class PaymentPageView extends StatelessWidget {
       builder: (context, state) {
         final cubit = context.read<CheckoutCubit>();
         return SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 30),
-              Text(
-                'ملخص الطلب :',
-                style: Theme.of(
-                  context,
-                ).textTheme.labelLarge!.copyWith(color: Colors.black),
+          child: LayoutBuilder(
+            builder: (context, constraints) => SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 30),
+                      Text(
+                        'ملخص الطلب :',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.labelLarge!.copyWith(color: Colors.black),
+                      ),
+                      SizedBox(height: 20),
+                      OrderSummarySection(
+                        totalPrice: cubit.orderEntity.cartEntity.getTotalPrice(),
+                      ),
+                      SizedBox(height: 10),
+                      DeliveryAddressSection(
+                        fullAddress: cubit.orderEntity.getFullAddress(),
+                        onEdit: () {
+                          cubit.pageController.previousPage(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeInOut,
+                          );
+                        },
+                      ),
+                      Spacer(),
+                      PaymentButtonSection(),
+                      SizedBox(height: 30),
+                    ],
+                  ),
+                ),
               ),
-              SizedBox(height: 20),
-              OrderSummarySection(
-                totalPrice: cubit.orderEntity.cartEntity.getTotalPrice(),
-              ),
-              SizedBox(height: 10),
-              DeliveryAddressSection(
-                fullAddress: cubit.orderEntity.getFullAddress(),
-                onEdit: () {
-                  cubit.pageController.previousPage(
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                  );
-                },
-              ),
-              Spacer(),
-              PaymentButtonSection(),
-              SizedBox(height: 30),
-            ],
+            ),
           ),
         );
       },

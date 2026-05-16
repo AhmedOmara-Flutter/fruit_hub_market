@@ -8,11 +8,11 @@ part 'search_state.dart';
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit(this._productRepo) : super(SearchInitial());
   final ProductRepo _productRepo;
-  Timer? _debounce;
+  Timer? _timer;
 
   Future<void> search(String query) async {
-    _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 500), () async{
+    _timer?.cancel();
+    _timer = Timer(const Duration(milliseconds: 500), () async{
       if (query.trim().isEmpty) {
         emit(SearchInitial());
         return;

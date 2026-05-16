@@ -12,7 +12,8 @@ class AddressPageView extends StatefulWidget {
   State<AddressPageView> createState() => _AddressPageViewState();
 }
 
-class _AddressPageViewState extends State<AddressPageView> with AutomaticKeepAliveClientMixin{
+class _AddressPageViewState extends State<AddressPageView>
+    with AutomaticKeepAliveClientMixin {
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var addressController = TextEditingController();
@@ -20,7 +21,6 @@ class _AddressPageViewState extends State<AddressPageView> with AutomaticKeepAli
   var apartmentController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
-
 
   @override
   Widget build(BuildContext context) {
@@ -30,60 +30,67 @@ class _AddressPageViewState extends State<AddressPageView> with AutomaticKeepAli
         key: formKey,
         autovalidateMode: autoValidateMode,
         child: LayoutBuilder(
-          builder:(context, constraints) =>  SingleChildScrollView(
+          builder: (context, constraints) => SingleChildScrollView(
             child: ConstrainedBox(
-              constraints: BoxConstraints(
-                minHeight: constraints.maxHeight,
-              ),
-                child: IntrinsicHeight(
-                  child: Column(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: IntrinsicHeight(
+                child: Column(
                   children: [
                     const SizedBox(height: 30),
-                    AddressFormSection(nameController: nameController,
-                          emailController: emailController,
-                          addressController: addressController,
-                          countryController: countryController,
-                          apartmentController: apartmentController),
-                    SizedBox(height: 30,),
+                    AddressFormSection(
+                      nameController: nameController,
+                      emailController: emailController,
+                      addressController: addressController,
+                      countryController: countryController,
+                      apartmentController: apartmentController,
+                    ),
+                    SizedBox(height: 30),
                     Spacer(),
                     BlocBuilder<CheckoutCubit, CheckoutState>(
                       builder: (context, state) {
                         final cubit = context.read<CheckoutCubit>();
-                        return AddressButtonSection(onBack: () {
-                          cubit.pageController.previousPage(
-                            duration: const Duration(milliseconds: 300),
-                            curve: Curves.easeInOut,);
-                        }, onNext: () {
-                          if (formKey.currentState!.validate()) {
-                            cubit.pageController.nextPage(
+                        return AddressButtonSection(
+                          onBack: () {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                            cubit.pageController.previousPage(
                               duration: const Duration(milliseconds: 300),
                               curve: Curves.easeInOut,
                             );
-                            cubit.orderEntity.addressEntity = AddressEntity(
+                          },
+                          onNext: () {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                            if (formKey.currentState!.validate()) {
+                              cubit.pageController.nextPage(
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeInOut,
+                              );
+                              cubit.orderEntity.addressEntity = AddressEntity(
                                 name: nameController.text,
                                 email: emailController.text,
                                 address: addressController.text,
                                 country: countryController.text,
-                                apartment: apartmentController.text);
-                          } else {
-                            AppVibration.heavy();
-                            AppSounds.playClickSound('click_error.wav');
-                            customShowSnakeBar(
-                              context,
-                              color: AppColor.red,
-                              label: 'يرجي ملئ بياناتك',
-                            );
-                            setState(() {
-                              autoValidateMode = AutovalidateMode.disabled;
-                            });
-                          }
-                        },);
+                                apartment: apartmentController.text,
+                              );
+                            } else {
+                              AppVibration.heavy();
+                              AppSounds.playClickSound('click_error.wav');
+                              customShowSnakeBar(
+                                context,
+                                color: AppColor.red,
+                                label: 'يرجي ملئ بياناتك',
+                              );
+                              setState(() {
+                                autoValidateMode = AutovalidateMode.disabled;
+                              });
+                            }
+                          },
+                        );
                       },
                     ),
-                    SizedBox(height: 30,),
+                    SizedBox(height: 30),
                   ],
-                                ),
                 ),
+              ),
             ),
           ),
         ),
@@ -95,4 +102,3 @@ class _AddressPageViewState extends State<AddressPageView> with AutomaticKeepAli
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }
-

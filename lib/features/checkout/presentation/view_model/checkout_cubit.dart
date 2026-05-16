@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
 
 import '../../../../core/utils/app_imports.dart';
@@ -12,6 +14,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   CheckoutCubit(this.orderEntity, this._checkoutRepo)
     : super(CheckoutInitial());
   final CheckoutRepo _checkoutRepo;
+  Timer? timer;
 
   OrderEntity orderEntity;
   final PageController pageController = PageController();
@@ -55,6 +58,9 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   Future<void> addOrder(OrderEntity orderEntity) async {
     emit(CheckoutAddOrderLoading());
 
+    await Future.delayed(
+      const Duration(seconds: 2),
+    );
     final result = await _checkoutRepo.addOrder(orderEntity);
     result.fold(
       (failure) => emit(CheckoutAddOrderError(failure.errMessage)),
