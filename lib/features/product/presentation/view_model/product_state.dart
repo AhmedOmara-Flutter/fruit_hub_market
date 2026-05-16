@@ -19,3 +19,13 @@ final class GetProductsSuccessState extends ProductState {
   GetProductsSuccessState({required this.products});
 }
 
+final class IncreaseSellingCountLoadingState extends ProductState {}
+
+final class IncreaseSellingCountErrorState extends ProductState {
+  final String errMessage;
+
+  IncreaseSellingCountErrorState({required this.errMessage});
+}
+
+final class IncreaseSellingCountSuccessState extends ProductState {}
+

@@ -21,4 +21,17 @@ class ProductCubit extends Cubit<ProductState> {
       },
     );
   }
+
+  Future<void> increaseSellingCount(String productId) async {
+    emit(IncreaseSellingCountLoadingState());
+    final data = await _productRepo.increaseSellingCount(productId);
+    data.fold(
+      (failure) {
+        emit(IncreaseSellingCountErrorState(errMessage: failure.errMessage));
+      },
+      (data) {
+        emit(IncreaseSellingCountSuccessState());
+      },
+    );
+  }
 }

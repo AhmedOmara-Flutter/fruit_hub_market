@@ -1,9 +1,11 @@
 import 'dart:io';
 
-void getFileSize(String fullPath) async {
-  final file = File(fullPath);
+import 'package:flutter/services.dart';
 
-  int bytes = await file.length();
+void getFileSize(String fullPath) async {
+  final data = await rootBundle.load(fullPath);
+
+  int bytes = data.lengthInBytes;
 
   double kb = bytes / 1024;
   double mb = kb / 1024;

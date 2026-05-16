@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub_market/core/widgets/info_action_row.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../generated/assets.dart';
 
@@ -22,7 +23,8 @@ class _EmptyCartWidgetState extends State<EmptyCartWidget> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(Assets.images.emptyCart.path),
+
+                Lottie.asset(Assets.json.emptyCart,height:MediaQuery.sizeOf(context).height*0.3),
                 const SizedBox(height: 24),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 32),

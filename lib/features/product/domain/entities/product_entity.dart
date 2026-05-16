@@ -19,7 +19,7 @@ class ProductEntity extends Equatable {
   final bool isOrganic;
   final double avgRating;
   final int ratingCount;
-  final int sellingCount;
+  int sellingCount;
   List<String> ?subImages;
 
 

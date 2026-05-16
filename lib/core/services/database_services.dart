@@ -16,6 +16,12 @@ abstract class DatabaseServices {
   Future<void> deleteData({required String path, required String uId});
 
   Future<bool> checkExists({required String path, required String uId});
+
+  Future<void> updateData({
+    required String path,
+    required Map<String, dynamic> data,
+    required String docId,
+  });
 }
 
 class FirestoreDatabase implements DatabaseServices {
@@ -100,5 +106,15 @@ class FirestoreDatabase implements DatabaseServices {
   @override
   Future<void> deleteData({required String path, required String uId}) async {
     await FirebaseFirestore.instance.collection(path).doc(uId).delete();
+  }
+
+  @override
+  Future<void> updateData({
+    required String path,
+    required Map<String, dynamic> data,
+    required String docId,
+  }) async {
+    final userRef = FirebaseFirestore.instance.collection(path).doc(docId);
+    await userRef.update(data);
   }
 }

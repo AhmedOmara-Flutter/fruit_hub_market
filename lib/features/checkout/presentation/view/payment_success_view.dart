@@ -33,6 +33,7 @@ class PaymentSuccessView extends StatelessWidget {
           GestureDetector(
             onTap: (){
               context.read<CartCubit>().cart.cartItems.clear();
+              context.read<CartCubit>().saveCart();
               context.read<MainCubit>().currentIndex=0;
               Navigator.pushNamed(context, RouteManager.home,);
             },

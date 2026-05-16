@@ -68,4 +68,20 @@ class ProductRepoImpl implements ProductRepo {
       );
     }
   }
+
+  @override
+  Future<Either<Failure, void>> increaseSellingCount(String productId) async {
+    try {
+      final data = await _databaseServices.updateData(
+          path: 'products',
+          data: {'sellingCount': FieldValue.increment(1)},
+          docId: productId);
+
+      return Right(data);
+    } catch (e) {
+      print('increaseSellingCount is failed with error $e');
+      return Left(ServerFailure(errMessage: e.toString()));
+    }
+  }
 }
+

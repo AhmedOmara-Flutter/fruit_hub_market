@@ -6,6 +6,7 @@ import 'package:fruit_hub_market/core/utils/app_vibration.dart';
 import '../../features/cart/presentation/view_model/cart_cubit.dart';
 import '../../features/favorite/presentation/view_model/favorite_cubit.dart';
 import '../../features/product/domain/entities/product_entity.dart';
+import '../../features/product/presentation/view_model/product_cubit.dart';
 
 class FruitItem extends StatelessWidget {
   final ProductEntity product;
@@ -16,6 +17,7 @@ class FruitItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async{
+        await context.read<ProductCubit>().increaseSellingCount(product.id);
         await AppSounds.playClickSound('click_song.wav');
         Navigator.pushNamed(context, RouteManager.productDetails, arguments: product);
       },
