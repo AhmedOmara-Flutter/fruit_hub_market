@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => FeaturedCubit(instance()),),
           BlocProvider(create: (context) => ProductCubit(instance()),),
           BlocProvider(create: (context) => CartCubit(),),
-          BlocProvider(create: (context) => FavoriteCubit(instance())..getFavorites())
+          BlocProvider(create: (context) => FavoriteCubit(instance())..getFavorites()),
         ],
       child: MaterialApp(
         localizationsDelegates: [

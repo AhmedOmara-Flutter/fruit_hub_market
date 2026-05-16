@@ -2,6 +2,8 @@ import 'package:fruit_hub_market/features/product_details/presentation/widgets/p
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_details_section.dart';
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_image_section.dart';
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_info_grid_section.dart';
+import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_sub_images_section.dart';
+
 import '../../../../core/utils/app_imports.dart';
 import '../../../product/domain/entities/product_entity.dart';
 
@@ -21,6 +23,7 @@ class ProductDetailsViewBody extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           ProductImageSection(product: product,),
+         ProductSubImagesSection(product: product,),
           ProductDetailsSection(product: product),
           ProductInfoGridSection(product: product,),
           ProductButtonSection(product: product,),
@@ -28,12 +31,7 @@ class ProductDetailsViewBody extends StatelessWidget {
       ),
     );
   }
-
-
 }
-
-
-
 
 
 

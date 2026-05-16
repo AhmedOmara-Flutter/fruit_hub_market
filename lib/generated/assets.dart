@@ -12,6 +12,7 @@ class Assets {
   static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsJsonGen json = $AssetsJsonGen();
+  static const $AssetsSongsGen songs = $AssetsSongsGen();
 }
 
 class $AssetsImagesGen {
@@ -139,6 +140,15 @@ class $AssetsJsonGen {
   final LottieGenImage foodAnimation = const LottieGenImage(
     'assets/json/Food animation.json',
   );
+}
+
+class $AssetsSongsGen {
+  const $AssetsSongsGen();
+
+  final String clickError = 'assets/songs/click_error.wav';
+  final String clickSong = 'assets/songs/click_song.wav';
+  final String payment = 'assets/songs/payment.mp3';
+  final String success = 'assets/songs/success.mp3';
 }
 
 class AssetGenImage {

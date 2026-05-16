@@ -57,7 +57,7 @@ class HomeHeader extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: Material(
-              color: AppColor.mainColor.withOpacity(0.5),
+              color: Colors.grey.shade100,
               child: InkWell(
                 onTap: () {},
                 child: Container(

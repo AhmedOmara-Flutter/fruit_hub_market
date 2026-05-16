@@ -16,6 +16,9 @@ class LoginView extends StatelessWidget {
         child: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
             if (state is LoginSuccess) {
+              AppVibration.medium();
+              AppSounds.playClickSound('success.mp3');
+
               customShowSnakeBar(
                   context, color: AppColor.mainColor,
                   label: 'تم التسجيل الدخول بنجاح');
@@ -25,6 +28,9 @@ class LoginView extends StatelessWidget {
               Navigator.pushNamed(context, RouteManager.home,arguments: state.user);
             }
             if (state is LoginError) {
+              AppVibration.heavy();
+              AppSounds.playClickSound('click_error.wav');
+
               customShowSnakeBar(
                   context, color: AppColor.red, label: state.errMessage);
             }

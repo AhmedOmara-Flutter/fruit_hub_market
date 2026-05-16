@@ -52,7 +52,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     emit(CheckoutSelectShipping());
   }
 
-  void addOrder(OrderEntity orderEntity) async {
+  Future<void> addOrder(OrderEntity orderEntity) async {
     emit(CheckoutAddOrderLoading());
 
     final result = await _checkoutRepo.addOrder(orderEntity);

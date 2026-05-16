@@ -13,10 +13,16 @@ class CheckoutViewBody extends StatelessWidget {
     return BlocConsumer<CheckoutCubit, CheckoutState>(
       listener: (context, state) {
         if (state is CheckoutAddOrderSuccess) {
+          AppVibration.heavy();
+          AppSounds.playClickSound('payment.mp3');
+
           customShowSnakeBar(
               context, color: AppColor.mainColor, label: 'تم تأكيد طلبك بنجاح');
           Navigator.pushNamed(context,RouteManager.paymentSuccess,);
         } else if (state is CheckoutAddOrderError) {
+          AppVibration.heavy();
+          AppSounds.playClickSound('click_error.wav');
+
           customShowSnakeBar(context, color: AppColor.red, label: state.error);
         }
       },

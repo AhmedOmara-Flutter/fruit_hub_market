@@ -189,6 +189,9 @@ class _RegisterFormState extends State<RegisterForm> {
                             imageFile: imagePath!,
                           );
                         }else{
+                          AppVibration.heavy();
+                          AppSounds.playClickSound('click_error.wav');
+
                           customShowSnakeBar(
                             context,
                             color: AppColor.red,
@@ -196,6 +199,9 @@ class _RegisterFormState extends State<RegisterForm> {
                           );
                         }
                       } else {
+                        AppVibration.heavy();
+                        AppSounds.playClickSound('click_error.wav');
+
                         customShowSnakeBar(
                           context,
                           color: AppColor.red,

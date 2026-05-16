@@ -11,8 +11,11 @@ class PaymentButtonSection extends StatelessWidget {
       builder: (context, state) {
         final cubit = context.read<CheckoutCubit>();
         return CustomButton(
-          onPressed: () {
-            cubit.addOrder(cubit.orderEntity);
+          onPressed: () async {
+            await cubit.addOrder(cubit.orderEntity);
+            // AppVibration.heavy();
+            // AppSounds.playClickSound('payment.mp3');
+
           },
           child: Text('تاكيد الطلب', style: Theme
               .of(context)

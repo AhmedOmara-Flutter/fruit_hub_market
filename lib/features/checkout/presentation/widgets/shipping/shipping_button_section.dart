@@ -19,6 +19,8 @@ class ShippingButtonSection extends StatelessWidget {
           print(cubit.orderEntity.isCashOnDelivery);
           print(cubit.orderEntity.cartEntity.getTotalPrice());
         } else {
+          AppVibration.heavy();
+          AppSounds.playClickSound('click_error.wav');
           customShowSnakeBar(
             context,
             color: AppColor.red,

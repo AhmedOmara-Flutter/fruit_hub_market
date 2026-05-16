@@ -20,6 +20,7 @@ class ProductEntity extends Equatable {
   final double avgRating;
   final int ratingCount;
   final int sellingCount;
+  List<String> ?subImages;
 
 
 
@@ -40,6 +41,7 @@ class ProductEntity extends Equatable {
     this.ratingCount = 0,
     this.sellingCount = 0,
     required this.id,
+    this.subImages,
   });
 
 

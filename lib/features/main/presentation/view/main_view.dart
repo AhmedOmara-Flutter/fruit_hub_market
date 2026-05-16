@@ -38,10 +38,14 @@ class _MainViewState extends State<MainView> {
           listeners: [
             BlocListener<CartCubit, CartState>(listener: (context, state) {
               if (state is CartAdded) {
+                AppSounds.playClickSound('click_song.wav');
+                AppVibration.light();
                 customShowSnakeBar(context, color: AppColor.mainColor,
                     label: 'تم إضافة المنتج إلى السلة');
               }
               if (state is CartRemoved) {
+                AppSounds.playClickSound('click_song.wav');
+                AppVibration.medium();
                 customShowSnakeBar(context, color:AppColor.mainColor,
                     label: 'تم حذف المنتج من السلة');
               }
@@ -49,11 +53,16 @@ class _MainViewState extends State<MainView> {
             BlocListener<FavoriteCubit, FavoriteState>(
               listener: (context, state) {
                 if (state is FavoriteAddedState) {
+                  AppSounds.playClickSound('click_song.wav');
+                  AppVibration.light();
                   customShowSnakeBar(
                       context, color:AppColor.mainColor,
                       label: 'تمت الإضافة للمفضلة');
                 }
                 if (state is FavoriteDeletedState) {
+                  AppSounds.playClickSound('click_song.wav');
+                  AppVibration.medium();
+
                   customShowSnakeBar(
                       context, color: AppColor.red, label: 'تم الحذف من المفضله');
                 }

@@ -16,11 +16,16 @@ class RegisterView extends StatelessWidget {
                 CircularProgressIndicator();
               }
               if (state is RegisterSuccess) {
+                AppVibration.medium();
+                AppSounds.playClickSound('success.mp3');
                 customShowSnakeBar(
                     context, color:AppColor.mainColor, label: 'تم انشاء الحساب بنجاح');
                 Navigator.pushNamed(context, RouteManager.login);
               }
               if (state is RegisterError) {
+                AppVibration.heavy();
+                AppSounds.playClickSound('click_error.wav');
+
                 customShowSnakeBar(
                     context, color: AppColor.red, label: state.errMessage);
               }

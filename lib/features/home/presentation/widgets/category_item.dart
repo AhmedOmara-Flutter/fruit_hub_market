@@ -10,31 +10,38 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size.width * 0.2;
     return GestureDetector(
-      onTap: (){
-        Navigator.pushNamed(context, RouteManager.productDetails,arguments: productEntity);
+      onTap: () async {
+        await AppSounds.playClickSound('click_song.wav');
+        Navigator.pushNamed(
+          context,
+          RouteManager.productDetails,
+          arguments: productEntity,
+        );
       },
       child: Column(
         children: [
-          Container(
-            height: size,
-            width: size,
-            decoration: BoxDecoration(
-              color: Color(0xffF3F5F7),
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: Image.network(
+          CircleAvatar(
+            radius: size / 2,
+
+            backgroundColor: Colors.grey.withOpacity(0.1),
+
+            child: CircleAvatar(
+              radius: (size / 2) - 1,
+
+              backgroundImage: NetworkImage(
                 productEntity.image ?? '',
-                height: size * 0.75,
-                width: size * 0.75,
-                fit: BoxFit.contain,
               ),
             ),
-          ),
-          SizedBox(height: 10),
+          ), SizedBox(height: 10),
           Text(
             productEntity.name,
-            style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Color(0xff0C0D0D)),
+            style: Theme
+                .of(
+              context,
+            )
+                .textTheme
+                .titleMedium!
+                .copyWith(color: Color(0xff0C0D0D)),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),

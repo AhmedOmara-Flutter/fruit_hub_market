@@ -66,6 +66,8 @@ class _AddressPageViewState extends State<AddressPageView> with AutomaticKeepAli
                                 country: countryController.text,
                                 apartment: apartmentController.text);
                           } else {
+                            AppVibration.heavy();
+                            AppSounds.playClickSound('click_error.wav');
                             customShowSnakeBar(
                               context,
                               color: AppColor.red,

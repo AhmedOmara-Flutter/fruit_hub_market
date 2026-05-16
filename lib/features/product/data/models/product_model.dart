@@ -1,5 +1,4 @@
 
-import 'package:fruit_hub_market/core/helper_function/get_average_rating.dart';
 import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
 
 class ProductModel extends ProductEntity {
@@ -19,6 +18,7 @@ class ProductModel extends ProductEntity {
     super.ratingCount = 0,
     super.sellingCount=0,
     required super.id,
+    super.subImages,
   });
 
   factory ProductModel.fromEntity(ProductEntity entity) {
@@ -38,6 +38,7 @@ class ProductModel extends ProductEntity {
       avgRating: entity.avgRating,
       ratingCount: entity.ratingCount,
       sellingCount: entity.sellingCount,
+      subImages: entity.subImages,
     );
   }
 
@@ -58,6 +59,7 @@ class ProductModel extends ProductEntity {
       ratingCount: ratingCount,
       imageFile: imageFile,
       sellingCount: sellingCount,
+      subImages: subImages,
     );
   }
 
@@ -78,7 +80,9 @@ class ProductModel extends ProductEntity {
       avgRating: json['avgRating'] ?? 0,
       ratingCount: json['ratingCount'] ?? 0,
       sellingCount: json['sellingCount'] ?? 0,
-    );
+      subImages: (json['subImages'] as List<dynamic>?)
+          ?.map((e) => e.toString())
+          .toList(),    );
   }
   Map<String, dynamic> toJson() {
     return {
@@ -96,6 +100,7 @@ class ProductModel extends ProductEntity {
       'avgRating': avgRating,
       'ratingCount': ratingCount,
       'sellingCount': sellingCount,
+      'subImages': subImages,
     };
   }
 }

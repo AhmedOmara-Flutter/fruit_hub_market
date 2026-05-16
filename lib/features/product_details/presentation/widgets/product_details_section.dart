@@ -2,6 +2,9 @@
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/rating_and_reviews.dart';
 
 import '../../../../core/utils/app_imports.dart';
+import '../../../cart/domain/entities/cart_item_entity.dart';
+import '../../../cart/presentation/view_model/cart_cubit.dart';
+import '../../../cart/presentation/widgets/quality_control.dart';
 import '../../../product/domain/entities/product_entity.dart';
 
 class ProductDetailsSection extends StatelessWidget {
@@ -9,7 +12,6 @@ class ProductDetailsSection extends StatelessWidget {
     super.key,
     required this.product,
   });
-
   final ProductEntity product;
 
   @override
@@ -54,7 +56,7 @@ class ProductDetailsSection extends StatelessWidget {
                     ))
                   ],
                 ),
-               // QualityControl(buttonSize: 50, cartItemEntity: ,),
+                // QualityControl(buttonSize: 50, cartItemEntity: CartItemEntity(product: product, quantity: 1)),
               ],
             ),
             const SizedBox(height: 10),
