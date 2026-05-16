@@ -1,4 +1,6 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../../../../core/utils/app_imports.dart';
 import '../../../../core/widgets/custom_back_button.dart';
 import '../../../product/domain/entities/product_entity.dart';
@@ -25,8 +27,19 @@ class ProductImageSection extends StatelessWidget {
               width: double.infinity,
               fit: BoxFit.fill,),
             Center(
-              child: Image.network(product.image!, height: 220,
-              ),
+              child: CachedNetworkImage(
+                height: 220,
+                imageUrl: product.image??'',
+                placeholder: (context, url) =>
+                    const Center(child: Skeletonizer(child: SizedBox(height: 220,),)),
+                errorWidget: (context, url, error) =>
+                    Center(child: Center(
+                      child: Icon(
+                        Icons.image_not_supported_outlined,
+                        size: 50,
+                        color: Colors.grey.shade300,),
+                    )),
+              )
             ),
             Positioned(
               top: 40,

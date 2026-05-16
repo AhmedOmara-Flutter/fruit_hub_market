@@ -23,7 +23,6 @@ class CartItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-
           GestureDetector(
               onTap:(){
                 Navigator.pushNamed(context, RouteManager.productDetails, arguments: cartItemEntity.product);
