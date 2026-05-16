@@ -32,7 +32,6 @@ class ProductImageSection extends StatelessWidget {
               top: 40,
               right: 10,
               child: CustomBackButton(color: Colors.white,),
-
             ),
           ],
         ),

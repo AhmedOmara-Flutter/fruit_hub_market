@@ -140,6 +140,7 @@ class $AssetsJsonGen {
   final LottieGenImage foodAnimation = const LottieGenImage(
     'assets/json/Food animation.json',
   );
+  final String emptyCart = 'assets/json/empty cart.json';
 }
 
 class $AssetsSongsGen {

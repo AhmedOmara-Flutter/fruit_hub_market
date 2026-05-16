@@ -1,4 +1,5 @@
 import '../../../../core/utils/app_imports.dart';
+import '../../../cart/presentation/view_model/cart_cubit.dart';
 
 class PaymentSuccessView extends StatelessWidget {
   const PaymentSuccessView({super.key,});
@@ -31,7 +32,8 @@ class PaymentSuccessView extends StatelessWidget {
           Spacer(),
           GestureDetector(
             onTap: (){
-
+              context.read<CartCubit>().cart.cartItems.clear();
+              context.read<MainCubit>().currentIndex=0;
               Navigator.pushNamed(context, RouteManager.home,);
             },
             child: Text(
@@ -46,6 +48,7 @@ class PaymentSuccessView extends StatelessWidget {
           CustomButton(
             onPressed: () {
               Navigator.pushNamed(context, RouteManager.orderTracking);
+
             },
             child: Text(
               'تتبع الطلب',
