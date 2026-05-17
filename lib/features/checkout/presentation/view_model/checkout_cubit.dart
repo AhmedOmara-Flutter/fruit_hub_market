@@ -67,4 +67,4 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       (data) => emit(CheckoutAddOrderSuccess()),
     );
   }
-}
+  }

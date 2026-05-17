@@ -1,3 +1,4 @@
+import 'package:fruit_hub_market/core/helper_function/custom_show_dialog.dart';
 
 import '../../../../core/utils/app_imports.dart';
 
@@ -6,26 +7,42 @@ class ProfileInfoBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      color: AppColor.mainColor.withOpacity(0.1),
-      padding: EdgeInsets.symmetric(vertical: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          SizedBox(width: 20,),
-          Text(
-            'تسجيل الخروج',
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium!.copyWith(color: AppColor.mainColor),
-            textAlign: TextAlign.center,
-          ),
-          Transform.scale(
-            scaleX: -1,
-            child: Icon(Icons.logout, color: AppColor.mainColor.withOpacity(0.3)),
-          ),
-        ],
+    return GestureDetector(
+      onTap: () {
+        customShowDialog(context, title: 'هل ترغب في تسجيل الخروج ؟',
+            content: 'سيتم تسجيل خروجك من التطبيق',
+            cancel: () {
+              Navigator.pop(context);
+            },
+            accept: () {}
+        );
+      },
+      child: Container(
+        width: double.infinity,
+        color: AppColor.mainColor.withOpacity(0.1),
+        padding: EdgeInsets.symmetric(vertical: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SizedBox(width: 20,),
+            Text(
+              'تسجيل الخروج',
+              style: Theme
+                  .of(
+                context,
+              )
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(color: AppColor.mainColor),
+              textAlign: TextAlign.center,
+            ),
+            Transform.scale(
+              scaleX: -1,
+              child: Icon(
+                  Icons.logout, color: AppColor.mainColor.withOpacity(0.3)),
+            ),
+          ],
+        ),
       ),
     );
   }

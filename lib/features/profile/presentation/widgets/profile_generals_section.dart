@@ -32,7 +32,9 @@ class ProfileGeneralSection extends StatelessWidget {
           ),
           ProfileOptionsList(
             text: 'طلباتي',
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, RouteManager.orders);
+            },
             image: Assets.images.box.path,
           ),
           ProfileOptionsList(

@@ -1,5 +1,6 @@
 import 'package:fruit_hub_market/features/checkout/presentation/view_model/checkout_cubit.dart';
 
+import '../../../../../core/helper_function/custom_show_dialog.dart';
 import '../../../../../core/utils/app_imports.dart';
 
 class PaymentButtonSection extends StatelessWidget {
@@ -13,21 +14,16 @@ class PaymentButtonSection extends StatelessWidget {
         return CustomButton(
           onPressed: () {
             FocusManager.instance.primaryFocus?.unfocus();
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (context) {
-                return ShowAlertDialog(
-                  title: 'تأكيد الدفع',
-                  content: 'هل أنت متأكد من إتمام عملية الدفع؟',
-                  cancel: () {
-                    Navigator.pop(context);
-                  },
-                  accept: () async {
-                    Navigator.pop(context);
-                    await cubit.addOrder(cubit.orderEntity);
-                  },
-                );
+            customShowDialog(
+              context,
+              title: 'تأكيد الدفع',
+              content: 'هل أنت متأكد من إتمام عملية الدفع؟',
+              accept: () async {
+                Navigator.pop(context);
+                await cubit.addOrder(cubit.orderEntity);
+              },
+              cancel: () {
+                Navigator.pop(context);
               },
             );
           },
@@ -74,10 +70,10 @@ class ShowAlertDialog extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          Text('تأكيد الدفع', style: Theme.of(context).textTheme.labelLarge),
+          Text(title, style: Theme.of(context).textTheme.labelLarge),
           const SizedBox(height: 10),
           Text(
-            'هل أنت متأكد من إتمام عملية الدفع؟',
+            content,
             textAlign: TextAlign.center,
             style: Theme.of(
               context,

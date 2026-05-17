@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
+import '../../../checkout/presentation/view_model/checkout_cubit.dart';
+
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
@@ -59,7 +61,8 @@ class HomeHeader extends StatelessWidget {
             child: Material(
               color: Colors.grey.shade100,
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                },
                 child: Container(
                   padding: EdgeInsets.all(10),
                   child: Stack(

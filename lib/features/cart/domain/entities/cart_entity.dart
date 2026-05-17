@@ -16,6 +16,14 @@ class CartEntity extends Equatable{
     cartItems.remove(cartItem);
   }
 
+  int getItemsCount() {
+    int count = 0;
+    for (CartItemEntity cartItem in cartItems) {
+      count += cartItem.quantity;
+    }
+    return count;
+  }
+
   double getTotalPrice() {
     double totalPrice = 0;
 

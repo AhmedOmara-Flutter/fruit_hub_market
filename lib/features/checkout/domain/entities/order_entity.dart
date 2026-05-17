@@ -4,6 +4,7 @@ import 'address_entity.dart';
 class OrderEntity {
   final String ?id;
   final String uId;
+  final DateTime ?createdAt;
   final CartEntity cartEntity;
   bool ?isCashOnDelivery;
   AddressEntity ?addressEntity;
@@ -12,7 +13,7 @@ class OrderEntity {
     required this.cartEntity,
      this.isCashOnDelivery,
      this.addressEntity,
-    required this.uId,this.id,
+    required this.uId,this.id,this.createdAt,
   });
 
 

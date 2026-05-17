@@ -1,3 +1,4 @@
+import '../../../cart/data/model/cart_item_model.dart';
 import '../../../cart/domain/entities/cart_item_entity.dart';
 
 class OrderItemModel {
@@ -25,6 +26,18 @@ class OrderItemModel {
     );
   }
 
+
+  CartItemEntity toEntity() {
+    return CartItemModel.fromJson({
+      'product': {
+        'code': code,
+        'name': name,
+        'image': imageUrl,
+        'price': price,
+      },
+      'quantity': quantity,
+    }).toEntity();
+  }
   factory OrderItemModel.fromJson(Map<String, dynamic> json) {
     return OrderItemModel(
       code: json['code'],

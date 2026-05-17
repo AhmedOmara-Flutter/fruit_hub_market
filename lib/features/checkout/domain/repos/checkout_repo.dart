@@ -4,4 +4,5 @@ import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.
 
 abstract class CheckoutRepo {
   Future<Either<Failure, void>> addOrder(OrderEntity orderEntity);
+
 }

@@ -1,13 +1,8 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failure.dart';
+import '../../../checkout/domain/entities/order_entity.dart';
 
 abstract class ProfileRepo {
-  Future<Either<Failure, String>> uploadImage(File imageFile);
-
-  Future<Either<Failure, void>> addImage(String image);
-
-  Future<Either<Failure, String>> getImage();
+  Future<Either<Failure, List<OrderEntity>>> getOrder();
 }

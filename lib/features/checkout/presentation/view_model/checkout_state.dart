@@ -14,3 +14,9 @@ final class CheckoutAddOrderError extends CheckoutState {
   CheckoutAddOrderError(this.error);
 }
 final class CheckoutAddOrderSuccess extends CheckoutState {}
+final class CheckoutGetOrderLoading extends CheckoutState {}
+final class CheckoutGetOrderError extends CheckoutState {
+  final String error;
+  CheckoutGetOrderError(this.error);
+}
+final class CheckoutGetOrderSuccess extends CheckoutState {}

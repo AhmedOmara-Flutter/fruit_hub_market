@@ -4,7 +4,6 @@ import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
 
 import '../../features/cart/domain/entities/cart_entity.dart';
-import '../../features/cart/presentation/widgets/cart_item.dart';
 import '../../features/checkout/presentation/view/checkout_view.dart';
 import '../../features/checkout/presentation/view/order_tracking_view.dart';
 import '../../features/checkout/presentation/view/payment_success_view.dart';
@@ -12,6 +11,7 @@ import '../../features/favorite/presentation/view/favorite_view.dart';
 import '../../features/product/domain/entities/product_entity.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
 import '../../features/product_details/presentation/view/reviews_view.dart';
+import '../../features/profile/presentation/view/orders_view.dart';
 import '../../features/search/presentation/view/search_view.dart';
 
 class RouteManager {
@@ -29,6 +29,7 @@ class RouteManager {
   static const String paymentSuccess = '/paymentSuccess';
   static const String orderTracking = '/orderTracking';
   static const String favorite = '/favorite';
+  static const String orders = '/orders';
 }
 
 class GenerateRoute {
@@ -70,7 +71,9 @@ class GenerateRoute {
         });
         case RouteManager.checkout:
           return MaterialPageRoute(builder: (context) {
-            return CheckoutView(orderEntity: OrderEntity(cartEntity: settings.arguments as CartEntity,uId: getUser().uId));
+            return CheckoutView(orderEntity: OrderEntity(
+              cartEntity: settings.arguments as CartEntity,
+              uId: getUser().uId,));
           });
       case RouteManager.paymentSuccess:
         return MaterialPageRoute(builder: (context) {
@@ -84,6 +87,10 @@ class GenerateRoute {
             return MaterialPageRoute(builder: (context) {
               return FavoriteView();
             });
+      case RouteManager.orders:
+        return MaterialPageRoute(builder: (context) {
+          return OrdersView();
+        });
 
 
       default:
