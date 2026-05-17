@@ -15,13 +15,14 @@ class FruitItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        await context.read<ProductCubit>().increaseSellingCount(product.id);
         await AppSounds.playClickSound('click_song.wav');
+
         Navigator.pushNamed(
           context,
           RouteManager.productDetails,
           arguments: product,
         );
+        context.read<ProductCubit>().increaseSellingCount(product.id);
       },
       child: Container(
         decoration: ShapeDecoration(
