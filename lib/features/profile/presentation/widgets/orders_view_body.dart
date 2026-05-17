@@ -17,7 +17,7 @@ class OrdersViewBody extends StatelessWidget {
             if (state is ProfileGetOrdersSuccess) {
               return SliverList(
                 delegate: SliverChildBuilderDelegate(
-                  (context, index) =>
+                      (context, index) =>
                       OrderItem(orderEntity: state.orders[index]),
                   childCount: state.orders.length,
                 ),
@@ -47,7 +47,7 @@ class OrderItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: EdgeInsets.only(left: 20, right: 20, bottom: 10),
       decoration: BoxDecoration(
         color: Color(0xffF2F3F3),
         borderRadius: BorderRadius.circular(10),
@@ -56,17 +56,20 @@ class OrderItem extends StatelessWidget {
         children: [
           OrderItemImage(),
           SizedBox(width: 10),
-          OrderItemContent(
-            orderId: '87452658452',
-            orderDate: getDateFormate(orderEntity.createdAt!.toString()),
-            numberOfOrders: orderEntity.cartEntity.getItemsCount(),
-            ordersTotalPrice: orderEntity.cartEntity.getTotalPrice(),
+          Expanded(
+            child: OrderItemContent(
+              orderId: '87452658452',
+              orderDate: getDateFormate(orderEntity.createdAt.toString()),
+              numberOfOrders: orderEntity.cartEntity.getItemsCount(),
+              ordersTotalPrice: orderEntity.cartEntity.getTotalPrice(),
+            ),
           ),
         ],
       ),
     );
   }
 }
+
 
 class OrderItemContent extends StatelessWidget {
   final String orderId;
@@ -85,22 +88,44 @@ class OrderItemContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+      padding: const EdgeInsets.only(top: 10,bottom: 10, right: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'طلب رقم : $orderId#',
-            style: Theme.of(
-              context,
-            ).textTheme.labelLarge!.copyWith(color: Colors.black),
-          ),
-          SizedBox(height: 2),
-          Text(
-            'تم الطلب : $orderDate ',
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall!.copyWith(color: Color(0xff949D9E)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'طلب رقم : $orderId#',
+                      style: Theme
+                          .of(
+                        context,
+                      )
+                          .textTheme
+                          .labelLarge!
+                          .copyWith(color: Colors.black),
+                    ),
+                    SizedBox(height: 2),
+                    Text(
+                      'تم الطلب : $orderDate ',
+                      style: Theme
+                          .of(
+                        context,
+                      )
+                          .textTheme
+                          .titleSmall!
+                          .copyWith(color: Color(0xff949D9E)),
+                    ),
+                  ],
+                ),
+              ),
+
+              IconButton(onPressed: () {}, icon:SvgPicture.asset(Assets.images.arrowDown.path))
+            ],
           ),
           SizedBox(height: 10),
           RichText(
@@ -130,6 +155,7 @@ class OrderItemContent extends StatelessWidget {
     );
   }
 }
+
 
 class OrderItemImage extends StatelessWidget {
   const OrderItemImage({super.key});

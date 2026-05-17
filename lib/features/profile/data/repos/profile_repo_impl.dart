@@ -16,6 +16,10 @@ class ProfileRepoImpl implements ProfileRepo {
     try {
       final data = await _databaseServices.getData(
         path: 'orders',
+        query: {
+          'orderBy': 'createdAt',
+          'descending': true,
+        }
       ) as List<Map<String, dynamic>>;
       List<OrderEntity> orders = data.map((order) => OrderModel.fromJson(order).toEntity()).toList();
 

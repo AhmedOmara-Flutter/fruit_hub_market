@@ -71,9 +71,12 @@ class GenerateRoute {
         });
         case RouteManager.checkout:
           return MaterialPageRoute(builder: (context) {
-            return CheckoutView(orderEntity: OrderEntity(
+            return CheckoutView(
+                orderEntity: OrderEntity(
               cartEntity: settings.arguments as CartEntity,
-              uId: getUser().uId,));
+              uId: getUser().uId,
+                )
+            );
           });
       case RouteManager.paymentSuccess:
         return MaterialPageRoute(builder: (context) {
@@ -91,8 +94,6 @@ class GenerateRoute {
         return MaterialPageRoute(builder: (context) {
           return OrdersView();
         });
-
-
       default:
         return _errorRoute();
     }

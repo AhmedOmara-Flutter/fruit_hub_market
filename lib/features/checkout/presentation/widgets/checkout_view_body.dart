@@ -1,6 +1,7 @@
 import 'package:fruit_hub_market/core/widgets/custom_loading.dart';
 
 import '../../../../core/utils/app_imports.dart';
+import '../../../cart/presentation/view_model/cart_cubit.dart';
 import '../view_model/checkout_cubit.dart';
 import 'checkout_stepper.dart';
 
@@ -15,14 +16,15 @@ class CheckoutViewBody extends StatelessWidget {
         if (state is CheckoutAddOrderSuccess) {
           AppVibration.heavy();
           AppSounds.playClickSound('payment.mp3');
-
           customShowSnakeBar(
-              context, color: AppColor.mainColor, label: 'تم تأكيد طلبك بنجاح');
-          Navigator.pushNamed(context,RouteManager.paymentSuccess,);
+          context, color: AppColor.mainColor, label: 'تم تأكيد طلبك بنجاح');
+          context.read<CartCubit>().cart.cartItems.clear();
+          context.read<CartCubit>().saveCart();
+          context.read<MainCubit>().currentIndex=0;
+          Navigator.pushReplacementNamed(context,RouteManager.paymentSuccess,);
         } else if (state is CheckoutAddOrderError) {
           AppVibration.heavy();
           AppSounds.playClickSound('click_error.wav');
-
           customShowSnakeBar(context, color: AppColor.red, label: state.error);
         }
       },

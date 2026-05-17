@@ -1,5 +1,4 @@
 import 'package:fruit_hub_market/features/profile/presentation/widgets/profile_option_list.dart';
-
 import '../../../../core/utils/app_imports.dart';
 
 class ProfileGeneralSection extends StatelessWidget {

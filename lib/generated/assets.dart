@@ -33,6 +33,9 @@ class $AssetsImagesGen {
   final SvgGenImage arrowBack = const SvgGenImage(
     'assets/images/arrow back.svg',
   );
+  final SvgGenImage arrowDown = const SvgGenImage(
+    'assets/images/arrow-down.svg',
+  );
   final SvgGenImage bannerBackground = const SvgGenImage(
     'assets/images/banner_background.svg',
   );
