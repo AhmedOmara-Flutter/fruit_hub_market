@@ -9,7 +9,6 @@ import 'package:lottie/src/composition.dart';
 class Assets {
   Assets._();
 
-  static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsSongsGen songs = $AssetsSongsGen();
@@ -122,19 +121,6 @@ class $AssetsImagesGen {
     'assets/images/strawberry.png',
   );
   final SvgGenImage user = const SvgGenImage('assets/images/user.svg');
-}
-
-class $AssetsFontsGen {
-  const $AssetsFontsGen();
-
-  final String cairoBlack = 'assets/fonts/Cairo-Black.ttf';
-  final String cairoBold = 'assets/fonts/Cairo-Bold.ttf';
-  final String cairoExtraBold = 'assets/fonts/Cairo-ExtraBold.ttf';
-  final String cairoExtraLight = 'assets/fonts/Cairo-ExtraLight.ttf';
-  final String cairoLight = 'assets/fonts/Cairo-Light.ttf';
-  final String cairoMedium = 'assets/fonts/Cairo-Medium.ttf';
-  final String cairoRegular = 'assets/fonts/Cairo-Regular.ttf';
-  final String cairoSemiBold = 'assets/fonts/Cairo-SemiBold.ttf';
 }
 
 class $AssetsJsonGen {

@@ -3,7 +3,7 @@ import '../utils/app_imports.dart';
   customShowDialog(
   BuildContext context, {
   required String title,
-  required String content,
+  required Widget content,
   void Function()? cancel,
   void Function()? accept,
 }) {
@@ -30,13 +30,7 @@ import '../utils/app_imports.dart';
             const SizedBox(height: 20),
             Text(title, style: Theme.of(context).textTheme.labelLarge),
             const SizedBox(height: 10),
-            Text(
-              content,
-              textAlign: TextAlign.center,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium!.copyWith(color: Colors.grey),
-            ),
+            content,
             const SizedBox(height: 25),
             Row(
               children: [

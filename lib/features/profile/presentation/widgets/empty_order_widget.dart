@@ -1,5 +1,4 @@
 import 'package:lottie/lottie.dart';
-
 import '../../../../core/utils/app_imports.dart';
 
 class EmptyOrderWidget extends StatelessWidget {

@@ -17,6 +17,7 @@ class _RegisterFormState extends State<RegisterForm> {
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+  var phoneController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool isTermsAndConditionsSelected = false;
   bool isPasswordVisible = true;
@@ -130,6 +131,27 @@ class _RegisterFormState extends State<RegisterForm> {
             hintText: 'الاسم كامل',
           ),
           const SizedBox(height: 15),
+
+          CustomTextFormField(
+            validator: (value) {
+              if (value == null || value.trim().isEmpty) {
+                return 'من فضلك أدخل رقم الهاتف';
+              }
+
+              final phone = value.trim();
+
+              if (!RegExp(r'^(010|011|012|015)\d{8}$').hasMatch(phone)) {
+                return 'من فضلك أدخل رقم هاتف صحيح';
+              }
+
+              return null;
+            },
+
+            controller: phoneController,
+            keyboardType: TextInputType.phone,
+            hintText: 'رقم الهاتف',
+          ),
+          const SizedBox(height: 15),
           CustomTextFormField(
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -182,16 +204,16 @@ class _RegisterFormState extends State<RegisterForm> {
                     if (_formKey.currentState!.validate()) {
                       if (isTermsAndConditionsSelected == true) {
                         if(imagePath!=null){
-                          BlocProvider.of<RegisterCubit>(context).register(
-                            email: emailController.text,
-                            password: passwordController.text,
+                              BlocProvider.of<RegisterCubit>(context).register(
+                                email: emailController.text,
+                                password: passwordController.text,
                             userName: nameController.text,
                             imageFile: imagePath!,
-                          );
+                                phone: phoneController.text,
+                              );
                         }else{
                           AppVibration.heavy();
                           AppSounds.playClickSound('click_error.wav');
-
                           customShowSnakeBar(
                             context,
                             color: AppColor.red,

@@ -2,7 +2,6 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
-  static const String routeName = '/splash';
 
 
   @override

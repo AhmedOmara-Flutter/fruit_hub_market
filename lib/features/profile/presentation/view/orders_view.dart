@@ -9,9 +9,6 @@ class OrdersView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: BlocProvider(
-      create: (context) => ProfileCubit(instance())..getOrders(),
-      child: OrdersViewBody(),
-    ));
+    return Scaffold(body: OrdersViewBody());
   }
 }

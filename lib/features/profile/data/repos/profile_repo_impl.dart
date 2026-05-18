@@ -14,8 +14,6 @@ class ProfileRepoImpl implements ProfileRepo {
 
   @override
   Future<Either<Failure, List<OrderEntity>>> getOrder(String uId) async {
-    print("Fetching orders..."); // 👈 هنا
-
     try {
       final data = await _databaseServices.getData(
         path: 'orders',

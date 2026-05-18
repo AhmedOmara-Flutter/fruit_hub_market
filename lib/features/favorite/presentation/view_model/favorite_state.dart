@@ -30,4 +30,5 @@ final class FavoriteToggledErrorState extends FavoriteState {
 }
 
 final class FavoriteDeletedState extends FavoriteState {}
+
 final class FavoriteAddedState extends FavoriteState {}

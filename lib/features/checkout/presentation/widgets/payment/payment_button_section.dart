@@ -17,7 +17,13 @@ class PaymentButtonSection extends StatelessWidget {
             customShowDialog(
               context,
               title: 'تأكيد الدفع',
-              content: 'هل أنت متأكد من إتمام عملية الدفع؟',
+              content: Text(
+                'هل أنت متأكد من إتمام عملية الدفع؟',
+                textAlign: TextAlign.center,
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium!.copyWith(color: Colors.grey),
+              ),
               accept: () async {
                 Navigator.pop(context);
                 await cubit.addOrder(cubit.orderEntity);

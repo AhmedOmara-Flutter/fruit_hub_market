@@ -16,7 +16,7 @@ export 'package:fruit_hub_market/core/utils/route_manager.dart';
 export 'package:fruit_hub_market/core/utils/string_manager.dart';
 export 'package:fruit_hub_market/core/utils/style_manager.dart';
 export 'package:fruit_hub_market/core/utils/theme_manager.dart';
-export 'package:fruit_hub_market/features/auth/data/data_source/auth_remote_data_source.dart';
+export 'package:fruit_hub_market/core/services/auth_services.dart';
 export 'package:fruit_hub_market/features/auth/data/repos/auth_repo_impl.dart';
 export 'package:fruit_hub_market/features/auth/data/requests/auth_request.dart';
 export 'package:fruit_hub_market/features/auth/domain/entities/user_entity.dart';

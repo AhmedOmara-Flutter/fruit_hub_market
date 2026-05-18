@@ -13,8 +13,8 @@ import '../../features/profile/domain/repos/profile_repo.dart';
 final instance = GetIt.instance;
 
 void initAppModule() {
-  instance.registerLazySingleton<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceImpl(),
+  instance.registerLazySingleton<AuthServices>(
+        () => AuthWithFirebase(),
   );
   instance.registerLazySingleton<DatabaseServices>(() => FirestoreDatabase());
   instance.registerLazySingleton<StorageServices>(() => SupabaseStorage());
@@ -34,6 +34,6 @@ void initAppModule() {
   );
 
   instance.registerLazySingleton<ProfileRepo>(
-    () => ProfileRepoImpl(instance()),
+        () => ProfileRepoImpl(instance()),
   );
 }

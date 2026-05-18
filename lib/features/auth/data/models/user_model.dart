@@ -6,6 +6,7 @@ class UserModel extends UserEntity {
     required super.email,
     required super.uId,
     required super.image,
+    required super.phone,
   });
 
   factory UserModel.fromFirebaseUser(User user) {
@@ -13,7 +14,7 @@ class UserModel extends UserEntity {
       userName: user.displayName ?? '',
       email: user.email ?? '',
       uId: user.uid,
-      image: user.photoURL ?? '',
+      image: user.photoURL ?? '', phone: user.phoneNumber ?? '',
     );
   }
 
@@ -22,7 +23,7 @@ class UserModel extends UserEntity {
       userName: json['userName'],
       email: json['email'],
       uId: json['uId'],
-      image: json['image'],
+      image: json['image'], phone: json['phone'],
     );
   }
 
@@ -32,15 +33,17 @@ class UserModel extends UserEntity {
       email: user.email,
       uId: user.uId,
       image: user.image,
+      phone: user.phone,
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'userName': userName,
       'email': email,
       'uId': uId,
       'image': image,
+      'phone': phone,
     };
   }
 }

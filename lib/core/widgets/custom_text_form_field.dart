@@ -7,6 +7,8 @@ class CustomTextFormField extends StatelessWidget {
   final String? hintText;
   final String? Function(String?)? validator;
   final AutovalidateMode? autoValidateMode;
+  final void Function()? onSuffixPressed;
+  final IconData ?suffixIcon;
 
   const CustomTextFormField({
     super.key,
@@ -15,6 +17,7 @@ class CustomTextFormField extends StatelessWidget {
     this.hintText,
     this.validator,
     this.autoValidateMode = AutovalidateMode.onUserInteraction, this.onSaved,
+    this.onSuffixPressed, this.suffixIcon,
   });
 
   @override
@@ -25,7 +28,12 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       controller: controller,
       keyboardType: keyboardType,
-      decoration: InputDecoration(hintText: hintText),
+      decoration: InputDecoration(hintText: hintText,
+          suffixIcon: Padding(
+            padding: const EdgeInsets.only(left: 5),
+            child: IconButton(onPressed: onSuffixPressed, icon: Icon(suffixIcon)),
+          )),
+
     );
   }
 }

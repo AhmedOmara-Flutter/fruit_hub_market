@@ -1,5 +1,4 @@
 import 'package:fruit_hub_market/core/helper_function/custom_show_dialog.dart';
-
 import '../../../../core/utils/app_imports.dart';
 
 class ProfileInfoBanner extends StatelessWidget {
@@ -10,11 +9,21 @@ class ProfileInfoBanner extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         customShowDialog(context, title: 'هل ترغب في تسجيل الخروج ؟',
-            content: 'سيتم تسجيل خروجك من التطبيق',
+            content: Text(
+              'سيتم تسجيل خروجك من التطبيق',
+              textAlign: TextAlign.center,
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium!.copyWith(color: Colors.grey),
+            ),
             cancel: () {
               Navigator.pop(context);
             },
-            accept: () {}
+            accept: () async{
+              await instance<AuthRepo>().signOut();
+              Navigator.pushReplacementNamed(context, RouteManager.login);
+              context.read<MainCubit>().currentIndex=0;
+            }
         );
       },
       child: Container(

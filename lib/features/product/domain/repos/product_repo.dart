@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/errors/failure.dart';
-import '../../../search/domain/entity/product_search_entity.dart';
 import '../entities/product_entity.dart';
 
 abstract class ProductRepo {

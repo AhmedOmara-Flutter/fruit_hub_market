@@ -52,7 +52,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
             emit(GetFavoriteEmptyState());
             return;
           }
-          emit(GetFavoriteSuccessState(favoritesProducts));
+         emit(GetFavoriteSuccessState(favoritesProducts));
         },
       );
     } catch (e) {

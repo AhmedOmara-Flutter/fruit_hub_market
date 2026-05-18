@@ -2,15 +2,16 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-abstract class AuthRemoteDataSource {
+abstract class AuthServices {
   Future<User> createUserWithEmailAndPassword(RegisterRequest registerRequest);
   Future<User> signInWithEmailAndPassword(LoginRequest loginRequest);
   Future<User> signInWithGoogle();
   Future<User> signInWithFacebook();
   Future<void>deleteUser();
+  Future<void>signOut();
 }
 
-class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
+class AuthWithFirebase implements AuthServices {
 
   @override
   Future<void> deleteUser() async {
@@ -106,6 +107,11 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   bool isLoggedIn() {
     return FirebaseAuth.instance.currentUser != null;
+  }
+
+  @override
+  Future<void> signOut() {
+    return FirebaseAuth.instance.signOut();
   }
 
 }

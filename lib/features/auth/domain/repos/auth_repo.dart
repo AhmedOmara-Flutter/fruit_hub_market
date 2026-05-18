@@ -10,4 +10,7 @@ abstract class AuthRepo {
   Future<void> addData(UserEntity user);
   Future saveUserData(UserEntity user);
   Future<UserEntity> getUserData({required String uId});
+  Future<Either<Failure, void>> deleteAccount(String password);
+  Future<void> signOut();
+
 }

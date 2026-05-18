@@ -62,7 +62,6 @@ class _MainViewState extends State<MainView> {
                 if (state is FavoriteDeletedState) {
                   AppSounds.playClickSound('click_song.wav');
                   AppVibration.medium();
-
                   customShowSnakeBar(
                       context, color: AppColor.red, label: 'تم الحذف من المفضله');
                 }

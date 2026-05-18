@@ -6,6 +6,8 @@ class CustomPasswordField extends StatelessWidget {
   final String? Function(String?)? validator;
   final AutovalidateMode? autoValidateMode;
   final void Function()? onSuffixTap;
+  final void Function(String)? onChange;
+
 
   const CustomPasswordField({
     this.obscureText = true,
@@ -13,7 +15,7 @@ class CustomPasswordField extends StatelessWidget {
     this.controller,
     this.validator,
     this.autoValidateMode = AutovalidateMode.onUserInteraction,
-    this.onSuffixTap,
+    this.onSuffixTap, this.onChange,
   });
 
   @override
@@ -21,6 +23,7 @@ class CustomPasswordField extends StatelessWidget {
     return TextFormField(
       autovalidateMode: autoValidateMode,
       validator: validator,
+      onChanged: onChange,
       controller: controller,
       keyboardType: TextInputType.visiblePassword,
       obscureText: obscureText,

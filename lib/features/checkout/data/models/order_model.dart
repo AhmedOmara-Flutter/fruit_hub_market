@@ -34,7 +34,8 @@ class OrderModel {
       paymentMethod: entity.isCashOnDelivery == true ? 'Cash' : 'Online',
       createdAt: DateTime.now(),
       address: AddressModel.fromEntity(entity.addressEntity!),
-      totalPrice: entity.cartEntity.getTotalPrice() + Constants.delivery,
+      // totalPrice: entity.cartEntity.getTotalPrice() + Constants.delivery,
+      totalPrice: entity.cartEntity.getTotalPrice(),
       items: entity.cartEntity.cartItems.map((cartItem) => OrderItemModel.fromEntity(cartItem)).toList(),
     );
 

@@ -54,14 +54,14 @@ class OrderSummarySection extends StatelessWidget {
                         .labelMedium!
                         .copyWith(color: Colors.black),
                   ),
-                  Text(
-                    '${Constants.delivery} جنيه',
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: Color(0xff4E5556)),
-                  ),
+                  // Text(
+                  //   '${Constants.delivery} جنيه',
+                  //   style: Theme
+                  //       .of(context)
+                  //       .textTheme
+                  //       .titleMedium!
+                  //       .copyWith(color: Color(0xff4E5556)),
+                  // ),
                 ],
               ),
             ],
@@ -89,7 +89,8 @@ class OrderSummarySection extends StatelessWidget {
                     .copyWith(color: Colors.black),
               ),
               Text(
-                '${totalPrice + Constants.delivery} جنيه',
+                // '${totalPrice + Constants.delivery} جنيه',
+                '${totalPrice} جنيه',
                 style: Theme
                     .of(
                   context,

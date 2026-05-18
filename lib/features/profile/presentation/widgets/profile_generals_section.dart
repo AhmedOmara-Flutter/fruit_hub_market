@@ -26,7 +26,9 @@ class ProfileGeneralSection extends StatelessWidget {
           const SizedBox(height: 10),
           ProfileOptionsList(
             text: 'الملف الشخصي',
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, RouteManager.editProfile);
+            },
             image: Assets.images.user.path,
           ),
           ProfileOptionsList(

@@ -8,7 +8,6 @@ import 'checkout_stepper.dart';
 class CheckoutViewBody extends StatelessWidget {
   const CheckoutViewBody({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CheckoutCubit, CheckoutState>(
@@ -17,11 +16,14 @@ class CheckoutViewBody extends StatelessWidget {
           AppVibration.heavy();
           AppSounds.playClickSound('payment.mp3');
           customShowSnakeBar(
-          context, color: AppColor.mainColor, label: 'تم تأكيد طلبك بنجاح');
+            context,
+            color: AppColor.mainColor,
+            label: 'تم تأكيد طلبك بنجاح',
+          );
           context.read<CartCubit>().cart.cartItems.clear();
           context.read<CartCubit>().saveCart();
-          context.read<MainCubit>().currentIndex=0;
-          Navigator.pushReplacementNamed(context,RouteManager.paymentSuccess,);
+          context.read<MainCubit>().currentIndex = 0;
+          Navigator.pushReplacementNamed(context, RouteManager.paymentSuccess);
         } else if (state is CheckoutAddOrderError) {
           AppVibration.heavy();
           AppSounds.playClickSound('click_error.wav');
@@ -72,11 +74,11 @@ class CheckoutViewBody extends StatelessWidget {
                 child: AbsorbPointer(
                   absorbing: true,
                   child: Container(
-                      color: Colors.black.withOpacity(0.3),
-                      child: LoadingWidget()
+                    color: Colors.black.withOpacity(0.3),
+                    child: LoadingWidget(),
                   ),
                 ),
-              )
+              ),
           ],
         );
       },

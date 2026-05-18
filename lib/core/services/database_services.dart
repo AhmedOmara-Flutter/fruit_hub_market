@@ -22,6 +22,11 @@ abstract class DatabaseServices {
     required Map<String, dynamic> data,
     required String docId,
   });
+
+  Future<void> reAuthenticate({
+    required String email,
+    required String password,
+  });
 }
 
 class FirestoreDatabase implements DatabaseServices {
@@ -121,5 +126,19 @@ class FirestoreDatabase implements DatabaseServices {
   }) async {
     final userRef = FirebaseFirestore.instance.collection(path).doc(docId);
     await userRef.update(data);
+  }
+
+
+  @override
+  Future<void> reAuthenticate(
+      {required String email, required String password}) async {
+    final user = FirebaseAuth.instance.currentUser!;
+
+    final credential = EmailAuthProvider.credential(
+      email: email,
+      password: password,
+    );
+
+    await user.reauthenticateWithCredential(credential);
   }
 }
