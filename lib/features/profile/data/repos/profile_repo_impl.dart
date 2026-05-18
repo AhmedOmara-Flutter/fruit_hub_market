@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
 
@@ -12,13 +13,17 @@ class ProfileRepoImpl implements ProfileRepo {
 
 
   @override
-  Future<Either<Failure, List<OrderEntity>>> getOrder() async {
+  Future<Either<Failure, List<OrderEntity>>> getOrder(String uId) async {
+    print("Fetching orders..."); // 👈 هنا
+
     try {
       final data = await _databaseServices.getData(
         path: 'orders',
         query: {
           'orderBy': 'createdAt',
           'descending': true,
+          'where': 'uId',
+          'isEqualTo': getUser().uId,
         }
       ) as List<Map<String, dynamic>>;
       List<OrderEntity> orders = data.map((order) => OrderModel.fromJson(order).toEntity()).toList();

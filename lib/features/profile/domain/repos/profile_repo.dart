@@ -4,5 +4,5 @@ import '../../../../core/errors/failure.dart';
 import '../../../checkout/domain/entities/order_entity.dart';
 
 abstract class ProfileRepo {
-  Future<Either<Failure, List<OrderEntity>>> getOrder();
+  Future<Either<Failure, List<OrderEntity>>> getOrder(String uId);
 }

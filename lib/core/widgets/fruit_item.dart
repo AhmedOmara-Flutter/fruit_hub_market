@@ -16,7 +16,6 @@ class FruitItem extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         await AppSounds.playClickSound('click_song.wav');
-
         Navigator.pushNamed(
           context,
           RouteManager.productDetails,

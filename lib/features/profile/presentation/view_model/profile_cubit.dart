@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
 import 'package:fruit_hub_market/features/profile/domain/repos/profile_repo.dart';
 import 'package:meta/meta.dart';
@@ -10,7 +11,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> getOrders() async {
     emit(ProfileGetOrdersLoading());
-    final result = await _profileRepo.getOrder();
+    final result = await _profileRepo.getOrder(getUser().uId);
     result.fold(
       (failure) => emit(ProfileGetOrdersError(errMessage: failure.errMessage)),
       (data) {

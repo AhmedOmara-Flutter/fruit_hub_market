@@ -68,7 +68,12 @@ class FirestoreDatabase implements DatabaseServices {
           final descending = query['descending'];
           final startAt = query['startAt'];
           final endAt = query['endAt'];
+          final where = query['where'];
+          final isEqualTo = query['isEqualTo'];
 
+          if (where != null) {
+            data = data.where(where, isEqualTo: isEqualTo);
+          }
           if (orderBy != null) {
             data = data.orderBy(orderBy, descending: descending);
           }
