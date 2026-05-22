@@ -1,4 +1,5 @@
 import 'package:fruit_hub_market/core/helper_function/custom_show_dialog.dart';
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/features/profile/presentation/view_model/profile_cubit.dart';
 
 import '../../../../core/utils/app_imports.dart';
@@ -12,8 +13,20 @@ class EditProfileViewBody extends StatefulWidget {
 
 class _EditProfileViewBodyState extends State<EditProfileViewBody> {
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController oldPasswordController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode? autoValidateMode;
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.text = getUser().userName;
+    phoneController.text = getUser().phone;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,23 +49,15 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                 ),
                 SizedBox(height: 10),
                 CustomTextFormField(
-                  hintText: 'احمد عماره',
+                  controller: nameController,
                   suffixIcon: Icons.edit,
                   onSuffixPressed: () {},
                 ),
                 SizedBox(height: 10),
                 CustomTextFormField(
-                  hintText: '01204391511',
+                  controller: phoneController,
                   suffixIcon: Icons.edit,
                   onSuffixPressed: () {},
-                ),
-                SizedBox(height: 10),
-                CustomTextFormField(
-                  hintText: 'ahmedomara@gmail.com',
-                  suffixIcon: Icons.edit,
-                  onSuffixPressed: () {
-                    cubit.changeObscureText();
-                  },
                 ),
                 SizedBox(height: 30),
                 Text(
@@ -63,19 +68,19 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                 ),
                 SizedBox(height: 10),
                 CustomTextFormField(
-                  hintText: '********',
+                  hintText: 'كلمة المرور الحالي',
                   suffixIcon: Icons.remove_red_eye,
                   onSuffixPressed: () {},
                 ),
                 SizedBox(height: 10),
                 CustomTextFormField(
-                  hintText: '********',
+                  hintText: 'كلمة المرور الجديده',
                   suffixIcon: Icons.remove_red_eye,
                   onSuffixPressed: () {},
                 ),
                 SizedBox(height: 10),
                 CustomTextFormField(
-                  hintText: '********',
+                  hintText: 'تأكيد كلمة المرور الجديده',
                   suffixIcon: Icons.remove_red_eye,
                   onSuffixPressed: () {},
                 ),
