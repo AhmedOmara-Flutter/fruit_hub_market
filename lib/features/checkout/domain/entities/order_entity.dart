@@ -1,3 +1,4 @@
+import '../../../auth/domain/entities/user_entity.dart';
 import '../../../cart/domain/entities/cart_entity.dart';
 import 'address_entity.dart';
 
@@ -6,6 +7,7 @@ class OrderEntity {
   final String uId;
   final DateTime ?createdAt;
   final CartEntity cartEntity;
+  final UserEntity ?userEntity;
   bool ?isCashOnDelivery;
   AddressEntity ?addressEntity;
 
@@ -14,6 +16,7 @@ class OrderEntity {
      this.isCashOnDelivery,
      this.addressEntity,
     required this.uId,this.id,this.createdAt,
+    this.userEntity,
   });
 
 

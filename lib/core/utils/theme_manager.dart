@@ -81,8 +81,6 @@ class ThemeManager {
           borderSide: BorderSide(color: Color(0xffE6E9EA)),
           borderRadius: BorderRadius.circular(4),
         ),
-
-
       )
   );
 

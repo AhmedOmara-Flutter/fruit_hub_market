@@ -36,6 +36,16 @@ class UserModel extends UserEntity {
       phone: user.phone,
     );
   }
+  UserEntity toEntity() {
+    return UserEntity(
+      userName: userName,
+      email: email,
+      uId: uId,
+      image: image,
+      phone: phone,
+    );
+  }
+
 
   Map<String, dynamic> toJson() {
     return {

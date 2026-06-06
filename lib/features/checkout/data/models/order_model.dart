@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
-import '../../../../core/utils/constants.dart';
 import '../../../cart/domain/entities/cart_entity.dart';
 import '../../domain/entities/order_entity.dart';
 import 'address_model.dart';
@@ -11,6 +10,7 @@ class OrderModel {
   final String paymentMethod;
   final DateTime createdAt;
   final num totalPrice;
+  final UserModel userModel;
   final AddressModel address;
   final List<OrderItemModel> items;
   String ?id;
@@ -25,6 +25,7 @@ class OrderModel {
     required this.totalPrice,
    required this.createdAt,
     this.id,
+    required this.userModel,
   });
 
   factory OrderModel.fromEntity(OrderEntity entity) {
@@ -36,7 +37,9 @@ class OrderModel {
       address: AddressModel.fromEntity(entity.addressEntity!),
       // totalPrice: entity.cartEntity.getTotalPrice() + Constants.delivery,
       totalPrice: entity.cartEntity.getTotalPrice(),
-      items: entity.cartEntity.cartItems.map((cartItem) => OrderItemModel.fromEntity(cartItem)).toList(),
+      items: entity.cartEntity.cartItems.map((cartItem) =>
+          OrderItemModel.fromEntity(cartItem)).toList(),
+      userModel: UserModel.fromEntity(entity.userEntity!),
     );
 
   }
@@ -51,6 +54,7 @@ class OrderModel {
       cartEntity: CartEntity(
         cartItems: items.map((item) => item.toEntity()).toList(),
       ),
+      userEntity: userModel.toEntity(),
     );
   }
   factory OrderModel.fromJson(Map<String, dynamic> json) {
@@ -61,7 +65,9 @@ class OrderModel {
       createdAt: (json['createdAt'] as Timestamp?)!.toDate(),
       address: AddressModel.fromJson(json['address']),
       paymentMethod: json['paymentMethod'],
-      items: List<OrderItemModel>.from(json['items'].map((item) => OrderItemModel.fromJson(item))),
+      items: List<OrderItemModel>.from(
+          json['items'].map((item) => OrderItemModel.fromJson(item))),
+      userModel: UserModel.fromJson(json['userModel']),
     );
   }
 
@@ -74,6 +80,7 @@ class OrderModel {
       'address': address.toJson(),
       'items': items.map((item) => item.toJson()).toList(),
       'id':id,
+      'userModel': userModel.toJson(),
     };
   }
 

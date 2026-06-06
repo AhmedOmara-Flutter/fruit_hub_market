@@ -28,7 +28,7 @@ class ProfileRepoImpl implements ProfileRepo {
 
       return Right(orders);
     } catch (e) {
-      print('error in getOrder method in profile repo impl : $e');
+      print('error in getOrder method in profile repos impl : $e');
       return Left(ServerFailure(errMessage: e.toString()));
     }
   }

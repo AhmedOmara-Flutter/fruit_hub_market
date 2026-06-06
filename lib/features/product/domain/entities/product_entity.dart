@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
-import 'package:fruit_hub_market/features/product_details/domain/entities/review_entity.dart';
+import 'package:fruit_hub_market/features/reviews/domain/entities/review_entity.dart';
 
 // ignore_for_file: must_be_immutable
 class ProductEntity extends Equatable {
@@ -21,6 +21,7 @@ class ProductEntity extends Equatable {
   final int ratingCount;
   int sellingCount;
   List<String> ?subImages;
+
 
 
 

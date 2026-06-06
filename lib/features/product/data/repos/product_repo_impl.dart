@@ -46,7 +46,8 @@ class ProductRepoImpl implements ProductRepo {
 
   @override
   Future<Either<Failure, List<ProductEntity>>> searchProducts(
-      String query,) async {
+      String query,) async
+  {
     try {
       final data = await _databaseServices.getData(
         path: 'products',
