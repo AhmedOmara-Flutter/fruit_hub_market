@@ -26,19 +26,15 @@ class ReviewsViewBody extends StatelessWidget {
               SliverToBoxAdapter(
                 child: InfoActionRow(text: 'المراجعه', isBack: true),
               ),
-              SliverToBoxAdapter(
-                child: CustomReviewFieldSection(
-                  autoValidateMode: AutovalidateMode.onUserInteraction,
-                  controller: cubit.reviewController,
-                ),
+              CustomReviewFieldSection(
+                autoValidateMode: AutovalidateMode.onUserInteraction,
+                controller: cubit.reviewController,
               ),
-              SliverToBoxAdapter(
-                child: CustomReviewBarSection(
-                  initialRate: cubit.rate,
-                  ratingUpdate: (double p1) {
-                    cubit.updateRatingField(p1);
-                  },
-                ),
+              CustomReviewBarSection(
+                initialRate: cubit.rate,
+                ratingUpdate: (double p1) {
+                  cubit.updateRatingField(p1);
+                },
               ),
               SliverToBoxAdapter(
                 child: CustomButton(
@@ -73,7 +69,14 @@ class ReviewsViewBody extends StatelessWidget {
                   ),
                 ),
               ),
-              SliverToBoxAdapter(child: RatingBreakdownSection()),
+              RatingBreakdownSection(),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10,right: 10,top: 15,bottom: 20),
+                  child: Text(
+                    'التعليقات',style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.black),
+                  )),
+              ),
               ConditionalBuilder(
                 condition: cubit.reviews.isNotEmpty,
                 builder: (context) => SliverList.separated(

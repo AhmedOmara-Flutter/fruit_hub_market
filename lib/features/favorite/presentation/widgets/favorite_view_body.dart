@@ -2,6 +2,7 @@ import 'package:fruit_hub_market/features/favorite/presentation/view_model/favor
 import 'package:fruit_hub_market/features/favorite/presentation/widgets/empty_favorite_widget.dart';
 
 import '../../../../core/utils/app_imports.dart';
+import '../../../../core/widgets/empty_widget.dart';
 import '../../../../core/widgets/products_grid_view.dart';
 
 class FavoriteViewBody extends StatelessWidget {
@@ -30,7 +31,7 @@ class FavoriteViewBody extends StatelessWidget {
             }
 
             if (state is GetFavoriteEmptyState) {
-              return EmptyFavoriteWidget();
+              return SliverToBoxAdapter(child: EmptyWidget());
             }
 
             return const SliverToBoxAdapter(child: SizedBox());

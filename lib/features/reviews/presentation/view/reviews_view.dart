@@ -10,32 +10,27 @@ class ReviewsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) =>
-        ReviewCubit(instance())
-          ..getReviews(productId),
-        child: BlocListener<ReviewCubit, ReviewState>(
-          listener: (context, state) {
-            if (state is AddReviewError) {
-              customShowSnakeBar(
+      body: BlocListener<ReviewCubit, ReviewState>(
+        listener: (context, state) {
+          if (state is AddReviewError) {
+            customShowSnakeBar(
+              context,
+              color: Colors.red,
+              label: state.errMessage,
+            );
+          }
+          if (state is AddReviewSuccess) {
+            customShowSnakeBar(
                 context,
-                color: Colors.red,
-                label: state.errMessage,
-              );
-            }
-            if (state is AddReviewSuccess) {
-              customShowSnakeBar(
-                  context,
-                  color:AppColor.mainColor,
-                  label:'شكراً ليك! تم إضافة تعليقك بنجاح 👌'
-              );
-              context.read<ReviewCubit>().reviewController.clear();
-              context.read<ReviewCubit>().rate=0;
+                color:AppColor.mainColor,
+                label:'شكراً ليك! تم إضافة تعليقك بنجاح 👌'
+            );
+            context.read<ReviewCubit>().reviewController.clear();
+            context.read<ReviewCubit>().rate=0;
 
-            }
-          },
-          child: ReviewsViewBody(productId: productId,),
-        ),
+          }
+        },
+        child: ReviewsViewBody(productId: productId,),
       ),
     );
   }

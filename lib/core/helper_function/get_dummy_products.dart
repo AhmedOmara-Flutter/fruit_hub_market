@@ -13,11 +13,12 @@ ProductEntity getDummyProduct = ProductEntity(
   unitAmount: 1,
   numberOfCalories: 95,
   isOrganic: true,
-  avgRating: 4.5,
-  ratingCount: 120,
   sellingCount: 300,
   id: '',
   subImages: [],
+  averageRating: 4.5,
+  reviewsCount: 100,
+  ratingSum: 450.0,
 
 );
 

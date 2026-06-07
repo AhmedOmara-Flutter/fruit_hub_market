@@ -14,11 +14,12 @@ class ProductModel extends ProductEntity {
     required super.unitAmount,
     required super.numberOfCalories,
     super.isOrganic = false,
-    super.avgRating = 0.0,
-    super.ratingCount = 0,
     super.sellingCount=0,
     required super.id,
     super.subImages,
+    super.averageRating=0.0,
+    super.reviewsCount=0,
+    super.ratingSum=0.0,
   });
 
   factory ProductModel.fromEntity(ProductEntity entity) {
@@ -35,10 +36,11 @@ class ProductModel extends ProductEntity {
       unitAmount: entity.unitAmount,
       numberOfCalories: entity.numberOfCalories,
       isOrganic: entity.isOrganic,
-      avgRating: entity.avgRating,
-      ratingCount: entity.ratingCount,
       sellingCount: entity.sellingCount,
       subImages: entity.subImages,
+      averageRating: entity.averageRating,
+      reviewsCount: entity.reviewsCount,
+      ratingSum: entity.ratingSum,
     );
   }
 
@@ -56,11 +58,12 @@ class ProductModel extends ProductEntity {
       unitAmount: unitAmount,
       numberOfCalories: numberOfCalories,
       isOrganic: isOrganic,
-      avgRating: avgRating,
-      ratingCount: ratingCount,
       imageFile: imageFile,
       sellingCount: sellingCount,
       subImages: subImages,
+      averageRating: averageRating,
+      reviewsCount: reviewsCount,
+      ratingSum: ratingSum,
     );
   }
 
@@ -78,12 +81,16 @@ class ProductModel extends ProductEntity {
       unitAmount: json['unitAmount'] ?? 0,
       numberOfCalories: json['numberOfCalories'] ?? 0,
       isOrganic: json['isOrganic'] ?? false,
-      avgRating: json['avgRating'] ?? 0,
-      ratingCount: json['ratingCount'] ?? 0,
       sellingCount: json['sellingCount'] ?? 0,
+
       subImages: (json['subImages'] as List<dynamic>?)
           ?.map((e) => e.toString())
-          .toList(),    );
+          .toList(),
+      averageRating: json['averageRating'] ?? 0.0,
+      reviewsCount: json['reviewsCount'] ?? 0,
+      ratingSum: json['ratingSum'] ?? 0.0,
+    );
+
   }
   Map<String, dynamic> toJson() {
     return {
@@ -98,10 +105,11 @@ class ProductModel extends ProductEntity {
       'unitAmount': unitAmount,
       'numberOfCalories': numberOfCalories,
       'isOrganic': isOrganic,
-      'avgRating': avgRating,
-      'ratingCount': ratingCount,
       'sellingCount': sellingCount,
       'subImages': subImages,
+      'averageRating': averageRating,
+      'reviewsCount': reviewsCount,
+      'ratingSum': ratingSum,
     };
   }
 }

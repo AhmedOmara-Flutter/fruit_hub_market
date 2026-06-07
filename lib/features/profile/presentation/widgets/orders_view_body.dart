@@ -1,3 +1,5 @@
+import 'package:fruit_hub_market/core/widgets/empty_widget.dart';
+
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/profile_cubit.dart';
 import 'empty_order_widget.dart';
@@ -16,9 +18,13 @@ class OrdersViewBody extends StatelessWidget {
           builder: (context, state) {
             if (state is ProfileGetOrdersSuccess) {
               if(state.orders.isEmpty) {
-                return SliverFillRemaining(
-                    hasScrollBody: false,
-                    child: EmptyOrderWidget());
+                // return SliverFillRemaining(
+                //     hasScrollBody: false,
+                //     child: EmptyOrderWidget()
+                // );
+                return SliverToBoxAdapter(
+                  child:EmptyWidget(),
+                );
               }   else {
                 return SliverList.separated(
                   itemBuilder: (BuildContext context, int index) =>
@@ -35,8 +41,6 @@ class OrdersViewBody extends StatelessWidget {
               );
             }
               return OrdersLoadingWidget();
-
-
           },
         ),
       ],

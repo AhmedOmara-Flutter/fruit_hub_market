@@ -9,28 +9,30 @@ class CustomReviewBarSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 10,bottom: 20),
-          child: RatingBar.builder(
-            initialRating:initialRate,
-            minRating: 1,
-            direction:  Axis.horizontal,
-            unratedColor: Colors.amber.withAlpha(80),
-            itemCount: 5,
-            itemSize: 40.0,
-            itemPadding: EdgeInsets.symmetric(horizontal: 5.0),
-            itemBuilder: (context, _) => Icon(
-             Icons.star,
-              color: Colors.amber,
+    return SliverToBoxAdapter(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 10,bottom: 20),
+            child: RatingBar.builder(
+              initialRating:initialRate,
+              minRating: 1,
+              direction:  Axis.horizontal,
+              unratedColor: Colors.amber.withAlpha(80),
+              itemCount: 5,
+              itemSize: 40.0,
+              itemPadding: EdgeInsets.symmetric(horizontal: 5.0),
+              itemBuilder: (context, _) => Icon(
+               Icons.star,
+                color: Colors.amber,
+              ),
+              onRatingUpdate: ratingUpdate,
+              updateOnDrag: true,
             ),
-            onRatingUpdate: ratingUpdate,
-            updateOnDrag: true,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -37,7 +37,7 @@ class ProductInfoGridSection extends StatelessWidget {
           ),
           InfoGridCard(
             iconImage: Assets.images.rating.path,
-            title: "${product.avgRating} (${product.ratingCount})",
+            title: "${product.averageRating} (${product.reviewsCount})",
             sub: "التقييمات",
           ),
         ],

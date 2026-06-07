@@ -1,6 +1,3 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-
 import '../../../../core/utils/app_imports.dart';
 import '../../domain/entities/review_entity.dart';
 import '../../domain/repos/review_repo.dart';
@@ -62,5 +59,39 @@ class ReviewCubit extends Cubit<ReviewState> {
         emit(GetReviewSuccess());
       },
     );
+  }
+
+  double get averageRating {
+    if (reviews.isEmpty) {
+      return 0.0;
+    }
+    double totalRating = 0.0;
+    for (var review in reviews) {
+      totalRating += review.rating;
+    }
+    totalRating =
+        double.parse((totalRating / reviews.length).toStringAsFixed(2));
+    return totalRating;
+  }
+
+  double get recommendedPercentage {
+    if (reviews.isEmpty) return 0.0;
+
+    final goodReviews = reviews
+        .where((r) => r.rating >= 4)
+        .length;
+
+    return double.parse(
+      ((goodReviews / reviews.length) * 100).toStringAsFixed(1),
+    );
+  }
+
+  double getPercentage(int star) {
+    if (reviews.isEmpty) return 0;
+
+    final count =
+        reviews.where((r) => r.rating.round() == star).length;
+
+    return count / reviews.length;
   }
 }
