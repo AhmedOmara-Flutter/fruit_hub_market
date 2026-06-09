@@ -1,6 +1,5 @@
+import 'package:fruit_hub_market/core/widgets/empty_widget.dart';
 import 'package:fruit_hub_market/features/product/presentation/widgets/items_count_label.dart';
-import 'package:fruit_hub_market/features/product/presentation/widgets/produt_empty_widget.dart';
-
 import '../../../../../../../core/utils/app_imports.dart';
 import '../../../../core/widgets/custom_refresh_indicator.dart';
 import '../../../../core/widgets/products_grid_view.dart';
@@ -55,7 +54,7 @@ class _ProductViewBodyState extends State<ProductViewBody> {
                 if(state.products.isNotEmpty){
                   return ProductsGridView(products:state.products);
                 }else{
-                  return ProductEmptyWidget();
+                  return SliverFillRemaining(hasScrollBody: false,child: Center(child: EmptyWidget()));
                 }
 
               } else if (state is GetProductsErrorState) {

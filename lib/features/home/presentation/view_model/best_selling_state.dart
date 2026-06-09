@@ -7,6 +7,8 @@ final class BestSellingInitial extends BestSellingState {}
 
 final class GetSellingProductsLoadingState extends BestSellingState {}
 
+final class GetSellingProductsEmptyState extends BestSellingState {}
+
 final class GetSellingProductsSuccessState extends BestSellingState {
   final List<ProductEntity> sellingProducts;
 

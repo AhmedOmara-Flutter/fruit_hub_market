@@ -11,16 +11,36 @@ class BestSellingProductsBlocBuilder extends StatelessWidget {
       builder: (context, state) {
         if (state is GetSellingProductsSuccessState) {
           return ProductsGridView(products: state.sellingProducts);
-        } else if (state is GetSellingProductsErrorState) {
+        }
+        if (state is GetSellingProductsErrorState) {
           return SliverToBoxAdapter(
             child: Center(child: Text(state.errMessage)),
           );
-        } else {
+        }
+
+        if (state is GetSellingProductsLoadingState) {
           return Skeletonizer.sliver(
             enabled: true,
             child: ProductsGridView(products: getDummyProducts()),
           );
         }
+        if (state is GetSellingProductsEmptyState) {
+          return SliverToBoxAdapter(
+            child: Container(
+                width: double.infinity,
+                margin: EdgeInsets.only(bottom: 10, top: 10),
+                child: Text(
+                  'لا يوجد حاليا منتجات برجاء الاضافه', style: Theme
+                    .of(context)
+                    .textTheme
+                    .labelLarge!
+                    .copyWith(
+                ),
+                  textAlign: TextAlign.center,
+                )),
+          );
+        }
+        return const SliverToBoxAdapter(child: SizedBox.shrink());
       },
     );
   }

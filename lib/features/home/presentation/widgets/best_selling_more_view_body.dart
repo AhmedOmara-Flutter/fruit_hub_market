@@ -16,9 +16,8 @@ class _BestSellingMoreViewBodyState extends State<BestSellingMoreViewBody> {
   void initState() {
     final cubit = context.read<BestSellingCubit>();
 
-    if (cubit.sellingProducts.isEmpty) {
       cubit.getSellingProducts();
-    }
+
     super.initState();
   }
 
@@ -31,20 +30,45 @@ class _BestSellingMoreViewBodyState extends State<BestSellingMoreViewBody> {
         ),
         BlocBuilder<BestSellingCubit, BestSellingState>(
           builder: (context, state) {
-            if (state is GetSellingProductsSuccessState) {
-              return ProductsGridView(
-                products: state.sellingProducts,
-              );
-            } else if (state is GetSellingProductsErrorState) {
-              return SliverToBoxAdapter(
-                child: Center(child: Text(state.errMessage)),
-              );
-            } else {
+            if (state is GetSellingProductsLoadingState) {
               return Skeletonizer.sliver(
                 enabled: true,
                 child: ProductsGridView(products: getDummyProducts()),
               );
             }
+
+            if (state is GetSellingProductsEmptyState) {
+              print('EMPTY UI BUILT');
+
+              return  SliverFillRemaining(
+                hasScrollBody: false,
+                child:  Center(
+                  child: Container(
+                      width: double.infinity,
+                      margin: EdgeInsets.only(bottom: 10,top: 10),
+                      child: Text(
+                        'لا يوجد حاليا منتجات برجاء الاضافه', style: Theme
+                          .of(context)
+                          .textTheme
+                          .labelLarge!.copyWith(
+                      ),
+                        textAlign: TextAlign.center,
+                      )),
+                ),
+              );
+            }
+
+            if (state is GetSellingProductsSuccessState) {
+              return ProductsGridView(products: state.sellingProducts);
+            }
+
+            if (state is GetSellingProductsErrorState) {
+              return SliverToBoxAdapter(
+                child: Center(child: Text(state.errMessage)),
+              );
+            }
+
+            return const SliverToBoxAdapter(child: SizedBox.shrink());
           },
         ),
       ],

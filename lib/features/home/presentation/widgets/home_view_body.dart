@@ -24,7 +24,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<BestSellingCubit>().getSellingProducts();
       context.read<FeaturedCubit>().getFeaturedProducts();
-
     });
     super.initState();
   }

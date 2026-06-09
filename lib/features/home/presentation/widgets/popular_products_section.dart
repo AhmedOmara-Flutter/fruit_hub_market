@@ -14,15 +14,6 @@ class PopularProductsSection extends StatelessWidget {
             textAlign: TextAlign.right,
             style: Theme.of(context).textTheme.labelSmall!.copyWith(color: Colors.black),
           ),
-          const Spacer(),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 15,vertical: 7),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                border:Border.all(color: Color(0xffEAEBEB))
-            ),
-            child: SvgPicture.asset(Assets.images.filter2.path),
-          )
         ],
       ),
     );
