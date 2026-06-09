@@ -9,6 +9,7 @@ import '../../features/checkout/presentation/view/checkout_view.dart';
 import '../../features/checkout/presentation/view/order_tracking_view.dart';
 import '../../features/checkout/presentation/view/payment_success_view.dart';
 import '../../features/favorite/presentation/view/favorite_view.dart';
+import '../../features/offers/domain/entities/offer_entity.dart';
 import '../../features/product/domain/entities/product_entity.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
 import '../../features/reviews/presentation/view/reviews_view.dart';
@@ -62,6 +63,7 @@ class GenerateRoute {
         case RouteManager.productDetails:
           return MaterialPageRoute(builder: (context) {
             final product = settings.arguments as ProductEntity;
+            final offer = settings.arguments as OfferEntity;
             return ProductDetailsView(
               product: product,
             );

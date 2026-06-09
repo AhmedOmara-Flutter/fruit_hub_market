@@ -17,14 +17,14 @@ class OfferCubit extends Cubit<OfferState> {
     final result = await _offerRepo.getOffers();
     await result.fold(
       (failure) async {
-        emit(GeOffersFailure(failure.errMessage));
+        emit(GetOffersFailure(failure.errMessage));
       },
       (offers) async {
         this.offers = offers;
         if (offers.isEmpty) {
           emit(GetOffersEmpty());
         } else {
-          emit(GeOffersSuccess(offers));
+          emit(GetOffersSuccess(offers));
         }
       },
     );

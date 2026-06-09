@@ -16,9 +16,6 @@ class ProductEntity extends Equatable {
   final num unitAmount;
   final num numberOfCalories;
   final bool isOrganic;
-
-//  final double avgRating;
-  // final int ratingCount;
   int sellingCount;
   List<String> ?subImages;
   double averageRating;

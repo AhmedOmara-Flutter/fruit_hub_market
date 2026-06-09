@@ -13,13 +13,13 @@ final class OffersSuccess extends OfferState {}
 
 final class GetOffersLoading extends OfferState {}
 final class GetOffersEmpty extends OfferState {}
-final class  GeOffersFailure extends OfferState {
+final class  GetOffersFailure extends OfferState {
   final String errMessage;
-  GeOffersFailure(this.errMessage);
+  GetOffersFailure(this.errMessage);
 }
-final class  GeOffersSuccess extends OfferState {
+final class  GetOffersSuccess extends OfferState {
   final List<OfferEntity> offers;
-  GeOffersSuccess(this.offers);
+  GetOffersSuccess(this.offers);
 }
 
 class DeleteOfferLoading extends OfferState {}

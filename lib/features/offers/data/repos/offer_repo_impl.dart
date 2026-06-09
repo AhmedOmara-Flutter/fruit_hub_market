@@ -44,6 +44,12 @@ class OfferRepoImpl implements OfferRepo {
       List<OfferEntity> offers = result
           .map((e) => OffersModel.fromJson(e).toEntity())
           .toList();
+      final now = DateTime.now();
+      offers = offers.where((offer) {
+        return !offer.startDate.isAfter(now) &&
+            !offer.endDate.isBefore(now);
+      }).toList();
+      offers = offers.where((offer) => offer.isActive).toList();
       return Right(offers);
     } on Exception catch (e) {
       return Left(ServerFailure(errMessage: e.toString()));

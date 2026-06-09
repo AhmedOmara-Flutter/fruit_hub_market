@@ -2,8 +2,11 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg;
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/featured_item_button.dart';
 
+import '../../../offers/domain/entities/offer_entity.dart';
+
 class FeaturedItem extends StatelessWidget {
-  const FeaturedItem({super.key});
+  final OfferEntity offer;
+  const FeaturedItem({super.key, required this.offer});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +31,8 @@ class FeaturedItem extends StatelessWidget {
                 top: 0,
                 bottom: 0,
                 right: itemWidth * .4,
-                child: SvgPicture.asset(
-                  Assets.images.onboardingLogo1.path,
+                child: Image.network(
+                  offer.image,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -52,7 +55,7 @@ class FeaturedItem extends StatelessWidget {
                         height: 25,
                       ),
                       Text(
-                        'عروض العيد',
+                        'عروض اليوم',
                         style: Theme
                             .of(context)
                             .textTheme
@@ -61,7 +64,7 @@ class FeaturedItem extends StatelessWidget {
                       ),
                       const Spacer(),
                       Text(
-                        'خصم 25%',
+                        'خصم ${offer.discountPercentage}%',
                         style: Theme
                             .of(context)
                             .textTheme
@@ -72,7 +75,9 @@ class FeaturedItem extends StatelessWidget {
                         height: 11,
                       ),
                       FeaturedItemButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, RouteManager.productDetails,arguments: offer);
+                        },
                       ),
                       const SizedBox(
                         height: 29,
