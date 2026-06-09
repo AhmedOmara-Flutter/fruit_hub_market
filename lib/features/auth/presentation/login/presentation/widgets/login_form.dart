@@ -26,6 +26,7 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: [
           CustomTextFormField(
+            autoValidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'من فضلك أدخل البريد الإلكتروني';
@@ -41,6 +42,7 @@ class _LoginFormState extends State<LoginForm> {
           ),
           const SizedBox(height: 15),
           CustomPasswordField(
+            autoValidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'من فضلك أدخل كلمة المرور';

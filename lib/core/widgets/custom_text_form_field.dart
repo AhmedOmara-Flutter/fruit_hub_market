@@ -16,7 +16,8 @@ class CustomTextFormField extends StatelessWidget {
     this.keyboardType,
     this.hintText,
     this.validator,
-    this.autoValidateMode = AutovalidateMode.onUserInteraction, this.onSaved,
+    this.autoValidateMode,
+    this.onSaved,
     this.onSuffixPressed, this.suffixIcon,
   });
 
