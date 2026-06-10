@@ -20,12 +20,16 @@ class OfferCubit extends Cubit<OfferState> {
         emit(GetOffersFailure(failure.errMessage));
       },
       (offers) async {
+        print('offers is ${offers.length}');
         this.offers = offers;
         if (offers.isEmpty) {
           emit(GetOffersEmpty());
         } else {
+
           emit(GetOffersSuccess(offers));
         }
+
+
       },
     );
   }

@@ -1,6 +1,8 @@
 
 import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
 
+import '../../../offers/data/models/offer_model.dart';
+
 class ProductModel extends ProductEntity {
   ProductModel({
     required super.name,
@@ -20,6 +22,7 @@ class ProductModel extends ProductEntity {
     super.averageRating=0.0,
     super.reviewsCount=0,
     super.ratingSum=0.0,
+    super.offer,
   });
 
   factory ProductModel.fromEntity(ProductEntity entity) {
@@ -41,6 +44,7 @@ class ProductModel extends ProductEntity {
       averageRating: entity.averageRating,
       reviewsCount: entity.reviewsCount,
       ratingSum: entity.ratingSum,
+      offer: entity.offer,
     );
   }
 
@@ -64,6 +68,7 @@ class ProductModel extends ProductEntity {
       averageRating: averageRating,
       reviewsCount: reviewsCount,
       ratingSum: ratingSum,
+      offer: offer,
     );
   }
 
@@ -89,6 +94,7 @@ class ProductModel extends ProductEntity {
       averageRating: json['averageRating'] ?? 0.0,
       reviewsCount: json['reviewsCount'] ?? 0,
       ratingSum: json['ratingSum'] ?? 0.0,
+      offer: json['offer'] != null ? OfferModel.fromJson(json['offer']) : null,
     );
 
   }
@@ -110,6 +116,7 @@ class ProductModel extends ProductEntity {
       'averageRating': averageRating,
       'reviewsCount': reviewsCount,
       'ratingSum': ratingSum,
+      'offer': offer
     };
   }
 }

@@ -76,7 +76,10 @@ class FeaturedItem extends StatelessWidget {
                       ),
                       FeaturedItemButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, RouteManager.productDetails,arguments: offer);
+                          // Navigator.pushNamed(context,
+                          //   RouteManager.productDetails,
+                          //   arguments: productEntity,
+                          // );
                         },
                       ),
                       const SizedBox(

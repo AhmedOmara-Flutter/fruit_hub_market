@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
+import 'package:fruit_hub_market/features/offers/domain/entities/offer_entity.dart';
 
 // ignore_for_file: must_be_immutable
 class ProductEntity extends Equatable {
@@ -21,6 +22,7 @@ class ProductEntity extends Equatable {
   double averageRating;
   int reviewsCount;
   double ratingSum;
+  OfferEntity? offer;
 
   ProductEntity({
     required this.name,
@@ -40,6 +42,7 @@ class ProductEntity extends Equatable {
     required this.averageRating,
     required this.reviewsCount,
     required this.ratingSum,
+    this.offer,
   });
 
 

@@ -63,7 +63,7 @@ class GenerateRoute {
         case RouteManager.productDetails:
           return MaterialPageRoute(builder: (context) {
             final product = settings.arguments as ProductEntity;
-            final offer = settings.arguments as OfferEntity;
+            // final offer = settings.arguments as OfferEntity;
             return ProductDetailsView(
               product: product,
             );

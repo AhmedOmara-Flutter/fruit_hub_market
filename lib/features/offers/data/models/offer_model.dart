@@ -1,8 +1,7 @@
 import '../../domain/entities/offer_entity.dart';
 
-class OffersModel extends OfferEntity {
-  OffersModel({
-    required super.id,
+class OfferModel extends OfferEntity {
+  const OfferModel({
     required super.productId,
     required super.discountPercentage,
     required super.startDate,
@@ -13,9 +12,8 @@ class OffersModel extends OfferEntity {
     required super.priceAfterDiscount,
   });
 
-  factory OffersModel.fromEntity(OfferEntity entity) {
-    return OffersModel(
-      id: entity.id,
+  factory OfferModel.fromEntity(OfferEntity entity) {
+    return OfferModel(
       productId: entity.productId,
       discountPercentage: entity.discountPercentage,
       startDate: entity.startDate,
@@ -29,7 +27,6 @@ class OffersModel extends OfferEntity {
 
   OfferEntity toEntity() {
     return OfferEntity(
-      id: id,
       productId: productId,
       discountPercentage: discountPercentage,
       startDate: startDate,
@@ -42,9 +39,8 @@ class OffersModel extends OfferEntity {
   }
 
 
-  factory OffersModel.fromJson(Map<String, dynamic> json) {
-    return OffersModel(
-      id: json['id'],
+  factory OfferModel.fromJson(Map<String, dynamic> json) {
+    return OfferModel(
       productId: json['product_id'],
       discountPercentage: json['discount_percentage'],
       startDate: DateTime.parse(json['start_date']),
@@ -58,7 +54,6 @@ class OffersModel extends OfferEntity {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'product_id': productId,
       'discount_percentage': discountPercentage,
       'start_date': startDate.toIso8601String(),

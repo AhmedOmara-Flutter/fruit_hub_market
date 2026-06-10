@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
 class OfferEntity extends Equatable {
-  final String? id;
   final String productId;
   final String image;
   final String name;
@@ -12,7 +11,6 @@ class OfferEntity extends Equatable {
   final DateTime endDate;
 
   const OfferEntity({
-    this.id,
     required this.productId,
     required this.discountPercentage,
     required this.startDate,
@@ -59,7 +57,6 @@ class OfferEntity extends Equatable {
 
   @override
   List<Object?> get props =>[
-    id,
     productId,
     discountPercentage,
     startDate,
