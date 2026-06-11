@@ -37,8 +37,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       onRefresh: () async {
         final bestSellingCubit = context.read<BestSellingCubit>();
         final featuredCubit = context.read<FeaturedCubit>();
+        final offerCubit = context.read<OfferCubit>();
         await bestSellingCubit.getSellingProducts();
         await featuredCubit.getFeaturedProducts();
+        await offerCubit.getOffers();
         getUser();
       },
       child: CustomScrollView(
