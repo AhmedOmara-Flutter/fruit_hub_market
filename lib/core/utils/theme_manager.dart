@@ -2,7 +2,7 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class ThemeManager {
   static ThemeData lightTheme = ThemeData(
-      scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: Colors.white,
 
     ///appBar
     appBarTheme: AppBarTheme(
@@ -19,24 +19,23 @@ class ThemeManager {
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(horizontal: 20),
         backgroundColor: AppColor.mainColor,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         minimumSize: const Size(double.infinity, 65),
       ),
     ),
 
-      ///outlined button
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-              side: BorderSide(color: Color(0xffDDDFDF))
-          ),
-          minimumSize: const Size(double.infinity, 65),
+    ///outlined button
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(color: Color(0xffDDDFDF)),
         ),
+        minimumSize: const Size(double.infinity, 65),
+      ),
     ),
 
     ///text theme
@@ -55,34 +54,31 @@ class ThemeManager {
       labelLarge: StyleManager.font13Weight700,
       //text in info action row
       displaySmall: StyleManager.font19Weight700,
-
     ),
 
-      /// input decoration theme
-      inputDecorationTheme: InputDecorationTheme(
-        filled: true,
-        fillColor: Color(0xffF9FAFA),
-        hintStyle: StyleManager.font13Weight700,
-        labelStyle: StyleManager.font13Weight700,
-        suffixIconColor: Color(0xffC9CECF),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xffE6E9EA)),
-          borderRadius: BorderRadius.circular(4),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xffE6E9EA)),
-          borderRadius: BorderRadius.circular(4),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: AppColor.red),
-          borderRadius: BorderRadius.circular(4),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Color(0xffE6E9EA)),
-          borderRadius: BorderRadius.circular(4),
-        ),
-      )
+    /// input decoration theme
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: Color(0xffF9FAFA),
+      hintStyle: StyleManager.font13Weight700,
+      labelStyle: StyleManager.font13Weight700,
+      suffixIconColor: Color(0xffC9CECF),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Color(0xffE6E9EA)),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Color(0xffE6E9EA)),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: AppColor.red),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Color(0xffE6E9EA)),
+        borderRadius: BorderRadius.circular(4),
+      ),
+    ),
   );
-
-
 }

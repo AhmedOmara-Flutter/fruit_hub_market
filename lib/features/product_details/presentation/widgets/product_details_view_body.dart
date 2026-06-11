@@ -1,3 +1,4 @@
+import 'package:fruit_hub_market/features/offers/presentation/view_model/offer_cubit.dart';
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_button_section.dart';
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_details_section.dart';
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_image_section.dart';
@@ -19,13 +20,15 @@ class ProductDetailsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final offer = context.watch<OfferCubit>().offersMap[product.id];
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          ProductImageSection(product: product,),
+          ProductImageSection(product: product,offer: offer),
          ProductSubImagesSection(product: product,),
-          ProductDetailsSection(product: product),
-          ProductInfoGridSection(product: product,),
+          ProductDetailsSection(product: product,  offer: offer,),
+          ProductInfoGridSection(product: product,offer: offer),
           ProductButtonSection(product: product,),
         ],
       ),
