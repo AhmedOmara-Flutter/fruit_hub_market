@@ -2,13 +2,19 @@ import 'package:fruit_hub_market/features/cart/presentation/view_model/cart_cubi
 import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
 
 import '../../../../core/utils/app_imports.dart';
+import '../../../offers/domain/entities/offer_entity.dart';
 
 
 class ProductButtonSection extends StatelessWidget {
   final ProductEntity product;
+  final OfferEntity? offer;
+
 
   const ProductButtonSection({
     super.key, required this.product,
+    required this.offer,
+
+
   });
 
   @override
@@ -27,7 +33,8 @@ class ProductButtonSection extends StatelessWidget {
                .labelSmall,
          ),
          onPressed: () {
-           context.read<CartCubit>().addProduct(product);
+
+           context.read<CartCubit>().addProduct(product,offer);
          },
        ),
      ),

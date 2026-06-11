@@ -32,7 +32,11 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  void addProduct(ProductEntity product) {
+  void addProduct(ProductEntity product, OfferEntity? offer) {
+    final price = getFinalPrice(
+      product: product,
+      offer: offer,
+    );
     bool isExist = cart.isExist(product);
     if (isExist) {
       for (var element in cart.cartItems) {
@@ -41,7 +45,8 @@ class CartCubit extends Cubit<CartState> {
         }
       }
     } else {
-      CartItemEntity cartItem = CartItemEntity(product: product, quantity: 1);
+      CartItemEntity cartItem = CartItemEntity(
+          product: product, unitPrice: price, quantity: 1);
       cart.addCartItem(cartItem);
     }
     saveCart();

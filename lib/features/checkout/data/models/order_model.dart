@@ -35,12 +35,15 @@ class OrderModel {
       paymentMethod: entity.isCashOnDelivery == true ? 'Cash' : 'Online',
       createdAt: DateTime.now(),
       address: AddressModel.fromEntity(entity.addressEntity!),
-      // totalPrice: entity.cartEntity.getTotalPrice() + Constants.delivery,
-      totalPrice: entity.cartEntity.getTotalPrice(),
+      totalPrice: entity.cartEntity.cartItems.fold(
+        0,
+            (sum, item) => sum + item.totalPrice,
+      ),
       items: entity.cartEntity.cartItems.map((cartItem) =>
           OrderItemModel.fromEntity(cartItem)).toList(),
       userModel: UserModel.fromEntity(entity.userEntity!),
     );
+
 
   }
 
@@ -76,7 +79,7 @@ class OrderModel {
       'uId': uId,
       'paymentMethod': paymentMethod,
       'totalPrice': totalPrice,
-      'createdAt': createdAt ?? FieldValue.serverTimestamp(),
+      'createdAt': createdAt,
       'address': address.toJson(),
       'items': items.map((item) => item.toJson()).toList(),
       'id':id,

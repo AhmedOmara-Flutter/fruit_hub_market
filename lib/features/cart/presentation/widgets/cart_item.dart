@@ -14,14 +14,17 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final offer = context.watch<OfferCubit>().offersMap[cartItemEntity.product.id];
-
-    final unitPrice = getFinalPrice(
-      product: cartItemEntity.product,
-      offer: offer,
-    );
-
-    final totalPrice = unitPrice * cartItemEntity.quantity;    return Container(
+    // final offer = context
+    //     .watch<OfferCubit>()
+    //     .offersMap[cartItemEntity.product.id];
+    //
+    // final unitPrice = getFinalPrice(
+    //   product: cartItemEntity.product,
+    //   offer: offer,
+    // );
+    //
+    // final totalPrice = unitPrice * cartItemEntity.quantity;
+    return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       decoration: const BoxDecoration(
         border: Border(
@@ -33,10 +36,15 @@ class CartItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
-              onTap:(){
-                Navigator.pushNamed(context, RouteManager.productDetails, arguments: cartItemEntity.product);
-              },
-              child: CartItemImage(image: cartItemEntity.product.image!)),
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                RouteManager.productDetails,
+                arguments: cartItemEntity.product,
+              );
+            },
+            child: CartItemImage(image: cartItemEntity.product.image!),
+          ),
           SizedBox(width: 20),
           Expanded(
             child: Column(
@@ -54,11 +62,14 @@ class CartItem extends StatelessWidget {
                     IconButton(
                       onPressed: () {
                         context.read<CartCubit>().deleteCartItem(
-                            cartItemEntity);
+                          cartItemEntity,
+                        );
                       },
-                      icon: Icon(Icons.delete_outline,
+                      icon: Icon(
+                        Icons.delete_outline,
                         color: Colors.grey,
-                        size: 25,),
+                        size: 25,
+                      ),
                     ),
                   ],
                 ),
@@ -75,7 +86,7 @@ class CartItem extends StatelessWidget {
                   children: [
                     QualityControl(cartItemEntity: cartItemEntity),
                     Text(
-                      '$totalPrice جنيه',
+                      '${cartItemEntity.totalPrice} جنيه',
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                         color: Color(0xffF4A91F),
                       ),

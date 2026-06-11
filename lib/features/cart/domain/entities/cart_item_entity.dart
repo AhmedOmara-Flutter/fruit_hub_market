@@ -4,13 +4,17 @@ import 'package:fruit_hub_market/features/product/domain/entities/product_entity
 // ignore_for_file: must_be_immutable
 class CartItemEntity extends Equatable  {
   final ProductEntity product;
+  final num unitPrice;
+
   int quantity;
 
   CartItemEntity({
     required this.product,
     this.quantity = 1,
+    required this.unitPrice,
   });
 
+  num get totalPrice => unitPrice * quantity;
   void increase() {
     quantity++;
   }
@@ -21,9 +25,6 @@ class CartItemEntity extends Equatable  {
     }
   }
 
-  num get totalPrice {
-    return product.price * quantity;
-  }
 
   String get totalWeightText {
     final totalGrams = product.unitAmount * quantity;
@@ -38,17 +39,6 @@ class CartItemEntity extends Equatable  {
     }
   }
 
-  @override
-  String toString() {
-    return '''
-CartItemEntity(
-  product: ${product.name},
-  quantity: $quantity,
-  totalPrice: $totalPrice,
-  totalWeight: $totalWeightText
-)
-''';
-  }
   @override
   // TODO: implement props
   List<Object?> get props => [product, quantity];

@@ -27,13 +27,12 @@ class CartEntity extends Equatable{
     return count;
   }
 
-  double getTotalPrice() {
-    double totalPrice = 0;
-
-    for (CartItemEntity cartItem in cartItems) {
-      totalPrice += cartItem.totalPrice;
+  num getTotalPrice() {
+    num total = 0;
+    for (var item in cartItems) {
+      total += item.totalPrice;
     }
-    return totalPrice;
+    return total;
   }
 
   num getCartTotalPrice(CartCubit cartCubit, OfferCubit offerCubit) {

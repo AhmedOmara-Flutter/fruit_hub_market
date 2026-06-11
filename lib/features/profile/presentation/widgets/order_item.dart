@@ -27,7 +27,7 @@ class OrderItem extends StatelessWidget {
               orderId: '87452658452',
               orderDate: getDateFormate(orderEntity.createdAt.toString()),
               numberOfOrders: orderEntity.cartEntity.getItemsCount(),
-              ordersTotalPrice: orderEntity.cartEntity.getTotalPrice(),
+              ordersTotalPrice: orderEntity.cartEntity.getTotalPrice().toDouble(),
             ),
           ),
         ],

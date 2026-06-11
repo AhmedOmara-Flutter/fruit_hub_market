@@ -5,13 +5,15 @@ import '../../../product/data/models/product_model.dart';
 class CartItemModel extends CartItemEntity {
   CartItemModel({
     required super.product,
+    required super.unitPrice,
     required super.quantity,
   });
 
   factory CartItemModel.fromJson(Map<String, dynamic> json) {
     return CartItemModel(
       product: ProductModel.fromJson(json['product']).toEntity(),
-      quantity: json['quantity'],
+      unitPrice: (json['unitPrice'] ?? 0) as num,
+      quantity: (json['quantity'] ?? 1) as int,
     );
   }
 
@@ -19,6 +21,7 @@ class CartItemModel extends CartItemEntity {
     return {
       'product': ProductModel.fromEntity(product).toJson(),
       'quantity': quantity,
+      'unitPrice': unitPrice,
     };
   }
 
@@ -26,6 +29,7 @@ class CartItemModel extends CartItemEntity {
     return CartItemModel(
       product: entity.product,
       quantity: entity.quantity,
+      unitPrice: entity.unitPrice,
     );
   }
 
@@ -33,6 +37,8 @@ class CartItemModel extends CartItemEntity {
     return CartItemEntity(
       product: product,
       quantity: quantity,
+      unitPrice: unitPrice,
     );
+
   }
 }

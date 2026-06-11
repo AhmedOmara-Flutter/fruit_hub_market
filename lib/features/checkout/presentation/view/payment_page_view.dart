@@ -32,7 +32,7 @@ class PaymentPageView extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       OrderSummarySection(
-                        totalPrice: cubit.orderEntity.cartEntity.getTotalPrice(),
+                        totalPrice: cubit.orderEntity.cartEntity.getTotalPrice().toDouble(),
                       ),
                       SizedBox(height: 10),
                       DeliveryAddressSection(
