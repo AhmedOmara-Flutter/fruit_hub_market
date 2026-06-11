@@ -1,9 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-
 import '../../domain/entities/offer_entity.dart';
 import '../../domain/repos/offer_repo.dart';
-
 part 'offer_state.dart';
 
 class OfferCubit extends Cubit<OfferState> {
@@ -11,6 +9,8 @@ class OfferCubit extends Cubit<OfferState> {
   final OfferRepo _offerRepo;
 
   List<OfferEntity> offers = [];
+  Map<String, OfferEntity> offersMap = {};
+
 
   Future<void> getOffers() async {
     emit(GetOffersLoading());
@@ -22,6 +22,10 @@ class OfferCubit extends Cubit<OfferState> {
       (offers) async {
         print('offers is ${offers.length}');
         this.offers = offers;
+        offersMap = {};
+        for (var offer in offers) {
+          offersMap[offer.productId] = offer;
+        }
         if (offers.isEmpty) {
           emit(GetOffersEmpty());
         } else {
@@ -51,4 +55,7 @@ class OfferCubit extends Cubit<OfferState> {
   void resetState() {
     emit(OffersInitial());
   }
+
+
+
 }
