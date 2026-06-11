@@ -1,6 +1,8 @@
 import 'package:fruit_hub_market/features/cart/domain/entities/cart_item_entity.dart';
 import 'package:fruit_hub_market/features/cart/presentation/widgets/quality_control.dart';
+import 'package:fruit_hub_market/features/offers/presentation/view_model/offer_cubit.dart';
 
+import '../../../../core/helper_function/price_helper.dart';
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/cart_cubit.dart';
 import 'cart_item_image.dart';
@@ -12,7 +14,14 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final offer = context.watch<OfferCubit>().offersMap[cartItemEntity.product.id];
+
+    final unitPrice = getFinalPrice(
+      product: cartItemEntity.product,
+      offer: offer,
+    );
+
+    final totalPrice = unitPrice * cartItemEntity.quantity;    return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       decoration: const BoxDecoration(
         border: Border(
@@ -66,7 +75,7 @@ class CartItem extends StatelessWidget {
                   children: [
                     QualityControl(cartItemEntity: cartItemEntity),
                     Text(
-                      '${cartItemEntity.totalPrice} جنيه',
+                      '$totalPrice جنيه',
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                         color: Color(0xffF4A91F),
                       ),

@@ -4,7 +4,10 @@ import 'package:bloc/bloc.dart';
 import 'package:fruit_hub_market/features/cart/domain/entities/cart_item_entity.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../core/helper_function/price_helper.dart';
 import '../../../../core/services/cache_helper.dart';
+import '../../../offers/domain/entities/offer_entity.dart';
+import '../../../offers/presentation/view_model/offer_cubit.dart';
 import '../../../product/domain/entities/product_entity.dart';
 import '../../data/model/cart_model.dart';
 import '../../domain/entities/cart_entity.dart';
@@ -67,5 +70,20 @@ class CartCubit extends Cubit<CartState> {
     final model = CartModel.fromEntity(cart);
     String jsonData = jsonEncode(model.toJson());
     await CacheHelper.saveData(key: 'cart', value: jsonData);
+  }
+
+  //todo فهمها تاني
+  num getCartItemPrice(
+      CartItemEntity item,
+      OfferCubit offerCubit,
+      ) {
+    final offer = offerCubit.offersMap[item.product.id];
+
+    final unitPrice = getFinalPrice(
+      product: item.product,
+      offer: offer,
+    );
+
+    return unitPrice * item.quantity;
   }
 }
