@@ -38,10 +38,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
         final bestSellingCubit = context.read<BestSellingCubit>();
         final featuredCubit = context.read<FeaturedCubit>();
         final offerCubit = context.read<OfferCubit>();
-        await bestSellingCubit.getSellingProducts();
+         bestSellingCubit.getSellingProducts();
          featuredCubit.getFeaturedProducts();
-        await offerCubit.getOffers();
-        getUser();
+         offerCubit.getOffers();
+         getUser();
       },
       child: CustomScrollView(
         slivers: [

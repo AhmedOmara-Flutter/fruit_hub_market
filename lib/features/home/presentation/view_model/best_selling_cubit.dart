@@ -11,28 +11,27 @@ class BestSellingCubit extends Cubit<BestSellingState> {
   final ProductRepo _productRepo;
   List<ProductEntity> sellingProducts = [];
 
-
-  Future<void> getSellingProducts() async {
-
+  void getSellingProducts() {
     emit(GetSellingProductsLoadingState());
 
-    final products = await _productRepo.getSellingProducts();
+    final data = _productRepo.getSellingProducts();
 
-    products.fold(
-          (failure) {
-            print('Error: ${failure.errMessage}');
-            emit(GetSellingProductsErrorState(errMessage: failure.errMessage));
-      },
-          (data) {
-
-            if(data.isEmpty){
-              emit(GetSellingProductsEmptyState());
-              return;
-            }
-        sellingProducts = data;
-        emit(GetSellingProductsSuccessState(sellingProducts: data));
-      },
-    );
+    data.listen((products) {
+      products.fold(
+        (failure) {
+          print('Error: ${failure.errMessage}');
+          emit(GetSellingProductsErrorState(errMessage: failure.errMessage));
+        },
+        (data) {
+          if (data.isEmpty) {
+            emit(GetSellingProductsEmptyState());
+            return;
+          }
+          sellingProducts = data;
+          emit(GetSellingProductsSuccessState(sellingProducts: data));
+        },
+      );
+    });
   }
 
 }
