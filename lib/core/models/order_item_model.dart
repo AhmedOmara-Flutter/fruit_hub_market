@@ -59,9 +59,9 @@
 //
 //   }
 // }
-import '../../../cart/data/model/cart_item_model.dart';
-import '../../../cart/domain/entities/cart_item_entity.dart';
-import '../../../product/data/models/product_model.dart';
+import '../../features/cart/data/model/cart_item_model.dart';
+import '../../features/cart/domain/entities/cart_item_entity.dart';
+import 'product_model.dart';
 
 class OrderItemModel {
   final String code;

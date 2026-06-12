@@ -1,4 +1,4 @@
-import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
+import 'package:fruit_hub_market/core/entities/product_entity.dart';
 import 'package:fruit_hub_market/features/product/domain/repos/product_repo.dart';
 
 import '../../../../core/utils/app_imports.dart';

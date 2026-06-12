@@ -1,11 +1,12 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
-import '../../../cart/domain/entities/cart_entity.dart';
-import '../../domain/entities/order_entity.dart';
+import '../../features/cart/domain/entities/cart_entity.dart';
+import '../entities/order_entity.dart';
 import 'address_model.dart';
 import 'order_item_model.dart';
 
 class OrderModel {
+  String ?id;
   final String uId;
   final String paymentMethod;
   final DateTime createdAt;
@@ -13,7 +14,6 @@ class OrderModel {
   final UserModel userModel;
   final AddressModel address;
   final List<OrderItemModel> items;
-  String ?id;
 
 
 

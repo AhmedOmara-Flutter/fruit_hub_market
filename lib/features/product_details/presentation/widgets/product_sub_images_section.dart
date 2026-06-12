@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../../../core/utils/app_imports.dart';
-import '../../../product/domain/entities/product_entity.dart';
+import '../../../../core/entities/product_entity.dart';
 
 class ProductSubImagesSection extends StatelessWidget {
   final ProductEntity product;

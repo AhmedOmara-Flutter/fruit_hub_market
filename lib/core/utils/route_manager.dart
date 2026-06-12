@@ -1,6 +1,6 @@
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
+import 'package:fruit_hub_market/core/entities/order_entity.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
 import 'package:fruit_hub_market/features/profile/presentation/view/edit_profile_view.dart';
 
@@ -10,7 +10,7 @@ import '../../features/checkout/presentation/view/order_tracking_view.dart';
 import '../../features/checkout/presentation/view/payment_success_view.dart';
 import '../../features/favorite/presentation/view/favorite_view.dart';
 import '../../features/offers/domain/entities/offer_entity.dart';
-import '../../features/product/domain/entities/product_entity.dart';
+import '../entities/product_entity.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
 import '../../features/reviews/presentation/view/reviews_view.dart';
 import '../../features/profile/presentation/view/orders_view.dart';

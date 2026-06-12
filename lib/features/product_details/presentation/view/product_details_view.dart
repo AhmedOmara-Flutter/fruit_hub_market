@@ -1,6 +1,6 @@
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_details_view_body.dart';
 import '../../../../core/utils/app_imports.dart';
-import '../../../product/domain/entities/product_entity.dart';
+import '../../../../core/entities/product_entity.dart';
 
 
 class ProductDetailsView extends StatelessWidget {

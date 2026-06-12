@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub_market/core/errors/failure.dart';
 import 'package:fruit_hub_market/core/services/database_services.dart';
-import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
+import 'package:fruit_hub_market/core/entities/order_entity.dart';
 
-import '../../../checkout/data/models/order_model.dart';
+import '../../../../core/models/order_model.dart';
 import '../../domain/repos/checkout_repo.dart';
 
 class CheckoutRepoImpl implements CheckoutRepo {

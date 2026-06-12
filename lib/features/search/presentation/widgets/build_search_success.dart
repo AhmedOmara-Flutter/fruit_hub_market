@@ -1,6 +1,6 @@
 import '../../../../core/utils/app_imports.dart';
 import '../../../../core/widgets/products_grid_view.dart';
-import '../../../product/domain/entities/product_entity.dart';
+import '../../../../core/entities/product_entity.dart';
 
 class BuildSearchSuccess extends StatelessWidget {
   final List<ProductEntity> products;

@@ -2,7 +2,7 @@ import 'package:fruit_hub_market/features/product_details/presentation/widgets/r
 
 import '../../../../core/utils/app_imports.dart';
 import '../../../offers/domain/entities/offer_entity.dart';
-import '../../../product/domain/entities/product_entity.dart';
+import '../../../../core/entities/product_entity.dart';
 
 class ProductDetailsSection extends StatelessWidget {
   const ProductDetailsSection({

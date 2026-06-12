@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:fruit_hub_market/features/favorite/domain/repos/favorite_repo.dart';
 import 'package:meta/meta.dart';
 
-import '../../../product/domain/entities/product_entity.dart';
+import '../../../../core/entities/product_entity.dart';
 
 part 'favorite_state.dart';
 

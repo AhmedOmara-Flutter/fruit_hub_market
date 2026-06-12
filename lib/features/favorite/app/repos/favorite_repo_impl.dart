@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/features/favorite/domain/repos/favorite_repo.dart';
-import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
+import 'package:fruit_hub_market/core/entities/product_entity.dart';
 
 import '../../../../core/utils/app_imports.dart';
-import '../../../product/data/models/product_model.dart';
+import '../../../../core/models/product_model.dart';
 
 class FavoriteRepoImpl implements FavoriteRepo {
   final DatabaseServices _databaseServices;

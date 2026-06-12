@@ -1,4 +1,4 @@
-import 'package:fruit_hub_market/features/checkout/domain/entities/address_entity.dart';
+import 'package:fruit_hub_market/core/entities/address_entity.dart';
 
 class AddressModel extends AddressEntity {
   AddressModel({

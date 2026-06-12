@@ -9,6 +9,7 @@ import '../../features/favorite/app/repos/favorite_repo_impl.dart';
 import '../../features/favorite/domain/repos/favorite_repo.dart';
 import '../../features/offers/data/repos/offer_repo_impl.dart';
 import '../../features/offers/domain/repos/offer_repo.dart';
+import '../../features/profile/presentation/view_model/profile_cubit.dart';
 import '../../features/reviews/data/repos/review_repo_impl.dart';
 import '../../features/reviews/domain/repos/review_repo.dart';
 import '../../features/profile/data/repos/profile_repo_impl.dart';
@@ -46,5 +47,6 @@ void initAppModule() {
   instance.registerLazySingleton<OfferRepo>(
         () => OfferRepoImpl(instance()),
   );
+  instance.registerLazySingleton<ProfileCubit>(()=> ProfileCubit(instance(), instance()));
   
 }

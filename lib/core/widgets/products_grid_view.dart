@@ -3,7 +3,7 @@ import 'package:fruit_hub_market/core/widgets/fruit_item.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/helper_function/get_dummy_products.dart';
-import '../../features/product/domain/entities/product_entity.dart';
+import '../entities/product_entity.dart';
 
 class ProductsGridView extends StatelessWidget {
   final List<ProductEntity> products;

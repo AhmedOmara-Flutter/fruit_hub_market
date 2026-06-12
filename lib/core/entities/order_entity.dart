@@ -1,5 +1,5 @@
-import '../../../auth/domain/entities/user_entity.dart';
-import '../../../cart/domain/entities/cart_entity.dart';
+import '../../features/auth/domain/entities/user_entity.dart';
+import '../../features/cart/domain/entities/cart_entity.dart';
 import 'address_entity.dart';
 
 class OrderEntity {
@@ -10,6 +10,7 @@ class OrderEntity {
   final UserEntity ?userEntity;
   bool ?isCashOnDelivery;
   AddressEntity ?addressEntity;
+ // final String status;
 
   OrderEntity({
     required this.cartEntity,
@@ -18,23 +19,6 @@ class OrderEntity {
     required this.uId,this.id,this.createdAt,
     this.userEntity,
   });
-
-
-  @override
-  String toString() {
-    return '''
-OrderEntity(
-  uId: $uId,
-  isCashOnDelivery: $isCashOnDelivery,
-
-  address:
-  $addressEntity,
-
-  cart:
-  $cartEntity
-)
-''';
-  }
 
   String getFullAddress(){
     return '${addressEntity!.address}, ${addressEntity!.country}, ${addressEntity!.apartment}';

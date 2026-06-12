@@ -8,7 +8,7 @@ import '../../../../core/helper_function/price_helper.dart';
 import '../../../../core/services/cache_helper.dart';
 import '../../../offers/domain/entities/offer_entity.dart';
 import '../../../offers/presentation/view_model/offer_cubit.dart';
-import '../../../product/domain/entities/product_entity.dart';
+import '../../../../core/entities/product_entity.dart';
 import '../../data/model/cart_model.dart';
 import '../../domain/entities/cart_entity.dart';
 

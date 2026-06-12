@@ -5,7 +5,7 @@ import 'package:fruit_hub_market/features/product_details/presentation/widgets/d
 import '../../../../core/utils/app_imports.dart';
 import '../../../../core/widgets/custom_back_button.dart';
 import '../../../offers/domain/entities/offer_entity.dart';
-import '../../../product/domain/entities/product_entity.dart';
+import '../../../../core/entities/product_entity.dart';
 
 class ProductImageSection extends StatelessWidget {
   const ProductImageSection({

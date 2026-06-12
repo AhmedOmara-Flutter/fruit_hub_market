@@ -16,12 +16,9 @@ class OrdersViewBody extends StatelessWidget {
         SliverToBoxAdapter(child: InfoActionRow(text: 'طلباتي', isBack: true)),
         BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {
+            print('state is ${state.runtimeType}');
             if (state is ProfileGetOrdersSuccess) {
               if(state.orders.isEmpty) {
-                // return SliverFillRemaining(
-                //     hasScrollBody: false,
-                //     child: EmptyOrderWidget()
-                // );
                 return SliverToBoxAdapter(
                   child:EmptyWidget(),
                 );

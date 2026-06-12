@@ -1,5 +1,5 @@
 import 'package:fruit_hub_market/features/cart/presentation/view_model/cart_cubit.dart';
-import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
+import 'package:fruit_hub_market/core/entities/product_entity.dart';
 
 import '../../../../core/utils/app_imports.dart';
 import '../../../offers/domain/entities/offer_entity.dart';

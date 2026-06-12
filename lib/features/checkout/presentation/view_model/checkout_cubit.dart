@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
+import 'package:fruit_hub_market/core/entities/order_entity.dart';
 
 import '../../../../core/utils/app_imports.dart';
+import '../../../profile/presentation/view_model/profile_cubit.dart';
 import '../../domain/repos/checkout_repo.dart';
 import '../view/address_page_view.dart';
 import '../view/payment_page_view.dart';
@@ -62,9 +63,12 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       const Duration(seconds: 2),
     );
     final result = await _checkoutRepo.addOrder(orderEntity);
+
     result.fold(
       (failure) => emit(CheckoutAddOrderError(failure.errMessage)),
-      (data) => emit(CheckoutAddOrderSuccess()),
+          (data) {
+        emit(CheckoutAddOrderSuccess());
+      },
     );
   }
   }

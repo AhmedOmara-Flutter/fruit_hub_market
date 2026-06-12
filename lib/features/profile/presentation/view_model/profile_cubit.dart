@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
+import 'package:fruit_hub_market/core/entities/order_entity.dart';
 import 'package:fruit_hub_market/features/profile/domain/repos/profile_repo.dart';
 import 'package:meta/meta.dart';
 part 'profile_state.dart';

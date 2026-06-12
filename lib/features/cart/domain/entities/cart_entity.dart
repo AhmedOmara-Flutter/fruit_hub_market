@@ -3,7 +3,7 @@ import 'package:fruit_hub_market/features/cart/presentation/view_model/cart_cubi
 import 'package:fruit_hub_market/features/offers/presentation/view_model/offer_cubit.dart';
 
 import '../../../../core/helper_function/price_helper.dart';
-import '../../../product/domain/entities/product_entity.dart';
+import '../../../../core/entities/product_entity.dart';
 import 'cart_item_entity.dart';
 
 class CartEntity extends Equatable{

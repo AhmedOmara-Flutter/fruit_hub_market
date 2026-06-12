@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/features/checkout/domain/entities/order_entity.dart';
+import 'package:fruit_hub_market/core/entities/order_entity.dart';
 
-import '../../../checkout/data/models/order_model.dart';
+import '../../../../core/models/order_model.dart';
 import '../../domain/repos/profile_repo.dart';
 
 class ProfileRepoImpl implements ProfileRepo {

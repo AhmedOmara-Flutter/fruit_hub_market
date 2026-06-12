@@ -1,6 +1,6 @@
 import 'package:fruit_hub_market/features/cart/domain/entities/cart_item_entity.dart';
 
-import '../../../product/data/models/product_model.dart';
+import '../../../../core/models/product_model.dart';
 
 class CartItemModel extends CartItemEntity {
   CartItemModel({

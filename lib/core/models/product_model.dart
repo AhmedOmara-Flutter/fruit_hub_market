@@ -1,7 +1,7 @@
 
-import 'package:fruit_hub_market/features/product/domain/entities/product_entity.dart';
+import 'package:fruit_hub_market/core/entities/product_entity.dart';
 
-import '../../../offers/data/models/offer_model.dart';
+import '../../features/offers/data/models/offer_model.dart';
 
 class ProductModel extends ProductEntity {
   ProductModel({

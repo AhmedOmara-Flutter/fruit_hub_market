@@ -1,6 +1,6 @@
 import '../../../../core/helper_function/get_date_formate.dart';
 import '../../../../core/utils/app_imports.dart';
-import '../../../checkout/domain/entities/order_entity.dart';
+import '../../../../core/entities/order_entity.dart';
 import 'order_item_content.dart';
 import 'order_item_image.dart';
 

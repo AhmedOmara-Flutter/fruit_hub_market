@@ -1,7 +1,7 @@
 import 'package:fruit_hub_market/features/cart/presentation/view_model/cart_cubit.dart';
 import 'package:fruit_hub_market/features/offers/presentation/view_model/offer_cubit.dart';
 
-import '../../features/product/domain/entities/product_entity.dart';
+import '../entities/product_entity.dart';
 import '../../features/offers/domain/entities/offer_entity.dart';
 
 num getFinalPrice({
