@@ -39,7 +39,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
         final featuredCubit = context.read<FeaturedCubit>();
         final offerCubit = context.read<OfferCubit>();
         await bestSellingCubit.getSellingProducts();
-        await featuredCubit.getFeaturedProducts();
+         featuredCubit.getFeaturedProducts();
         await offerCubit.getOffers();
         getUser();
       },

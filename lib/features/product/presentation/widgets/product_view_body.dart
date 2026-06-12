@@ -29,7 +29,7 @@ class _ProductViewBodyState extends State<ProductViewBody> {
     return CustomRefreshIndicator(
       onRefresh: () async {
         final productCubit = context.read<ProductCubit>();
-        await productCubit.getProducts();
+         productCubit.getProducts();
       },
       child: CustomScrollView(
         slivers: [

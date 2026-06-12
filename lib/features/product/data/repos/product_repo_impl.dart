@@ -10,16 +10,22 @@ class ProductRepoImpl implements ProductRepo {
   ProductRepoImpl(this._databaseServices);
 
   @override
-  Future<Either<Failure, List<ProductEntity>>> getProducts() async {
+  Stream<Either<Failure, List<ProductEntity>>> getProducts() async* {
     try {
-      final data = await _databaseServices.getData(path: 'products',)as List<Map<String, dynamic>>;
+      await for (var (data as List<Map<String, dynamic>>) in _databaseServices.getStreamData(path: 'products',)) {
+        List<ProductEntity> products = data
+            .map((product) => ProductModel.fromJson(product).toEntity())
+            .toList();
+        yield Right(products);
+      }
+      final data = _databaseServices.getStreamData(path: 'products',)as List<Map<String, dynamic>>;
       List<ProductEntity> products = data
           .map((product) => ProductModel.fromJson(product).toEntity())
           .toList();
-      return Right(products);
+      yield Right(products);
     } on Exception catch (e) {
       print(e);
-      return Left(ServerFailure(errMessage: e.toString()));
+      yield Left(ServerFailure(errMessage: e.toString()));
     }
   }
 

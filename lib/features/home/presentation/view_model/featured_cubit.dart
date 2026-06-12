@@ -11,21 +11,23 @@ class FeaturedCubit extends Cubit<FeaturedState> {
   final ProductRepo _productRepo;
   List<ProductEntity> featuredProducts = [];
 
-  Future<void> getFeaturedProducts() async {
+  void getFeaturedProducts() {
     emit(GetFeaturedProductsLoadingState());
-    final products = await _productRepo.getProducts();
-    products.fold(
-      (failure) {
-        emit(GetFeaturedProductsErrorState(errMessage: failure.errMessage));
-      },
-      (data) {
-        featuredProducts = data
-            .where((element) => element.isFeatured == true)
-            .toList();
-        emit(
-          GetFeaturedProductsSuccessState(featuredProducts: featuredProducts),
-        );
-      },
-    );
+    final products = _productRepo.getProducts();
+    products.listen((data) {
+      data.fold(
+        (failure) {
+          emit(GetFeaturedProductsErrorState(errMessage: failure.errMessage));
+        },
+        (data) {
+          featuredProducts = data
+              .where((element) => element.isFeatured == true)
+              .toList();
+          emit(
+            GetFeaturedProductsSuccessState(featuredProducts: featuredProducts),
+          );
+        },
+      );
+    });
   }
 }

@@ -11,18 +11,20 @@ class ProductCubit extends Cubit<ProductState> {
   List<ProductEntity> products = [];
 
 
-  Future<void> getProducts() async {
+  void getProducts() {
     emit(GetProductsLoadingState());
-    final products = await _productRepo.getProducts();
-    products.fold(
-      (failure) {
-        emit(GetProductsErrorState(errMessage: failure.errMessage));
-      },
-      (data) {
-        this.products = data;
-        emit(GetProductsSuccessState(products: data));
-      },
-    );
+    final products = _productRepo.getProducts();
+    products.listen((data) {
+      data.fold(
+            (failure) {
+          emit(GetProductsErrorState(errMessage: failure.errMessage));
+        },
+            (data) {
+          this.products = data;
+          emit(GetProductsSuccessState(products: data));
+        },
+      );
+    });
   }
 
   Future<void> increaseSellingCount(String productId) async {
