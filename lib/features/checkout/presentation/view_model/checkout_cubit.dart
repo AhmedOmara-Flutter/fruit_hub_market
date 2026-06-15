@@ -1,10 +1,7 @@
 import 'dart:async';
-
 import 'package:fruit_hub_market/core/entities/order_entity.dart';
-
 import '../../../../core/utils/app_imports.dart';
-import '../../../profile/presentation/view_model/profile_cubit.dart';
-import '../../domain/repos/checkout_repo.dart';
+import '../../../../core/repos/order_repo/order_repo.dart';
 import '../view/address_page_view.dart';
 import '../view/payment_page_view.dart';
 import '../view/shipping_page_view.dart';
@@ -14,7 +11,7 @@ part 'checkout_state.dart';
 class CheckoutCubit extends Cubit<CheckoutState> {
   CheckoutCubit(this.orderEntity, this._checkoutRepo)
     : super(CheckoutInitial());
-  final CheckoutRepo _checkoutRepo;
+  final OrderRepo _checkoutRepo;
   Timer? timer;
 
   OrderEntity orderEntity;
@@ -67,6 +64,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     result.fold(
       (failure) => emit(CheckoutAddOrderError(failure.errMessage)),
           (data) {
+        orderEntity.id = data;
         emit(CheckoutAddOrderSuccess());
       },
     );

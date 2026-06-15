@@ -75,10 +75,6 @@ class ShippingMethodItem extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                // Text(
-                //   '+${Constants.delivery}',
-                //   style: Theme.of(context).textTheme.titleSmall!.copyWith(),
-                // ),
               ],
             ),
           ],

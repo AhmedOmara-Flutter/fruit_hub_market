@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+
 import '../../domain/entities/offer_entity.dart';
-import '../../domain/repos/offer_repo.dart';
+import '../../../../core/repos/offer_repo/offer_repo.dart';
+
 part 'offer_state.dart';
 
 class OfferCubit extends Cubit<OfferState> {
@@ -12,30 +14,29 @@ class OfferCubit extends Cubit<OfferState> {
   Map<String, OfferEntity> offersMap = {};
 
 
-  Future<void> getOffers() async {
+  void getOffers() {
     emit(GetOffersLoading());
-    final result = await _offerRepo.getOffers();
-    await result.fold(
-      (failure) async {
-        emit(GetOffersFailure(failure.errMessage));
-      },
-      (offers) async {
-        print('offers is ${offers.length}');
-        this.offers = offers;
-        offersMap = {};
-        for (var offer in offers) {
-          offersMap[offer.productId] = offer;
-        }
-        if (offers.isEmpty) {
-          emit(GetOffersEmpty());
-        } else {
+    final data = _offerRepo.getOffers();
+    data.listen((result) {
+      result.fold(
+        (failure) {
+          emit(GetOffersFailure(failure.errMessage));
+        },
+        (offers) {
+          this.offers = offers;
 
-          emit(GetOffersSuccess(offers));
-        }
-
-
-      },
-    );
+          offersMap = {};
+          for (var offer in offers) {
+            offersMap[offer.productId] = offer;
+          }
+          if (offers.isEmpty) {
+            emit(GetOffersEmpty());
+          } else {
+            emit(GetOffersSuccess(offers));
+          }
+        },
+      );
+    });
   }
 
   Future<void> deleteOffer(String offerId) async {
@@ -47,7 +48,6 @@ class OfferCubit extends Cubit<OfferState> {
       },
       (success) async {
         emit(DeleteOfferSuccess());
-        await getOffers();
       },
     );
   }
@@ -55,7 +55,4 @@ class OfferCubit extends Cubit<OfferState> {
   void resetState() {
     emit(OffersInitial());
   }
-
-
-
 }

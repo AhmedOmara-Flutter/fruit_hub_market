@@ -11,12 +11,9 @@ class ReviewRepoImpl implements ReviewRepo {
   ReviewRepoImpl(this._databaseServices);
 
   @override
-  Future<Either<Failure, void>> addReview(
-      ReviewEntity review,
-      String productId,
-      ) async {
+  Future<Either<Failure, void>> addReview(ReviewEntity review,
+      String productId,) async {
     try {
-
       // 1. add review
       await _databaseServices.addData(
         path: 'products/$productId/reviews',
@@ -25,10 +22,9 @@ class ReviewRepoImpl implements ReviewRepo {
       );
 
       // 2. get product safely
-      final product = await _databaseServices.getData(
-        path: 'products',
-        uId: productId,
-      )as Map<String, dynamic>;
+      final product =
+          await _databaseServices.getData(path: 'products', uId: productId)
+              as Map<String, dynamic>;
 
       final currentCount = (product['reviewsCount'] ?? 0) as num;
       final currentSum = (product['ratingSum'] ?? 0) as num;
@@ -53,25 +49,25 @@ class ReviewRepoImpl implements ReviewRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
+
   @override
-  Future<Either<Failure, List<ReviewEntity>>> getReviews(
-      String productId,
-      ) async {
+  Stream<Either<Failure, List<ReviewEntity>>> getReviews(
+    String productId,
+  ) async* {
     try {
-      final data = await _databaseServices.getData(
-        path: 'products/$productId/reviews',
-        query: {
-          'orderBy': 'date',
-          'descending': true
-        }
-      );
+      await for (var (data as List<Map<String, dynamic>>)
+          in _databaseServices.getStreamData(
+            path: 'products/$productId/reviews',
+            query: {'orderBy': 'date', 'descending': true},
+          )) {
+        List<ReviewEntity> reviews = (data as List)
+            .map((e) => ReviewModel.fromJson(e).toEntity())
+            .toList();
 
-      List<ReviewEntity> reviews = (data as List)
-          .map((e) => ReviewModel.fromJson(e).toEntity())
-          .toList();
-
-      return right(reviews);
+        yield right(reviews);
+      }
     } catch (e) {
-      return left(ServerFailure(errMessage: e.toString()));
+      yield left(ServerFailure(errMessage: e.toString()));
     }
-  }}
+  }
+}

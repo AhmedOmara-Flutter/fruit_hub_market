@@ -3,5 +3,5 @@ import '../../../../core/entities/product_entity.dart';
 
 abstract class FavoriteRepo {
   Future<Either<String, bool>> toggleFavorite(ProductEntity product);
-  Future<Either<String, List<ProductEntity>>> getFavoriteProducts();
+  Stream<Either<String, List<ProductEntity>>> getFavoriteProducts();
 }

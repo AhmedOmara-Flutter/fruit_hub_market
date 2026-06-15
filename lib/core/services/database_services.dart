@@ -1,7 +1,7 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 abstract class DatabaseServices {
-  Future<void> addData({
+  Future<String> addData({
     required String path,
     required Map<String, dynamic> data,
     String? uId,
@@ -37,7 +37,7 @@ abstract class DatabaseServices {
 
 class FirestoreDatabase implements DatabaseServices {
   @override
-  Future<void> addData({
+  Future<String> addData({
     required String path,
     required Map<String, dynamic> data,
     String? uId,
@@ -45,8 +45,12 @@ class FirestoreDatabase implements DatabaseServices {
     try {
       if (uId != null) {
         await FirebaseFirestore.instance.collection(path).doc(uId).set(data);
+        return uId;
       } else {
-        await FirebaseFirestore.instance.collection(path).add(data);
+        final docRef = await FirebaseFirestore.instance.collection(path).add(data);
+        data['id'] = docRef.id;
+        await docRef.update(data);
+        return docRef.id;
       }
     } on Exception catch (e) {
       throw (e.toString());
@@ -150,7 +154,8 @@ class FirestoreDatabase implements DatabaseServices {
 
   @override
   Stream<dynamic> getStreamData(
-      {required String path, String? uId, Map<String, dynamic>? query}) async* {
+      {required String path, String? uId, Map<String, dynamic>? query}) async*
+  {
     try {
       if (uId != null) {
         final user = await FirebaseFirestore.instance

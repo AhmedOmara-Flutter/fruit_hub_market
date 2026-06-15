@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:fruit_hub_market/features/product/domain/repos/product_repo.dart';
+import 'package:fruit_hub_market/core/repos/product_repo/product_repo.dart';
 import 'package:meta/meta.dart';
 import '../../../../core/entities/product_entity.dart';
 part 'search_state.dart';

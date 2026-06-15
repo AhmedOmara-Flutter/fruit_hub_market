@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
@@ -12,6 +13,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   FavoriteCubit(this._favoriteRepo) : super(FavoriteInitial());
   final FavoriteRepo _favoriteRepo;
   Map<String, bool> favorites = {};
+  StreamSubscription ?_favoriteStreamSubscription;
 
   Future toggleFavorite(ProductEntity product) async {
     final data = await _favoriteRepo.toggleFavorite(product);
@@ -28,36 +30,46 @@ class FavoriteCubit extends Cubit<FavoriteState> {
         }else{
           emit(FavoriteDeletedState());
         }
-        await getFavorites();
+          getFavorites();
       },
     );
   }
 
-  Future<void> getFavorites() async {
+  void getFavorites() {
+
     emit(GetFavoriteLoadingState());
     try {
-      final result = await _favoriteRepo.getFavoriteProducts();
-      result.fold(
-        (l) {
-          log(l);
-          emit(GetFavoriteErrorState(error: l));
-        },
-        (favoritesProducts) {
-          favorites.clear();
-          for (var product in favoritesProducts) {
-            favorites[product.id] = true;
-          }
+      _favoriteStreamSubscription =
+          _favoriteRepo.getFavoriteProducts().listen((data) {
+            data.fold(
+                  (l) {
+                log(l);
+                emit(GetFavoriteErrorState(error: l));
+              },
+                  (favoritesProducts) {
+                favorites.clear();
+                for (var product in favoritesProducts) {
+                  favorites[product.id] = true;
+                }
 
-          if (favoritesProducts.isEmpty) {
-            emit(GetFavoriteEmptyState());
-            return;
-          }
-         emit(GetFavoriteSuccessState(favoritesProducts));
-        },
-      );
+                if (favoritesProducts.isEmpty) {
+                  emit(GetFavoriteEmptyState());
+                  return;
+                }
+                emit(GetFavoriteSuccessState(favoritesProducts));
+              },
+            );
+          });
+
     } catch (e) {
       log(e.toString());
       emit(GetFavoriteErrorState(error: e.toString()));
     }
+  }
+
+  @override
+  Future<void> close() {
+    _favoriteStreamSubscription!.cancel();
+    return super.close();
   }
 }

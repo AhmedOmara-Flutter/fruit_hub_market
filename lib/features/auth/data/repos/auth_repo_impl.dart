@@ -172,4 +172,22 @@ class AuthRepoImpl implements AuthRepo {
     await CacheHelper.removeData(key: 'uId');
     await CacheHelper.removeData(key: 'userData');
   }
+
+  @override
+  Future<Either<Failure, void>> updateUser(UserEntity userEntity,) async {
+    try {
+      await _databaseServices.updateData(
+          path: 'users',
+          data:{
+            'userName': userEntity.userName,
+            'phone': userEntity.phone,
+          },
+          docId: userEntity.uId
+      );
+      return Right(null);
+    } on Exception catch (e) {
+      print(e);
+      return Left(ServerFailure(errMessage: e.toString()));
+    }
+  }
 }

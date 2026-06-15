@@ -8,7 +8,7 @@ abstract class ReviewRepo {
       String productId,
       );
 
-  Future<Either<Failure, List<ReviewEntity>>> getReviews(
+  Stream<Either<Failure, List<ReviewEntity>>> getReviews(
       String productId,
       );
 }

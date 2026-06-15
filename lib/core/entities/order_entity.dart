@@ -3,14 +3,14 @@ import '../../features/cart/domain/entities/cart_entity.dart';
 import 'address_entity.dart';
 
 class OrderEntity {
-  final String ?id;
+  String ?id;
   final String uId;
   final DateTime ?createdAt;
   final CartEntity cartEntity;
   final UserEntity ?userEntity;
   bool ?isCashOnDelivery;
   AddressEntity ?addressEntity;
- // final String status;
+  final String ?status;
 
   OrderEntity({
     required this.cartEntity,
@@ -18,6 +18,7 @@ class OrderEntity {
      this.addressEntity,
     required this.uId,this.id,this.createdAt,
     this.userEntity,
+     this.status,
   });
 
   String getFullAddress(){

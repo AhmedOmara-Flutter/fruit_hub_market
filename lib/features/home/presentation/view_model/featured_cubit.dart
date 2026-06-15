@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/entities/product_entity.dart';
-import '../../../product/domain/repos/product_repo.dart';
+import '../../../../core/repos/product_repo/product_repo.dart';
 
 part 'featured_state.dart';
 

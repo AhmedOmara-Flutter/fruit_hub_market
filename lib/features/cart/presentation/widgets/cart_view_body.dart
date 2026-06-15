@@ -38,7 +38,7 @@ class CartViewBody extends StatelessWidget {
                   SizedBox(height: 50),
                   CustomButton(
                     child: Text(
-                      'الدفع $totalPrice جنيه',
+                      'الدفع ${totalPrice.toStringAsFixed(2)} جنيه',
                       style: Theme
                           .of(context)
                           .textTheme

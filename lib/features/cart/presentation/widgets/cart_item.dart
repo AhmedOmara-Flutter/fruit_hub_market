@@ -14,16 +14,6 @@ class CartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final offer = context
-    //     .watch<OfferCubit>()
-    //     .offersMap[cartItemEntity.product.id];
-    //
-    // final unitPrice = getFinalPrice(
-    //   product: cartItemEntity.product,
-    //   offer: offer,
-    // );
-    //
-    // final totalPrice = unitPrice * cartItemEntity.quantity;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       decoration: const BoxDecoration(
@@ -86,7 +76,7 @@ class CartItem extends StatelessWidget {
                   children: [
                     QualityControl(cartItemEntity: cartItemEntity),
                     Text(
-                      '${cartItemEntity.totalPrice} جنيه',
+                      '${cartItemEntity.totalPrice.toStringAsFixed(2)} جنيه',
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                         color: Color(0xffF4A91F),
                       ),

@@ -24,10 +24,14 @@ class OrderItem extends StatelessWidget {
           SizedBox(width: 10),
           Expanded(
             child: OrderItemContent(
-              orderId: '87452658452',
+              orderId: orderEntity.id??'',
               orderDate: getDateFormate(orderEntity.createdAt.toString()),
               numberOfOrders: orderEntity.cartEntity.getItemsCount(),
               ordersTotalPrice: orderEntity.cartEntity.getTotalPrice().toDouble(),
+              products: orderEntity.cartEntity.cartItems
+                  .map((item) =>
+              '${item.product.name} × ${item.quantity}')
+                  .join('\n'),
             ),
           ),
         ],

@@ -10,6 +10,7 @@ class FavoriteRepoImpl implements FavoriteRepo {
   final DatabaseServices _databaseServices;
 
   FavoriteRepoImpl(this._databaseServices);
+
   final path = 'users/${getUser().uId}/favorites';
 
   @override
@@ -34,25 +35,27 @@ class FavoriteRepoImpl implements FavoriteRepo {
       }
     } catch (e) {
       //todo show this
-      // return Left(ServerFailure(errMessage: e.toString()));
+       //return Left(ServerFailure(errMessage: e.toString()));
       return Left(e.toString());
     }
   }
 
   @override
-  Future<Either<String, List<ProductEntity>>> getFavoriteProducts() async {
+  Stream<Either<String, List<ProductEntity>>> getFavoriteProducts() async* {
     try {
-      final favorites = await _databaseServices.getData(
+      await for (final data in _databaseServices.getStreamData(
         path: path,
-      );
+      )) {
+        final result = (data as List)
+            .map((e) => ProductModel.fromJson(e).toEntity())
+            .toList();
 
-      final result = (favorites as List)
-          .map((e) => ProductModel.fromJson(e).toEntity())
-          .toList();
+        yield Right(result);
+      }
 
-      return Right(result);
+
     } catch (e) {
-      return Left(e.toString());
+      yield Left(e.toString());
     }
   }
 }

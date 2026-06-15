@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import '../../../../core/utils/app_imports.dart';
 import '../../domain/entities/review_entity.dart';
 import '../../domain/repos/review_repo.dart';
@@ -11,6 +13,7 @@ class ReviewCubit extends Cubit<ReviewState> {
   TextEditingController reviewController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   double rate = 0;
+  StreamSubscription ?_reviewSubscription;
 
 
   void updateRatingField(double p1) {
@@ -38,27 +41,26 @@ class ReviewCubit extends Cubit<ReviewState> {
         emit(AddReviewError(failure.errMessage));
       },
           (_) async {
-        await getReviews(productId);
         emit(AddReviewSuccess());
       },
     );
   }
 
-  Future<void> getReviews(String productId) async {
+  void getReviews(String productId) {
     emit(GetReviewLoading());
 
-    final result = await _repo.getReviews(productId);
-
-    result.fold(
-          (failure) {
-        print(failure.errMessage);
-        emit(GetReviewError(failure.errMessage));
-      },
-          (reviewsData) {
-        reviews = reviewsData;
-        emit(GetReviewSuccess());
-      },
-    );
+    _reviewSubscription = _repo.getReviews(productId).listen((data) {
+      data.fold(
+            (failure) {
+          print(failure.errMessage);
+          emit(GetReviewError(failure.errMessage));
+        },
+            (reviewsData) {
+          reviews = reviewsData;
+          emit(GetReviewSuccess());
+        },
+      );
+    });
   }
 
   double get averageRating {
@@ -93,5 +95,11 @@ class ReviewCubit extends Cubit<ReviewState> {
         reviews.where((r) => r.rating.round() == star).length;
 
     return count / reviews.length;
+  }
+
+  @override
+  Future<void> close() {
+    _reviewSubscription?.cancel();
+    return super.close();
   }
 }

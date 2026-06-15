@@ -90,7 +90,7 @@ class OrderSummarySection extends StatelessWidget {
               ),
               Text(
                 // '${totalPrice + Constants.delivery} جنيه',
-                '${totalPrice} جنيه',
+                '${totalPrice.toStringAsFixed(2)} جنيه',
                 style: Theme
                     .of(
                   context,

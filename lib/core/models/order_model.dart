@@ -14,6 +14,7 @@ class OrderModel {
   final UserModel userModel;
   final AddressModel address;
   final List<OrderItemModel> items;
+  final String status;
 
 
 
@@ -26,6 +27,7 @@ class OrderModel {
    required this.createdAt,
     this.id,
     required this.userModel,
+    required this.status,
   });
 
   factory OrderModel.fromEntity(OrderEntity entity) {
@@ -42,6 +44,8 @@ class OrderModel {
       items: entity.cartEntity.cartItems.map((cartItem) =>
           OrderItemModel.fromEntity(cartItem)).toList(),
       userModel: UserModel.fromEntity(entity.userEntity!),
+      status: 'pending',
+
     );
 
 
@@ -58,6 +62,7 @@ class OrderModel {
         cartItems: items.map((item) => item.toEntity()).toList(),
       ),
       userEntity: userModel.toEntity(),
+      status: status,
     );
   }
   factory OrderModel.fromJson(Map<String, dynamic> json) {
@@ -71,6 +76,7 @@ class OrderModel {
       items: List<OrderItemModel>.from(
           json['items'].map((item) => OrderItemModel.fromJson(item))),
       userModel: UserModel.fromJson(json['userModel']),
+      status: json['status'] ?? 'pending',
     );
   }
 
@@ -84,6 +90,7 @@ class OrderModel {
       'items': items.map((item) => item.toJson()).toList(),
       'id':id,
       'userModel': userModel.toJson(),
+      'status': status,
     };
   }
 

@@ -3,6 +3,7 @@ import '../../../../core/utils/app_imports.dart';
 class OrderItemContent extends StatelessWidget {
   final String orderId;
   final String orderDate;
+  final String products;
   final int numberOfOrders;
   final double ordersTotalPrice;
 
@@ -12,69 +13,100 @@ class OrderItemContent extends StatelessWidget {
     required this.orderDate,
     required this.numberOfOrders,
     required this.ordersTotalPrice,
+    required this.products,
   });
 
   @override
   Widget build(BuildContext context) {
+    const primaryGreen = AppColor.mainColor;
+    const greyText = Color(0xff7A7A7A);
+    const darkGreyText = Color(0xff5F5F5F);
+
     return Padding(
-      padding: const EdgeInsets.only(top: 10,bottom: 10, right: 8),
+      padding: const EdgeInsets.only(
+        top: 10,
+        bottom: 10,
+        right: 8,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          /// Order ID
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'طلب رقم : $orderId#',
-                      style: Theme
-                          .of(
-                        context,
-                      )
-                          .textTheme
-                          .labelLarge!
-                          .copyWith(color: Colors.black),
-                    ),
-                    SizedBox(height: 2),
-                    Text(
-                      'تم الطلب : $orderDate ',
-                      style: Theme
-                          .of(
-                        context,
-                      )
-                          .textTheme
-                          .titleSmall!
-                          .copyWith(color: Color(0xff949D9E)),
-                    ),
-                  ],
+              Text(
+                'طلب رقم : ',
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                  color: primaryGreen,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-
-              IconButton(onPressed: () {}, icon:SvgPicture.asset(Assets.images.arrowDown.path))
+              Text(
+                '#$orderId',
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ],
           ),
-          SizedBox(height: 10),
-          RichText(
-            text: TextSpan(
-              text: ' عدد الطلبات : ',
-              style: Theme.of(
-                context,
-              ).textTheme.titleSmall!.copyWith(color: Color(0xff949D9E)),
+
+          const SizedBox(height: 6),
+
+          /// Order Date
+          Text(
+            'تم الطلب : $orderDate',
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+              color: greyText,
+            ),
+          ),
+
+          const SizedBox(height: 8),
+
+          /// Products
+          Text(
+            products,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              color: darkGreyText,
+              height: 1.4,
+            ),
+          ),
+
+          const SizedBox(height: 12),
+
+          /// Bottom Info
+          Container(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12,
+              vertical: 10,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
               children: [
-                TextSpan(
-                  text: '$numberOfOrders   ',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelLarge!.copyWith(color: Colors.black),
+                Icon(
+                  Icons.shopping_bag_outlined,
+                  size: 18,
+                  color: primaryGreen,
                 ),
-                TextSpan(
-                  text: '$ordersTotalPrice جنية',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.labelLarge!.copyWith(color: Colors.black),
+                const SizedBox(width: 6),
+                Text(
+                  '$numberOfOrders منتجات',
+                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                    color: primaryGreen,
+                  ),
+                ),
+                const Spacer(),
+                Text(
+                  '${ordersTotalPrice.toStringAsFixed(0)} جنيه',
+                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                    color: primaryGreen,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),

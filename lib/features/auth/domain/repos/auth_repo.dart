@@ -12,5 +12,6 @@ abstract class AuthRepo {
   Future<UserEntity> getUserData({required String uId});
   Future<Either<Failure, void>> deleteAccount(String password);
   Future<void> signOut();
+  Future<Either<Failure, void>> updateUser(UserEntity userEntity);
 
 }
