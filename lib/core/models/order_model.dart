@@ -78,8 +78,12 @@ class OrderModel {
       items: List<OrderItemModel>.from(
           json['items'].map((item) => OrderItemModel.fromJson(item))),
       userModel: UserModel.fromJson(json['userModel']),
-      status:   OrderStatus.values.firstWhere(
-            (e) => e.name == (json['status'] ?? 'قيد الانتظار'),
+      // status:   OrderStatus.values.firstWhere(
+      //       (e) => e.name == (json['status'] ?? 'قيد الانتظار'),
+      //   orElse: () => OrderStatus.pending,
+      // ),
+      status: OrderStatus.values.firstWhere(
+            (e) => e.name == json['status'],
         orElse: () => OrderStatus.pending,
       ),
     );
