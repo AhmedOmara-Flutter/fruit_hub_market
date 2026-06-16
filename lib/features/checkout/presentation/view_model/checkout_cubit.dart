@@ -62,7 +62,11 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     final result = await _checkoutRepo.addOrder(orderEntity);
 
     result.fold(
-      (failure) => emit(CheckoutAddOrderError(failure.errMessage)),
+          (failure) {
+            debugPrint('ERROR: $failure');
+
+            return emit(CheckoutAddOrderError(failure.errMessage));
+      },
           (data) {
         print('data is id ${data}');
         orderEntity.id = data;

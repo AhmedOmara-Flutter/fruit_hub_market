@@ -95,7 +95,7 @@ class OrderModel {
       'items': items.map((item) => item.toJson()).toList(),
       'id':id,
       'userModel': userModel.toJson(),
-      'status': status,
+      'status': status.name,
     };
   }
 

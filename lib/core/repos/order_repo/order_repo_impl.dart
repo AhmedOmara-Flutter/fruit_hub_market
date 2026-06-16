@@ -22,6 +22,7 @@ class OrderRepoImpl implements OrderRepo {
       );
       return Right(docRef);
     } catch (e) {
+      print('error in addOrder method in profile repos impl : $e');
       return Left(ServerFailure(errMessage: e.toString()));
     }
   }
