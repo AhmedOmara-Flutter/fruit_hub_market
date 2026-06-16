@@ -6,6 +6,8 @@ class OrderItemContent extends StatelessWidget {
   final String products;
   final int numberOfOrders;
   final double ordersTotalPrice;
+  final String price;
+
 
   const OrderItemContent({
     super.key,
@@ -13,14 +15,13 @@ class OrderItemContent extends StatelessWidget {
     required this.orderDate,
     required this.numberOfOrders,
     required this.ordersTotalPrice,
-    required this.products,
+    required this.products, required this.price,
   });
 
   @override
   Widget build(BuildContext context) {
     const primaryGreen = AppColor.mainColor;
     const greyText = Color(0xff7A7A7A);
-    const darkGreyText = Color(0xff5F5F5F);
 
     return Padding(
       padding: const EdgeInsets.only(
@@ -45,6 +46,7 @@ class OrderItemContent extends StatelessWidget {
                 '#$orderId',
                 style: Theme.of(context).textTheme.labelLarge!.copyWith(
                   color: Colors.black87,
+                  fontSize: 11,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -63,16 +65,32 @@ class OrderItemContent extends StatelessWidget {
 
           const SizedBox(height: 8),
 
-          /// Products
-          Text(
-            products,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.titleMedium!.copyWith(
-              color: darkGreyText,
-              height: 1.4,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                products,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .titleSmall!
+                    .copyWith(
+                  color: AppColor.mainColor,
+                ),
+              ),
+              Text(
+                price,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .labelLarge!
+                    .copyWith(
+                  color: AppColor.mainColor,
+                ),
+              ),
+            ],
           ),
+
 
           const SizedBox(height: 12),
 

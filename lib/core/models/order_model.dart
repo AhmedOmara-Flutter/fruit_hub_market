@@ -2,6 +2,7 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 import '../../features/cart/domain/entities/cart_entity.dart';
 import '../entities/order_entity.dart';
+import '../enums/order_enum.dart';
 import 'address_model.dart';
 import 'order_item_model.dart';
 
@@ -14,7 +15,7 @@ class OrderModel {
   final UserModel userModel;
   final AddressModel address;
   final List<OrderItemModel> items;
-  final String status;
+  final OrderStatus status;
 
 
 
@@ -44,7 +45,7 @@ class OrderModel {
       items: entity.cartEntity.cartItems.map((cartItem) =>
           OrderItemModel.fromEntity(cartItem)).toList(),
       userModel: UserModel.fromEntity(entity.userEntity!),
-      status: 'pending',
+      status: entity.status,
 
     );
 
@@ -63,6 +64,7 @@ class OrderModel {
       ),
       userEntity: userModel.toEntity(),
       status: status,
+
     );
   }
   factory OrderModel.fromJson(Map<String, dynamic> json) {
@@ -76,7 +78,10 @@ class OrderModel {
       items: List<OrderItemModel>.from(
           json['items'].map((item) => OrderItemModel.fromJson(item))),
       userModel: UserModel.fromJson(json['userModel']),
-      status: json['status'] ?? 'pending',
+      status:   OrderStatus.values.firstWhere(
+            (e) => e.name == (json['status'] ?? 'قيد الانتظار'),
+        orElse: () => OrderStatus.pending,
+      ),
     );
   }
 
