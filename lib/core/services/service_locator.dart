@@ -3,13 +3,11 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/core/repos/order_repo/order_repo.dart';
 import 'package:fruit_hub_market/core/repos/product_repo/product_repo_impl.dart';
 import 'package:fruit_hub_market/core/repos/product_repo/product_repo.dart';
-
 import '../repos/order_repo/order_repo_impl.dart';
 import '../../features/favorite/app/repos/favorite_repo_impl.dart';
 import '../../features/favorite/domain/repos/favorite_repo.dart';
 import '../repos/offer_repo/offer_repo_impl.dart';
 import '../repos/offer_repo/offer_repo.dart';
-import '../../features/profile/presentation/view_model/profile_cubit.dart';
 import '../../features/reviews/data/repos/review_repo_impl.dart';
 import '../../features/reviews/domain/repos/review_repo.dart';
 

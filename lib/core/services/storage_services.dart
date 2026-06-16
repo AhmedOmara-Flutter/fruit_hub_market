@@ -1,17 +1,17 @@
 import 'dart:io';
-import 'package:image/image.dart'as img;
 
+import 'package:flutter/foundation.dart';
+import 'package:image/image.dart' as img;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class StorageServices {
-  Future<String> uploadImage(File imageFile,String path);
-
+  Future<String> uploadImage(File imageFile, String path);
   Future<File> compressedImage(File imageFile);
 }
 
-
 class SupabaseStorage implements StorageServices {
   final SupabaseClient _supabase = Supabase.instance.client;
+
   @override
   Future<String> uploadImage(File imageFile, String path) async {
     final file = File(imageFile.path);
@@ -28,26 +28,29 @@ class SupabaseStorage implements StorageServices {
 
   @override
   Future<File> compressedImage(File imageFile) async {
-    final bytes = await imageFile.readAsBytes();
-
-    img.Image? image = img.decodeImage(bytes);
-
-    final compressed = img.copyResize(
-      image!,
-      width: 500,
-    );
-
-    final compressedFile = File(
-      '${imageFile.path}_compressed.jpg',
-    )
-      ..writeAsBytesSync(
-        img.encodeJpg(
-          compressed,
-          quality: 60,
-        ),
-      );
-
-    return compressedFile;
-
+    return await compute(_compressImage, imageFile.path);
   }
+}
+
+File _compressImage(String path) {
+  final file = File(path);
+  final bytes = file.readAsBytesSync();
+
+  final img.Image? image = img.decodeImage(bytes);
+
+  final compressed = img.copyResize(
+    image!,
+    width: 400, // ممكن تقللها 300 لو عايز أسرع
+  );
+
+  final newPath = '${file.path}_compressed.jpg';
+
+  File(newPath).writeAsBytesSync(
+    img.encodeJpg(
+      compressed,
+      quality: 50, // ممكن 40 لو عايز ضغط أعلى
+    ),
+  );
+
+  return File(newPath);
 }

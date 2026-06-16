@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
@@ -16,49 +17,65 @@ class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl(this._authServices, this._databaseServices,
       this._storageServices);
 
+
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
-      RegisterRequest registerRequest) async {
-    User ?user;
-    try {
-      final compressedImage = await _storageServices.compressedImage(
-          registerRequest.imageFile);
-      final imageUrl = await _storageServices.uploadImage(
-        compressedImage,
-        'profileImage',
-      );
+      RegisterRequest registerRequest,) async {
+    User? user;
 
-      //1- create auth first
+    try {
+      // 1- create auth (FAST)
       user = await _authServices.createUserWithEmailAndPassword(
         registerRequest,
       );
 
-      // 2- create temporary user
-      UserEntity userEntity = UserEntity(
+      final userEntity = UserEntity(
         userName: registerRequest.userName,
         email: registerRequest.email,
         uId: user.uid,
-        image: imageUrl,
+        image: '',
+        // 👈 هنحدثها بعدين
         phone: registerRequest.phone,
       );
 
-      // 3- save user مباشرة
+      // 2- save user immediately (FAST)
       await addData(userEntity);
 
+      // 3- upload image in BACKGROUND (NON-BLOCKING)
+      _uploadProfileImageLater(
+        registerRequest.imageFile,
+        user.uid,
+      );
 
       return Right(userEntity);
-    } on CustomException catch (e) {
-      if (user != null) {
-        await _authServices.deleteUser();
-      }
-      print(e);
-      return Left(ServerFailure(errMessage: e.toString()));
     } catch (e) {
       if (user != null) {
         await _authServices.deleteUser();
       }
-      print(e);
+
       return Left(ServerFailure(errMessage: e.toString()));
+    }
+  }
+
+  void _uploadProfileImageLater(File imageFile, String uId) async {
+    try {
+      final compressed = await _storageServices.compressedImage(imageFile);
+
+      final imageUrl = await _storageServices.uploadImage(
+        compressed,
+        'profileImage',
+      );
+
+      await _databaseServices.updateData(
+        path: 'users',
+        docId: uId,
+        data: {
+          'image': imageUrl,
+        },
+      );
+    } catch (e) {
+      // تجاهل أو سجل error
+      print('upload image failed: $e');
     }
   }
 
@@ -66,14 +83,23 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
       LoginRequest loginRequest) async {
     try {
+      final start = DateTime.now();
+
       final user = await _authServices.signInWithEmailAndPassword(
         loginRequest,
       );
+
+      print('AUTH TIME: ${DateTime.now().difference(start).inMilliseconds} ms');
+
       final data = await getUserData(uId: user.uid);
+
+      print('DB TIME: ${DateTime.now().difference(start).inMilliseconds} ms');
+
       await saveUserData(data);
-      return Right(
-          data
-      );
+
+      print('TOTAL TIME: ${DateTime.now().difference(start).inMilliseconds} ms');
+
+      return Right(data);
     } on Exception catch (e) {
       print(e);
       return Left(ServerFailure(errMessage: e.toString()));
