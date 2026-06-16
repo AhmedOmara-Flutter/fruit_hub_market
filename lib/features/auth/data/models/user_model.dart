@@ -7,6 +7,7 @@ class UserModel extends UserEntity {
     required super.uId,
     required super.image,
     required super.phone,
+    super.fcmToken
   });
 
   factory UserModel.fromFirebaseUser(User user) {
@@ -15,6 +16,7 @@ class UserModel extends UserEntity {
       email: user.email ?? '',
       uId: user.uid,
       image: user.photoURL ?? '', phone: user.phoneNumber ?? '',
+      fcmToken:'',
     );
   }
 
@@ -24,6 +26,7 @@ class UserModel extends UserEntity {
       email: json['email'],
       uId: json['uId'],
       image: json['image'], phone: json['phone'],
+      fcmToken: json['fcmToken']
     );
   }
 
@@ -34,6 +37,7 @@ class UserModel extends UserEntity {
       uId: user.uId,
       image: user.image,
       phone: user.phone,
+      fcmToken: user.fcmToken
     );
   }
   UserEntity toEntity() {
@@ -43,6 +47,7 @@ class UserModel extends UserEntity {
       uId: uId,
       image: image,
       phone: phone,
+      fcmToken: fcmToken
     );
   }
 
@@ -54,6 +59,7 @@ class UserModel extends UserEntity {
       'uId': uId,
       'image': image,
       'phone': phone,
+      'fcmToken': fcmToken
     };
   }
 }
