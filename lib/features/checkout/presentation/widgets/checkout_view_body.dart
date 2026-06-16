@@ -23,7 +23,11 @@ class CheckoutViewBody extends StatelessWidget {
           context.read<CartCubit>().cart.cartItems.clear();
           context.read<CartCubit>().saveCart();
           context.read<MainCubit>().currentIndex = 0;
-          Navigator.pushReplacementNamed(context, RouteManager.paymentSuccess);
+          Navigator.pushReplacementNamed(
+            context,
+            RouteManager.paymentSuccess,
+            arguments: context.read<CheckoutCubit>().orderEntity,
+          );
         } else if (state is CheckoutAddOrderError) {
           AppVibration.heavy();
           AppSounds.playClickSound('click_error.wav');

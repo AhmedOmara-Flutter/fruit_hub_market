@@ -1,8 +1,10 @@
+import '../../../../core/entities/order_entity.dart';
 import '../../../../core/utils/app_imports.dart';
 import '../../../cart/presentation/view_model/cart_cubit.dart';
 
 class PaymentSuccessView extends StatelessWidget {
-  const PaymentSuccessView({super.key,});
+  final OrderEntity orderEntity;
+  const PaymentSuccessView({super.key, required this.orderEntity,});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class PaymentSuccessView extends StatelessWidget {
           ),
           SizedBox(height: 15),
           Text(
-            'رقم الطلب : 1245789663#',
+            'رقم الطلب : ${orderEntity.id}#',
             style: Theme.of(
               context,
             ).textTheme.titleSmall!.copyWith(color: Color(0xff4E5556)),

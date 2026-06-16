@@ -88,7 +88,8 @@ class GenerateRoute {
           });
       case RouteManager.paymentSuccess:
         return MaterialPageRoute(builder: (context) {
-          return PaymentSuccessView();
+          final orderEntity = settings.arguments as OrderEntity;
+          return PaymentSuccessView(orderEntity: orderEntity,);
         });
         case RouteManager.orderTracking:
           return MaterialPageRoute(builder: (context) {

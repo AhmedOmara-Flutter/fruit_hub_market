@@ -64,6 +64,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     result.fold(
       (failure) => emit(CheckoutAddOrderError(failure.errMessage)),
           (data) {
+        print('data is id ${data}');
         orderEntity.id = data;
         emit(CheckoutAddOrderSuccess());
       },
