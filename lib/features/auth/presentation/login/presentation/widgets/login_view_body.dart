@@ -9,7 +9,7 @@ class LoginViewBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          InfoActionRow(text: 'تسجيل دخول',isBack: true,bottomPadding: 0,),
+          InfoActionRow(text: 'تسجيل دخول',showBack: true,bottomPadding: 0,),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(

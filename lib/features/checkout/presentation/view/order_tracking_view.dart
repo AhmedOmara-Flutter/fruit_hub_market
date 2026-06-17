@@ -10,7 +10,7 @@ class OrderTrackingView extends StatelessWidget {
     return Scaffold(
       body: Column(
           children: [
-          InfoActionRow(text: 'تتبع الطلب', isBack: true),
+          InfoActionRow(text: 'تتبع الطلب', showBack: true),
       Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         margin: EdgeInsets.symmetric(horizontal: 20),

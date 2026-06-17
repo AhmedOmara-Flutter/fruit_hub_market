@@ -34,7 +34,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          InfoActionRow(text: 'الملف الشخصي', isBack: true),
+          InfoActionRow(text: 'الملف الشخصي', showBack: true),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(

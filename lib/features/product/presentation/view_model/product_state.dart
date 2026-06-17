@@ -34,6 +34,9 @@ final class GetFilteredProductsError extends ProductState {
   GetFilteredProductsError(this.errMessage);
 }
 final class GetFilteredProductsEmpty extends ProductState {}
-final class GetFilteredProductsSuccess extends ProductState {}
 
+final class GetFilteredProductsSuccess extends ProductState {
+  final List<ProductEntity> filterProducts;
 
+  GetFilteredProductsSuccess({required this.filterProducts});
+}

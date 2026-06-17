@@ -42,7 +42,7 @@ class CheckoutViewBody extends StatelessWidget {
               children: [
                 InfoActionRow(
                   text: cubit.stepperTitles[cubit.currentIndex],
-                  isBack: true,
+                  showBack: true,
                 ),
                 Expanded(
                   child: Padding(

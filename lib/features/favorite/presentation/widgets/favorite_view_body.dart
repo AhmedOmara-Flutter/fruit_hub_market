@@ -12,7 +12,7 @@ class FavoriteViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(child: InfoActionRow(text: 'المفضلة', isBack: true)),
+        SliverToBoxAdapter(child: InfoActionRow(text: 'المفضلة', showBack: true)),
         BlocBuilder<FavoriteCubit, FavoriteState>(
           builder: (context, state) {
             if (state is GetFavoriteLoadingState) {

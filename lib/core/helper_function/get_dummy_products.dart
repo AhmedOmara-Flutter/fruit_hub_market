@@ -19,6 +19,7 @@ ProductEntity getDummyProduct = ProductEntity(
   averageRating: 4.5,
   reviewsCount: 100,
   ratingSum: 450.0,
+  category: 'fruits',
 
 );
 

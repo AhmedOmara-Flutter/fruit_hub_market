@@ -1,9 +1,7 @@
-import 'package:fruit_hub_market/core/widgets/empty_widget.dart';
+import 'package:fruit_hub_market/features/product/presentation/widgets/category_tabs.dart';
 import 'package:fruit_hub_market/features/product/presentation/widgets/items_count_label.dart';
+
 import '../../../../../../../core/utils/app_imports.dart';
-import '../../../../core/widgets/custom_refresh_indicator.dart';
-import '../../../../core/widgets/products_grid_view.dart';
-import '../../../../core/widgets/search_section.dart';
 import '../view_model/product_cubit.dart';
 
 class ProductViewBody extends StatefulWidget {
@@ -14,65 +12,28 @@ class ProductViewBody extends StatefulWidget {
 }
 
 class _ProductViewBodyState extends State<ProductViewBody> {
+
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      BlocProvider.of<ProductCubit>(context).getProducts();
-    });
+    context.read<ProductCubit>().getProducts();
     super.initState();
   }
-
-  int productsNumber = 0;
-
   @override
   Widget build(BuildContext context) {
-    return CustomRefreshIndicator(
-      onRefresh: () async {
-        final productCubit = context.read<ProductCubit>();
-         productCubit.getProducts();
-      },
-      child: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                InfoActionRow(text: 'المنتجات'),
-                SearchSection(),
-                BlocBuilder<ProductCubit, ProductState>(
-                  builder: (context, state) {
-                    return ItemsCountLabel(productsNumber: productsNumber);
-                  },
-                ),
-                SizedBox(height: 10),
-              ],
-            ),
-          ),
-          BlocBuilder<ProductCubit, ProductState>(
-            builder: (context, state) {
-              if (state is GetProductsSuccessState) {
-                productsNumber = state.products.length;
-                if(state.products.isNotEmpty){
-                  return ProductsGridView(products:state.products);
-                }else{
-                  return SliverFillRemaining(hasScrollBody: false,child: Center(child: EmptyWidget()));
-                }
-
-              } else if (state is GetProductsErrorState) {
-                return SliverToBoxAdapter(
-                  child: Center(child: Text(state.errMessage)),
-                );
-                } else {
-                return Skeletonizer.sliver(
-                  enabled: true,
-                  child: ProductsGridView(products: getDummyProducts()),
-                );
-              }
-            },
-          ),
-        ],
-      ),
+    return Column(
+      children: [
+        InfoActionRow(
+          text: 'المنتجات',
+          showSearch: true,
+          searchOnPressed: () {
+            Navigator.pushNamed(context, RouteManager.search);
+          },
+        ),
+        // ItemsCountLabel(
+        //   productsNumber: context.watch<ProductCubit>().productsNumber,
+        // ),
+        Expanded(child: CategoryTabs()),
+      ],
     );
   }
 }
-
-

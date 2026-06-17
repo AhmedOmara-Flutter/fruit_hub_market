@@ -22,7 +22,7 @@ class SearchViewBody extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const InfoActionRow(text: 'بحث', isBack: true),
+                    const InfoActionRow(text: 'بحث', showBack: true),
                     CustomTextField(
                       onChanged: (value) {
                         context.read<SearchCubit>().search(value);

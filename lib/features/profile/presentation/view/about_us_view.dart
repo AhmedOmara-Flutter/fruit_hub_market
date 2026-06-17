@@ -11,7 +11,7 @@ class AboutUsView extends StatelessWidget {
           children: [
             InfoActionRow(
               text: 'من نحن',
-              isBack: true,
+              showBack: true,
             ),
 
             const SizedBox(height: 20),

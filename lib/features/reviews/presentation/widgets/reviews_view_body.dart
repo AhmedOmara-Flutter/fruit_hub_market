@@ -24,7 +24,7 @@ class ReviewsViewBody extends StatelessWidget {
           child: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
-                child: InfoActionRow(text: 'المراجعه', isBack: true),
+                child: InfoActionRow(text: 'المراجعه', showBack: true),
               ),
               CustomReviewFieldSection(
                 autoValidateMode: AutovalidateMode.onUserInteraction,

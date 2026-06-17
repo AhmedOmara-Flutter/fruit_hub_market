@@ -1,0 +1,60 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hub_market/core/widgets/empty_widget.dart';
+import '../../../../core/utils/app_imports.dart';
+import '../../../../core/widgets/fruit_item.dart';
+import '../view_model/product_cubit.dart';
+
+class TapBarViewBody extends StatelessWidget {
+  final String category;
+
+  const TapBarViewBody(this.category, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProductCubit, ProductState>(
+      builder: (context, state) {
+        final cubit = context.read<ProductCubit>();
+        final products = cubit.allProducts
+            .where((p) => p.category == category)
+            .toList();
+        if (state is GetProductsLoadingState) {
+          return GridView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            itemCount: 6,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.7,
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 16,
+            ),
+            itemBuilder: (context, index) {
+              return Skeletonizer(child: FruitItem(product: getDummyProduct));
+            },
+          );
+        }
+
+        if (products.isEmpty) {
+          return const EmptyWidget();
+        }
+
+        if (state is GetFilteredProductsError) {
+          return Center(child: Text(state.errMessage));
+        }
+        return GridView.builder(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          itemCount: products.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 0.7,
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 16,
+          ),
+          itemBuilder: (context, index) {
+            return FruitItem(product: products[index]);
+          },
+        );
+      },
+    );
+  }
+}

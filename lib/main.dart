@@ -8,13 +8,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // await NotificationServices.initLocal();
-  // await NotificationServices.initFirebase();
   await Supabase.initialize(
     url: 'https://wplubouwksawibitfhlj.supabase.co',
     anonKey: 'sb_publishable_28OdrvHF22OZhJIOnmQGFQ_T98mgadn',
   );
-
   await CacheHelper.init();
   Constants.onBoarding =await CacheHelper.getData(key: 'onBoarding')??false;
   Constants.uId = await CacheHelper.getData(key: 'uId') ?? '';

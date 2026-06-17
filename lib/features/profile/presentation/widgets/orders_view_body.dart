@@ -13,7 +13,7 @@ class OrdersViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(child: InfoActionRow(text: 'طلباتي', isBack: true)),
+        SliverToBoxAdapter(child: InfoActionRow(text: 'طلباتي', showBack: true)),
         BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {
             if (state is ProfileGetOrdersSuccess) {

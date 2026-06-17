@@ -23,6 +23,8 @@ class ProductEntity extends Equatable {
   int reviewsCount;
   double ratingSum;
   OfferEntity? offer;
+  final String category;
+
 
   ProductEntity({
     required this.name,
@@ -42,7 +44,7 @@ class ProductEntity extends Equatable {
     required this.averageRating,
     required this.reviewsCount,
     required this.ratingSum,
-    this.offer,
+    this.offer, required this.category,
   });
 
 

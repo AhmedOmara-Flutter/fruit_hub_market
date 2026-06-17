@@ -11,8 +11,9 @@ class ProductCubit extends Cubit<ProductState> {
   ProductCubit(this._productRepo) : super(ProductInitialState());
   final ProductRepo _productRepo;
   List<ProductEntity> filteredProducts = [];
+  List<ProductEntity> allProducts = [];
   StreamSubscription? _productsSubscription;
-
+  int productsNumber = 0;
 
   void getProducts() {
     _productsSubscription?.cancel();
@@ -24,6 +25,7 @@ class ProductCubit extends Cubit<ProductState> {
           emit(GetProductsErrorState(errMessage: failure.errMessage));
         },
             (data) {
+          allProducts = data;
           filteredProducts = data;
 
           emit(GetProductsSuccessState(products: data));
@@ -39,23 +41,19 @@ class ProductCubit extends Cubit<ProductState> {
     }, (_) {});
   }
 
-  Future<void> getFilteredProducts(String category) async {
-    _productsSubscription?.cancel();
-    emit(GetFilteredProductsLoading());
-    _productsSubscription= _productRepo.getFilteredProducts(category).listen((data){
-      data.fold(
-            (failure) => emit(GetFilteredProductsError(failure.errMessage)),
-            (data) {
-          filteredProducts = data;
-          if (filteredProducts.isEmpty) {
-            emit(GetFilteredProductsEmpty());
-          } else {
-            emit(GetFilteredProductsSuccess());
-          }
-        },
-      );
-    });
 
+  void filterByCategory(String category) {
+    final result = allProducts.where((product) {
+      return product.category == category;
+    }).toList();
+
+    filteredProducts = result;
+
+    if (result.isEmpty) {
+      emit(GetFilteredProductsEmpty());
+    } else {
+      emit(GetFilteredProductsSuccess(filterProducts: result));
+    }
   }
 
   @override

@@ -22,7 +22,7 @@ class ProductModel extends ProductEntity {
     super.averageRating=0.0,
     super.reviewsCount=0,
     super.ratingSum=0.0,
-    super.offer,
+    super.offer, required super.category,
   });
 
   factory ProductModel.fromEntity(ProductEntity entity) {
@@ -45,6 +45,7 @@ class ProductModel extends ProductEntity {
       reviewsCount: entity.reviewsCount,
       ratingSum: entity.ratingSum,
       offer: entity.offer,
+      category: entity.category,
     );
   }
 
@@ -69,6 +70,7 @@ class ProductModel extends ProductEntity {
       reviewsCount: reviewsCount,
       ratingSum: ratingSum,
       offer: offer,
+      category: category,
     );
   }
 
@@ -87,7 +89,7 @@ class ProductModel extends ProductEntity {
       numberOfCalories: json['numberOfCalories'] ?? 0,
       isOrganic: json['isOrganic'] ?? false,
       sellingCount: json['sellingCount'] ?? 0,
-
+      category: json['category'] ?? '',
       subImages: (json['subImages'] as List<dynamic>?)
           ?.map((e) => e.toString())
           .toList(),
@@ -113,6 +115,7 @@ class ProductModel extends ProductEntity {
       'isOrganic': isOrganic,
       'sellingCount': sellingCount,
       'subImages': subImages,
+      'category': category,
       'averageRating': averageRating,
       'reviewsCount': reviewsCount,
       'ratingSum': ratingSum,
