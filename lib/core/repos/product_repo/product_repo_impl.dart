@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub_market/core/entities/product_entity.dart';
 import 'package:fruit_hub_market/core/models/product_model.dart';
-import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/core/repos/product_repo/product_repo.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class ProductRepoImpl implements ProductRepo {
   final DatabaseServices _databaseServices;
@@ -40,7 +40,8 @@ class ProductRepoImpl implements ProductRepo {
       }
     } catch (e) {
       print(e);
-      yield Left(ServerFailure(errMessage: e.toString().replaceAll('Exception: ', '')),
+      yield Left(
+        ServerFailure(errMessage: e.toString().replaceAll('Exception: ', '')),
       );
     }
   }
@@ -51,18 +52,15 @@ class ProductRepoImpl implements ProductRepo {
   ) async {
     try {
       final data =
-          await _databaseServices.getData(
-                path: 'products',
-        query: {
-          'orderBy': 'name',
-          'descending': false,
-          'startAt': query,
-          'endAt': '$query\uf8ff',
-        },
-              )
+          await _databaseServices.getData(path: 'products')
               as List<Map<String, dynamic>>;
       final products = data
           .map((e) => ProductModel.fromJson(e).toEntity())
+          .where((product) {
+        return product.name
+            .toLowerCase()
+            .contains(query.toLowerCase());
+      })
           .toList();
       return Right(products);
     } catch (e) {
@@ -88,25 +86,4 @@ class ProductRepoImpl implements ProductRepo {
       return Left(ServerFailure(errMessage: e.toString()));
     }
   }
-
-  // @override
-  // Stream<Either<Failure, List<ProductEntity>>> getFilteredProducts(
-  //     String category,) async*
-  // {
-  //   try {
-  //     await for(var (data as List<Map<String, dynamic>> )in  _databaseServices.getStreamData(
-  //       path: 'products',
-  //       query: {'where': 'category', 'isEqualTo': category},
-  //     )){
-  //       List<ProductEntity> products = data
-  //           .map((product) => ProductModel.fromJson(product).toEntity())
-  //           .toList();
-  //       yield Right(products);
-  //     }
-  //   } catch (e) {
-  //     print('error from getFilteredProducts is $e');
-  //     yield Left(Failure(errMessage: e.toString()));
-  //   }
-  // }
-
 }

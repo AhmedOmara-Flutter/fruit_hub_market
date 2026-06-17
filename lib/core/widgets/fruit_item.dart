@@ -4,8 +4,8 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import '../../features/cart/presentation/view_model/cart_cubit.dart';
 import '../../features/favorite/presentation/view_model/favorite_cubit.dart';
 import '../../features/offers/presentation/view_model/offer_cubit.dart';
+import '../cubit/product_cubit/product_cubit.dart';
 import '../entities/product_entity.dart';
-import '../../features/product/presentation/view_model/product_cubit.dart';
 
 class FruitItem extends StatelessWidget {
   final ProductEntity product;

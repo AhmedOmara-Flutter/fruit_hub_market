@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub_market/core/widgets/empty_widget.dart';
+import '../../../../core/cubit/product_cubit/product_cubit.dart';
 import '../../../../core/utils/app_imports.dart';
 import '../../../../core/widgets/fruit_item.dart';
-import '../view_model/product_cubit.dart';
 
 class TapBarViewBody extends StatelessWidget {
   final String category;

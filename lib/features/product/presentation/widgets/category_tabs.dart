@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruit_hub_market/features/product/presentation/view_model/product_cubit.dart';
 import 'package:fruit_hub_market/features/product/presentation/widgets/tap_bar_view_body.dart';
-
+import '../../../../core/cubit/product_cubit/product_cubit.dart';
 import '../../../../core/utils/app_color.dart';
 
 

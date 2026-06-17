@@ -56,6 +56,26 @@ class ProductCubit extends Cubit<ProductState> {
     }
   }
 
+  void searchProducts(String value) {
+    if (value.isEmpty) {
+      filteredProducts = allProducts;
+      emit(GetProductsSuccessState(products: allProducts));
+      return;
+    }
+
+    final result = allProducts.where((product) {
+      return product.name.toLowerCase().contains(value.toLowerCase());
+    }).toList();
+
+    filteredProducts = result;
+
+    if (result.isEmpty) {
+      emit(GetFilteredProductsEmpty());
+    } else {
+      emit(GetProductsSuccessState(products: result));
+    }
+  }
+
   @override
   Future<void> close() {
     _productsSubscription?.cancel();

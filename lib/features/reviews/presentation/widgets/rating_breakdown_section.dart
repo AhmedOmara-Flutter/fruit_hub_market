@@ -1,6 +1,4 @@
-import 'package:fruit_hub_market/features/product/presentation/view_model/product_cubit.dart';
 import 'package:fruit_hub_market/features/reviews/presentation/widgets/rating_bar_item.dart';
-
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/review_cubit.dart';
 

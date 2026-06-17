@@ -6,8 +6,8 @@ import 'package:fruit_hub_market/features/profile/presentation/view_model/profil
 import '../../features/cart/presentation/view_model/cart_cubit.dart';
 import '../../features/favorite/presentation/view_model/favorite_cubit.dart';
 import '../../features/offers/presentation/view_model/offer_cubit.dart';
-import '../../features/product/presentation/view_model/product_cubit.dart';
 import '../../features/reviews/presentation/view_model/review_cubit.dart';
+import '../cubit/product_cubit/product_cubit.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
