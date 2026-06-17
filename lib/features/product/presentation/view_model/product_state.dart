@@ -28,4 +28,12 @@ final class IncreaseSellingCountErrorState extends ProductState {
 }
 
 final class IncreaseSellingCountSuccessState extends ProductState {}
+final class GetFilteredProductsLoading extends ProductState {}
+final class GetFilteredProductsError extends ProductState {
+  final String errMessage;
+  GetFilteredProductsError(this.errMessage);
+}
+final class GetFilteredProductsEmpty extends ProductState {}
+final class GetFilteredProductsSuccess extends ProductState {}
+
 

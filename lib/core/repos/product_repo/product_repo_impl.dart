@@ -95,4 +95,25 @@ class ProductRepoImpl implements ProductRepo {
       return Left(ServerFailure(errMessage: e.toString()));
     }
   }
+
+  @override
+  Stream<Either<Failure, List<ProductEntity>>> getFilteredProducts(
+      String category,) async*
+  {
+    try {
+      await for(var (data as List<Map<String, dynamic>> )in  _databaseServices.getStreamData(
+        path: 'products',
+        query: {'where': 'category', 'isEqualTo': category},
+      )){
+        List<ProductEntity> products = data
+            .map((product) => ProductModel.fromJson(product).toEntity())
+            .toList();
+        yield Right(products);
+      }
+    } catch (e) {
+      print('error from getFilteredProducts is $e');
+      yield Left(Failure(errMessage: e.toString()));
+    }
+  }
+
 }
