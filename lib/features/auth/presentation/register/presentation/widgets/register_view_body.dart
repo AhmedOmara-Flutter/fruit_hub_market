@@ -5,16 +5,21 @@ class RegisterViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            RegisterForm(),
-            const SizedBox(height: 40),
-            const CustomAuthFooter(),
-          ],
-        ),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          InfoActionRow(text: 'حساب جديد',isBack: true,bottomPadding: 0,),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                RegisterForm(),
+                const SizedBox(height: 40),
+                const CustomAuthFooter(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

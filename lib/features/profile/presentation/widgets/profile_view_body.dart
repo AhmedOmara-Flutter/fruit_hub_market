@@ -1,7 +1,7 @@
 import 'package:fruit_hub_market/features/profile/presentation/widgets/profile_generals_section.dart';
 import 'package:fruit_hub_market/features/profile/presentation/widgets/profile_header.dart';
 import 'package:fruit_hub_market/features/profile/presentation/widgets/profile_help_section.dart';
-import 'package:fruit_hub_market/features/profile/presentation/widgets/profile_info_banner.dart';
+import 'package:fruit_hub_market/features/profile/presentation/widgets/profile_sign_out.dart';
 import 'package:fruit_hub_market/features/profile/presentation/widgets/profile_option_list.dart';
 
 import '../../../../core/utils/app_imports.dart';
@@ -28,7 +28,7 @@ class ProfileViewBody extends StatelessWidget {
             ),
           ],
         ),
-        ProfileInfoBanner(),
+        ProfileSignOut(),
       ],
     );
   }

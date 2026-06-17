@@ -6,11 +6,6 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text("تسجيل دخول",),
-        centerTitle: true,
-      ),
       body: BlocProvider(
         create: (context) => LoginCubit(instance()),
         child: BlocConsumer<LoginCubit, LoginState>(

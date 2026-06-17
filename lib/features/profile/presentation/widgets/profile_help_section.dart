@@ -27,7 +27,9 @@ class ProfileHelpSection extends StatelessWidget {
           ),
           ProfileOptionsList(
             text: 'من نحن',
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, RouteManager.aboutUs);
+            },
             image: Assets.images.global.path,
           ),
           const SizedBox(height: 50),

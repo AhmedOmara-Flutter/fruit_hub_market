@@ -39,27 +39,22 @@ class ProfileGeneralSection extends StatelessWidget {
             image: Assets.images.box.path,
           ),
           ProfileOptionsList(
-            text: 'المدفوعات',
-            onTap: () {},
-            image: Assets.images.emptyWallet.path,
-          ),
-          ProfileOptionsList(
             text: 'المفضلة',
             onTap: () {
               Navigator.pushNamed(context, RouteManager.favorite);
             },
             image: Assets.images.heart.path,
           ),
-          ProfileOptionsList(
-            text: 'الإشعارات',
-            isButton: true,
-            image: Assets.images.notification.path,
-          ),
-          ProfileOptionsList(
-            text: 'اللغة',
-            onTap: () {},
-            image: Assets.images.global.path,
-          ),
+          // ProfileOptionsList(
+          //   text: 'الإشعارات',
+          //   isButton: true,
+          //   image: Assets.images.notification.path,
+          // ),
+          // ProfileOptionsList(
+          //   text: 'اللغة',
+          //   onTap: () {},
+          //   image: Assets.images.global.path,
+          // ),
         ],
       ),
     );

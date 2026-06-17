@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg;
-import 'package:image_picker/image_picker.dart';
 import '../../../../core/helper_function/get_user.dart';
 import '../../../../core/helper_function/pick_image.dart';
 import '../../../../core/utils/app_imports.dart';
@@ -14,79 +12,84 @@ class ProfileHeader extends StatefulWidget {
 }
 
 class _ProfileHeaderState extends State<ProfileHeader> {
-  ImagePicker imagePicker = ImagePicker();
   File? imagePath;
 
   @override
   Widget build(BuildContext context) {
+    final user = getUser();
+
     return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Row(
         children: [
           Stack(
-            alignment: Alignment.center,
+            clipBehavior: Clip.none,
             children: [
-              CircleAvatar(radius: 50, backgroundColor: Colors.white),
-              ClipOval(
-                child: CachedNetworkImage(
-                  imageUrl: getUser().image,
-                  width: 80,
-                  height: 80,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) =>
-                      Skeletonizer(child: Container(
-                      ),),
-                  errorWidget: (context, url, error) =>
-                      Icon(Icons.error, color: AppColor.red),
-                ),),
-              Positioned(
-                bottom: -5,
-                child: CircleAvatar(backgroundColor: Colors.white, radius: 18),
-              ),
-              Positioned(
-                bottom: -5,
-                child: GestureDetector(
-                  onTap: () async {
-                    final image = await pickImage();
-                    if (image != null) {
-                      setState(() {
-                        imagePath = image;
-                      });
-                    }
-                  },
-                  child: Container(
-                    height: 35,
-                    width: 35,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Color(0xffF9F9F9),
-                      image: DecorationImage(
-                        image: svg.Svg(Assets.images.camera.path,),
-                      ),
+              CircleAvatar(
+                radius: 40,
+                backgroundColor: Colors.grey.shade200,
+                backgroundImage: imagePath != null
+                    ? FileImage(imagePath!)
+                    : CachedNetworkImageProvider(user.image),
+              )
+              // Positioned(
+              //   bottom: 0,
+              //   right: 0,
+              //   child: GestureDetector(
+              //     onTap: () async {
+              //       final image = await pickImage();
+              //       if (image != null) {
+              //         setState(() => imagePath = image);
+              //       }
+              //     },
+              //     child: Container(
+              //       padding: const EdgeInsets.all(5),
+              //       decoration: BoxDecoration(
+              //         color: Colors.white,
+              //         shape: BoxShape.circle,
+              //         border: Border.all(color: Colors.grey.shade300),
+              //       ),
+              //       child: Icon(
+              //         Icons.camera_alt,
+              //         size: 16,
+              //         color: AppColor.mainColor,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
+
+          const SizedBox(width: 12),
+
+          Expanded(
+            child:Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  user.userName,
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+
+                const SizedBox(height: 8),
+
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    user.email,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: Colors.grey.shade600,
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                getUser().userName,
-                style: Theme.of(
-                  context,
-                ).textTheme.labelLarge!.copyWith(color: Colors.black),
-              ),
-              SizedBox(height: 5),
-              Text(
-                getUser().email,
-                style: Theme.of(
-                  context,
-                ).textTheme.titleSmall!.copyWith(color: Color(0xff888FA0)),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

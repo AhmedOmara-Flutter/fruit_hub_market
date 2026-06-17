@@ -14,7 +14,7 @@ class PaymentButtonSection extends StatelessWidget {
         return CustomButton(
           onPressed: () {
             FocusManager.instance.primaryFocus?.unfocus();
-            customShowDialog(
+            CustomShowDialog.show(
               context,
               title: 'تأكيد الدفع',
               content: Text(

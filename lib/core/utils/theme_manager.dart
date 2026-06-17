@@ -55,30 +55,5 @@ class ThemeManager {
       //text in info action row
       displaySmall: StyleManager.font19Weight700,
     ),
-
-    /// input decoration theme
-    inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      fillColor: Color(0xffF9FAFA),
-      hintStyle: StyleManager.font13Weight700,
-      labelStyle: StyleManager.font13Weight700,
-      suffixIconColor: Color(0xffC9CECF),
-      enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Color(0xffE6E9EA)),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Color(0xffE6E9EA)),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: AppColor.red),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Color(0xffE6E9EA)),
-        borderRadius: BorderRadius.circular(4),
-      ),
-    ),
   );
 }

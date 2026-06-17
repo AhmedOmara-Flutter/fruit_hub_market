@@ -119,7 +119,7 @@ class _RegisterFormState extends State<RegisterForm> {
           CustomTextFormField(
             validator: (value) {
               if (value == null || value.trim().isEmpty) {
-                return 'من فضلك أدخل اسمك الكامل';
+                return 'من فضلك أدخل اسمك ثنائي';
               }
               if (value.trim().length < 3) {
                 return 'الاسم يجب أن يكون 3 أحرف على الأقل';
@@ -128,7 +128,8 @@ class _RegisterFormState extends State<RegisterForm> {
             },
             controller: nameController,
             keyboardType: TextInputType.name,
-            hintText: 'الاسم كامل',
+            hintText: 'الاسم ثنائي',
+            prefixIcon: Icons.person,
           ),
           const SizedBox(height: 15),
 
@@ -150,6 +151,7 @@ class _RegisterFormState extends State<RegisterForm> {
             controller: phoneController,
             keyboardType: TextInputType.phone,
             hintText: 'رقم الهاتف',
+            prefixIcon: Icons.phone,
           ),
           const SizedBox(height: 15),
           CustomTextFormField(
@@ -163,6 +165,7 @@ class _RegisterFormState extends State<RegisterForm> {
               return null;
             },
             controller: emailController,
+            prefixIcon: Icons.email_outlined,
             keyboardType: TextInputType.emailAddress,
             hintText: 'البريد الإلكتروني',
           ),

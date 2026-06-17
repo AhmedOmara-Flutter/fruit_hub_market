@@ -64,6 +64,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   firebase_messaging: ^16.3.0
   flutter_local_notifications: ^17.0.0
+  onesignal_flutter: ^5.6.1
 
 
 

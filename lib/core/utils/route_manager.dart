@@ -2,6 +2,7 @@ import 'package:fruit_hub_market/core/entities/order_entity.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
+import 'package:fruit_hub_market/features/profile/presentation/view/about_us_view.dart';
 import 'package:fruit_hub_market/features/profile/presentation/view/edit_profile_view.dart';
 
 import '../../features/cart/domain/entities/cart_entity.dart';
@@ -33,6 +34,7 @@ class RouteManager {
   static const String favorite = '/favorite';
   static const String orders = '/orders';
   static const String editProfile = '/editProfile';
+  static const String aboutUs = '/aboutUs';
 }
 
 class GenerateRoute {
@@ -103,6 +105,11 @@ class GenerateRoute {
         return MaterialPageRoute(builder: (context) {
           return OrdersView();
         });
+        case RouteManager.aboutUs:
+        return MaterialPageRoute(builder: (context) {
+          return AboutUsView();
+        });
+
       default:
         return _errorRoute();
     }

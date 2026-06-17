@@ -27,6 +27,7 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           CustomTextFormField(
             autoValidateMode: AutovalidateMode.onUserInteraction,
+            prefixIcon: Icons.email_outlined,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'من فضلك أدخل البريد الإلكتروني';

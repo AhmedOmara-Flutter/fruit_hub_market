@@ -6,8 +6,6 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("حساب جديد"), centerTitle: true,
-        ),
         body: BlocProvider(
           create: (context) => RegisterCubit(instance()),
           child: BlocConsumer<RegisterCubit, RegisterState>(

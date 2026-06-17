@@ -58,6 +58,12 @@ class StyleManager {
     fontSize: 13,
     fontWeight: FontWeight.w700,
   );
+  static TextStyle font14Weight600 = TextStyle(
+    color: AppColor.mainColor,
+    fontFamily: 'Cairo',
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
 
   static TextStyle font16Weight600 = TextStyle(
     color: Colors.black,
