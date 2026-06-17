@@ -1,12 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:dartz/dartz.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
 import '../../../../core/services/storage_services.dart';
 
 class AuthRepoImpl implements AuthRepo {
@@ -48,7 +45,6 @@ class AuthRepoImpl implements AuthRepo {
         user.uid,
       );
 
-      await _saveFcmToken(user.uid);
       return Right(userEntity);
     } catch (e) {
       if (user != null) {
@@ -85,22 +81,12 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
       LoginRequest loginRequest) async {
     try {
-      final start = DateTime.now();
 
       final user = await _authServices.signInWithEmailAndPassword(
         loginRequest,
       );
-
-      print('AUTH TIME: ${DateTime.now().difference(start).inMilliseconds} ms');
-
       final data = await getUserData(uId: user.uid);
-
-      print('DB TIME: ${DateTime.now().difference(start).inMilliseconds} ms');
-
       await saveUserData(data);
-
-      print('TOTAL TIME: ${DateTime.now().difference(start).inMilliseconds} ms');
-      await _saveFcmToken(user.uid);
       return Right(data);
     } on Exception catch (e) {
       print(e);
@@ -217,21 +203,5 @@ class AuthRepoImpl implements AuthRepo {
       print(e);
       return Left(ServerFailure(errMessage: e.toString()));
     }
-  }
-
-  Future<void> _saveFcmToken(String userId) async {
-    final token = await FirebaseMessaging.instance.getToken();
-
-    if (token == null) return;
-
-    await _databaseServices.updateData(
-      path: 'users',
-      docId: userId,
-      data: {
-        'fcmToken': token,
-      },
-    );
-
-    print('FCM Token Saved => $token');
   }
 }
