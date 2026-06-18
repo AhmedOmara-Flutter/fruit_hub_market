@@ -44,14 +44,13 @@ class OfferRepoImpl implements OfferRepo {
             .map((e) => OfferModel.fromJson(e).toEntity())
             .toList();
         print('All offers count: ${offers.length}');
-        //final now = DateTime.now();
+        // final now = DateTime.now();
         // offers = offers.where((offer) {
         //   return !offer.startDate.isAfter(now) &&
         //       !offer.endDate.isBefore(now);
         // }).toList();
-
+        //
         // offers = offers.where((offer) => offer.isActive).toList();
-        print('All offers count: ${offers.length}');
         yield Right(offers);
       }
     } on Exception catch (e) {

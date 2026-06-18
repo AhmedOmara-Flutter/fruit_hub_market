@@ -21,36 +21,16 @@ class CategoryItem extends StatelessWidget {
       child: Column(
         children: [
           CircleAvatar(
-            radius: size / 2,
+            radius: size / 1.9,
             backgroundColor: Colors.grey.withOpacity(0.1),
             child: CircleAvatar(
               backgroundColor: Colors.transparent,
-              radius: (size / 2) - 2,
+              radius: (size / 1.90) - 2,
               backgroundImage: NetworkImage(
                 productEntity.image ?? '',
               ),
             ),
           ),
-          // ClipRRect(
-          //   borderRadius: BorderRadius.circular(10),
-          //   clipBehavior: Clip.antiAliasWithSaveLayer,
-          //   child: Container(
-          //     height: 90,
-          //     width: 90,
-          //     clipBehavior: Clip.antiAliasWithSaveLayer,
-          //     decoration: BoxDecoration(
-          //         color: Colors.transparent,
-          //         borderRadius: BorderRadius.circular(10),
-          //         border: Border.all(
-          //           color: Colors.grey.withOpacity(0.1),
-          //         )
-          //     ),
-          //     child: Image.network(
-          //       productEntity.image ?? '',
-          //       fit: BoxFit.cover,
-          //     ),
-          //   ),
-          // ),
           SizedBox(height: 10),
           Text(
             productEntity.name,

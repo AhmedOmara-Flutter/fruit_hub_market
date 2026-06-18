@@ -1,8 +1,6 @@
 
 import 'package:fruit_hub_market/core/entities/product_entity.dart';
 
-import '../../features/offers/data/models/offer_model.dart';
-
 class ProductModel extends ProductEntity {
   ProductModel({
     required super.name,
@@ -22,7 +20,9 @@ class ProductModel extends ProductEntity {
     super.averageRating=0.0,
     super.reviewsCount=0,
     super.ratingSum=0.0,
-    super.offer, required super.category,
+    required super.category,
+    required super.createdAt,
+    super.offerId,
   });
 
   factory ProductModel.fromEntity(ProductEntity entity) {
@@ -44,8 +44,9 @@ class ProductModel extends ProductEntity {
       averageRating: entity.averageRating,
       reviewsCount: entity.reviewsCount,
       ratingSum: entity.ratingSum,
-      offer: entity.offer,
       category: entity.category,
+      createdAt: entity.createdAt,
+      offerId: entity.offerId,
     );
   }
 
@@ -69,15 +70,15 @@ class ProductModel extends ProductEntity {
       averageRating: averageRating,
       reviewsCount: reviewsCount,
       ratingSum: ratingSum,
-      offer: offer,
       category: category,
+      createdAt: createdAt,
+      offerId: offerId,
     );
   }
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
-
     return ProductModel(
-      id: json['id'] ?? '',
+      id: json['id'] ?? json['product_id'] ?? '',
       name: json['name'] ?? '',
       code: json['code'] ?? '',
       price: json['price'] ?? 0,
@@ -96,7 +97,8 @@ class ProductModel extends ProductEntity {
       averageRating: json['averageRating'] ?? 0.0,
       reviewsCount: json['reviewsCount'] ?? 0,
       ratingSum: json['ratingSum'] ?? 0.0,
-      offer: json['offer'] != null ? OfferModel.fromJson(json['offer']) : null,
+      createdAt: json['createdAt'] ?? '',
+      offerId: json['offerId'],
     );
 
   }
@@ -119,7 +121,8 @@ class ProductModel extends ProductEntity {
       'averageRating': averageRating,
       'reviewsCount': reviewsCount,
       'ratingSum': ratingSum,
-      'offer': offer
+      'createdAt': createdAt,
+      'offerId': offerId,
     };
   }
 }

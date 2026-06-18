@@ -2,9 +2,8 @@ import 'package:fruit_hub_market/core/widgets/empty_widget.dart';
 
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/profile_cubit.dart';
-import 'empty_order_widget.dart';
 import 'order_item.dart';
-import 'orders_loading_widget.dart';
+import 'skeletonizer_order_item.dart';
 
 class OrdersViewBody extends StatelessWidget {
   const OrdersViewBody({super.key});
@@ -16,29 +15,35 @@ class OrdersViewBody extends StatelessWidget {
         SliverToBoxAdapter(child: InfoActionRow(text: 'طلباتي', showBack: true)),
         BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {
+            if (state is ProfileGetOrdersLoading) {
+              return SliverList.builder(itemBuilder: (context, index) =>SkeletonizerOrderItem(),
+                itemCount: 7,);
+            }
+
             if (state is ProfileGetOrdersSuccess) {
-              if(state.orders.isEmpty) {
-                return SliverToBoxAdapter(
-                  child:EmptyWidget(),
-                );
-              }   else {
-                return SliverList.separated(
-                  itemBuilder: (BuildContext context, int index) =>
-                      OrderItem(orderEntity: state.orders[index]),
-                  separatorBuilder: (BuildContext context, int index) =>
-                      SizedBox(height: 15,),
-                  itemCount: state.orders.length,
+              if (state.orders.isEmpty) {
+                return const SliverToBoxAdapter(
+                  child: EmptyWidget(),
                 );
               }
+
+              return SliverList.separated(
+                itemBuilder: (context, index) =>
+                    OrderItem(orderEntity: state.orders[index]),
+                separatorBuilder: (_, __) => const SizedBox(height: 15),
+                itemCount: state.orders.length,
+              );
             }
+
             if (state is ProfileGetOrdersError) {
               return SliverToBoxAdapter(
                 child: Center(child: Text(state.errMessage)),
               );
             }
-              return OrdersLoadingWidget();
+
+            return const SliverToBoxAdapter(child: SizedBox.shrink());
           },
-        ),
+        )
       ],
     );
   }

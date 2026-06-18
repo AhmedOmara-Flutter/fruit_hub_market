@@ -40,6 +40,7 @@ class OfferModel extends OfferEntity {
 
 
   factory OfferModel.fromJson(Map<String, dynamic> json) {
+    print("RAW JSON: $json");
     return OfferModel(
       productId: json['product_id'],
       discountPercentage: json['discount_percentage'],

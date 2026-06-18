@@ -13,10 +13,20 @@ class FruitItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("🛒 BUILD PRODUCT ITEM");
+    print("product.id = ${product.id}");
+    print("product.name = ${product.name}");
+
     final offer = context
         .watch<OfferCubit>()
         .offersMap[product.id];
+    print("🔎 LOOKUP OFFER FOR PRODUCT");
+
+    print("product.id = ${product.id}");
+    print("offer = ${offer}");
     final hasOffer = offer != null && offer.isActive;
+    print("🔥 HAS OFFER CHECK:");
+    print(hasOffer);
     return GestureDetector(
       onTap: () async {
         await AppSounds.playClickSound('click_song.wav');

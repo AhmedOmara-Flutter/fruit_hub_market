@@ -17,9 +17,11 @@ final class  GetOffersFailure extends OfferState {
   final String errMessage;
   GetOffersFailure(this.errMessage);
 }
-final class  GetOffersSuccess extends OfferState {
+class GetOffersSuccess extends OfferState {
   final List<OfferEntity> offers;
-  GetOffersSuccess(this.offers);
+  final Map<String, OfferEntity> offersMap;
+
+  GetOffersSuccess(this.offers, this.offersMap);
 }
 
 class DeleteOfferLoading extends OfferState {}

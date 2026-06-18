@@ -22,10 +22,12 @@ class OfferEntity extends Equatable {
   });
   /// هل العرض شغال حاليًا؟
   bool get isActive {
-    final now = DateTime.now();
+    final now = DateTime.now().toUtc();
 
-    return !startDate.isAfter(now) &&
-        !endDate.isBefore(now);
+    final start = DateTime.utc(startDate.year, startDate.month, startDate.day);
+    final end = DateTime.utc(endDate.year, endDate.month, endDate.day + 1);
+
+    return now.isAfter(start) && now.isBefore(end);
   }
   /// هل العرض انتهى؟
   bool get isExpired {
@@ -56,10 +58,14 @@ class OfferEntity extends Equatable {
   }
 
   @override
-  List<Object?> get props =>[
+  List<Object?> get props => [
     productId,
     discountPercentage,
     startDate,
     endDate,
+    image,
+    name,
+    priceBeforeDiscount,
+    priceAfterDiscount,
   ];
 }

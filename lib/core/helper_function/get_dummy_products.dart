@@ -20,6 +20,8 @@ ProductEntity getDummyProduct = ProductEntity(
   reviewsCount: 100,
   ratingSum: 450.0,
   category: 'fruits',
+  createdAt: '',
+  offerId: '123456789',
 
 );
 

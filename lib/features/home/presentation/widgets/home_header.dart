@@ -55,31 +55,6 @@ class HomeHeader extends StatelessWidget {
               )
             ],
           ),
-          Spacer(),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: Material(
-              color: Colors.grey.shade100,
-              child: InkWell(
-                onTap: () {
-                },
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      Icon(
-                        Icons.notifications_none_outlined,
-                        size: 30,
-                        color: AppColor.mainColor,
-                      ),
-                      CircleAvatar(radius: 4, backgroundColor: AppColor.red),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );

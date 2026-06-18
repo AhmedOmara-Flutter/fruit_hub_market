@@ -28,6 +28,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
       context.read<BestSellingCubit>().getSellingProducts();
       context.read<FeaturedCubit>().getFeaturedProducts();
       context.read<OfferCubit>().getOffers();
+      print(
+        'Home OfferCubit = ${context.read<OfferCubit>().hashCode}',
+      );
     });
   }
 

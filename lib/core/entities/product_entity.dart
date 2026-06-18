@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
-import 'package:fruit_hub_market/features/offers/domain/entities/offer_entity.dart';
 
 // ignore_for_file: must_be_immutable
 class ProductEntity extends Equatable {
@@ -22,9 +21,9 @@ class ProductEntity extends Equatable {
   double averageRating;
   int reviewsCount;
   double ratingSum;
-  OfferEntity? offer;
   final String category;
-
+  final String createdAt;
+  String? offerId;
 
   ProductEntity({
     required this.name,
@@ -44,11 +43,34 @@ class ProductEntity extends Equatable {
     required this.averageRating,
     required this.reviewsCount,
     required this.ratingSum,
-    this.offer, required this.category,
+    required this.category,
+    required this.createdAt,
+    this.offerId,
   });
 
 
   @override
   // TODO: implement props
-  List<Object?> get props => [code];
+  List<Object?> get props => [
+    code,
+    id,
+    name,
+    price,
+    description,
+    imageFile,
+    isFeatured,
+    image,
+    expirationMonth,
+    unitAmount,
+    numberOfCalories,
+    isOrganic,
+    sellingCount,
+    subImages,
+    averageRating,
+    reviewsCount,
+    ratingSum,
+    category,
+    createdAt,
+    offerId,
+  ];
 }
