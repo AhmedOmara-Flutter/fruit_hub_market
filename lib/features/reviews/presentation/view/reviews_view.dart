@@ -1,6 +1,7 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/reviews/presentation/widgets/reviews_view_body.dart';
-import '../view_model/review_cubit.dart';
+import '../view_model/add_review_cubit/review_cubit.dart';
+import '../view_model/get_review_cubit/get_review_cubit.dart';
 
 class ReviewsView extends StatelessWidget {
   final String productId;
@@ -27,6 +28,7 @@ class ReviewsView extends StatelessWidget {
             );
             context.read<ReviewCubit>().reviewController.clear();
             context.read<ReviewCubit>().rate=0;
+
 
           }
         },

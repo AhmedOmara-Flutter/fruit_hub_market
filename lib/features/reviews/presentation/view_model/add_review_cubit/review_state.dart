@@ -20,12 +20,3 @@ final class AddReviewError extends ReviewState {
   AddReviewError(this.errMessage);
 }
 
-final class GetReviewLoading extends ReviewState {}
-
-final class GetReviewSuccess extends ReviewState {}
-
-final class GetReviewError extends ReviewState {
-  final String errMessage;
-
-  GetReviewError(this.errMessage);
-}

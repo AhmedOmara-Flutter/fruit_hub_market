@@ -1,7 +1,7 @@
 import 'package:fruit_hub_market/core/entities/product_entity.dart';
 import '../../../../core/helper_function/format_month.dart';
 import '../../../../core/utils/app_imports.dart';
-import '../../../offers/domain/entities/offer_entity.dart';
+import '../../../../core/entities/offer_entity.dart';
 import 'info_grid_card.dart';
 
 class ProductInfoGridSection extends StatelessWidget {

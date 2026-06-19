@@ -2,7 +2,7 @@ import 'package:fruit_hub_market/features/cart/presentation/view_model/cart_cubi
 import 'package:fruit_hub_market/features/offers/presentation/view_model/offer_cubit.dart';
 
 import '../entities/product_entity.dart';
-import '../../features/offers/domain/entities/offer_entity.dart';
+import '../entities/offer_entity.dart';
 
 num getFinalPrice({
   required ProductEntity product,

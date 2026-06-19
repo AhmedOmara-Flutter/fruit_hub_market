@@ -2,9 +2,9 @@ import 'package:dartz/dartz.dart';
 
 import '../../errors/failure.dart';
 import '../../services/database_services.dart';
-import '../../../features/offers/domain/entities/offer_entity.dart';
+import '../../entities/offer_entity.dart';
 import 'offer_repo.dart';
-import '../../../features/offers/data/models/offer_model.dart';
+import '../../models/offer_model.dart';
 
 class OfferRepoImpl implements OfferRepo {
   final DatabaseServices _databaseServices;

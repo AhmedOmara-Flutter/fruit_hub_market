@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../errors/failure.dart';
-import '../../../features/offers/domain/entities/offer_entity.dart';
+import '../../entities/offer_entity.dart';
 
 abstract class OfferRepo {
   Future<Either<Failure, void>> addOffer(OfferEntity offer,);

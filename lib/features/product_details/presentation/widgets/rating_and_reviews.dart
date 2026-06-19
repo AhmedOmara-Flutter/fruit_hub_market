@@ -1,8 +1,9 @@
 
-import 'package:fruit_hub_market/features/reviews/presentation/view_model/review_cubit.dart';
+import 'package:fruit_hub_market/features/reviews/presentation/view_model/add_review_cubit/review_cubit.dart';
 
 import '../../../../core/utils/app_imports.dart';
 import '../../../../core/entities/product_entity.dart';
+import '../../../reviews/presentation/view_model/get_review_cubit/get_review_cubit.dart';
 
 class RatingAndReviews extends StatefulWidget {
   const RatingAndReviews({
@@ -19,7 +20,7 @@ class RatingAndReviews extends StatefulWidget {
 class _RatingAndReviewsState extends State<RatingAndReviews> {
   @override
   void initState() {
-    context.read<ReviewCubit>().getReviews(widget.product.id);
+    context.read<GetReviewCubit>().getReviews(widget.product.id);
     super.initState();
   }
   @override
@@ -31,12 +32,12 @@ class _RatingAndReviewsState extends State<RatingAndReviews> {
         const Icon(Icons.star,
             color: Color(0xffFFC529)),
         const SizedBox(width: 5),
-        Text("${context.watch<ReviewCubit>().averageRating}",style: Theme.of(context).textTheme.titleMedium!.copyWith(
+        Text("${context.watch<GetReviewCubit>().averageRating}",style: Theme.of(context).textTheme.titleMedium!.copyWith(
             color: Color(0xff111719)
         ),),
         const SizedBox(width: 5),
         Text(
-          "(+${context.watch<ReviewCubit>().reviews.length})",
+          "(+${context.watch<GetReviewCubit>().reviews.length})",
           style: Theme.of(context).textTheme.titleSmall!.copyWith(
               color: Color(0xff9796A1)
           ),),

@@ -1,7 +1,7 @@
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/rating_and_reviews.dart';
 
 import '../../../../core/utils/app_imports.dart';
-import '../../../offers/domain/entities/offer_entity.dart';
+import '../../../../core/entities/offer_entity.dart';
 import '../../../../core/entities/product_entity.dart';
 
 class ProductDetailsSection extends StatelessWidget {
