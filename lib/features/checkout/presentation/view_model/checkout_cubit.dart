@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:fruit_hub_market/core/entities/order_entity.dart';
 
+import '../../../../core/entities/delivery_area_entity.dart';
 import '../../../../core/repos/order_repo/order_repo.dart';
 import '../../../../core/utils/app_imports.dart';
 import '../view/pages/address_page_view.dart';
@@ -41,34 +42,33 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       "price": "${orderEntity.cartEntity.getTotalPrice()} جنيه",
     },
   ];
-  late List<Map<String, String>> placesOptions = [
-    {
-      "title": "طنطا",
-      "subtitle": "اختر عنوانك داخل طنطا",
-      "price": "10",
-    },
-    {
-      "title": "كفر الزيات",
-      "subtitle": "اختر عنوانك داخل كفر الزيات",
-      "price": "15",
-    },
-    {
-      "title": "بسيون",
-      "subtitle": "اختر عنوانك داخل بسيون",
-      "price": "20",
-    },
-    {
-      "title": "دفرة",
-      "subtitle": "اختر عنوانك داخل دفرة",
-      "price": "30",
-    },
-    {
-      "title": "السنطة",
-      "subtitle": "اختر عنوانك داخل السنطة",
-      "price": "50",
-    },
-  ];
-  void changePage(int index) {
+  final List<DeliveryAreaEntity> placesOptions = [
+    DeliveryAreaEntity(
+      title: 'طنطا',
+      subTitle: 'اختر عنوانك داخل طنطا',
+      cost: 10,
+    ),
+    DeliveryAreaEntity(
+      title: 'كفر الزيات',
+      subTitle: 'اختر عنوانك داخل كفر الزيات',
+      cost: 15,
+    ),
+    DeliveryAreaEntity(
+      title: 'بسيون',
+      subTitle: 'اختر عنوانك داخل بسيون',
+      cost: 20,
+    ),
+    DeliveryAreaEntity(
+      title: 'دفرة',
+      subTitle: 'اختر عنوانك داخل دفرة',
+      cost: 30,
+    ),
+    DeliveryAreaEntity(
+      title: 'السنطة',
+      subTitle: 'اختر عنوانك داخل السنطة',
+      cost: 50,
+    ),
+  ];  void changePage(int index) {
     currentIndex = index;
     emit(CheckoutChangePage());
     pageController.animateToPage(
