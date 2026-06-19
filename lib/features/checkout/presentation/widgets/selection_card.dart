@@ -1,7 +1,7 @@
-import '../../../../../core/utils/app_imports.dart';
+import '../../../../core/utils/app_imports.dart';
 
-class ShippingMethodItem extends StatelessWidget {
-  const ShippingMethodItem({
+class SelectionCard extends StatelessWidget {
+  const SelectionCard({
     super.key,
     required this.isSelected,
     required this.item,

@@ -3,8 +3,8 @@ import 'package:fruit_hub_market/features/checkout/presentation/view_model/check
 import '../../../../../core/helper_function/custom_show_dialog.dart';
 import '../../../../../core/utils/app_imports.dart';
 
-class PaymentButtonSection extends StatelessWidget {
-  const PaymentButtonSection({super.key});
+class OrderReviewButtonSection extends StatelessWidget {
+  const OrderReviewButtonSection({super.key});
 
   @override
   Widget build(BuildContext context) {

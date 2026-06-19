@@ -1,8 +1,8 @@
 import '../../../../../core/utils/app_imports.dart';
 import '../../view_model/checkout_cubit.dart';
 
-class ShippingButtonSection extends StatelessWidget {
-  const ShippingButtonSection({super.key,});
+class PaymentMethodButtonSection extends StatelessWidget {
+  const PaymentMethodButtonSection({super.key,});
 
 
   @override

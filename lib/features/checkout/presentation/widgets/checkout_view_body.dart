@@ -14,7 +14,7 @@ class CheckoutViewBody extends StatelessWidget {
       listener: (context, state) {
         if (state is CheckoutAddOrderSuccess) {
           AppVibration.heavy();
-          AppSounds.playClickSound('payment.mp3');
+          AppSounds.playClickSound('order_review.mp3');
           customShowSnakeBar(
             context,
             color: AppColor.mainColor,

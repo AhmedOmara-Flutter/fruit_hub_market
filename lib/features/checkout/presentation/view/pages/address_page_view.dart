@@ -1,9 +1,9 @@
 import 'package:fruit_hub_market/core/entities/address_entity.dart';
 
-import '../../../../core/utils/app_imports.dart';
-import '../view_model/checkout_cubit.dart';
-import '../widgets/address/address_button_section.dart';
-import '../widgets/address/address_form_section.dart';
+import '../../../../../core/utils/app_imports.dart';
+import '../../view_model/checkout_cubit.dart';
+import '../../widgets/address/address_button_section.dart';
+import '../../widgets/address/address_form_section.dart';
 
 class AddressPageView extends StatefulWidget {
   const AddressPageView({super.key});

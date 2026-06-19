@@ -1,17 +1,17 @@
 import 'package:fruit_hub_market/features/checkout/presentation/view_model/checkout_cubit.dart';
 
-import '../../../../core/utils/app_imports.dart';
-import '../widgets/shipping/shipping_button_section.dart';
-import '../widgets/shipping/shipping_methods_section.dart';
+import '../../../../../core/utils/app_imports.dart';
+import '../../widgets/payment_method/payment_method_button_section.dart';
+import '../../widgets/payment_method/payment_method_section.dart';
 
-class ShippingPageView extends StatefulWidget {
-  const ShippingPageView({super.key});
+class PaymentMethodView extends StatefulWidget {
+  const PaymentMethodView({super.key});
 
   @override
-  State<ShippingPageView> createState() => _ShippingPageViewState();
+  State<PaymentMethodView> createState() => _PaymentMethodViewState();
 }
 
-class _ShippingPageViewState extends State<ShippingPageView> {
+class _PaymentMethodViewState extends State<PaymentMethodView> {
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +22,8 @@ class _ShippingPageViewState extends State<ShippingPageView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 30),
-              ShippingMethodsSection(),
-              ShippingButtonSection(),
+              PaymentMethodSection(),
+              PaymentMethodButtonSection(),
               SizedBox(height: 30),
             ],
           ),

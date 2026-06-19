@@ -138,7 +138,7 @@ class $AssetsSongsGen {
 
   final String clickError = 'assets/songs/click_error.wav';
   final String clickSong = 'assets/songs/click_song.wav';
-  final String payment = 'assets/songs/payment.mp3';
+  final String payment = 'assets/songs/order_review.mp3';
   final String success = 'assets/songs/success.mp3';
 }
 
