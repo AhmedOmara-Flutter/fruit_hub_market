@@ -1,4 +1,4 @@
-import '../../../../core/entities/delivery_area_entity.dart';
+import '../../../../core/entities/selected_location_entity.dart';
 import '../../../../core/utils/app_imports.dart';
 
 class SelectLocationCard extends StatelessWidget {
@@ -11,7 +11,7 @@ class SelectLocationCard extends StatelessWidget {
 
   final void Function()? onTap;
   final bool isSelected;
-  final DeliveryAreaEntity  item;
+  final SelectedLocationEntity  item;
 
   @override
   Widget build(BuildContext context) {

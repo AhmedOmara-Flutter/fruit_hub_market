@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:fruit_hub_market/core/entities/order_entity.dart';
 
-import '../../../../core/entities/delivery_area_entity.dart';
+import '../../../../core/entities/selected_location_entity.dart';
 import '../../../../core/repos/order_repo/order_repo.dart';
 import '../../../../core/utils/app_imports.dart';
 import '../view/pages/address_page_view.dart';
@@ -22,6 +22,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   final PageController pageController = PageController();
   int currentIndex = 0;
   bool? isCashOnDelivery;
+  int ?selectedLocationIndex;
 
   final List<String> stepperTitles = ['الدفع', 'المكان', 'العنوان', 'مراجعه'];
   final List<Widget> stepperPages = const [
@@ -42,33 +43,34 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       "price": "${orderEntity.cartEntity.getTotalPrice()} جنيه",
     },
   ];
-  final List<DeliveryAreaEntity> placesOptions = [
-    DeliveryAreaEntity(
+  final List<SelectedLocationEntity> placesOptions = [
+    SelectedLocationEntity(
       title: 'طنطا',
       subTitle: 'اختر عنوانك داخل طنطا',
       cost: 10,
     ),
-    DeliveryAreaEntity(
+    SelectedLocationEntity(
       title: 'كفر الزيات',
       subTitle: 'اختر عنوانك داخل كفر الزيات',
       cost: 15,
     ),
-    DeliveryAreaEntity(
+    SelectedLocationEntity(
       title: 'بسيون',
       subTitle: 'اختر عنوانك داخل بسيون',
       cost: 20,
     ),
-    DeliveryAreaEntity(
+    SelectedLocationEntity(
       title: 'دفرة',
       subTitle: 'اختر عنوانك داخل دفرة',
       cost: 30,
     ),
-    DeliveryAreaEntity(
+    SelectedLocationEntity(
       title: 'السنطة',
       subTitle: 'اختر عنوانك داخل السنطة',
       cost: 50,
     ),
-  ];  void changePage(int index) {
+  ];
+  void changePage(int index) {
     currentIndex = index;
     emit(CheckoutChangePage());
     pageController.animateToPage(
@@ -76,6 +78,10 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
+  }
+  void changeSelectedLocationIndex(int index) {
+    selectedLocationIndex = index;
+    emit(CheckoutChangeLocationIndex());
   }
 
   void selectShipping(bool value) {

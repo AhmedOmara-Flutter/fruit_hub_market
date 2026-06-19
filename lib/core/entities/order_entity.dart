@@ -1,3 +1,5 @@
+import 'package:fruit_hub_market/core/entities/selected_location_entity.dart';
+
 import '../../features/auth/domain/entities/user_entity.dart';
 import '../../features/cart/domain/entities/cart_entity.dart';
 import '../enums/order_enum.dart';
@@ -11,7 +13,9 @@ class OrderEntity {
   final UserEntity ?userEntity;
   bool ?isCashOnDelivery;
   AddressEntity ?addressEntity;
+  SelectedLocationEntity ?selectedLocationEntity;
   final OrderStatus status;
+
 
   OrderEntity({
     required this.cartEntity,
@@ -20,6 +24,7 @@ class OrderEntity {
     required this.uId,this.id,this.createdAt,
     this.userEntity,
     required this.status,
+    this.selectedLocationEntity,
   });
 
   String getFullAddress(){

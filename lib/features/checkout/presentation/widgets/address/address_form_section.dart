@@ -22,6 +22,7 @@ class AddressFormSection extends StatelessWidget {
       children: [
         CustomTextFormField(
           controller: nameController,
+          prefixIcon: Icons.person,
           hintText: 'الاسم كامل',
           validator: (value) {
             if (value == null || value
@@ -39,6 +40,7 @@ class AddressFormSection extends StatelessWidget {
         ),
         const SizedBox(height: 15),
         CustomTextFormField(
+          prefixIcon: Icons.email,
           controller: emailController,
           hintText: 'البريد الإلكتروني',
           validator: (value) {
@@ -62,6 +64,7 @@ class AddressFormSection extends StatelessWidget {
         ),
         const SizedBox(height: 15),
         CustomTextFormField(
+          prefixIcon: Icons.home_outlined,
           controller: addressController,
           hintText: 'العنوان',
           validator: (value) {
@@ -76,6 +79,7 @@ class AddressFormSection extends StatelessWidget {
         ),
         const SizedBox(height: 15),
         CustomTextFormField(
+          prefixIcon: Icons.location_on_outlined,
           controller: countryController,
           hintText: 'المدينه',
           validator: (value) {
@@ -90,6 +94,7 @@ class AddressFormSection extends StatelessWidget {
         ),
         const SizedBox(height: 15),
         CustomTextFormField(
+          prefixIcon: Icons.apartment,
           controller: apartmentController,
           hintText: 'رقم الطابق , رقم الشقه...',
           validator: (value) {

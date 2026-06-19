@@ -5,6 +5,7 @@ sealed class CheckoutState {}
 
 final class CheckoutInitial extends CheckoutState {}
 final class CheckoutChangePage extends CheckoutState {}
+final class CheckoutChangeLocationIndex extends CheckoutState {}
 final class CheckoutSelectShipping extends CheckoutState {}
 final class CheckoutOrderConfirmed extends CheckoutState {}
 

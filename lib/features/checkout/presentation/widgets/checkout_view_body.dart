@@ -41,7 +41,7 @@ class CheckoutViewBody extends StatelessWidget {
             Column(
               children: [
                 InfoActionRow(
-                  text: cubit.stepperTitles[cubit.currentIndex],
+                  text: 'اتمام الطلب',
                   showBack: true,
                 ),
                 Expanded(
