@@ -1,5 +1,5 @@
 
-import 'package:fruit_hub_market/features/reviews/presentation/view_model/add_review_cubit/review_cubit.dart';
+import 'package:fruit_hub_market/features/reviews/presentation/view_model/add_review_cubit/add_review_cubit.dart';
 
 import '../../../../core/utils/app_imports.dart';
 import '../../../../core/entities/product_entity.dart';

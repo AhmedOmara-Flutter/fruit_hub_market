@@ -4,10 +4,10 @@ import '../../../../../core/utils/app_imports.dart';
 import '../../../domain/entities/review_entity.dart';
 import '../../../domain/repos/review_repo.dart';
 
-part 'review_state.dart';
+part 'add_review_state.dart';
 
-class ReviewCubit extends Cubit<ReviewState> {
-  ReviewCubit(this._repo) : super(ReviewInitial());
+class AddReviewCubit extends Cubit<AddReviewState> {
+  AddReviewCubit(this._repo) : super(ReviewInitial());
   final ReviewRepo _repo;
 
   TextEditingController reviewController = TextEditingController();

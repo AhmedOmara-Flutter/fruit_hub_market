@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-
 import '../../../domain/entities/review_entity.dart';
 import '../../../domain/repos/review_repo.dart';
-
 part 'get_review_state.dart';
 
 class GetReviewCubit extends Cubit<GetReviewState> {

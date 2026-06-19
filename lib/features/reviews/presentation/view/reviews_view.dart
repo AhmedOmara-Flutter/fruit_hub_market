@@ -1,6 +1,6 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/reviews/presentation/widgets/reviews_view_body.dart';
-import '../view_model/add_review_cubit/review_cubit.dart';
+import '../view_model/add_review_cubit/add_review_cubit.dart';
 import '../view_model/get_review_cubit/get_review_cubit.dart';
 
 class ReviewsView extends StatelessWidget {
@@ -11,7 +11,7 @@ class ReviewsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocListener<ReviewCubit, ReviewState>(
+      body: BlocListener<AddReviewCubit, AddReviewState>(
         listener: (context, state) {
           if (state is AddReviewError) {
             customShowSnakeBar(
@@ -26,8 +26,8 @@ class ReviewsView extends StatelessWidget {
                 color:AppColor.mainColor,
                 label:'شكراً ليك! تم إضافة تعليقك بنجاح 👌'
             );
-            context.read<ReviewCubit>().reviewController.clear();
-            context.read<ReviewCubit>().rate=0;
+            context.read<AddReviewCubit>().reviewController.clear();
+            context.read<AddReviewCubit>().rate=0;
 
 
           }

@@ -6,7 +6,7 @@ import 'package:fruit_hub_market/features/reviews/presentation/widgets/review_it
 
 import '../../../../core/utils/app_imports.dart';
 import '../../domain/entities/review_entity.dart';
-import '../view_model/add_review_cubit/review_cubit.dart';
+import '../view_model/add_review_cubit/add_review_cubit.dart';
 import '../view_model/get_review_cubit/get_review_cubit.dart';
 import 'review_bar_section.dart';
 import 'review_field_section.dart';
@@ -25,9 +25,9 @@ class _ReviewsViewBodyState extends State<ReviewsViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ReviewCubit, ReviewState>(
+    return BlocBuilder<AddReviewCubit, AddReviewState>(
       builder: (context, state) {
-        var cubit = context.read<ReviewCubit>();
+        var cubit = context.read<AddReviewCubit>();
         return Form(
           key: formKey,
           child: CustomScrollView(
