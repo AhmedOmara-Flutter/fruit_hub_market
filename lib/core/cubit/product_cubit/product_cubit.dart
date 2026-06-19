@@ -13,7 +13,6 @@ class ProductCubit extends Cubit<ProductState> {
   List<ProductEntity> filteredProducts = [];
   List<ProductEntity> allProducts = [];
   StreamSubscription? _productsSubscription;
-  int productsNumber = 0;
 
   void getProducts() {
     _productsSubscription?.cancel();

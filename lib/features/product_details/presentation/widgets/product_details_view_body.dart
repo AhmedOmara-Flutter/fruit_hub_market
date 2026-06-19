@@ -4,7 +4,6 @@ import 'package:fruit_hub_market/features/product_details/presentation/widgets/p
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_image_section.dart';
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_info_grid_section.dart';
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_sub_images_section.dart';
-
 import '../../../../core/utils/app_imports.dart';
 import '../../../../core/entities/product_entity.dart';
 

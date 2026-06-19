@@ -1,6 +1,4 @@
 import 'package:fruit_hub_market/features/product/presentation/widgets/category_tabs.dart';
-import 'package:fruit_hub_market/features/product/presentation/widgets/items_count_label.dart';
-
 import '../../../../../../../core/utils/app_imports.dart';
 import '../../../../core/cubit/product_cubit/product_cubit.dart';
 
