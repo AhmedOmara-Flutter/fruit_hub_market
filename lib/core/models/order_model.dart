@@ -1,3 +1,4 @@
+import 'package:fruit_hub_market/core/models/selected_location_model.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 import '../../features/cart/domain/entities/cart_entity.dart';
@@ -14,6 +15,7 @@ class OrderModel {
   final num totalPrice;
   final UserModel userModel;
   final AddressModel address;
+  final SelectedLocationModel selectedLocation;
   final List<OrderItemModel> items;
   final OrderStatus status;
 
@@ -28,7 +30,7 @@ class OrderModel {
    required this.createdAt,
     this.id,
     required this.userModel,
-    required this.status,
+    required this.status, required this.selectedLocation,
   });
 
   factory OrderModel.fromEntity(OrderEntity entity) {
@@ -46,6 +48,7 @@ class OrderModel {
           OrderItemModel.fromEntity(cartItem)).toList(),
       userModel: UserModel.fromEntity(entity.userEntity!),
       status: entity.status,
+      selectedLocation: SelectedLocationModel.fromEntity(entity.selectedLocationEntity!),
 
     );
 
@@ -64,6 +67,7 @@ class OrderModel {
       ),
       userEntity: userModel.toEntity(),
       status: status,
+      selectedLocationEntity: selectedLocation.toEntity(),
 
     );
   }
@@ -78,14 +82,11 @@ class OrderModel {
       items: List<OrderItemModel>.from(
           json['items'].map((item) => OrderItemModel.fromJson(item))),
       userModel: UserModel.fromJson(json['userModel']),
-      // status:   OrderStatus.values.firstWhere(
-      //       (e) => e.name == (json['status'] ?? 'قيد الانتظار'),
-      //   orElse: () => OrderStatus.pending,
-      // ),
       status: OrderStatus.values.firstWhere(
             (e) => e.name == json['status'],
         orElse: () => OrderStatus.pending,
       ),
+      selectedLocation:  SelectedLocationModel.fromJson(json['selectedLocation']),
     );
   }
 
@@ -100,6 +101,7 @@ class OrderModel {
       'id':id,
       'userModel': userModel.toJson(),
       'status': status.name,
+      'selectedLocation': selectedLocation.toJson(),
     };
   }
 

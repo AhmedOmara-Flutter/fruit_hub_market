@@ -7,6 +7,7 @@ class OrderItemContent extends StatelessWidget {
   final int numberOfOrders;
   final double ordersTotalPrice;
   final String price;
+  final double deliveryCost;
 
 
   const OrderItemContent({
@@ -15,7 +16,7 @@ class OrderItemContent extends StatelessWidget {
     required this.orderDate,
     required this.numberOfOrders,
     required this.ordersTotalPrice,
-    required this.products, required this.price,
+    required this.products, required this.price, required this.deliveryCost,
   });
 
   @override
@@ -119,13 +120,28 @@ class OrderItemContent extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                Text(
-                  '${ordersTotalPrice.toStringAsFixed(0)} جنيه',
-                  style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                    color: primaryGreen,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${ordersTotalPrice.toStringAsFixed(0)} جنيه',
+                      style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                        color: primaryGreen,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      '+$deliveryCost',
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .labelLarge!
+                          .copyWith(
+                        color: Colors.amber.shade800,
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),

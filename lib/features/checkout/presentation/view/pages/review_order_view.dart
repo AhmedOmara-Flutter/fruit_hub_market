@@ -1,8 +1,8 @@
 import '../../../../../core/utils/app_imports.dart';
 import '../../view_model/checkout_cubit.dart';
 import '../../widgets/order_review/delivery_address_section.dart';
-import '../../widgets/order_review/order_summary_section.dart';
 import '../../widgets/order_review/order_review_button_section.dart';
+import '../../widgets/order_review/order_summary_section.dart';
 
 class ReviewOrderView extends StatelessWidget {
   const ReviewOrderView({super.key});
@@ -30,10 +30,17 @@ class ReviewOrderView extends StatelessWidget {
                       ),
                       SizedBox(height: 20),
                       OrderSummarySection(
-                        totalPrice: cubit.orderEntity.cartEntity.getTotalPrice().toDouble(),
+                        totalPrice: cubit.orderEntity.cartEntity
+                            .getTotalPrice()
+                            .toDouble(),
+                        delivery: cubit.orderEntity.selectedLocationEntity!.cost,
                       ),
                       SizedBox(height: 10),
-                      DeliveryAddressSection(
+                      DeliveryInfoSection(
+                        locationName:
+                            cubit.orderEntity.selectedLocationEntity!.title,
+                        deliveryCost:
+                            cubit.orderEntity.selectedLocationEntity!.cost,
                         fullAddress: cubit.orderEntity.getFullAddress(),
                         onEdit: () {
                           cubit.pageController.previousPage(

@@ -2,9 +2,10 @@ import '../../../../../core/utils/app_imports.dart';
 
 class OrderSummarySection extends StatelessWidget {
   final double totalPrice;
+  final double delivery;
 
   const OrderSummarySection({
-    super.key, required this.totalPrice,
+    super.key, required this.totalPrice, required this.delivery,
   });
 
 
@@ -54,14 +55,14 @@ class OrderSummarySection extends StatelessWidget {
                         .labelMedium!
                         .copyWith(color: Colors.black),
                   ),
-                  // Text(
-                  //   '${Constants.delivery} جنيه',
-                  //   style: Theme
-                  //       .of(context)
-                  //       .textTheme
-                  //       .titleMedium!
-                  //       .copyWith(color: Color(0xff4E5556)),
-                  // ),
+                  Text(
+                    '$delivery جنيه',
+                    style: Theme
+                        .of(context)
+                        .textTheme
+                        .titleMedium!
+                        .copyWith(color: Color(0xff4E5556)),
+                  ),
                 ],
               ),
             ],
@@ -89,8 +90,7 @@ class OrderSummarySection extends StatelessWidget {
                     .copyWith(color: Colors.black),
               ),
               Text(
-                // '${totalPrice + Constants.delivery} جنيه',
-                '${totalPrice.toStringAsFixed(2)} جنيه',
+                '${(totalPrice+delivery).toStringAsFixed(2)} جنيه',
                 style: Theme
                     .of(
                   context,

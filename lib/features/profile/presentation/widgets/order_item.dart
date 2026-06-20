@@ -41,6 +41,7 @@ class OrderItem extends StatelessWidget {
                     price: orderEntity.cartEntity.cartItems
                         .map((item) => '${item.unitPrice} ج.م ')
                         .join('\n'),
+                    deliveryCost: orderEntity.selectedLocationEntity!.cost,
                   ),
                 ),
               ],
