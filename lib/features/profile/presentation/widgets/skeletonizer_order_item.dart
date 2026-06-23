@@ -30,7 +30,7 @@ class SkeletonizerOrderItem extends StatelessWidget {
                       orderId: 'omrnrijnbinrnmn',
                       orderDate: 'mioni nin iniuiiniooi',
                       numberOfOrders: 555,
-                      ordersTotalPrice: 78888,
+                      ordersTotalPrice: '78888',
                       products: 'jniniunin jinin',
                       price: 'rgji rnr' ,
                       deliveryCost: 78888,

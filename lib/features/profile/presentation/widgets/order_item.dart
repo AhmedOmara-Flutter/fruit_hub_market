@@ -12,46 +12,51 @@ class OrderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: 10, bottom:10,left: 15),
-      margin: EdgeInsets.only(left:  20,right: 20,bottom: 15),
-      decoration: BoxDecoration(
-        color: Color(0xffF2F3F3),
-        borderRadius: BorderRadius.circular(10),
-      ),
-
-      child: Stack(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 15),
-            child: Row(
-              children: [
-                OrderItemImage(),
-                SizedBox(width: 10),
-                Expanded(
-                  child: OrderItemContent(
-                    orderId: orderEntity.id??'',
-                    orderDate: getDateFormate(orderEntity.createdAt.toString()),
-                    numberOfOrders: orderEntity.cartEntity.getItemsCount(),
-                    ordersTotalPrice: orderEntity.cartEntity.getTotalPrice().toDouble(),
-                    products: orderEntity.cartEntity.cartItems
-                        .map((item) =>
-                    '${item.product.name} × ${item.quantity}')
-                        .join('\n'),
-                    price: orderEntity.cartEntity.cartItems
-                        .map((item) => '${item.unitPrice} ج.م ')
-                        .join('\n'),
-                    deliveryCost: orderEntity.selectedLocationEntity!.cost,
+    return GestureDetector(
+      onTap: (){
+        Navigator.pushNamed(context, RouteManager.orderTracking,arguments: orderEntity);
+      },
+      child: Container(
+        padding: EdgeInsets.only(top: 10, bottom:10,left: 15),
+        margin: EdgeInsets.only(left:  20,right: 20,bottom: 15),
+        decoration: BoxDecoration(
+          color: Color(0xffF2F3F3),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      
+        child: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: Row(
+                children: [
+                  OrderItemImage(),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: OrderItemContent(
+                      orderId: orderEntity.id??'',
+                      orderDate: getDateFormate(orderEntity.createdAt.toString()),
+                      numberOfOrders: orderEntity.cartEntity.getItemsCount(),
+                      ordersTotalPrice: orderEntity.cartEntity.getTotalPrice().toStringAsFixed(2),
+                      products: orderEntity.cartEntity.cartItems
+                          .map((item) =>
+                      '${item.product.name} × ${item.quantity}')
+                          .join('\n'),
+                      price: orderEntity.cartEntity.cartItems
+                          .map((item) => '${item.unitPrice} ج.م ')
+                          .join('\n'),
+                      deliveryCost: orderEntity.selectedLocationEntity!.cost,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          OrderStatusBadge(
-            color: orderEntity.status.color,
-            title: orderEntity.status.ar,
-          ),
-        ],
+            OrderStatusBadge(
+              color: orderEntity.status.color,
+              title: orderEntity.status.ar,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,11 @@
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
+import 'package:fruit_hub_market/core/widgets/custom_refresh_indicator.dart';
+import 'package:fruit_hub_market/features/offers/presentation/view_model/offer_cubit.dart';
 import 'package:fruit_hub_market/features/product/presentation/widgets/category_tabs.dart';
 import '../../../../../../../core/utils/app_imports.dart';
 import '../../../../core/cubit/product_cubit/product_cubit.dart';
+import '../../../home/presentation/view_model/best_selling_cubit.dart';
+import '../../../home/presentation/view_model/featured_cubit.dart';
 
 class ProductViewBody extends StatefulWidget {
   const ProductViewBody({super.key});
@@ -18,20 +23,28 @@ class _ProductViewBodyState extends State<ProductViewBody> {
   }
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        InfoActionRow(
-          text: 'المنتجات',
-          showSearch: true,
-          searchOnPressed: () {
-            Navigator.pushNamed(context, RouteManager.search);
-          },
-        ),
-        // ItemsCountLabel(
-        //   productsNumber: context.watch<ProductCubit>().productsNumber,
-        // ),
-        Expanded(child: CategoryTabs()),
-      ],
+    return CustomRefreshIndicator(
+      onRefresh: () async {
+        final bestSellingCubit = context.read<BestSellingCubit>();
+        final featuredCubit = context.read<FeaturedCubit>();
+        final offerCubit = context.read<OfferCubit>();
+        bestSellingCubit.getSellingProducts();
+        featuredCubit.getFeaturedProducts();
+        offerCubit.getOffers();
+        getUser();
+      },
+      child: Column(
+        children: [
+          InfoActionRow(
+            text: 'المنتجات',
+            showSearch: true,
+            searchOnPressed: () {
+              Navigator.pushNamed(context, RouteManager.search);
+            },
+          ),
+          Expanded(child: CategoryTabs()),
+        ],
+      ),
     );
   }
 }

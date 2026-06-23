@@ -5,7 +5,7 @@ class OrderItemContent extends StatelessWidget {
   final String orderDate;
   final String products;
   final int numberOfOrders;
-  final double ordersTotalPrice;
+  final String ordersTotalPrice;
   final String price;
   final double deliveryCost;
 
@@ -124,7 +124,7 @@ class OrderItemContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${ordersTotalPrice.toStringAsFixed(0)} جنيه',
+                      '$ordersTotalPrice ج.م',
                       style: Theme.of(context).textTheme.labelLarge!.copyWith(
                         color: primaryGreen,
                         fontWeight: FontWeight.bold,
