@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
-class FeaturedItemButton extends StatelessWidget {
-  const FeaturedItemButton({super.key, required this.onPressed});
+class OfferCarouselItemButton extends StatelessWidget {
+  const OfferCarouselItemButton({super.key, required this.onPressed});
 
   final VoidCallback onPressed;
 

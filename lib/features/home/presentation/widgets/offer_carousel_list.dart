@@ -1,18 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:fruit_hub_market/features/home/presentation/widgets/featured_item.dart';
+import 'package:fruit_hub_market/features/home/presentation/widgets/offer_carousel_item.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/skeletonizer_featured_item.dart';
 
 import '../../../../core/utils/app_imports.dart';
 import '../../../offers/presentation/view_model/offer_cubit.dart';
 
-class FeaturedList extends StatefulWidget {
-  const FeaturedList({super.key});
+class OfferCarouselList extends StatefulWidget {
+  const OfferCarouselList({super.key});
 
   @override
-  State<FeaturedList> createState() => _FeaturedListState();
+  State<OfferCarouselList> createState() => _OfferCarouselListState();
 }
 
-class _FeaturedListState extends State<FeaturedList> {
+class _OfferCarouselListState extends State<OfferCarouselList> {
   int currentIndex = 0;
 
   @override
@@ -29,7 +29,7 @@ class _FeaturedListState extends State<FeaturedList> {
         }
 
         if (state is GetOffersSuccess) {
-          final offers = state.offers; // 👈 أهم تعديل
+          final offers = state.offers.where((e) => e.isActive).toList();
 
           if (offers.isEmpty) {
             return const SizedBox.shrink();
@@ -42,7 +42,7 @@ class _FeaturedListState extends State<FeaturedList> {
               CarouselSlider.builder(
                 itemCount: offers.length,
                 itemBuilder: (context, index, realIndex) {
-                  return FeaturedItem(offer: offers[index]);
+                  return OfferCarouselItem(offer: offers[index]);
                 },
                 options: CarouselOptions(
                   height: MediaQuery.of(context).size.height * 0.21,
@@ -108,7 +108,7 @@ class _FeaturedListState extends State<FeaturedList> {
   }
 }
 // import 'package:carousel_slider/carousel_slider.dart';
-// import 'package:fruit_hub_market/features/home/presentation/widgets/featured_item.dart';
+// import 'package:fruit_hub_market/features/home/presentation/widgets/offer_carousel_item.dart';
 // import 'package:fruit_hub_market/features/home/presentation/widgets/skeletonizer_featured_item.dart';
 // import 'package:fruit_hub_market/features/offers/presentation/view_model/offer_cubit.dart';
 //

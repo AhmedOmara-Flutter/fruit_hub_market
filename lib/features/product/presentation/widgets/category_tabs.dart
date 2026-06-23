@@ -21,8 +21,6 @@ class _CategoryTabsState extends State<CategoryTabs>
     'خضروات',
     'مشروبات',
     'مكسرات',
-    'عصاير',
-    'تنوعات'
   ];
 
   late TabController _tabController;

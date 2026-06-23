@@ -16,6 +16,7 @@ class TapBarViewBody extends StatelessWidget {
         final products = cubit.allProducts
             .where((p) => p.category == category)
             .toList();
+
         if (state is GetProductsLoadingState) {
           return GridView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 20),

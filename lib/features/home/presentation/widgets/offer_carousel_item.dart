@@ -1,12 +1,12 @@
 import 'package:flutter_svg_provider/flutter_svg_provider.dart' as svg;
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/features/home/presentation/widgets/featured_item_button.dart';
+import 'package:fruit_hub_market/features/home/presentation/widgets/offer_carousel_item_button.dart';
 
 import '../../../../core/entities/offer_entity.dart';
 
-class FeaturedItem extends StatelessWidget {
+class OfferCarouselItem extends StatelessWidget {
   final OfferEntity offer;
-  const FeaturedItem({super.key, required this.offer});
+  const OfferCarouselItem({super.key, required this.offer});
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +74,7 @@ class FeaturedItem extends StatelessWidget {
                       const SizedBox(
                         height: 11,
                       ),
-                      FeaturedItemButton(
+                      OfferCarouselItemButton(
                         onPressed: () {
                           // Navigator.pushNamed(context,
                           //   RouteManager.productDetails,
