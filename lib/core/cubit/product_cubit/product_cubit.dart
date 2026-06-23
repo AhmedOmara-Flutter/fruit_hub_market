@@ -30,7 +30,17 @@ class ProductCubit extends Cubit<ProductState> {
           emit(GetProductsSuccessState(products: data));
         },
       );
-    });
+
+    }
+
+    );
+
+  }
+
+  ProductEntity? getProductById(String id) {
+    return allProducts.firstWhere(
+          (p) => p.id == id,
+    );
   }
 
   Future<void> increaseSellingCount(String productId) async {

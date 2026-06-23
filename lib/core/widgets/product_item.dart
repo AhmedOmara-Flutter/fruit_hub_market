@@ -23,7 +23,7 @@ final hasOffer = offer != null && offer.isActive;
         Navigator.pushNamed(
           context,
           RouteManager.productDetails,
-          arguments: product,
+          arguments: product.id,
         );
         context.read<ProductCubit>().increaseSellingCount(product.id);
       },

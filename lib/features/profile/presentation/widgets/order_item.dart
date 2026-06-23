@@ -14,7 +14,7 @@ class OrderItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: 10, bottom:10,left: 15),
-      margin: EdgeInsets.symmetric(horizontal:  20,),
+      margin: EdgeInsets.only(left:  20,right: 20,bottom: 15),
       decoration: BoxDecoration(
         color: Color(0xffF2F3F3),
         borderRadius: BorderRadius.circular(10),

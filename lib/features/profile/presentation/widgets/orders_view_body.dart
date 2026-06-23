@@ -27,10 +27,9 @@ class OrdersViewBody extends StatelessWidget {
                 );
               }
 
-              return SliverList.separated(
+              return SliverList.builder(
                 itemBuilder: (context, index) =>
                     OrderItem(orderEntity: state.orders[index]),
-                separatorBuilder: (_, __) => const SizedBox(height: 15),
                 itemCount: state.orders.length,
               );
             }

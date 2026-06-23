@@ -15,7 +15,7 @@ class CategoryItem extends StatelessWidget {
         Navigator.pushNamed(
           context,
           RouteManager.productDetails,
-          arguments: productEntity,
+          arguments: productEntity.id,
         );
       },
       child: Column(

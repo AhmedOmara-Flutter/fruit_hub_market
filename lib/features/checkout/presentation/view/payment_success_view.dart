@@ -32,33 +32,35 @@ class PaymentSuccessView extends StatelessWidget {
             ).textTheme.titleSmall!.copyWith(color: Color(0xff4E5556)),
           ),
           Spacer(),
-          GestureDetector(
-            onTap: (){
+          // GestureDetector(
+          //   onTap: (){
+          //     context.read<CartCubit>().cart.cartItems.clear();
+          //     context.read<CartCubit>().saveCart();
+          //     context.read<MainCubit>().currentIndex=0;
+          //     Navigator.pushNamed(context, RouteManager.home,);
+          //   },
+          //   child: Text(
+          //       "الرئيسيه",
+          //       style: Theme.of(context).textTheme.labelSmall!.copyWith(
+          //           color: AppColor.mainColor,
+          //           decoration: TextDecoration.underline
+          //       )
+          //   ),
+          // ),
+          SizedBox(height: 10,),
+          CustomButton(
+            onPressed: () {
               context.read<CartCubit>().cart.cartItems.clear();
               context.read<CartCubit>().saveCart();
               context.read<MainCubit>().currentIndex=0;
               Navigator.pushNamed(context, RouteManager.home,);
             },
             child: Text(
-                "الرئيسيه",
-                style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                    color: AppColor.mainColor,
-                    decoration: TextDecoration.underline
-                )
-            ),
-          ),
-          SizedBox(height: 10,),
-          CustomButton(
-            onPressed: () {
-              Navigator.pushNamed(context, RouteManager.orderTracking);
-
-            },
-            child: Text(
-              'تتبع الطلب',
+              'الرئيسيه',
               style: Theme.of(context).textTheme.labelSmall,
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 30),
         ],
       ),
     );

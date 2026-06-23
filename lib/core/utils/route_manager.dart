@@ -64,9 +64,9 @@ class GenerateRoute {
         });
         case RouteManager.productDetails:
           return MaterialPageRoute(builder: (context) {
-            final product = settings.arguments as ProductEntity;
+            final productId = settings.arguments as String;
             return ProductDetailsView(
-              product: product,
+              productId: productId,
             );
           });
         case RouteManager.search:

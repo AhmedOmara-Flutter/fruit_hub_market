@@ -3,12 +3,12 @@ import '../../../../core/entities/product_entity.dart';
 import '../../../../core/utils/app_imports.dart';
 
 class ProductDetailsView extends StatelessWidget {
-  final ProductEntity product;
+  final String productId;
 
-  const ProductDetailsView({super.key, required this.product});
+  const ProductDetailsView({super.key, required this.productId});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: ProductDetailsViewBody(product: product,));
+    return Scaffold(body: ProductDetailsViewBody(productId: productId,));
   }
 }
