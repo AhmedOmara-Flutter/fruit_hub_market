@@ -7,9 +7,9 @@ import '../../features/offers/presentation/view_model/offer_cubit.dart';
 import '../cubit/product_cubit/product_cubit.dart';
 import '../entities/product_entity.dart';
 
-class FruitItem extends StatelessWidget {
+class ProductItem extends StatelessWidget {
   final ProductEntity product;
-  const FruitItem({super.key, required this.product});
+  const ProductItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,6 @@ final hasOffer = offer != null && offer.isActive;
               builder: (context, state) {
                 final cubit = context.watch<FavoriteCubit>();
                 final isFavorite = cubit.favorites[product.id] ?? false;
-
                 return Positioned(
                   top: 0,
                   right: 0,

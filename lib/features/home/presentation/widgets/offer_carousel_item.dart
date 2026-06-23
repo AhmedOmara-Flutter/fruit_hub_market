@@ -76,10 +76,10 @@ class OfferCarouselItem extends StatelessWidget {
                       ),
                       OfferCarouselItemButton(
                         onPressed: () {
-                          // Navigator.pushNamed(context,
-                          //   RouteManager.productDetails,
-                          //   arguments: productEntity,
-                          // );
+                          Navigator.pushNamed(context,
+                            RouteManager.productDetails,
+                            arguments:offer.productId,
+                          );
                         },
                       ),
                       const SizedBox(

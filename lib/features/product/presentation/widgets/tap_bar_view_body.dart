@@ -1,7 +1,7 @@
 import 'package:fruit_hub_market/core/widgets/empty_widget.dart';
 import '../../../../core/cubit/product_cubit/product_cubit.dart';
 import '../../../../core/utils/app_imports.dart';
-import '../../../../core/widgets/fruit_item.dart';
+import '../../../../core/widgets/product_item.dart';
 
 class TapBarViewBody extends StatelessWidget {
   final String category;
@@ -28,7 +28,7 @@ class TapBarViewBody extends StatelessWidget {
               crossAxisSpacing: 16,
             ),
             itemBuilder: (context, index) {
-              return Skeletonizer(child: FruitItem(product: getDummyProduct));
+              return Skeletonizer(child: ProductItem(product: getDummyProduct));
             },
           );
         }
@@ -50,7 +50,7 @@ class TapBarViewBody extends StatelessWidget {
             crossAxisSpacing: 16,
           ),
           itemBuilder: (context, index) {
-            return FruitItem(product: products[index]);
+            return ProductItem(product: products[index]);
           },
         );
       },

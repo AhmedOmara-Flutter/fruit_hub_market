@@ -1,5 +1,5 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/core/widgets/fruit_item.dart';
+import 'package:fruit_hub_market/core/widgets/product_item.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../core/helper_function/get_dummy_products.dart';
@@ -22,7 +22,7 @@ class ProductsGridView extends StatelessWidget {
           crossAxisSpacing: 16,
         ),
         itemBuilder: (context, index) {
-          return FruitItem(product:products[index]);
+          return ProductItem(product:products[index]);
         },
       ),
     );
