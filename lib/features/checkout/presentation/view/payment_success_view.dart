@@ -50,7 +50,7 @@ class PaymentSuccessView extends StatelessWidget {
           SizedBox(height: 10,),
           CustomButton(
             onPressed: () {
-              Navigator.pushNamed(context, RouteManager.orderTracking);
+              Navigator.pushNamed(context, RouteManager.orderTracking,arguments: orderEntity);
 
             },
             child: Text(

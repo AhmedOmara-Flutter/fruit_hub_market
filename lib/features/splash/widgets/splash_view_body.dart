@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -9,55 +8,133 @@ class SplashViewBody extends StatefulWidget {
   State<SplashViewBody> createState() => _SplashViewBodyState();
 }
 
-class _SplashViewBodyState extends State<SplashViewBody> {
-  Timer ?_timer;
+class _SplashViewBodyState extends State<SplashViewBody>
+    with TickerProviderStateMixin {
+  Timer? _timer;
+
+  late AnimationController _controller;
+
+  late Animation<Offset> logoSlide;
+  late Animation<double> logoFade;
+
+  late Animation<Offset> topSlide;
+  late Animation<Offset> bottomSlide;
 
   @override
   void initState() {
-    goToHome();
     super.initState();
+
+    /// ================= ANIMATION CONTROLLER =================
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    );
+
+    /// ================= ANIMATIONS =================
+    topSlide = Tween<Offset>(
+      begin: const Offset(1, -0.5),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOut,
+    ));
+
+    logoSlide = Tween<Offset>(
+      begin: const Offset(0, 0.3),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOut,
+    ));
+
+    logoFade = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+    ));
+
+    bottomSlide = Tween<Offset>(
+      begin: const Offset(0, 1),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOut,
+    ));
+
+    /// start animation
+    _controller.forward();
+
+    /// navigation
+    goToHome();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [SvgPicture.asset(Assets.images.splashTop.path)],
+
+        /// ================= TOP =================
+        SlideTransition(
+          position: topSlide,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SvgPicture.asset(Assets.images.splashTop.path),
+            ],
+          ),
         ),
-        SvgPicture.asset(Assets.images.splashCenter.path),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SvgPicture.asset(Assets.images.splashBottom.path,),
-          ],
+
+        /// ================= LOGO =================
+        FadeTransition(
+          opacity: logoFade,
+          child: SlideTransition(
+            position: logoSlide,
+            child: Image.asset(Assets.images.qtefNoBackground.path),
+          ),
+        ),
+
+        /// ================= BOTTOM =================
+        SlideTransition(
+          position: bottomSlide,
+          child: SvgPicture.asset(Assets.images.splashBottom.path),
         ),
       ],
     );
   }
 
+  /// ================= NAVIGATION LOGIC =================
   void goToHome() {
-    _timer = Timer(const Duration(seconds: 3),
-            () {
-              if (!Constants.onBoarding) {
-                Navigator.pushReplacementNamed(context, RouteManager.onBoarding);
-              }
-              else {
-                var isLogged = isLoggedIn();
-                if (isLogged) {
-                  Navigator.pushReplacementNamed(context, RouteManager.home);
-                } else {
-                  Navigator.pushReplacementNamed(context, RouteManager.login);
-                }
-              }
-            }
-    );
+    _timer = Timer(const Duration(seconds: 3), () {
+      if (!Constants.onBoarding) {
+        Navigator.pushReplacementNamed(
+          context,
+          RouteManager.onBoarding,
+        );
+      } else {
+        var isLogged = isLoggedIn();
+
+        if (isLogged) {
+          Navigator.pushReplacementNamed(
+            context,
+            RouteManager.home,
+          );
+        } else {
+          Navigator.pushReplacementNamed(
+            context,
+            RouteManager.login,
+          );
+        }
+      }
+    });
   }
 
   @override
   void dispose() {
-    _timer!.cancel();
+    _timer?.cancel();
+    _controller.dispose();
     super.dispose();
   }
 }

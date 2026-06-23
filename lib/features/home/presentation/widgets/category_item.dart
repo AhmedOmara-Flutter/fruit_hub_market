@@ -11,6 +11,7 @@ class CategoryItem extends StatelessWidget {
     var size = MediaQuery.of(context).size.width * 0.2;
     return GestureDetector(
       onTap: () async {
+        FocusManager.instance.primaryFocus?.unfocus();
         await AppSounds.playClickSound('click_song.wav');
         Navigator.pushNamed(
           context,

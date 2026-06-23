@@ -27,6 +27,7 @@ class ProfileGeneralSection extends StatelessWidget {
           ProfileOptionsList(
             text: 'الملف الشخصي',
             onTap: () {
+              FocusManager.instance.primaryFocus?.unfocus();
               Navigator.pushNamed(context, RouteManager.editProfile);
             },
             image: Assets.images.user.path,
@@ -34,6 +35,7 @@ class ProfileGeneralSection extends StatelessWidget {
           ProfileOptionsList(
             text: 'طلباتي',
             onTap: () {
+              FocusManager.instance.primaryFocus?.unfocus();
               Navigator.pushNamed(context, RouteManager.orders);
             },
             image: Assets.images.box.path,
@@ -41,20 +43,11 @@ class ProfileGeneralSection extends StatelessWidget {
           ProfileOptionsList(
             text: 'المفضلة',
             onTap: () {
+              FocusManager.instance.primaryFocus?.unfocus();
               Navigator.pushNamed(context, RouteManager.favorite);
             },
             image: Assets.images.heart.path,
           ),
-          // ProfileOptionsList(
-          //   text: 'الإشعارات',
-          //   isButton: true,
-          //   image: Assets.images.notification.path,
-          // ),
-          // ProfileOptionsList(
-          //   text: 'اللغة',
-          //   onTap: () {},
-          //   image: Assets.images.global.path,
-          // ),
         ],
       ),
     );

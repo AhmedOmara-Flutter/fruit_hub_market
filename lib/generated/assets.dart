@@ -97,6 +97,10 @@ class $AssetsImagesGen {
   final SvgGenImage productDetailsBg = const SvgGenImage(
     'assets/images/productDetailsBg.svg',
   );
+  final AssetGenImage qtef = const AssetGenImage('assets/images/qtef.png');
+  final AssetGenImage qtefNoBackground = const AssetGenImage(
+    'assets/images/qtefNoBackground.png',
+  );
   final SvgGenImage rating = const SvgGenImage('assets/images/rating.svg');
   final SvgGenImage reviewImage = const SvgGenImage(
     'assets/images/reviewImage.svg',

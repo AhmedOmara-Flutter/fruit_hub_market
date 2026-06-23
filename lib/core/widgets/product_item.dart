@@ -19,6 +19,7 @@ class ProductItem extends StatelessWidget {
 final hasOffer = offer != null && offer.isActive;
     return GestureDetector(
       onTap: () async {
+        FocusManager.instance.primaryFocus?.unfocus();
         await AppSounds.playClickSound('click_song.wav');
         Navigator.pushNamed(
           context,
