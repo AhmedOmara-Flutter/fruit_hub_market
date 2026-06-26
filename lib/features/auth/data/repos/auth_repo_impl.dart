@@ -22,28 +22,33 @@ class AuthRepoImpl implements AuthRepo {
     User? user;
 
     try {
-      // 1- create auth (FAST)
+      print('1-before auth');
+
       user = await _authServices.createUserWithEmailAndPassword(
         registerRequest,
       );
+
+      print('2-after auth ${user.uid}');
 
       final userEntity = UserEntity(
         userName: registerRequest.userName,
         email: registerRequest.email,
         uId: user.uid,
         image: '',
-        //  هنحدثها بعدين
         phone: registerRequest.phone,
       );
 
-      // 2- save user immediately (FAST)
+      print('3-before firestore');
+
       await addData(userEntity);
 
-      // 3- upload image in BACKGROUND (NON-BLOCKING)
+      print('4-after firestore');
+
       _uploadProfileImageLater(
         registerRequest.imageFile,
         user.uid,
       );
+      print('5-finished');
 
       return Right(userEntity);
     } catch (e) {
@@ -81,12 +86,17 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, UserEntity>> signInWithEmailAndPassword(
       LoginRequest loginRequest) async {
     try {
+      final stopwatch = Stopwatch()..start();
 
-      final user = await _authServices.signInWithEmailAndPassword(
-        loginRequest,
-      );
+      final user = await _authServices.signInWithEmailAndPassword(loginRequest);
+      print('Auth: ${stopwatch.elapsedMilliseconds} ms');
+
       final data = await getUserData(uId: user.uid);
+      print('Firestore: ${stopwatch.elapsedMilliseconds} ms');
+
       await saveUserData(data);
+      print('Cache: ${stopwatch.elapsedMilliseconds} ms');
+
       return Right(data);
     } on Exception catch (e) {
       print(e);

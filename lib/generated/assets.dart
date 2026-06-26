@@ -63,6 +63,7 @@ class $AssetsImagesGen {
   final SvgGenImage facebook = const SvgGenImage('assets/images/facebook.svg');
   final SvgGenImage filter = const SvgGenImage('assets/images/filter.svg');
   final SvgGenImage filter2 = const SvgGenImage('assets/images/filter2.svg');
+  final AssetGenImage fruits = const AssetGenImage('assets/images/fruits.png');
   final SvgGenImage global = const SvgGenImage('assets/images/global.svg');
   final SvgGenImage google = const SvgGenImage('assets/images/google.svg');
   final SvgGenImage heart = const SvgGenImage('assets/images/heart.svg');
@@ -70,9 +71,19 @@ class $AssetsImagesGen {
   final SvgGenImage infoCircle = const SvgGenImage(
     'assets/images/info-circle.svg',
   );
+  final AssetGenImage kiwi = const AssetGenImage('assets/images/kiwi.png');
   final SvgGenImage location = const SvgGenImage('assets/images/location.svg');
+  final AssetGenImage message = const AssetGenImage(
+    'assets/images/message.png',
+  );
   final SvgGenImage notification = const SvgGenImage(
     'assets/images/notification.svg',
+  );
+  final AssetGenImage onboarding1 = const AssetGenImage(
+    'assets/images/onboarding_1.png',
+  );
+  final AssetGenImage onboarding2 = const AssetGenImage(
+    'assets/images/onboarding_2.png',
   );
   final SvgGenImage onboardingBackground1 = const SvgGenImage(
     'assets/images/onboarding_background_1.svg',
@@ -89,6 +100,7 @@ class $AssetsImagesGen {
   final SvgGenImage openPackage = const SvgGenImage(
     'assets/images/openPackage.svg',
   );
+  final AssetGenImage orange = const AssetGenImage('assets/images/orange.png');
   final SvgGenImage organic = const SvgGenImage('assets/images/organic.svg');
   final SvgGenImage package = const SvgGenImage('assets/images/package.svg');
   final SvgGenImage paymentSuccess = const SvgGenImage(
@@ -112,6 +124,7 @@ class $AssetsImagesGen {
   final SvgGenImage shippingTracking = const SvgGenImage(
     'assets/images/shippingTracking.svg',
   );
+  final AssetGenImage sights = const AssetGenImage('assets/images/sights.png');
   final SvgGenImage splashBottom = const SvgGenImage(
     'assets/images/splash_bottom.svg',
   );

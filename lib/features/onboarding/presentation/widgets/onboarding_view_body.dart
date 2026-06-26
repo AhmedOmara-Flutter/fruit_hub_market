@@ -10,12 +10,12 @@ class OnBoardingViewBody extends StatefulWidget {
 class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
    int currentIndex = 0;
    late List<PageViewModel> items = [
-    PageViewModel(image: Assets.images.onboardingLogo1.path,
+    PageViewModel(image: Assets.images.onboarding2.path,
         title: StringManager.onBoardingTitle1(context),
         description: StringManager.onBoardingDescription1,
         background: Assets.images.onboardingBackground1.path
     ),
-    PageViewModel(image: Assets.images.onboardingLogo2.path,
+    PageViewModel(image: Assets.images.onboarding1.path,
         title: StringManager.onBoardingTitle2(context),
         description: StringManager.onBoardingDescription2,
         background: Assets.images.onboardingBackground2.path

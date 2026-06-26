@@ -9,8 +9,12 @@ class OnBoardingImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-        bottom: 0,
-        child: SvgPicture.asset(image)
+        bottom: -50,
+        child: Center(child: Image.asset(
+          image,
+          height: MediaQuery.of(context).size.width*0.9,
+          width: MediaQuery.of(context).size.width*0.9,
+        ))
     );
   }
 }

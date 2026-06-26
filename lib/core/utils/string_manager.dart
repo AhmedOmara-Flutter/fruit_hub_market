@@ -10,7 +10,7 @@ class StringManager {
             .of(context)
             .textTheme
             .titleLarge,),
-        Text('Hub', style: Theme
+        Text('قط', style: Theme
             .of(context)
             .textTheme
             .titleLarge!
@@ -18,7 +18,7 @@ class StringManager {
             color: Color(0xffF4A91F)
         )
         ),
-        Text('Fruit', style: Theme
+        Text('يف', style: Theme
             .of(context)
             .textTheme
             .titleLarge!
@@ -38,7 +38,7 @@ class StringManager {
 
 
   static const onBoardingDescription1 =
-      'اكتشف تجربة تسوق فريدة مع FruitHUB. استكشف\nمجموعتنا'
+      'اكتشف تجربة تسوق فريدة مع قطيف . استكشف\nمجموعتنا'
       'الواسعة من الفواكه الطازجة الممتازة\n'
       'واحصل على أفضل العروض والجودة العالية.';
   static const onBoardingDescription2 =
