@@ -165,7 +165,9 @@ class AboutCard extends StatelessWidget {
             right: -10,
             child: SizedBox(
               child: Center(
-                child: Image.asset(image, height: 110, fit: BoxFit.cover,),
+                child: Image.asset(image, height: 110, fit: BoxFit.cover,
+                  color: AppColor.mainColor.withOpacity(0.5),
+                ),
               ),
             ),
           ),
@@ -185,8 +187,8 @@ class AboutCard extends StatelessWidget {
                           Container(
                             width: 30,
                             height: 30,
-                            decoration: const BoxDecoration(
-                              color: Color(0xff8BC34A),
+                            decoration:  BoxDecoration(
+                              color: AppColor.mainColor.withOpacity(0.5),
                               shape: BoxShape.circle,
                             ),
                             child: Icon(
@@ -254,8 +256,8 @@ class ValuesCard extends StatelessWidget {
           Container(
             width: 40,
             height: 40,
-            decoration: const BoxDecoration(
-              color: Color(0xffA7C957),
+            decoration:  BoxDecoration(
+              color: AppColor.mainColor.withOpacity(0.5),
               shape: BoxShape.circle,
             ),
             child: const Icon(
@@ -326,7 +328,6 @@ class ValueItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const primaryColor = Color(0xffA7C957);
 
     return Expanded(
       child: Column(
@@ -334,7 +335,7 @@ class ValueItem extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: primaryColor,
+            color: AppColor.mainColor.withOpacity(0.5),
             size: 32,
           ),
           const SizedBox(height: 10),

@@ -28,6 +28,7 @@ class ProfileHelpSection extends StatelessWidget {
           ProfileOptionsList(
             text: 'من نحن',
             onTap: () {
+              FocusManager.instance.primaryFocus?.unfocus();
               Navigator.pushNamed(context, RouteManager.aboutUs);
             },
             image: Assets.images.global.path,

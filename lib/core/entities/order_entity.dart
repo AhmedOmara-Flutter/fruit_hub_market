@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fruit_hub_market/core/entities/selected_location_entity.dart';
 
 import '../../features/auth/domain/entities/user_entity.dart';
@@ -15,6 +17,10 @@ class OrderEntity {
   AddressEntity ?addressEntity;
   SelectedLocationEntity ?selectedLocationEntity;
   final OrderStatus status;
+  File ?paymentFileImage;
+  String ?paymentImage;
+
+
 
 
   OrderEntity({
@@ -25,6 +31,7 @@ class OrderEntity {
     this.userEntity,
     required this.status,
     this.selectedLocationEntity,
+    this.paymentImage,
   });
 
   String getFullAddress(){

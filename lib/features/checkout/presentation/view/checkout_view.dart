@@ -12,7 +12,7 @@ class CheckoutView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CheckoutCubit(orderEntity, instance()),
+      create: (context) => CheckoutCubit(orderEntity, instance(), instance()),
       child: Scaffold(
         body: CheckoutViewBody(),
       ),

@@ -74,6 +74,22 @@ class DeliveryInfoSection extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
               ),
+              /// سعر التوصيل
+              Row(
+                children: [
+                  const Icon(
+                    Icons.local_shipping_outlined,
+                    size: 20,
+                    color: Color(0xff6C7275),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    '$deliveryCost جنيه',
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                ],
+              ),
+
             ],
           ),
 
@@ -94,27 +110,6 @@ class DeliveryInfoSection extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
                     color: const Color(0xff4E5556),
                   ),
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 12),
-
-          /// سعر التوصيل
-          Row(
-            children: [
-              const Icon(
-                Icons.local_shipping_outlined,
-                size: 20,
-                color: Color(0xff6C7275),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                '$deliveryCost جنيه',
-                style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                  color: AppColor.mainColor,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],

@@ -10,6 +10,8 @@ import '../repos/offer_repo/offer_repo_impl.dart';
 import '../repos/offer_repo/offer_repo.dart';
 import '../../features/reviews/data/repos/review_repo_impl.dart';
 import '../../features/reviews/domain/repos/review_repo.dart';
+import '../repos/upload_image_repo/upload_image_repo.dart';
+import '../repos/upload_image_repo/upload_image_repo_impl.dart';
 
 final instance = GetIt.instance;
 
@@ -40,5 +42,7 @@ void initAppModule() {
   instance.registerLazySingleton<OfferRepo>(
         () => OfferRepoImpl(instance()),
   );
-
+  instance.registerLazySingleton<UploadImageRepo>(
+        () => UploadImageRepoImpl(instance()),
+  );
 }

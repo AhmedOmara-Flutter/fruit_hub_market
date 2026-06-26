@@ -36,7 +36,6 @@ class _AddressPageViewState extends State<AddressPageView>
               child: IntrinsicHeight(
                 child: Column(
                   children: [
-                    const SizedBox(height: 30),
                     AddressFormSection(
                       nameController: nameController,
                       emailController: emailController,

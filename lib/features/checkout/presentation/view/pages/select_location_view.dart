@@ -12,7 +12,6 @@ class SelectLocationView extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          SizedBox(height: 30),
           Expanded(
             child: ListView.separated(
               physics: NeverScrollableScrollPhysics(),

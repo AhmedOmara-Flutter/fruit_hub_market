@@ -1,12 +1,19 @@
+import 'dart:io';
 import '../../../../../core/utils/app_imports.dart';
 import '../../view_model/checkout_cubit.dart';
+import '../../widgets/custom_image_picker.dart';
 import '../../widgets/order_review/delivery_address_section.dart';
 import '../../widgets/order_review/order_review_button_section.dart';
 import '../../widgets/order_review/order_summary_section.dart';
 
-class ReviewOrderView extends StatelessWidget {
+class ReviewOrderView extends StatefulWidget {
   const ReviewOrderView({super.key});
 
+  @override
+  State<ReviewOrderView> createState() => _ReviewOrderViewState();
+}
+
+class _ReviewOrderViewState extends State<ReviewOrderView> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CheckoutCubit, CheckoutState>(
@@ -21,7 +28,6 @@ class ReviewOrderView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 30),
                       Text(
                         'ملخص الطلب :',
                         style: Theme.of(
@@ -48,6 +54,67 @@ class ReviewOrderView extends StatelessWidget {
                             curve: Curves.easeInOut,
                           );
                         },
+                      ),
+                      SizedBox(height: 10),
+                      if(cubit.orderEntity.isCashOnDelivery==false)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 14,
+                          horizontal: 15,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xffF2F3F3),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'اضافه بيانات الدفع',
+                                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Container(
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      color: AppColor.mainColor.withOpacity(0.08),
+                                      borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(color: AppColor.mainColor),
+                                    ),
+                                    child:  Row(
+                                      children: [
+                                        Icon(Icons.info_outline, color: AppColor.mainColor),
+                                        SizedBox(width: 8),
+                                        Expanded(
+                                          child: Text(
+                                            'يرجى إرفاق صورة واضحة لإثبات الدفع (إنستاباي، فودافون كاش، تحويل بنكي).\nرقم التحويل: 01204391511',
+                                            style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                                              color: Color(0xff4E5556),
+                                              fontSize: 11
+                                            ),
+                  
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                  
+                                ],
+                              ),
+                            ),
+                            SizedBox(width: 5),
+                               CustomImagePicker(
+                                onImagePicked: (image) {
+                                  cubit.orderEntity.paymentFileImage = image;
+                                },
+                            ),
+                          ],
+                        ),
                       ),
                       Spacer(),
                       OrderReviewButtonSection(),

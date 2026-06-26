@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:fruit_hub_market/core/entities/order_entity.dart';
 
 import '../../../../core/entities/selected_location_entity.dart';
 import '../../../../core/repos/order_repo/order_repo.dart';
+import '../../../../core/repos/upload_image_repo/upload_image_repo.dart';
 import '../../../../core/utils/app_imports.dart';
 import '../view/pages/address_page_view.dart';
 import '../view/pages/payment_method_view.dart';
@@ -13,9 +15,10 @@ import '../view/pages/select_location_view.dart';
 part 'checkout_state.dart';
 
 class CheckoutCubit extends Cubit<CheckoutState> {
-  CheckoutCubit(this.orderEntity, this._checkoutRepo)
+  CheckoutCubit(this.orderEntity, this._orderRepo, this._uploadImageRepo)
     : super(CheckoutInitial());
-  final OrderRepo _checkoutRepo;
+  final OrderRepo _orderRepo;
+  final UploadImageRepo _uploadImageRepo;
   Timer? timer;
 
   OrderEntity orderEntity;
@@ -92,22 +95,51 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   Future<void> addOrder(OrderEntity orderEntity) async {
     emit(CheckoutAddOrderLoading());
 
-    await Future.delayed(
-      const Duration(seconds: 2),
-    );
-    final result = await _checkoutRepo.addOrder(orderEntity);
+    // الدفع عند الاستلام
+    if (orderEntity.isCashOnDelivery == true) {
+      orderEntity.paymentImage = null;
 
-    result.fold(
+      final result = await _orderRepo.addOrder(orderEntity);
+
+      result.fold(
+            (failure) {
+          emit(CheckoutAddOrderError(failure.errMessage));
+        },
+            (data) {
+          orderEntity.id = data;
+          emit(CheckoutAddOrderSuccess());
+        },
+      );
+
+      return;
+    }
+    if (orderEntity.paymentFileImage == null) {
+      emit(CheckoutAddOrderError('يرجى إرفاق صورة إثبات الدفع'));
+      return;
+    }
+
+    final imageResult = await _uploadImageRepo.uploadImage(
+      orderEntity.paymentFileImage!,
+    );
+
+    imageResult.fold(
           (failure) {
-            debugPrint('ERROR: $failure');
-
-            return emit(CheckoutAddOrderError(failure.errMessage));
+        emit(CheckoutAddOrderError(failure.errMessage));
       },
-          (data) {
-        print('data is id ${data}');
-        orderEntity.id = data;
-        emit(CheckoutAddOrderSuccess());
+          (imageUrl) async {
+        orderEntity.paymentImage = imageUrl;
+
+        final result = await _orderRepo.addOrder(orderEntity);
+
+        result.fold(
+              (failure) {
+            emit(CheckoutAddOrderError(failure.errMessage));
+          },
+              (data) {
+            orderEntity.id = data;
+            emit(CheckoutAddOrderSuccess());
+          },
+        );
       },
     );
-  }
-  }
+  }  }

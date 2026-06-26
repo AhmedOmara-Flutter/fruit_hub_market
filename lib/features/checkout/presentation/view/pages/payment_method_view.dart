@@ -21,7 +21,6 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 30),
               PaymentMethodSection(),
               PaymentMethodButtonSection(),
               SizedBox(height: 30),

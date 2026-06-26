@@ -18,6 +18,7 @@ class OrderModel {
   final SelectedLocationModel selectedLocation;
   final List<OrderItemModel> items;
   final OrderStatus status;
+  String ?paymentImage;
 
 
 
@@ -31,6 +32,7 @@ class OrderModel {
     this.id,
     required this.userModel,
     required this.status, required this.selectedLocation,
+    this.paymentImage,
   });
 
   factory OrderModel.fromEntity(OrderEntity entity) {
@@ -49,6 +51,7 @@ class OrderModel {
       userModel: UserModel.fromEntity(entity.userEntity!),
       status: entity.status,
       selectedLocation: SelectedLocationModel.fromEntity(entity.selectedLocationEntity!),
+      paymentImage: entity.paymentImage,
 
     );
 
@@ -68,6 +71,7 @@ class OrderModel {
       userEntity: userModel.toEntity(),
       status: status,
       selectedLocationEntity: selectedLocation.toEntity(),
+      paymentImage: paymentImage,
 
     );
   }
@@ -87,6 +91,7 @@ class OrderModel {
         orElse: () => OrderStatus.pending,
       ),
       selectedLocation:  SelectedLocationModel.fromJson(json['selectedLocation']),
+      paymentImage: json['paymentImage'],
     );
   }
 
@@ -102,6 +107,7 @@ class OrderModel {
       'userModel': userModel.toJson(),
       'status': status.name,
       'selectedLocation': selectedLocation.toJson(),
+      'paymentImage': paymentImage,
     };
   }
 
