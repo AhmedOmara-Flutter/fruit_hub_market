@@ -1,83 +1,148 @@
-import 'dart:convert';
-
+import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:fruit_hub_market/features/cart/domain/entities/cart_item_entity.dart';
 import 'package:meta/meta.dart';
-
-import '../../../../core/helper_function/price_helper.dart';
-import '../../../../core/services/cache_helper.dart';
 import '../../../../core/entities/offer_entity.dart';
-import '../../../offers/presentation/view_model/offer_cubit.dart';
 import '../../../../core/entities/product_entity.dart';
-import '../../data/model/cart_model.dart';
+import '../../../../core/helper_function/price_helper.dart';
+import '../../../../core/repos/cart_repo/cart_repo.dart';
+import '../../../offers/presentation/view_model/offer_cubit.dart';
 import '../../domain/entities/cart_entity.dart';
-
 part 'cart_state.dart';
 
 class CartCubit extends Cubit<CartState> {
-  CartCubit() : super(CartInitial()) {
-    loadCart();
-  }
+  CartCubit(this.cartRepo) : super(CartInitial());
+
+  final CartRepo cartRepo;
 
   CartEntity cart = CartEntity(cartItems: []);
 
-  Future<void> loadCart() async {
-    final jsonString = CacheHelper.getData(key: 'cart');
+  Timer? _saveTimer;
+  StreamSubscription<CartEntity>? _cartSubscription;
 
-    if (jsonString != null) {
-      final data = jsonDecode(jsonString);
-      final model = CartModel.fromJson(data);
-      cart = model.toEntity();
-      emit(CartLoaded());
-    }
+  Future<void> loadCart(String userId) async {
+    await _cartSubscription?.cancel();
+
+    _cartSubscription = cartRepo.cartStream(userId).listen(
+          (cartEntity) {
+        cart = cartEntity;
+        emit(CartLoaded());
+      },
+      onError: (e) {
+        print('Cart Stream Error: $e');
+      },
+      onDone: () {
+        print('Cart stream closed');
+      },
+    );
   }
 
-  void addProduct(ProductEntity product, OfferEntity? offer) {
+  void _scheduleSave(String userId) {
+    _saveTimer?.cancel();
+
+    _saveTimer = Timer(
+      const Duration(milliseconds: 500),
+          () async {
+        try {
+          await cartRepo.saveCart(
+            userId: userId,
+            cart: cart,
+          );
+        } catch (e) {
+          print(e);
+        }
+      },
+    );
+  }
+
+  Future<void> addProduct(
+      ProductEntity product,
+      OfferEntity? offer,
+      String userId,
+      ) async {
     final price = getFinalPrice(
       product: product,
       offer: offer,
     );
+
     bool isExist = cart.isExist(product);
+
     if (isExist) {
       for (var element in cart.cartItems) {
         if (element.product.code == product.code) {
           element.quantity++;
+          break;
         }
       }
     } else {
-      CartItemEntity cartItem = CartItemEntity(
-          product: product, unitPrice: price, quantity: 1);
-      cart.addCartItem(cartItem);
+      cart = cart.addItem(
+        CartItemEntity(
+          product: product,
+          unitPrice: price,
+          quantity: 1,
+        ),
+      );
     }
-    saveCart();
     emit(CartAdded());
+
+    _scheduleSave(userId);
   }
 
-  void deleteCartItem(CartItemEntity cartItem) {
-    cart.removeCartItem(cartItem);
-    saveCart();
+  Future<void> deleteCartItem(
+      CartItemEntity cartItem,
+      String userId,
+      ) async {
+    cart = cart.removeItem(cartItem);
     emit(CartRemoved());
+
+    _scheduleSave(userId);
   }
 
-  void increaseCartItem(CartItemEntity item) {
-    print('item $item');
+  Future<void> increaseCartItem(
+      CartItemEntity item,
+      String userId,
+      ) async {
     item.increase();
-    saveCart();
+
     emit(CartIncrease());
+
+    _scheduleSave(userId);
   }
-  void decreaseCartItem(CartItemEntity item) {
+
+  Future<void> decreaseCartItem(
+      CartItemEntity item,
+      String userId,
+      ) async {
     item.decrease();
-    saveCart();
+
     emit(CartDecrease());
+
+    _scheduleSave(userId);
   }
 
-  Future saveCart() async {
-    final model = CartModel.fromEntity(cart);
-    String jsonData = jsonEncode(model.toJson());
-    await CacheHelper.saveData(key: 'cart', value: jsonData);
+  Future<void> saveCart(String userId) async {
+    try {
+      await cartRepo.saveCart(
+        userId: userId,
+        cart: cart,
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 
-  //todo فهمها تاني
+  Future<void> clearCart(String userId) async {
+    cart = CartEntity(cartItems: []);
+
+    emit(CartRemoved());
+
+    try {
+      await cartRepo.clearCart(userId);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   num getCartItemPrice(
       CartItemEntity item,
       OfferCubit offerCubit,
@@ -90,5 +155,12 @@ class CartCubit extends Cubit<CartState> {
     );
 
     return unitPrice * item.quantity;
+  }
+
+  @override
+  Future<void> close() async {
+    _saveTimer?.cancel();
+    await _cartSubscription?.cancel();
+    return super.close();
   }
 }

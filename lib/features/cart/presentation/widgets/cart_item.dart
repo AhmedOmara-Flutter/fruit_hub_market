@@ -2,6 +2,7 @@ import 'package:fruit_hub_market/features/cart/domain/entities/cart_item_entity.
 import 'package:fruit_hub_market/features/cart/presentation/widgets/quality_control.dart';
 import 'package:fruit_hub_market/features/offers/presentation/view_model/offer_cubit.dart';
 
+import '../../../../core/helper_function/get_user.dart';
 import '../../../../core/helper_function/price_helper.dart';
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/cart_cubit.dart';
@@ -53,6 +54,7 @@ class CartItem extends StatelessWidget {
                       onPressed: () {
                         context.read<CartCubit>().deleteCartItem(
                           cartItemEntity,
+                          getUser().uId,
                         );
                       },
                       icon: Icon(
@@ -76,7 +78,7 @@ class CartItem extends StatelessWidget {
                   children: [
                     QualityControl(cartItemEntity: cartItemEntity),
                     Text(
-                      '${cartItemEntity.totalPrice.toStringAsFixed(2)} جنيه',
+                        '${(cartItemEntity.unitPrice * cartItemEntity.quantity).toStringAsFixed(2)} جنيه',
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                         color: Color(0xffF4A91F),
                       ),

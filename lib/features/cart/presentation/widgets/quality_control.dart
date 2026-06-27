@@ -1,5 +1,5 @@
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/features/cart/domain/entities/cart_item_entity.dart';
-
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/cart_cubit.dart';
 
@@ -7,14 +7,15 @@ class QualityControl extends StatelessWidget {
   final CartItemEntity cartItemEntity;
   final double buttonSize;
   const QualityControl({
-    super.key, this.buttonSize = 35, required this.cartItemEntity,
+    super.key, this.buttonSize = 35,
+    required this.cartItemEntity,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, CartState>(
-  builder: (context, state) {
-    var cubit = context.read<CartCubit>();
+      builder: (context, state) {
+        var cubit = context.read<CartCubit>();
     return Row(
       children: [
         Container(
@@ -27,7 +28,7 @@ class QualityControl extends StatelessWidget {
           child: IconButton(
             padding: EdgeInsets.zero,
             onPressed: () {
-             cubit.increaseCartItem(cartItemEntity);
+             cubit.increaseCartItem(cartItemEntity,getUser().uId);
             },
             icon: Icon(
               Icons.add,
@@ -56,7 +57,7 @@ class QualityControl extends StatelessWidget {
           child: IconButton(
             padding: EdgeInsets.zero,
             onPressed: () {
-             cubit.decreaseCartItem(cartItemEntity);
+             cubit.decreaseCartItem(cartItemEntity,getUser().uId);
             },
             icon: Icon(Icons.remove, size: buttonSize * 0.5),
           ),

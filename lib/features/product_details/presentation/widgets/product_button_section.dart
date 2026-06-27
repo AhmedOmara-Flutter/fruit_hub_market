@@ -1,6 +1,7 @@
 import 'package:fruit_hub_market/features/cart/presentation/view_model/cart_cubit.dart';
 import 'package:fruit_hub_market/core/entities/product_entity.dart';
 
+import '../../../../core/helper_function/get_user.dart';
 import '../../../../core/utils/app_imports.dart';
 import '../../../../core/entities/offer_entity.dart';
 
@@ -34,7 +35,7 @@ class ProductButtonSection extends StatelessWidget {
          ),
          onPressed: () {
 
-           context.read<CartCubit>().addProduct(product,offer);
+           context.read<CartCubit>().addProduct(product,offer,getUser().uId);
          },
        ),
      ),

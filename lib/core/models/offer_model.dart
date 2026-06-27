@@ -41,27 +41,30 @@ class OfferModel extends OfferEntity {
 
   factory OfferModel.fromJson(Map<String, dynamic> json) {
     return OfferModel(
-      productId: json['product_id'],
-      discountPercentage: json['discount_percentage'],
+      productId: json['product_id'] ?? '',
+      discountPercentage:
+      (json['discount_percentage'] as num?)?.toDouble() ?? 0.0,
       startDate: DateTime.parse(json['start_date']),
       endDate: DateTime.parse(json['end_date']),
-      image: json['image'],
-      name: json['name'],
-      priceBeforeDiscount: json['price_before_discount'],
-      priceAfterDiscount: json['price_after_discount'],
+      image: json['image'] ?? '',
+      name: json['name'] ?? '',
+      priceBeforeDiscount:
+      (json['price_before_discount'] as num?)?.toDouble() ?? 0.0,
+      priceAfterDiscount:
+      (json['price_after_discount'] as num?)?.toDouble() ?? 0.0,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'product_id': productId,
-      'discount_percentage': discountPercentage,
+      'discount_percentage': discountPercentage.toDouble(),
       'start_date': startDate.toIso8601String(),
       'end_date': endDate.toIso8601String(),
       'image': image,
       'name': name,
-      'price_before_discount': priceBeforeDiscount,
-      'price_after_discount': priceAfterDiscount,
+      'price_before_discount': priceBeforeDiscount.toDouble(),
+      'price_after_discount': priceAfterDiscount.toDouble(),
     };
   }
 }

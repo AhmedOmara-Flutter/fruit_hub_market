@@ -158,14 +158,16 @@ class FirestoreDatabase implements DatabaseServices {
   {
     try {
       if (uId != null) {
-        final user = await FirebaseFirestore.instance
+        await for (final data in FirebaseFirestore.instance
             .collection(path)
             .doc(uId)
-            .get();
-        if (!user.exists || user.data() == null) {
-          throw Exception('المستخدم ليس موجود في قاعده البيانات');
+            .snapshots()) {
+          if (!data.exists || data.data() == null) {
+            yield null;
+          } else {
+            yield data.data() as Map<String, dynamic>;
+          }
         }
-        yield user.data() as Map<String, dynamic>;
       } else {
         Query<Map<String, dynamic>> data = FirebaseFirestore.instance
             .collection(path);

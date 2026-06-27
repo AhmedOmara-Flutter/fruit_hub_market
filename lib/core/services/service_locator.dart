@@ -3,6 +3,8 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/core/repos/order_repo/order_repo.dart';
 import 'package:fruit_hub_market/core/repos/product_repo/product_repo_impl.dart';
 import 'package:fruit_hub_market/core/repos/product_repo/product_repo.dart';
+import '../repos/cart_repo/cart_repo.dart';
+import '../repos/cart_repo/cart_repo_impl.dart';
 import '../repos/order_repo/order_repo_impl.dart';
 import '../../features/favorite/app/repos/favorite_repo_impl.dart';
 import '../../features/favorite/domain/repos/favorite_repo.dart';
@@ -44,5 +46,8 @@ void initAppModule() {
   );
   instance.registerLazySingleton<UploadImageRepo>(
         () => UploadImageRepoImpl(instance()),
+  );
+  instance.registerLazySingleton<CartRepo>(
+        () => CartRepoImpl(instance()),
   );
 }

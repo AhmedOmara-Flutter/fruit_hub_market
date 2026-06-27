@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 import '../../features/cart/presentation/view_model/cart_cubit.dart';
@@ -190,7 +191,7 @@ final hasOffer = offer != null && offer.isActive;
 
                     trailing: GestureDetector(
                       onTap: () {
-                        context.read<CartCubit>().addProduct(product,offer);
+                        context.read<CartCubit>().addProduct(product,offer,getUser().uId);
                       },
                       child: CircleAvatar(
                         backgroundColor: AppColor.mainColor,

@@ -1,3 +1,4 @@
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/widgets/custom_loading.dart';
 
 import '../../../../core/utils/app_imports.dart';
@@ -21,7 +22,7 @@ class CheckoutViewBody extends StatelessWidget {
             label: 'تم تأكيد طلبك بنجاح',
           );
           context.read<CartCubit>().cart.cartItems.clear();
-          context.read<CartCubit>().saveCart();
+          context.read<CartCubit>().saveCart(getUser().uId);
           context.read<MainCubit>().currentIndex = 0;
           Navigator.pushReplacementNamed(
             context,

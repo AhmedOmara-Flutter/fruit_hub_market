@@ -1,3 +1,5 @@
+import 'package:fruit_hub_market/core/helper_function/get_user.dart';
+
 import '../../../../core/entities/order_entity.dart';
 import '../../../../core/utils/app_imports.dart';
 import '../../../cart/presentation/view_model/cart_cubit.dart';
@@ -35,7 +37,7 @@ class PaymentSuccessView extends StatelessWidget {
           GestureDetector(
             onTap: (){
               context.read<CartCubit>().cart.cartItems.clear();
-              context.read<CartCubit>().saveCart();
+              context.read<CartCubit>().saveCart(getUser().uId);
               context.read<MainCubit>().currentIndex=0;
               Navigator.pushNamed(context, RouteManager.home,);
             },

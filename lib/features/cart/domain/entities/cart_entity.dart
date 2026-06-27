@@ -11,12 +11,16 @@ class CartEntity extends Equatable{
 
   const CartEntity({required this.cartItems});
 
-  void addCartItem(CartItemEntity cartItem) {
-    cartItems.add(cartItem);
+  CartEntity addItem(CartItemEntity item) {
+    final updated = List<CartItemEntity>.from(cartItems);
+    updated.add(item);
+    return CartEntity(cartItems: updated);
   }
 
-  void removeCartItem(CartItemEntity cartItem) {
-    cartItems.remove(cartItem);
+  CartEntity removeItem(CartItemEntity item) {
+    final updated = List<CartItemEntity>.from(cartItems);
+    updated.remove(item);
+    return CartEntity(cartItems: updated);
   }
 
   int getItemsCount() {
@@ -34,6 +38,8 @@ class CartEntity extends Equatable{
     }
     return total;
   }
+
+
 
   num getCartTotalPrice(CartCubit cartCubit, OfferCubit offerCubit) {
     num total = 0;
