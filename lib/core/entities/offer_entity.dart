@@ -22,12 +22,13 @@ class OfferEntity extends Equatable {
   });
   /// هل العرض شغال حاليًا؟
   bool get isActive {
-    final now = DateTime.now().toUtc();
+    final now = DateTime.now();
 
-    final start = DateTime.utc(startDate.year, startDate.month, startDate.day);
-    final end = DateTime.utc(endDate.year, endDate.month, endDate.day + 1);
+    final today = DateTime(now.year, now.month, now.day);
+    final start = DateTime(startDate.year, startDate.month, startDate.day);
+    final end = DateTime(endDate.year, endDate.month, endDate.day + 1);
 
-    return now.isAfter(start) && now.isBefore(end);
+    return !today.isBefore(start) && today.isBefore(end);
   }
   /// هل العرض انتهى؟
   bool get isExpired {
