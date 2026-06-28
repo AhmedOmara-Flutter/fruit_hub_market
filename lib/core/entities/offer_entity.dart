@@ -20,6 +20,7 @@ class OfferEntity extends Equatable {
     required this.priceBeforeDiscount,
     required this.priceAfterDiscount,
   });
+
   /// هل العرض شغال حاليًا؟
   bool get isActive {
     final now = DateTime.now();
