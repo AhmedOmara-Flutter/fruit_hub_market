@@ -32,31 +32,6 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                     ? FileImage(imagePath!)
                     : CachedNetworkImageProvider(user.image),
               )
-              // Positioned(
-              //   bottom: 0,
-              //   right: 0,
-              //   child: GestureDetector(
-              //     onTap: () async {
-              //       final image = await pickImage();
-              //       if (image != null) {
-              //         setState(() => imagePath = image);
-              //       }
-              //     },
-              //     child: Container(
-              //       padding: const EdgeInsets.all(5),
-              //       decoration: BoxDecoration(
-              //         color: Colors.white,
-              //         shape: BoxShape.circle,
-              //         border: Border.all(color: Colors.grey.shade300),
-              //       ),
-              //       child: Icon(
-              //         Icons.camera_alt,
-              //         size: 16,
-              //         color: AppColor.mainColor,
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
 

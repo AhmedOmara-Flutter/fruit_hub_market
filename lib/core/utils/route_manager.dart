@@ -12,6 +12,7 @@ import '../../features/favorite/presentation/view/favorite_view.dart';
 import '../../features/order_tracking/presentation/view/order_tracking_view.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
 import '../../features/profile/presentation/view/orders_view.dart';
+import '../../features/profile/presentation/widgets/logout_loading_page.dart';
 import '../../features/reviews/presentation/view/reviews_view.dart';
 import '../../features/search/presentation/view/search_view.dart';
 
@@ -33,6 +34,7 @@ class RouteManager {
   static const String orders = '/orders';
   static const String editProfile = '/editProfile';
   static const String aboutUs = '/aboutUs';
+  static const String logoutLoading = '/logoutLoading';
 }
 
 class GenerateRoute {
@@ -51,6 +53,10 @@ class GenerateRoute {
       case RouteManager.home:
         return MaterialPageRoute(builder: (_) {
           return MainView();
+        });
+        case RouteManager.logoutLoading:
+        return MaterialPageRoute(builder: (_) {
+          return const LogoutLoadingPage();
         });
         case RouteManager.editProfile:
         return MaterialPageRoute(builder: (context) {

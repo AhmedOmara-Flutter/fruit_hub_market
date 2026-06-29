@@ -1,4 +1,5 @@
 import 'package:fruit_hub_market/core/helper_function/custom_show_dialog.dart';
+import 'package:fruit_hub_market/features/profile/presentation/widgets/logout_loading_page.dart';
 import '../../../../core/utils/app_imports.dart';
 
 class ProfileSignOut extends StatelessWidget {
@@ -27,7 +28,8 @@ class ProfileSignOut extends StatelessWidget {
             accept: () async {
               await instance<AuthRepo>().signOut();
               context.read<MainCubit>().currentIndex = 0;
-              Navigator.pushReplacementNamed(context, RouteManager.login);
+
+              Navigator.pushReplacementNamed(context, RouteManager.logoutLoading);
             },
           );
         },

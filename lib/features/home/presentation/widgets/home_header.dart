@@ -29,7 +29,13 @@ class HomeHeader extends StatelessWidget {
                  color: AppColor.red,
                   ),),
               errorWidget: (context, url, error) =>
-                  Icon(Icons.error, color: AppColor.red),
+                  Container(width: 80,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.grey.shade300)
+                      ),
+                      child: Icon(Icons.person, color: AppColor.red)),
             ),
           ),
           SizedBox(width: 10),
