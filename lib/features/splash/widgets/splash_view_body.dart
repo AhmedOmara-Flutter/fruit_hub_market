@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -13,32 +14,18 @@ class _SplashViewBodyState extends State<SplashViewBody>
   Timer? _timer;
 
   late AnimationController _controller;
-
   late Animation<Offset> logoSlide;
   late Animation<double> logoFade;
-
   late Animation<Offset> topSlide;
   late Animation<Offset> bottomSlide;
 
   @override
   void initState() {
     super.initState();
-
-    /// ================= ANIMATION CONTROLLER =================
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1200),
     );
-
-    /// ================= ANIMATIONS =================
-    topSlide = Tween<Offset>(
-      begin: const Offset(1, -0.5),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOut,
-    ));
-
     logoSlide = Tween<Offset>(
       begin: const Offset(0, 0.3),
       end: Offset.zero,
@@ -46,7 +33,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
       parent: _controller,
       curve: Curves.easeOut,
     ));
-
     logoFade = Tween<double>(
       begin: 0,
       end: 1,
@@ -54,58 +40,38 @@ class _SplashViewBodyState extends State<SplashViewBody>
       parent: _controller,
       curve: Curves.easeIn,
     ));
-
-    bottomSlide = Tween<Offset>(
-      begin: const Offset(0, 1),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOut,
-    ));
-
-    /// start animation
     _controller.forward();
-
-    /// navigation
     goToHome();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-
-        /// ================= TOP =================
-        SlideTransition(
-          position: topSlide,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              SvgPicture.asset(Assets.images.splashTop.path),
-            ],
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(Assets.images.splashBackground.path),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FadeTransition(
+            opacity: logoFade,
+            child: SlideTransition(
+              position: logoSlide,
+              child: Image.asset(
+                height: 300,
+                width: double.infinity,
+                Assets.images.splashLogo2.path,
+              ),
+            ),
           ),
-        ),
-
-        /// ================= LOGO =================
-        FadeTransition(
-          opacity: logoFade,
-          child: SlideTransition(
-            position: logoSlide,
-            child: Image.asset(Assets.images.qtefNoBackground.path),
-          ),
-        ),
-
-        /// ================= BOTTOM =================
-        SlideTransition(
-          position: bottomSlide,
-          child: SvgPicture.asset(Assets.images.splashBottom.path),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
-  /// ================= NAVIGATION LOGIC =================
   void goToHome() {
     _timer = Timer(const Duration(seconds: 3), () {
       if (!Constants.onBoarding) {

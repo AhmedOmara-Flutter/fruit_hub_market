@@ -1,4 +1,5 @@
 import 'package:fruit_hub_market/features/profile/presentation/widgets/profile_option_list.dart';
+import '../../../../core/services/printer_services.dart';
 import '../../../../core/utils/app_imports.dart';
 
 class ProfileGeneralSection extends StatelessWidget {
@@ -48,6 +49,36 @@ class ProfileGeneralSection extends StatelessWidget {
             },
             image: Assets.images.heart.path,
           ),
+          // Column(
+          //   children: [
+          //     ElevatedButton(
+          //       onPressed: () async {
+          //         final printers =
+          //         await PrinterService.instance.scanPrinters();
+          //
+          //         print(printers);
+          //       },
+          //       child: const Text("Scan"),
+          //     ),
+          //
+          //     ElevatedButton(
+          //       onPressed: () async {
+          //         final printers =
+          //         await PrinterService.instance.scanPrinters();
+          //
+          //         await PrinterService.instance.connect(printers.first);
+          //       },
+          //       child: const Text("Connect"),
+          //     ),
+          //
+          //     ElevatedButton(
+          //       onPressed: () async {
+          //         await PrinterService.instance.printTest();
+          //       },
+          //       child: const Text("Print Test"),
+          //     ),
+          //   ],
+          // )
         ],
       ),
     );

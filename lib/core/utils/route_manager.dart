@@ -1,3 +1,5 @@
+import 'package:page_transition/page_transition.dart';
+
 import 'package:fruit_hub_market/core/entities/order_entity.dart';
 import 'package:fruit_hub_market/core/enums/order_enum.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
@@ -5,6 +7,7 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
 import 'package:fruit_hub_market/features/profile/presentation/view/about_us_view.dart';
 import 'package:fruit_hub_market/features/profile/presentation/view/edit_profile_view.dart';
+
 import '../../features/cart/domain/entities/cart_entity.dart';
 import '../../features/checkout/presentation/view/checkout_view.dart';
 import '../../features/checkout/presentation/view/payment_success_view.dart';
@@ -38,98 +41,113 @@ class RouteManager {
 }
 
 class GenerateRoute {
+  static Route<dynamic> _route(Widget child) {
+    return PageTransition(
+      child: child,
+      type: PageTransitionType.fade,
+      alignment: Alignment.center,
+      duration: const Duration(milliseconds: 250),
+      reverseDuration: const Duration(milliseconds: 200),
+      curve: Curves.easeOut,
+    );
+  }
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteManager.splash:
-        return MaterialPageRoute(builder: (_) => const SplashView());
+        return _route(const SplashView());
+
       case RouteManager.onBoarding:
-        return MaterialPageRoute(builder: (_) => const OnBoardingView());
+        return _route(const OnBoardingView());
+
       case RouteManager.login:
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return _route(const LoginView());
+
       case RouteManager.register:
-        return MaterialPageRoute(builder: (_) => const RegisterView());
+        return _route(const RegisterView());
+
       case RouteManager.forgetPassword:
-        return MaterialPageRoute(builder: (_) => const ForgetPasswordView());
+        return _route(const ForgetPasswordView());
+
       case RouteManager.home:
-        return MaterialPageRoute(builder: (_) {
-          return MainView();
-        });
-        case RouteManager.logoutLoading:
-        return MaterialPageRoute(builder: (_) {
-          return const LogoutLoadingPage();
-        });
-        case RouteManager.editProfile:
-        return MaterialPageRoute(builder: (context) {
-          return EditProfileView();
-        });
+        return _route(MainView());
+
+      case RouteManager.logoutLoading:
+        return _route(const LogoutLoadingPage());
+
+      case RouteManager.editProfile:
+        return _route(EditProfileView());
+
       case RouteManager.bestSellingMore:
-        return MaterialPageRoute(builder: (context) {
-          return BestSellingMoreView();
-        });
-        case RouteManager.productDetails:
-          return MaterialPageRoute(builder: (context) {
-            final productId = settings.arguments as String;
-            return ProductDetailsView(
-              productId: productId,
-            );
-          });
-        case RouteManager.search:
-          return MaterialPageRoute(builder: (context) {
-          return SearchView();
-        });
-          case RouteManager.reviews:
-        return MaterialPageRoute(builder: (context) {
-          final productId = settings.arguments as String;
-          return ReviewsView(productId: productId);
-        });
-        case RouteManager.checkout:
-          return MaterialPageRoute(builder: (context) {
-            return CheckoutView(
-                orderEntity: OrderEntity(
+        return _route(BestSellingMoreView());
+
+      case RouteManager.productDetails:
+        final productId = settings.arguments as String;
+        return _route(
+          ProductDetailsView(
+            productId: productId,
+          ),
+        );
+
+      case RouteManager.search:
+        return _route(SearchView());
+
+      case RouteManager.reviews:
+        final productId = settings.arguments as String;
+        return _route(
+          ReviewsView(
+            productId: productId,
+          ),
+        );
+
+      case RouteManager.checkout:
+        return _route(
+          CheckoutView(
+            orderEntity: OrderEntity(
               cartEntity: settings.arguments as CartEntity,
               uId: getUser().uId,
-                  userEntity: getUser(), status: OrderStatus.pending,
-                )
-            );
-          });
+              userEntity: getUser(),
+              status: OrderStatus.pending,
+            ),
+          ),
+        );
+
       case RouteManager.paymentSuccess:
-        return MaterialPageRoute(builder: (context) {
-          final orderEntity = settings.arguments as OrderEntity;
-          return PaymentSuccessView(orderEntity: orderEntity,);
-        });
-        case RouteManager.orderTracking:
-          final orderEntity = settings.arguments as OrderEntity;
-          return MaterialPageRoute(builder: (context) {
-            return OrderTrackingView(
-              orderEntity: orderEntity,
-            );
-          });
-          case RouteManager.favorite:
-            return MaterialPageRoute(builder: (context) {
-              return FavoriteView();
-            });
+        final orderEntity = settings.arguments as OrderEntity;
+        return _route(
+          PaymentSuccessView(
+            orderEntity: orderEntity,
+          ),
+        );
+
+      case RouteManager.orderTracking:
+        final orderEntity = settings.arguments as OrderEntity;
+        return _route(
+          OrderTrackingView(
+            orderEntity: orderEntity,
+          ),
+        );
+
+      case RouteManager.favorite:
+        return _route(FavoriteView());
+
       case RouteManager.orders:
-        return MaterialPageRoute(builder: (context) {
-          return OrdersView();
-        });
-        case RouteManager.aboutUs:
-        return MaterialPageRoute(builder: (context) {
-          return AboutUsView();
-        });
+        return _route(OrdersView());
+
+      case RouteManager.aboutUs:
+        return _route(AboutUsView());
 
       default:
-        return _errorRoute();
-    }
-  }
-
-  static Route<dynamic> _errorRoute() {
-    return MaterialPageRoute(
-      builder: (_) {
-        return Scaffold(
-          appBar: AppBar(title: Text('Error')),
-          body: Center(child: Text('Something went wrong!')),
+        return _route(
+          Scaffold(
+            appBar: AppBar(
+              title: const Text('Error'),
+            ),
+            body: const Center(
+              child: Text('Something went wrong!'),
+            ),
+          ),
         );
-      },
-    );
+    }
   }
 }

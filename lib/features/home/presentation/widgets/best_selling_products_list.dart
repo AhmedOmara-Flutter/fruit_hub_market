@@ -2,13 +2,14 @@ import '../../../../core/utils/app_imports.dart';
 import '../../../../core/widgets/products_grid_view.dart';
 import '../view_model/best_selling_cubit.dart';
 
-class BestSellingProductsBlocBuilder extends StatelessWidget {
-  const BestSellingProductsBlocBuilder({super.key});
+class BestSellingProductsList extends StatelessWidget {
+  const BestSellingProductsList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BestSellingCubit, BestSellingState>(
       builder: (context, state) {
+
         if (state is GetSellingProductsSuccessState) {
           return ProductsGridView(products: state.sellingProducts);
         }
@@ -20,6 +21,11 @@ class BestSellingProductsBlocBuilder extends StatelessWidget {
 
         if (state is GetSellingProductsLoadingState) {
           return Skeletonizer.sliver(
+            effect: ShimmerEffect(
+              baseColor: const Color(0xff2B2B2B),
+              highlightColor: const Color(0xff404040),
+              duration: const Duration(milliseconds: 1200),
+            ),
             enabled: true,
             child: ProductsGridView(products: getDummyProducts()),
           );

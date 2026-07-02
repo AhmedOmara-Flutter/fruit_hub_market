@@ -71,3 +71,4 @@ export 'package:skeletonizer/skeletonizer.dart';
 export 'package:fruit_hub_market/core/utils/app_color.dart';
 export 'package:fruit_hub_market/core/utils/app_sounds.dart';
 export 'package:fruit_hub_market/core/utils/app_vibration.dart';
+export 'package:flutter_screenutil/flutter_screenutil.dart';

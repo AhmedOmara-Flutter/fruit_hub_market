@@ -10,7 +10,7 @@ class StringManager {
             .of(context)
             .textTheme
             .titleLarge,),
-        Text('قط', style: Theme
+        Text('حكا', style: Theme
             .of(context)
             .textTheme
             .titleLarge!
@@ -18,7 +18,7 @@ class StringManager {
             color: Color(0xffF4A91F)
         )
         ),
-        Text('يف', style: Theme
+        Text('ية', style: Theme
             .of(context)
             .textTheme
             .titleLarge!
@@ -38,9 +38,12 @@ class StringManager {
 
 
   static const onBoardingDescription1 =
-      'اكتشف تجربة تسوق فريدة مع قطيف . استكشف\nمجموعتنا'
-      'الواسعة من الفواكه الطازجة الممتازة\n'
-      'واحصل على أفضل العروض والجودة العالية.';
+      'استمتع بأشهى أنواع البيتزا المحضرة بمكونات\n'
+      'طازجة وجودة عالية، مع نكهات مميزة وعروض\n'
+      'تناسب جميع الأذواق.';
+
   static const onBoardingDescription2 =
-      'نقدم لك أفضل الفواكه المختارة بعناية. اطلع على\nالتفاصيل والصور والتقييمات لتتأكد من اختيار الفاكهة\nالمثالية';
+      'اكتشف تشكيلة متنوعة من الكريب الحلو والحادق،\n'
+      'واختر مكوناتك المفضلة بكل سهولة مع تجربة\n'
+      'طلب سريعة وممتعة.';
 }

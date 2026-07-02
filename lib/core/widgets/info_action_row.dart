@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/core/widgets/custom_back_button.dart';
 
@@ -7,7 +8,7 @@ class InfoActionRow extends StatelessWidget {
   final bool showNotification;
   final bool showSearch;
   final double bottomPadding;
-  final void Function()?searchOnPressed;
+  final VoidCallback? searchOnPressed;
 
   const InfoActionRow({
     super.key,
@@ -15,23 +16,24 @@ class InfoActionRow extends StatelessWidget {
     this.showBack = false,
     this.showNotification = false,
     this.showSearch = false,
-    this.bottomPadding = 20, this.searchOnPressed,
+    this.bottomPadding = 20,
+    this.searchOnPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        left: 20,
-        right: 20,
-        top: 40,
-        bottom: bottomPadding,
+        left: 20.w,
+        right: 20.w,
+        top: 40.h,
+        bottom: bottomPadding.h,
       ),
       child: Row(
         children: [
           SizedBox(
-            height: 60,
-            width: 60,
+            height: 60.w,
+            width: 60.w,
             child: showBack ? const CustomBackButton() : const SizedBox(),
           ),
 
@@ -39,15 +41,17 @@ class InfoActionRow extends StatelessWidget {
             child: Center(
               child: Text(
                 text,
-                style: Theme.of(context).textTheme.displaySmall,
                 overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                  color: AppColor.textPrimary,
+                ),
               ),
             ),
           ),
 
           SizedBox(
-            height: 60,
-            width: 60,
+            height: 60.w,
+            width: 60.w,
             child: _buildRightAction(),
           ),
         ],
@@ -58,24 +62,24 @@ class InfoActionRow extends StatelessWidget {
   Widget _buildRightAction() {
     if (showNotification) {
       return ClipRRect(
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(100.r),
         child: Material(
-          color: const Color(0xffEEF8ED),
+          color: AppColor.card,
           child: InkWell(
             onTap: () {},
             child: Container(
-              padding: const EdgeInsets.all(10),
+              padding: EdgeInsets.all(10.r),
               child: Stack(
                 alignment: Alignment.topCenter,
                 children: [
                   Icon(
                     Icons.notifications_none_outlined,
-                    size: 30,
+                    size: 30.sp,
                     color: AppColor.mainColor,
                   ),
-                  const CircleAvatar(
-                    radius: 4,
-                    backgroundColor: Color(0xffF24135),
+                  CircleAvatar(
+                    radius: 4.r,
+                    backgroundColor: const Color(0xffF24135),
                   ),
                 ],
               ),
@@ -87,21 +91,32 @@ class InfoActionRow extends StatelessWidget {
 
     if (showSearch) {
       return ClipRRect(
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(100.r),
         child: Material(
           color: Colors.transparent,
           child: InkWell(
-            onTap:searchOnPressed,
+            borderRadius: BorderRadius.circular(100.r),
+            onTap: searchOnPressed,
             child: Container(
-              height: 60,
-              width: 60,
+              width: 60.w,
+              height: 60.w,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                border: Border.all(color: const Color(0xffF1F1F5)),
+                color: AppColor.card,
+                borderRadius: BorderRadius.circular(100.r),
+                border: Border.all(
+                  color: AppColor.border,
+                  width: 1.w,
+                ),
               ),
               child: Center(
                 child: SvgPicture.asset(
                   Assets.images.search.path,
+                  width: 24.w,
+                  height: 24.w,
+                  colorFilter: const ColorFilter.mode(
+                    AppColor.textPrimary,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),

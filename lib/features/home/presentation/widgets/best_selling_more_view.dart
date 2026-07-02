@@ -9,9 +9,7 @@ class BestSellingMoreView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider.value(
       value: BlocProvider.of<BestSellingCubit>(context),
-      child: Scaffold(
-        body: BestSellingMoreViewBody(),
-      ),
+      child: Scaffold(body: BestSellingMoreViewBody()),
     );
   }
 }

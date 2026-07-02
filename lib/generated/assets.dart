@@ -18,15 +18,9 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   final SvgGenImage camera = const SvgGenImage('assets/images/Camera.svg');
-  final AssetGenImage emptyWishlist = const AssetGenImage(
-    'assets/images/Empty Wishlist.png',
-  );
-  final SvgGenImage mastercard = const SvgGenImage(
-    'assets/images/Mastercard.svg',
-  );
   final SvgGenImage paypal = const SvgGenImage('assets/images/Paypal.svg');
-  final AssetGenImage appIcon = const AssetGenImage(
-    'assets/images/appIcon.png',
+  final AssetGenImage appLogo = const AssetGenImage(
+    'assets/images/app_logo.png',
   );
   final SvgGenImage apple = const SvgGenImage('assets/images/apple.svg');
   final SvgGenImage arrowBack = const SvgGenImage(
@@ -35,15 +29,13 @@ class $AssetsImagesGen {
   final SvgGenImage arrowDown = const SvgGenImage(
     'assets/images/arrow-down.svg',
   );
-  final SvgGenImage bannerBackground = const SvgGenImage(
-    'assets/images/banner_background.svg',
-  );
   final SvgGenImage box = const SvgGenImage('assets/images/box.svg');
   final SvgGenImage calendar = const SvgGenImage('assets/images/calendar.svg');
   final SvgGenImage calories = const SvgGenImage('assets/images/calories.svg');
   final SvgGenImage checkCircle = const SvgGenImage(
     'assets/images/checkCircle.svg',
   );
+  final AssetGenImage crepe = const AssetGenImage('assets/images/crepe.png');
   final SvgGenImage delivered = const SvgGenImage(
     'assets/images/delivered.svg',
   );
@@ -51,9 +43,6 @@ class $AssetsImagesGen {
     'assets/images/deliveryTruck.svg',
   );
   final SvgGenImage edit = const SvgGenImage('assets/images/edit.svg');
-  final AssetGenImage emptyCart = const AssetGenImage(
-    'assets/images/empty cart.png',
-  );
   final AssetGenImage emptyReview = const AssetGenImage(
     'assets/images/empty review.png',
   );
@@ -67,11 +56,9 @@ class $AssetsImagesGen {
   final SvgGenImage global = const SvgGenImage('assets/images/global.svg');
   final SvgGenImage google = const SvgGenImage('assets/images/google.svg');
   final SvgGenImage heart = const SvgGenImage('assets/images/heart.svg');
-  final AssetGenImage icon = const AssetGenImage('assets/images/icon.png');
   final SvgGenImage infoCircle = const SvgGenImage(
     'assets/images/info-circle.svg',
   );
-  final AssetGenImage kiwi = const AssetGenImage('assets/images/kiwi.png');
   final SvgGenImage location = const SvgGenImage('assets/images/location.svg');
   final AssetGenImage message = const AssetGenImage(
     'assets/images/message.png',
@@ -100,18 +87,14 @@ class $AssetsImagesGen {
   final SvgGenImage openPackage = const SvgGenImage(
     'assets/images/openPackage.svg',
   );
-  final AssetGenImage orange = const AssetGenImage('assets/images/orange.png');
   final SvgGenImage organic = const SvgGenImage('assets/images/organic.svg');
   final SvgGenImage package = const SvgGenImage('assets/images/package.svg');
   final SvgGenImage paymentSuccess = const SvgGenImage(
     'assets/images/paymentSuccess.svg',
   );
+  final AssetGenImage pizza = const AssetGenImage('assets/images/pizza.png');
   final SvgGenImage productDetailsBg = const SvgGenImage(
     'assets/images/productDetailsBg.svg',
-  );
-  final AssetGenImage qtef = const AssetGenImage('assets/images/qtef.png');
-  final AssetGenImage qtefNoBackground = const AssetGenImage(
-    'assets/images/qtefNoBackground.png',
   );
   final SvgGenImage rating = const SvgGenImage('assets/images/rating.svg');
   final SvgGenImage reviewImage = const SvgGenImage(
@@ -125,17 +108,17 @@ class $AssetsImagesGen {
     'assets/images/shippingTracking.svg',
   );
   final AssetGenImage sights = const AssetGenImage('assets/images/sights.png');
-  final SvgGenImage splashBottom = const SvgGenImage(
-    'assets/images/splash_bottom.svg',
+  final AssetGenImage splashBackground = const AssetGenImage(
+    'assets/images/splash_background.png',
   );
-  final SvgGenImage splashCenter = const SvgGenImage(
-    'assets/images/splash_center.svg',
+  final AssetGenImage splashLogo = const AssetGenImage(
+    'assets/images/splash_logo.png',
   );
-  final SvgGenImage splashTop = const SvgGenImage(
-    'assets/images/splash_top.svg',
+  final AssetGenImage splashLogo2 = const AssetGenImage(
+    'assets/images/splash_logo_2.png',
   );
-  final AssetGenImage strawberry = const AssetGenImage(
-    'assets/images/strawberry.png',
+  final AssetGenImage splashText = const AssetGenImage(
+    'assets/images/splash_text.png',
   );
   final SvgGenImage user = const SvgGenImage('assets/images/user.svg');
 }

@@ -2,7 +2,7 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class ThemeManager {
   static ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: AppColor.background,
 
     ///appBar
     appBarTheme: AppBarTheme(

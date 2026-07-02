@@ -5,20 +5,20 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initAppModule();
   Bloc.observer = BlocObserverReader();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Supabase.initialize(
     url: 'https://wplubouwksawibitfhlj.supabase.co',
     anonKey: 'sb_publishable_28OdrvHF22OZhJIOnmQGFQ_T98mgadn',
   );
   await CacheHelper.init();
-  Constants.onBoarding =await CacheHelper.getData(key: 'onBoarding')??false;
+  Constants.onBoarding = await CacheHelper.getData(key: 'onBoarding') ?? false;
   Constants.uId = await CacheHelper.getData(key: 'uId') ?? '';
 
-  runApp(MyApp());
-
+  runApp(
+    // DevicePreview(
+    //   enabled: !kReleaseMode,
+    //   builder: (context) => MyApp(),
+    // ),
+      MyApp()
+  );
 }
-
-
-

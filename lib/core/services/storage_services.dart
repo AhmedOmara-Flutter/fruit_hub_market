@@ -14,6 +14,7 @@ class SupabaseStorage implements StorageServices {
 
   @override
   Future<String> uploadImage(File imageFile, String path) async {
+
     final file = File(imageFile.path);
 
     final fileName =
@@ -38,17 +39,33 @@ File _compressImage(String path) {
 
   final img.Image? image = img.decodeImage(bytes);
 
-  final compressed = img.copyResize(
-    image!,
-    width: 400, // ممكن تقللها 300 لو عايز أسرع
+  if (image == null) {
+    return file;
+  }
+
+  final resized = img.copyResize(
+    image,
+    width: 400,
   );
+
+  final extension = file.path.split('.').last.toLowerCase();
+
+  if (extension == 'png') {
+    final newPath = '${file.path}_compressed.png';
+
+    File(newPath).writeAsBytesSync(
+      img.encodePng(resized),
+    );
+
+    return File(newPath);
+  }
 
   final newPath = '${file.path}_compressed.jpg';
 
   File(newPath).writeAsBytesSync(
     img.encodeJpg(
-      compressed,
-      quality: 50, // ممكن 40 لو عايز ضغط أعلى
+      resized,
+      quality: 50,
     ),
   );
 

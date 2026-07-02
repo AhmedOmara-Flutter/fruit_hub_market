@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class OnBoardingView extends StatelessWidget {
@@ -6,7 +7,8 @@ class OnBoardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: OnBoardingViewBody(),
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light, child: OnBoardingViewBody()),
     );
   }
 }

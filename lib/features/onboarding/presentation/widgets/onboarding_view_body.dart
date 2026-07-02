@@ -10,12 +10,12 @@ class OnBoardingViewBody extends StatefulWidget {
 class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
    int currentIndex = 0;
    late List<PageViewModel> items = [
-    PageViewModel(image: Assets.images.onboarding2.path,
+    PageViewModel(image: Assets.images.pizza.path,
         title: StringManager.onBoardingTitle1(context),
         description: StringManager.onBoardingDescription1,
         background: Assets.images.onboardingBackground1.path
     ),
-    PageViewModel(image: Assets.images.onboarding1.path,
+    PageViewModel(image: Assets.images.crepe.path,
         title: StringManager.onBoardingTitle2(context),
         description: StringManager.onBoardingDescription2,
         background: Assets.images.onboardingBackground2.path
@@ -29,8 +29,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         SizedBox(
           height: MediaQuery.of(context).size.width*1.77,
           child: PageView.builder(
-            itemBuilder: (context, index) =>
-                PageViewItem(pageViewModel: items[index],
+            itemBuilder: (context, index) => PageViewItem(pageViewModel: items[index],
                   currentIndex: currentIndex,
                   pageCount: items.length,),
             scrollDirection: Axis.horizontal,
@@ -48,7 +47,6 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
             currentIndex: currentIndex,
             pageCount: items.length,
           ),
-
         const SizedBox(height: 30),
         if(currentIndex == items.length-1)
           CustomButton(child: Text('ابدأ الان', style: Theme
@@ -61,5 +59,4 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
       ],
     );
   }
-
 }

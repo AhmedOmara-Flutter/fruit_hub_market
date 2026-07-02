@@ -14,15 +14,21 @@ class PageViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            OnBoardingBackground(background: pageViewModel.background,),
-            if(currentIndex != pageCount-1)
-            OnBoardingSkipButton(),
-            OnBoardingImage(image: pageViewModel.image,),
-          ],
+      Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        OnBoardingBackground(
+          background: pageViewModel.background,
         ),
+
+        OnBoardingImage(
+          image: pageViewModel.image,
+        ),
+
+        if (currentIndex != pageCount - 1)
+          const OnBoardingSkipButton(),
+      ],
+    ),
         SizedBox(height: 50),
         OnBoardingContent(pageViewModel: pageViewModel,),
       ],

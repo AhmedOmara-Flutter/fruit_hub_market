@@ -2,15 +2,16 @@ import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/widgets/search_section.dart';
 import 'package:fruit_hub_market/features/home/presentation/view_model/best_selling_cubit.dart';
 import 'package:fruit_hub_market/features/home/presentation/view_model/featured_cubit.dart';
-import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_header.dart';
+import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_section.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/offer_carousel_list.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/home_header.dart';
-import 'package:fruit_hub_market/features/home/presentation/widgets/popular_products_section.dart';
+import 'package:fruit_hub_market/features/home/presentation/widgets/featured_products_section.dart';
+import 'package:fruit_hub_market/features/search/presentation/widgets/custom_search_field.dart';
 import '../../../../../../../core/utils/app_imports.dart';
 import '../../../../core/widgets/custom_refresh_indicator.dart';
 import '../../../offers/presentation/view_model/offer_cubit.dart';
-import 'best_selling_products_bloc_builder.dart';
-import 'featured_products_bloc_builder.dart';
+import 'best_selling_products_list.dart';
+import 'featured_products_list.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -23,7 +24,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<BestSellingCubit>().getSellingProducts();
       context.read<FeaturedCubit>().getFeaturedProducts();
@@ -50,16 +50,32 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 HomeHeader(),
-                SearchSection(),
+                if(context
+                    .read<OfferCubit>()
+                    .offers
+                    .isEmpty)
+                  Column(
+                    children: [
+                      SizedBox(height: 25,),
+                      CustomSearchField(
+                        borderSide: BorderSide.none,
+                        readOnly: true
+                        , onTap: () {
+                        Navigator.pushNamed(context, RouteManager.search);
+                      },),
+                      SizedBox(height: 10,),
+                    ],
+                  ),
                 OfferCarouselList(),
-                PopularProductsSection(),
-                FeaturedProductsBlocBuilder(),
-                BestSellingHeader(),
+                FeaturedProductsSection(),
+                FeaturedProductsList(),
+                SizedBox(height: 10),
+                BestSellingSection(),
                 SizedBox(height: 10),
               ],
             ),
           ),
-          BestSellingProductsBlocBuilder(),
+          BestSellingProductsList(),
         ],
       ),
     );

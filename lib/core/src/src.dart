@@ -1,3 +1,5 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/home/presentation/view_model/best_selling_cubit.dart';
 import 'package:fruit_hub_market/features/home/presentation/view_model/featured_cubit.dart';
@@ -16,32 +18,45 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => MainCubit(),),
-          BlocProvider(create: (context) => BestSellingCubit(instance()),),
-          BlocProvider(create: (context) => FeaturedCubit(instance()),),
-          BlocProvider(create: (context) => ProductCubit(instance()),),
-          BlocProvider(create: (context) => CartCubit(instance()),),
-          BlocProvider(create: (context) => FavoriteCubit(instance())..getFavorites()),
-          BlocProvider(create: (context) => ProfileCubit(instance(), instance())..getOrders(),),
-          BlocProvider(create: (context) => AddReviewCubit(instance()),),
-          BlocProvider(create: (context) => GetReviewCubit(instance()),),
-          BlocProvider(create: (context) => OfferCubit(instance()),
-          ),
-        ],
-      child: MaterialApp(
-        localizationsDelegates: [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        locale: Locale('ar'),
-        theme: ThemeManager.lightTheme,
-        onGenerateRoute: GenerateRoute.generateRoute,
-        initialRoute: RouteManager.splash,
-        debugShowCheckedModeBanner: false,
+      providers: [
+        BlocProvider(create: (context) => MainCubit()),
+        BlocProvider(create: (context) => BestSellingCubit(instance())),
+        BlocProvider(create: (context) => FeaturedCubit(instance())),
+        BlocProvider(create: (context) => ProductCubit(instance())),
+        BlocProvider(create: (context) => CartCubit(instance())),
+        BlocProvider(
+          create: (context) => FavoriteCubit(instance())..getFavorites(),
+        ),
+        BlocProvider(
+          create: (context) =>
+          ProfileCubit(instance(), instance())..getOrders(),
+        ),
+        BlocProvider(create: (context) => AddReviewCubit(instance())),
+        BlocProvider(create: (context) => GetReviewCubit(instance())),
+        BlocProvider(create: (context) => OfferCubit(instance())),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(393, 852),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+           // useInheritedMediaQuery: true,
+          //  builder: DevicePreview.appBuilder,
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            locale: const Locale('ar'),
+            theme: ThemeManager.lightTheme,
+            onGenerateRoute: GenerateRoute.generateRoute,
+            initialRoute: RouteManager.splash,
+            debugShowCheckedModeBanner: false,
+          );
+        },
       ),
     );
   }

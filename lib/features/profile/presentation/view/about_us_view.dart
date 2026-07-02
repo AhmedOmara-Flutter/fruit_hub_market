@@ -1,5 +1,4 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 
 class AboutUsView extends StatefulWidget {
   const AboutUsView({super.key});
@@ -14,15 +13,15 @@ class _AboutUsViewState extends State<AboutUsView> {
   @override
   void initState() {
     super.initState();
-    _getVersion();
+   // _getVersion();
   }
 
-  Future<void> _getVersion() async {
-    final info = await PackageInfo.fromPlatform();
-    setState(() {
-      version = info.version;
-    });
-  }
+  // Future<void> _getVersion() async {
+  //   final info = await PackageInfo.fromPlatform();
+  //   setState(() {
+  //     version = info.version;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

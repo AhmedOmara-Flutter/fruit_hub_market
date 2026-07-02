@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/offer_carousel_item.dart';
-import 'package:fruit_hub_market/features/home/presentation/widgets/skeletonizer_featured_item.dart';
+import 'package:fruit_hub_market/features/home/presentation/widgets/skeletonizer_offer_item.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../core/utils/app_imports.dart';
 import '../../../offers/presentation/view_model/offer_cubit.dart';
@@ -19,13 +21,14 @@ class _OfferCarouselListState extends State<OfferCarouselList> {
   Widget build(BuildContext context) {
     return BlocBuilder<OfferCubit, OfferState>(
       builder: (context, state) {
-
         if (state is GetOffersLoading) {
           return _buildLoading();
         }
 
         if (state is GetOffersFailure) {
-          return Center(child: Text(state.errMessage));
+          return Center(
+            child: Text(state.errMessage, style: TextStyle(fontSize: 14.sp)),
+          );
         }
 
         if (state is GetOffersSuccess) {
@@ -37,47 +40,32 @@ class _OfferCarouselListState extends State<OfferCarouselList> {
 
           return Column(
             children: [
-              const SizedBox(height: 15),
+              SizedBox(height: 20.h),
 
               CarouselSlider.builder(
                 itemCount: offers.length,
                 itemBuilder: (context, index, realIndex) {
-                  return OfferCarouselItem(offer: offers[index]);
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 4.w),
+                    child: OfferCarouselItem(offer: offers[index]),
+                  );
                 },
-                options: CarouselOptions(
-                  height: MediaQuery.of(context).size.height * 0.21,
-                  viewportFraction: 0.95,
-                  autoPlay: true,
-                  onPageChanged: (index, reason) {
-                    setState(() => currentIndex = index);
-                  },
-                  autoPlayAnimationDuration: const Duration(milliseconds: 600),
-                  enlargeCenterPage: false,
-                  enableInfiniteScroll: true,
+                options: _carouselOptions(),
+              ),
+
+              SizedBox(height: 5.h),
+              AnimatedSmoothIndicator(
+                activeIndex: currentIndex,
+                count: offers.length,
+                effect: SwapEffect(
+                  activeDotColor: AppColor.mainColor,
+                  dotColor: Colors.grey.shade300,
+                  dotHeight: 8.r,
+                  dotWidth: 8.r,
                 ),
               ),
 
-              const SizedBox(height: 15),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(offers.length, (index) {
-                  return AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    width: currentIndex == index ? 14 : 8,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      color: currentIndex == index
-                          ? AppColor.mainColor
-                          : Colors.grey,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  );
-                }),
-              ),
-
-              const SizedBox(height: 10),
+              SizedBox(height: 12.h),
             ],
           );
         }
@@ -90,20 +78,55 @@ class _OfferCarouselListState extends State<OfferCarouselList> {
   Widget _buildLoading() {
     return Column(
       children: [
-        const SizedBox(height: 15),
+        SizedBox(height: 20.h),
+
         CarouselSlider.builder(
           itemCount: 3,
           itemBuilder: (context, index, realIndex) {
-            return SkeletonizerFeaturedItem();
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4.w),
+              child: SkeletonizerOfferItem(),
+            );
           },
-          options: CarouselOptions(
-            height: MediaQuery.of(context).size.height * 0.21,
-            viewportFraction: 0.95,
-            autoPlay: true,
+          options: _carouselOptions(),
+        ),
+
+        SizedBox(height: 5.h),
+        AnimatedSmoothIndicator(
+          activeIndex: currentIndex,
+          count: 3,
+          effect: SwapEffect(
+            activeDotColor: AppColor.mainColor,
+            dotColor: Colors.grey.shade300,
+            dotHeight: 8.r,
+            dotWidth: 8.r,
           ),
         ),
-        const SizedBox(height: 15),
+
+        SizedBox(height: 12.h),
       ],
+    );
+  }
+
+  CarouselOptions _carouselOptions() {
+    return CarouselOptions(
+      height: 230.h,
+      viewportFraction: 1,
+      initialPage: 0,
+      autoPlay: true,
+      autoPlayInterval: const Duration(seconds: 4),
+      autoPlayAnimationDuration: const Duration(milliseconds: 600),
+      autoPlayCurve: Curves.easeInOut,
+      enlargeCenterPage: false,
+      enableInfiniteScroll: true,
+      padEnds: true,
+      clipBehavior: Clip.none,
+      scrollPhysics: const BouncingScrollPhysics(),
+      onPageChanged: (index, reason) {
+        setState(() {
+          currentIndex = index;
+        });
+      },
     );
   }
 }

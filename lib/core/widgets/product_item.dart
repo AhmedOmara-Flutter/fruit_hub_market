@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
@@ -10,29 +11,36 @@ import '../entities/product_entity.dart';
 
 class ProductItem extends StatelessWidget {
   final ProductEntity product;
-  const ProductItem({super.key, required this.product});
+
+  const ProductItem({
+    super.key,
+    required this.product,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final offer = context
-        .watch<OfferCubit>()
-        .offersMap[product.id];
-final hasOffer = offer != null && offer.isActive;
+    final offer = context.watch<OfferCubit>().offersMap[product.id];
+    final hasOffer = offer != null && offer.isActive;
+
     return GestureDetector(
       onTap: () async {
         FocusManager.instance.primaryFocus?.unfocus();
         await AppSounds.playClickSound('click_song.wav');
+
         Navigator.pushNamed(
           context,
           RouteManager.productDetails,
           arguments: product.id,
         );
+
         context.read<ProductCubit>().increaseSellingCount(product.id);
       },
       child: Container(
         decoration: ShapeDecoration(
-          color: const Color(0xFFF3F5F7),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+          color: AppColor.card,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24.r),
+          ),
         ),
         child: Stack(
           children: [
@@ -40,6 +48,7 @@ final hasOffer = offer != null && offer.isActive;
               builder: (context, state) {
                 final cubit = context.watch<FavoriteCubit>();
                 final isFavorite = cubit.favorites[product.id] ?? false;
+
                 return Positioned(
                   top: 0,
                   right: 0,
@@ -52,7 +61,10 @@ final hasOffer = offer != null && offer.isActive;
                       Icons.favorite,
                       color: Color(0xffEB5757),
                     )
-                        : const Icon(Icons.favorite_border),
+                        : const Icon(
+                      Icons.favorite_border,
+                      color: AppColor.textSecondary,
+                    ),
                   ),
                 );
               },
@@ -63,99 +75,100 @@ final hasOffer = offer != null && offer.isActive;
                 top: 0,
                 left: 0,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10.w,
+                    vertical: 6.h,
                   ),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(8),
+                      bottomRight: Radius.circular(8.r),
+                      topLeft: Radius.circular(24.r),
                     ),
                   ),
                   child: Text(
                     '%${offer.discountPercentage.toInt()}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
+                      fontSize: 12.sp,
                     ),
                   ),
                 ),
               ),
 
             Positioned.fill(
-              top: 25,
+              top: 25.h,
               child: Column(
                 children: [
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20.h),
+
                   Flexible(
                     child: CachedNetworkImage(
                       imageUrl: product.image ?? '',
-                      placeholder: (context, url) =>
-                      const Center(
+                      fit: BoxFit.contain,
+                      placeholder: (context, url) => const Center(
                         child: Skeletonizer(
                           child: SizedBox(),
                         ),
                       ),
-                      errorWidget: (context, url, error) =>
-                          Center(
-                            child: Container(
-                              margin:
-                              const EdgeInsets.symmetric(horizontal: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  color: Colors.grey.shade200,
-                                ),
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: Center(
-                                child: Icon(
-                                  Icons.image_not_supported_outlined,
-                                  size: 50,
-                                  color: Colors.grey.shade300,
-                                ),
-                              ),
+                      errorWidget: (context, url, error) => Center(
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 10.w),
+                          decoration: BoxDecoration(
+                            color: AppColor.card,
+                            border: Border.all(
+                              color: AppColor.border,
+                            ),
+                            borderRadius: BorderRadius.circular(4.r),
+                          ),
+                          child: Center(
+                            child: Icon(
+                              Icons.image_not_supported_outlined,
+                              size: 50.sp,
+                              color: AppColor.textSecondary,
                             ),
                           ),
-                      fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 24),
+
+                  SizedBox(height: 24.h),
 
                   ListTile(
                     dense: true,
+                    contentPadding: EdgeInsets.only(
+                      left: 10.w,
+                      right: 10.w,
+                    ),
                     title: Text(
                       product.name,
                       textAlign: TextAlign.right,
-                      style: Theme.of(context).textTheme.titleMedium,
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: AppColor.textPrimary,
+                      ),
                     ),
-
                     subtitle: hasOffer
                         ? Column(
-                      crossAxisAlignment:
-                      CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          '${offer.priceBeforeDiscount} جنيه',
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                            color: Colors.grey,
-                            decoration:
-                            TextDecoration.lineThrough,
+                          '${offer.priceBeforeDiscount} ج.م',
+                          style: StyleManager.font12Weight500.copyWith(
+                            color: AppColor.textSecondary,
+                            decoration: TextDecoration.lineThrough,
+                            decorationColor: AppColor.textPrimary,
+                            decorationThickness: 1.5,
                           ),
                         ),
                         Text(
-                          '${offer.priceAfterDiscount} جنيه / كيلو',
-                          style: Theme
-                              .of(context)
+                          '${offer.priceAfterDiscount} ج.م',
+                          style: Theme.of(context)
                               .textTheme
                               .labelLarge!
                               .copyWith(
-                            color: Colors.red,
+                            color: AppColor.mainColor,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -165,39 +178,33 @@ final hasOffer = offer != null && offer.isActive;
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: '${product.price} جنية / ',
-                            style: Theme
-                                .of(context)
+                            text: '${product.price} ج.م',
+                            style: Theme.of(context)
                                 .textTheme
                                 .labelLarge!
                                 .copyWith(
-                              color: const Color(0xffF4A91F),
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'كيلو',
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                              color: const Color(0xffF4A91F),
+                              color: AppColor.mainColor,
                             ),
                           ),
                         ],
                       ),
                       textAlign: TextAlign.right,
                     ),
-
                     trailing: GestureDetector(
                       onTap: () {
-                        context.read<CartCubit>().addProduct(product,offer,getUser().uId);
+                        context.read<CartCubit>().addProduct(
+                          product,
+                          offer,
+                          getUser().uId,
+                        );
                       },
                       child: CircleAvatar(
+                        radius: 20.r,
                         backgroundColor: AppColor.mainColor,
-                        child: const Icon(
-                          Icons.add,
+                        child: Icon(
+                          Icons.add_shopping_cart_rounded,
                           color: Colors.white,
+                          size: 20.sp,
                         ),
                       ),
                     ),

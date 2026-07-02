@@ -26,7 +26,7 @@ class _BestSellingMoreViewBodyState extends State<BestSellingMoreViewBody> {
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
-          child: InfoActionRow(text: 'الأكثر مبيعا', showBack: true),
+          child: InfoActionRow(text: '🍽️ الأكثر طلبًا', showBack: true),
         ),
         BlocBuilder<BestSellingCubit, BestSellingState>(
           builder: (context, state) {

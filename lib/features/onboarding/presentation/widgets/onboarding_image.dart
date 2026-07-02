@@ -1,20 +1,27 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class OnBoardingImage extends StatelessWidget {
   final String image;
+
   const OnBoardingImage({
-    super.key, required this.image,
+    super.key,
+    required this.image,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-        bottom: -50,
-        child: Center(child: Image.asset(
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Transform.translate(
+        offset: Offset(0, 175.h),
+        child: Image.asset(
           image,
-          height: MediaQuery.of(context).size.width*0.9,
-          width: MediaQuery.of(context).size.width*0.9,
-        ))
+          width: 330.w,
+          height: 330.h,
+          fit: BoxFit.contain,
+        ),
+      ),
     );
   }
 }

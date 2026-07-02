@@ -1,7 +1,7 @@
-import 'package:fruit_hub_market/features/search/presentation/widgets/custom_text_field.dart';
 import 'package:fruit_hub_market/core/widgets/products_grid_view.dart';
 import 'package:fruit_hub_market/features/search/presentation/view_model/search_cubit.dart';
 import 'package:fruit_hub_market/features/search/presentation/widgets/build_search_initial.dart';
+import 'package:fruit_hub_market/features/search/presentation/widgets/custom_search_field.dart';
 
 import '../../../../core/utils/app_imports.dart';
 import 'build_search_empty.dart';
@@ -23,17 +23,19 @@ class SearchViewBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const InfoActionRow(text: 'بحث', showBack: true),
-                    CustomTextField(
+                    CustomSearchField(
+                      borderSide: BorderSide(
+                        color: AppColor.mainColor.withOpacity(0.25),
+                        width: 1.2,
+                      ),
                       onChanged: (value) {
                         context.read<SearchCubit>().search(value);
                       },
                     ),
-
                     const SizedBox(height: 10),
                   ],
                 ),
               ),
-
               BlocBuilder<SearchCubit, SearchState>(
                 builder: (context, state) {
                   if (state is SearchLoading) {

@@ -34,49 +34,52 @@ class _MainViewState extends State<MainView> {
 
       child: Scaffold(
         bottomNavigationBar: CustomBottomNavBar(),
-        body: MultiBlocListener(
-          listeners: [
-            BlocListener<CartCubit, CartState>(listener: (context, state) {
-              if (state is CartAdded) {
-                AppSounds.playClickSound('click_song.wav');
-                AppVibration.light();
-                customShowSnakeBar(context, color: AppColor.mainColor,
-                    label: 'تم إضافة المنتج إلى السلة');
-              }
-              if (state is CartRemoved) {
-                AppSounds.playClickSound('click_song.wav');
-                AppVibration.medium();
-                customShowSnakeBar(context, color:AppColor.mainColor,
-                    label: 'تم حذف المنتج من السلة');
-              }
-            },),
-            BlocListener<FavoriteCubit, FavoriteState>(
-              listener: (context, state) {
-                if (state is FavoriteAddedState) {
+        body: AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light,
+          child: MultiBlocListener(
+            listeners: [
+              BlocListener<CartCubit, CartState>(listener: (context, state) {
+                if (state is CartAdded) {
                   AppSounds.playClickSound('click_song.wav');
                   AppVibration.light();
-                  customShowSnakeBar(
-                      context, color:AppColor.mainColor,
-                      label: 'تمت الإضافة للمفضلة');
+                  customShowSnakeBar(context, color: AppColor.mainColor,
+                      label: 'تم إضافة المنتج إلى السلة');
                 }
-                if (state is FavoriteDeletedState) {
+                if (state is CartRemoved) {
                   AppSounds.playClickSound('click_song.wav');
                   AppVibration.medium();
-                  customShowSnakeBar(
-                      context, color: AppColor.red, label: 'تم الحذف من المفضله');
+                  customShowSnakeBar(context, color:AppColor.mainColor,
+                      label: 'تم حذف المنتج من السلة');
                 }
               },),
-          ],
-          child: BlocBuilder<MainCubit, MainState>(
-            builder: (context, state) {
-              var cubit = context.read<MainCubit>();
-              return IndexedStack(
-                index: cubit.currentIndex,
-                children: cubit.pages,
-              );
-            },
-          ),
-          ),
+              BlocListener<FavoriteCubit, FavoriteState>(
+                listener: (context, state) {
+                  if (state is FavoriteAddedState) {
+                    AppSounds.playClickSound('click_song.wav');
+                    AppVibration.light();
+                    customShowSnakeBar(
+                        context, color:AppColor.mainColor,
+                        label: 'تمت الإضافة للمفضلة');
+                  }
+                  if (state is FavoriteDeletedState) {
+                    AppSounds.playClickSound('click_song.wav');
+                    AppVibration.medium();
+                    customShowSnakeBar(
+                        context, color: AppColor.red, label: 'تم الحذف من المفضله');
+                  }
+                },),
+            ],
+            child: BlocBuilder<MainCubit, MainState>(
+              builder: (context, state) {
+                var cubit = context.read<MainCubit>();
+                return IndexedStack(
+                  index: cubit.currentIndex,
+                  children: cubit.pages,
+                );
+              },
+            ),
+            ),
+        ),
         ),
     );
   }
