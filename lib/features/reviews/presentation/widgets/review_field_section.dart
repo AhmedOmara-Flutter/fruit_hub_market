@@ -8,79 +8,117 @@ class CustomReviewFieldSection extends StatelessWidget {
   final void Function()? onSuffixPressed;
   final bool isTyped;
   final void Function(String)? onChanged;
-  final String? Function(String?)?validator;
-  final AutovalidateMode?autoValidateMode;
+  final String? Function(String?)? validator;
+  final AutovalidateMode? autoValidateMode;
 
-  const CustomReviewFieldSection(
-      {super.key, required this.controller, this.onSuffixPressed, this.isTyped = false, this.onChanged, this.validator, this.autoValidateMode,});
-
+  const CustomReviewFieldSection({
+    super.key,
+    required this.controller,
+    this.onSuffixPressed,
+    this.isTyped = false,
+    this.onChanged,
+    this.validator,
+    this.autoValidateMode,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: TextFormField(
           autovalidateMode: autoValidateMode,
           controller: controller,
           onChanged: onChanged,
           validator: validator,
+          style: Theme
+              .of(context)
+              .textTheme
+              .titleSmall!
+              .copyWith(
+            color: AppColor.textPrimary,
+          ),
+          cursorColor: AppColor.mainColor,
           decoration: InputDecoration(
             hintText: 'اكتب التعليق..',
+            contentPadding: EdgeInsets.symmetric(vertical: 20.h),
             prefixIcon: Container(
-              margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-              decoration: BoxDecoration(
+              margin: EdgeInsets.symmetric(
+                vertical: 5.h,
+                horizontal: 10.w,
+              ),
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
               ),
               child: ClipOval(
                 child: CachedNetworkImage(
                   imageUrl: getUser().image,
-                  width: 40,
-                  height: 40,
+                  width: 40.w,
+                  height: 40.w,
                   fit: BoxFit.cover,
                   placeholder: (context, url) =>
                       Skeletonizer(
                         enabled: true,
                         child: Container(
-                          width: 40,
-                          height: 40,
-                          color: Colors.grey[300],
-                        ),),
+                          width: 40.w,
+                          height: 40.w,
+                          color: AppColor.card,
+                        ),
+                      ),
                   errorWidget: (context, url, error) =>
-                      Icon(Icons.error, color: AppColor.red),
-                ),),
+                  const Icon(Icons.error, color: AppColor.red),
+                ),
+              ),
             ),
-            // suffixIcon: Padding(
-            //   padding: const EdgeInsets.only(left:10),
-            //   child: IconButton(
-            //       onPressed:isTyped? onSuffixPressed:null,
-            //       icon: Icon(Icons.send_rounded,color:isTyped? AppColor.mainColor:null)),
-            // ),
+
             hintStyle: Theme
-                .of(
-              context,
-            )
+                .of(context)
                 .textTheme
                 .titleSmall!
-                .copyWith(color: Color(0xff111719)),
+                .copyWith(
+              color: AppColor.textSecondary,
+            ),
+
             filled: true,
-            fillColor: Colors.white,
+            fillColor: AppColor.card,
+
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: Colors.grey.shade100),
+              borderRadius: BorderRadius.circular(16.r),
+              borderSide: BorderSide(
+                color: AppColor.border,
+              ),
             ),
+
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: Colors.grey.shade100),
+              borderRadius: BorderRadius.circular(16.r),
+              borderSide: BorderSide(
+                color: AppColor.border,
+              ),
             ),
+
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: Colors.grey.shade100),
+              borderRadius: BorderRadius.circular(16.r),
+              borderSide: BorderSide(
+                color: AppColor.mainColor.withOpacity(.5),
+              ),
+            ),
+
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.r),
+              borderSide: BorderSide(
+                color: AppColor.red,
+              ),
+            ),
+
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16.r),
+              borderSide: BorderSide(
+                color: AppColor.red,
+              ),
             ),
           ),
         ),
       ),
     );
-
   }
 }

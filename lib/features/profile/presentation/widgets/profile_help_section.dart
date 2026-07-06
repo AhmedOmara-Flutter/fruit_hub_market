@@ -18,11 +18,11 @@ class ProfileHelpSection extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 15),
             child: Text(
               'المساعدة',
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .labelLarge!
-                  .copyWith(color: Colors.black),
+              style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: AppColor.textSecondary,
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           ProfileOptionsList(

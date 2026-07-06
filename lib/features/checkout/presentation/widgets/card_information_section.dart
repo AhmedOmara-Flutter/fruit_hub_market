@@ -21,7 +21,7 @@ class CardInformationSection extends StatelessWidget {
             Expanded(child: CustomTextFormField(
               hintText: 'تاريخ الصلاحيه',
             )),
-            SizedBox(width: 10,),
+            SizedBox(width: 10.w,),
             Expanded(child: CustomTextFormField(
               hintText: 'CVV',
             )),

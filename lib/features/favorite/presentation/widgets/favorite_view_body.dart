@@ -1,7 +1,5 @@
 import 'package:fruit_hub_market/features/favorite/presentation/view_model/favorite_cubit.dart';
-import 'package:fruit_hub_market/features/favorite/presentation/widgets/empty_favorite_widget.dart';
-
-import '../../../../core/utils/app_imports.dart';
+  import '../../../../core/utils/app_imports.dart';
 import '../../../../core/widgets/empty_widget.dart';
 import '../../../../core/widgets/products_grid_view.dart';
 
@@ -17,6 +15,11 @@ class FavoriteViewBody extends StatelessWidget {
           builder: (context, state) {
             if (state is GetFavoriteLoadingState) {
               return Skeletonizer.sliver(
+                effect: ShimmerEffect(
+                  baseColor: const Color(0xff2B2B2B),
+                  highlightColor: const Color(0xff404040),
+                  duration: const Duration(milliseconds: 1200),
+                ),
                 enabled: true,
                 child: ProductsGridView(products: getDummyProducts()),
               );

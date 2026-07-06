@@ -41,9 +41,12 @@ class ProductDetailsViewBody extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               ProductImageSection(product: product, offer: offer),
+              SliverToBoxAdapter(
+                child: SizedBox(height: 10.h),
+              ),
               ProductSubImagesSection(product: product),
               ProductDetailsSection(product: product, offer: offer),
-              ProductInfoGridSection(product: product, offer: offer),
+              //ProductInfoGridSection(product: product, offer: offer),
               ProductButtonSection(product: product, offer: offer),
             ],
           );

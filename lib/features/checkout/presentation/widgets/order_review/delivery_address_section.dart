@@ -17,13 +17,16 @@ class DeliveryInfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: 14,
-        horizontal: 15,
+      padding: EdgeInsets.symmetric(
+        vertical: 14.h,
+        horizontal: 15.w,
       ),
       decoration: BoxDecoration(
-        color: const Color(0xffF2F3F3),
-        borderRadius: BorderRadius.circular(10),
+        color: AppColor.card,
+        borderRadius: BorderRadius.circular(10.r),
+        border: Border.all(
+          color: AppColor.border,
+        ),
       ),
       child: Column(
         children: [
@@ -33,7 +36,7 @@ class DeliveryInfoSection extends StatelessWidget {
               Text(
                 'بيانات التوصيل',
                 style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                  color: Colors.black,
+                  color: AppColor.textPrimary,
                 ),
               ),
               GestureDetector(
@@ -42,13 +45,15 @@ class DeliveryInfoSection extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       Assets.images.edit.path,
-                      color: const Color(0xff6C7275),
+                      color: AppColor.textSecondary,
+                      width: 18.w,
+                      height: 18.h,
                     ),
-                    const SizedBox(width: 5),
+                    SizedBox(width: 5.w),
                     Text(
                       'تعديل',
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: const Color(0xff949D9E),
+                        color: AppColor.textSecondary,
                       ),
                     ),
                   ],
@@ -57,43 +62,48 @@ class DeliveryInfoSection extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 16),
+          SizedBox(height: 16.h),
 
           /// المنطقة
           Row(
             children: [
-              const Icon(
+              Icon(
                 Icons.location_city_outlined,
-                size: 20,
-                color: Color(0xff6C7275),
+                size: 20.sp,
+                color: AppColor.textSecondary,
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8.w),
               Expanded(
                 child: Text(
                   locationName,
-                  style: Theme.of(context).textTheme.labelMedium,
+                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                    color: AppColor.textPrimary,
+                  ),
                 ),
               ),
+
               /// سعر التوصيل
               Row(
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.local_shipping_outlined,
-                    size: 20,
-                    color: Color(0xff6C7275),
+                    size: 20.sp,
+                    color: AppColor.textSecondary,
                   ),
-                  const SizedBox(width: 8),
+                  SizedBox(width: 8.w),
                   Text(
                     '$deliveryCost جنيه',
-                    style: Theme.of(context).textTheme.labelMedium,
+                    style: Theme.of(context).textTheme.labelMedium!.copyWith(
+                      color: AppColor.mainColor,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ],
               ),
-
             ],
           ),
 
-          const SizedBox(height: 12),
+          SizedBox(height: 12.h),
 
           /// العنوان
           Row(
@@ -101,14 +111,16 @@ class DeliveryInfoSection extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 Assets.images.location.path,
-                color: const Color(0xff6C7275),
+                color: AppColor.textSecondary,
+                width: 18.w,
+                height: 18.h,
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8.w),
               Expanded(
                 child: Text(
                   fullAddress,
                   style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: const Color(0xff4E5556),
+                    color: AppColor.textSecondary,
                   ),
                 ),
               ),

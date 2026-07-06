@@ -19,6 +19,9 @@ class $AssetsImagesGen {
 
   final SvgGenImage camera = const SvgGenImage('assets/images/Camera.svg');
   final SvgGenImage paypal = const SvgGenImage('assets/images/Paypal.svg');
+  final AssetGenImage aboutusLogo = const AssetGenImage(
+    'assets/images/aboutus_logo.png',
+  );
   final AssetGenImage appLogo = const AssetGenImage(
     'assets/images/app_logo.png',
   );
@@ -111,6 +114,9 @@ class $AssetsImagesGen {
   final AssetGenImage splashBackground = const AssetGenImage(
     'assets/images/splash_background.png',
   );
+  final AssetGenImage splashBg = const AssetGenImage(
+    'assets/images/splash_bg.png',
+  );
   final AssetGenImage splashLogo = const AssetGenImage(
     'assets/images/splash_logo.png',
   );
@@ -130,7 +136,9 @@ class $AssetsJsonGen {
     'assets/json/Food animation.json',
   );
   final String empty = 'assets/json/empty.json';
-  final String emptyCart = 'assets/json/empty cart.json';
+  final LottieGenImage shoppingCart = const LottieGenImage(
+    'assets/json/shopping cart.json',
+  );
 }
 
 class $AssetsSongsGen {

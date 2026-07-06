@@ -24,71 +24,110 @@ class CustomTextFormField extends StatelessWidget {
     this.onSuffixPressed,
     this.suffixIcon,
     this.prefixIcon,
-    this.label, this.readOnly=false,
+    this.label,
+    this.readOnly = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    Color borderColor=AppColor.mainColor.withOpacity(0.1);
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null)
+        if (label != null) ...[
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 5),
-                child: Text(
-                  label!,
-                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    color: AppColor.mainColor,
-                    fontWeight: FontWeight.w700,
-                  ),
+              Text(
+                label!,
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                  color: AppColor.textPrimary,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-              SizedBox(width: 8),
-              CircleAvatar(backgroundColor: Colors.red, radius: 2),
+              SizedBox(width: 6.w),
+              Container(
+                width: 6.w,
+                height: 6.w,
+                decoration: const BoxDecoration(
+                  color: AppColor.mainColor,
+                  shape: BoxShape.circle,
+                ),
+              ),
             ],
           ),
-        if (label != null) SizedBox(height: 8),
+          SizedBox(height: 8.h),
+        ],
+
         TextFormField(
-          style: StyleManager.font14Weight600.copyWith(color: AppColor.mainColor),
-          readOnly: readOnly,
-          onSaved: onSaved,
-          autovalidateMode: autoValidateMode,
-          validator: validator,
           controller: controller,
           keyboardType: keyboardType,
+          validator: validator,
+          autovalidateMode: autoValidateMode,
+          onSaved: onSaved,
+          readOnly: readOnly,
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(
+            color: AppColor.textPrimary,
+          ),
+          cursorColor: AppColor.mainColor,
           decoration: InputDecoration(
             hintText: hintText,
-            prefixIcon: Icon(prefixIcon, color: AppColor.mainColor.withOpacity(0.5)),
-            suffixIcon: Padding(
-              padding: const EdgeInsets.only(left: 5),
-              child: IconButton(
-                onPressed: onSuffixPressed,
-                icon: Icon(suffixIcon),
+            hintStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
+              color: AppColor.textSecondary,
+            ),
+
+            filled: true,
+            fillColor: AppColor.card,
+
+            prefixIcon: prefixIcon == null
+                ? null
+                : Icon(
+              prefixIcon,
+              color: AppColor.mainColor,
+              size: 22.sp,
+            ),
+
+            suffixIcon: suffixIcon == null
+                ? null
+                : IconButton(
+              onPressed: onSuffixPressed,
+              icon: Icon(
+                suffixIcon,
+                color: AppColor.textSecondary,
               ),
             ),
-            filled: true,
-            fillColor: AppColor.mainColor.withOpacity(0.06),
-            hintStyle: StyleManager.font14Weight600.copyWith(color: AppColor.mainColor),
-            labelStyle: StyleManager.font14Weight600.copyWith(color: AppColor.mainColor),
-            suffixIconColor: AppColor.mainColor.withOpacity(0.5),
+
+            contentPadding: EdgeInsets.symmetric(
+              horizontal: 16.w,
+              vertical: 16.h,
+            ),
+
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color:borderColor),
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(14.r),
+              borderSide: BorderSide(
+                color: AppColor.border,
+              ),
             ),
+
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: borderColor),
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(14.r),
+              borderSide: const BorderSide(
+                color: AppColor.mainColor,
+                width: 1.5,
+              ),
             ),
+
             errorBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColor.red),
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(14.r),
+              borderSide: const BorderSide(
+                color: AppColor.red,
+              ),
             ),
+
             focusedErrorBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: borderColor),
-              borderRadius: BorderRadius.circular(4),
+              borderRadius: BorderRadius.circular(14.r),
+              borderSide: const BorderSide(
+                color: AppColor.red,
+                width: 1.5,
+              ),
             ),
           ),
         ),

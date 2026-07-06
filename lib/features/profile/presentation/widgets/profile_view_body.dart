@@ -26,9 +26,10 @@ class ProfileViewBody extends StatelessWidget {
             SliverToBoxAdapter(
               child: ProfileHelpSection(),
             ),
+            SliverToBoxAdapter(child: ProfileSignOut()),
+
           ],
         ),
-        ProfileSignOut(),
       ],
     );
   }

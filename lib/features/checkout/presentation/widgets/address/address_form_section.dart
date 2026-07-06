@@ -6,14 +6,12 @@ class AddressFormSection extends StatelessWidget {
     required this.nameController,
     required this.emailController,
     required this.addressController,
-    required this.countryController,
     required this.apartmentController,
   });
 
   final TextEditingController nameController;
   final TextEditingController emailController;
   final TextEditingController addressController;
-  final TextEditingController countryController;
   final TextEditingController apartmentController;
 
   @override
@@ -21,86 +19,61 @@ class AddressFormSection extends StatelessWidget {
     return Column(
       children: [
         CustomTextFormField(
+          label: 'الاسم الكامل',
           controller: nameController,
           prefixIcon: Icons.person,
-          hintText: 'الاسم كامل',
+          hintText: 'أدخل اسمك بالكامل',
           validator: (value) {
-            if (value == null || value
-                .trim()
-                .isEmpty) {
-              return 'من فضلك أدخل الاسم كامل';
+            if (value == null || value.trim().isEmpty) {
+              return 'من فضلك أدخل الاسم الكامل';
             }
-            if (value
-                .trim()
-                .length < 3) {
+            if (value.trim().length < 3) {
               return 'الاسم قصير جدًا';
             }
             return null;
           },
         ),
-        const SizedBox(height: 15),
+
+        SizedBox(height: 15.h),
+
         CustomTextFormField(
-          prefixIcon: Icons.email,
+          label: 'رقم الهاتف',
           controller: emailController,
-          hintText: 'البريد الإلكتروني',
+          prefixIcon: Icons.phone,
+          keyboardType: TextInputType.phone,
+          hintText: '01xxxxxxxxx',
           validator: (value) {
-            if (value == null || value
-                .trim()
-                .isEmpty) {
-              return 'من فضلك أدخل البريد الإلكتروني';
+            if (value == null || value.trim().isEmpty) {
+              return 'من فضلك أدخل رقم الهاتف';
             }
-
-            // final emailRegex = RegExp(
-            //   r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-            // );
-            //
-            // if (!emailRegex.hasMatch(value.trim())) {
-            //   return 'البريد الإلكتروني غير صحيح';
-            // }
-
             return null;
           },
-
         ),
-        const SizedBox(height: 15),
+
+        SizedBox(height: 15.h),
+
         CustomTextFormField(
-          prefixIcon: Icons.home_outlined,
+          label: 'العنوان',
           controller: addressController,
-          hintText: 'العنوان',
+          prefixIcon: Icons.home_outlined,
+          hintText: 'الشارع والمنطقة',
           validator: (value) {
-            if (value == null || value
-                .trim()
-                .isEmpty) {
+            if (value == null || value.trim().isEmpty) {
               return 'من فضلك أدخل العنوان';
             }
             return null;
           },
-
         ),
-        const SizedBox(height: 15),
-        CustomTextFormField(
-          prefixIcon: Icons.location_on_outlined,
-          controller: countryController,
-          hintText: 'المدينه',
-          validator: (value) {
-            if (value == null || value
-                .trim()
-                .isEmpty) {
-              return 'من فضلك أدخل المدينة';
-            }
-            return null;
-          },
 
-        ),
-        const SizedBox(height: 15),
+        SizedBox(height: 15.h),
+
         CustomTextFormField(
-          prefixIcon: Icons.apartment,
+          label: 'تفاصيل الشقة',
           controller: apartmentController,
-          hintText: 'رقم الطابق , رقم الشقه...',
+          prefixIcon: Icons.apartment,
+          hintText: 'رقم العمارة، الطابق، الشقة...',
           validator: (value) {
-            if (value == null || value
-                .trim()
-                .isEmpty) {
+            if (value == null || value.trim().isEmpty) {
               return 'من فضلك أدخل تفاصيل الشقة';
             }
             return null;

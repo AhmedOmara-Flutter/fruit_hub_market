@@ -1,126 +1,159 @@
-import 'package:fruit_hub_market/features/checkout/presentation/view_model/checkout_cubit.dart';
-
-import '../../../../core/entities/order_entity.dart';
-import '../../../../core/helper_function/get_date_formate.dart';
-import '../../../../core/utils/app_imports.dart';
+import 'package:fruit_hub_market/core/entities/order_entity.dart';
+import 'package:fruit_hub_market/core/helper_function/get_date_formate.dart';
+import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import '../../../profile/presentation/widgets/order_item_image.dart';
 import 'order_time_line.dart';
+
 class OrderTrackingViewBody extends StatelessWidget {
   final OrderEntity orderEntity;
 
-  const OrderTrackingViewBody({super.key, required this.orderEntity});
+  const OrderTrackingViewBody({
+    super.key,
+    required this.orderEntity,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        InfoActionRow(text: 'تتبع الطلب', showBack: true),
-        Container(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          decoration: BoxDecoration(
-            color: Color(0xffF2F3F3),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(
-            children: [
-              Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color(0xffEBF9F1),
-                ),
-                child: SvgPicture.asset(Assets.images.package.path),
+    final total = orderEntity.cartEntity.getTotalPrice() +
+        orderEntity.selectedLocationEntity!.cost;
+
+    return SafeArea(
+      child: SingleChildScrollView(
+        padding: EdgeInsets.only(bottom: 24.h),
+        child: Column(
+          children: [
+            const InfoActionRow(
+              text: 'تتبع الطلب',
+              showBack: true,
+            ),
+
+            Container(
+              padding: EdgeInsets.symmetric(
+                vertical: 12.h,
+                horizontal: 15.w,
               ),
-              SizedBox(width: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 8,
+              margin: EdgeInsets.symmetric(
+                horizontal: 20.w,
+              ),
+              decoration: BoxDecoration(
+                color: AppColor.card,
+                borderRadius: BorderRadius.circular(14.r),
+                border: Border.all(
+                  color: AppColor.border,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          'طلب رقم : ',
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .labelLarge!
-                              .copyWith(
-                            color: AppColor.mainColor,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Text(
-                          '#${orderEntity.id}',
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .labelLarge!
-                              .copyWith(
-                            color: Colors.black87,
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 2),
-                    Text(
-                      'تم الطلب : ${getDateFormate(
-                          orderEntity.createdAt.toString())} ',
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .titleSmall!
-                          .copyWith(
-                        color: Color(0xff949D9E),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const OrderItemImage(),
+
+                  SizedBox(width: 12.w),
+
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 10.h,
+                        horizontal: 8.w,
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    RichText(
-                      text: TextSpan(
-                        text: ' عدد الطلبات : ',
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .titleSmall!
-                            .copyWith(color: Color(0xff949D9E)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          TextSpan(
-                            text:
-                            '${orderEntity.cartEntity.getItemsCount()}   ',
-                            style: Theme
-                                .of(context)
-                                .textTheme
-                                .labelLarge!
-                                .copyWith(color: Colors.black),
+                          Row(
+                            children: [
+                              Text(
+                                'طلب رقم : ',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelLarge!
+                                    .copyWith(
+                                  color: AppColor.mainColor,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  '#${orderEntity.id}',
+                                  overflow: TextOverflow.ellipsis,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge!
+                                      .copyWith(
+                                    color: AppColor.textPrimary,
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          TextSpan(
-                            text:
-                            '${(orderEntity.cartEntity.getTotalPrice() +
-                                orderEntity.selectedLocationEntity!.cost)
-                                .toStringAsFixed(2)} ج.م',
-                            style: Theme
-                                .of(context)
+
+                          SizedBox(height: 4.h),
+
+                          Text(
+                            'تم الطلب : ${getDateFormate(orderEntity.createdAt.toString())}',
+                            style: Theme.of(context)
                                 .textTheme
-                                .labelLarge!
-                                .copyWith(color: Colors.black),
+                                .titleSmall!
+                                .copyWith(
+                              color: AppColor.textSecondary,
+                            ),
+                          ),
+
+                          SizedBox(height: 10.h),
+
+                          RichText(
+                            text: TextSpan(
+                              text: 'عدد المنتجات : ',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(
+                                color: AppColor.textSecondary,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text:
+                                  '${orderEntity.cartEntity.getItemsCount()}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge!
+                                      .copyWith(
+                                    color: AppColor.textPrimary,
+                                  ),
+                                ),
+                                const TextSpan(text: '    '),
+                                TextSpan(
+                                  text:
+                                  '${total.toStringAsFixed(2)} ج.م',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge!
+                                      .copyWith(
+                                    color: AppColor.mainColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+
+            SizedBox(height: 20.h),
+
+            OrderTimeline(
+              status: orderEntity.status,
+            ),
+
+            SizedBox(height: 24.h),
+          ],
         ),
-        SizedBox(height: 20),
-        OrderTimeline(status: orderEntity.status),
-      ],
+      ),
     );
   }
 }

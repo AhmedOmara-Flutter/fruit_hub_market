@@ -35,6 +35,6 @@ class OrderEntity {
   });
 
   String getFullAddress(){
-    return '${addressEntity!.address}, ${addressEntity!.country}, ${addressEntity!.apartment}';
+    return '${addressEntity!.address},${addressEntity!.apartment}';
   }
 }

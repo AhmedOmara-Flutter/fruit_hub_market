@@ -1,4 +1,3 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/utils/app_imports.dart';
 
 class SkeletonizerFeaturedItem extends StatelessWidget {

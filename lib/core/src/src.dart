@@ -1,15 +1,14 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+import 'package:fruit_hub_market/core/widgets/no_internet_view.dart';
 import 'package:fruit_hub_market/features/home/presentation/view_model/best_selling_cubit.dart';
 import 'package:fruit_hub_market/features/home/presentation/view_model/featured_cubit.dart';
 import 'package:fruit_hub_market/features/profile/presentation/view_model/profile_cubit.dart';
-
 import '../../features/cart/presentation/view_model/cart_cubit.dart';
 import '../../features/favorite/presentation/view_model/favorite_cubit.dart';
 import '../../features/offers/presentation/view_model/offer_cubit.dart';
 import '../../features/reviews/presentation/view_model/add_review_cubit/add_review_cubit.dart';
 import '../../features/reviews/presentation/view_model/get_review_cubit/get_review_cubit.dart';
+import '../cubit/network_cubit/network_cubit.dart';
 import '../cubit/product_cubit/product_cubit.dart';
 
 class MyApp extends StatelessWidget {
@@ -19,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => NetworkCubit()),
         BlocProvider(create: (context) => MainCubit()),
         BlocProvider(create: (context) => BestSellingCubit(instance())),
         BlocProvider(create: (context) => FeaturedCubit(instance())),
@@ -41,20 +41,42 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return MaterialApp(
-           // useInheritedMediaQuery: true,
-          //  builder: DevicePreview.appBuilder,
+            debugShowCheckedModeBanner: false,
+
+            locale: const Locale('ar'),
+
+            supportedLocales: S.delegate.supportedLocales,
+
             localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-            supportedLocales: S.delegate.supportedLocales,
-            locale: const Locale('ar'),
+
             theme: ThemeManager.lightTheme,
+
             onGenerateRoute: GenerateRoute.generateRoute,
+
             initialRoute: RouteManager.splash,
-            debugShowCheckedModeBanner: false,
+
+            builder: (context, child) {
+              return BlocBuilder<NetworkCubit, NetworkState>(
+                builder: (context, state) {
+                  return Stack(
+                    children: [
+                      child!,
+
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 350),
+                        child: (state is NetworkDisconnected || state is NetworkLoading)
+                            ? const NoInternetView()
+                            : const SizedBox.shrink(),
+                      ),                    ],
+                  );
+                },
+              );
+            },
           );
         },
       ),

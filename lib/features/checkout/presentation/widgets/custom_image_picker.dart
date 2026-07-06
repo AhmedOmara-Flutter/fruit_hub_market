@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../core/utils/app_color.dart';
@@ -38,6 +39,7 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
           final XFile? image = await picker.pickImage(
             source: ImageSource.gallery,
           );
+
           if (image != null) {
             setState(() {
               imagePath = File(image.path);
@@ -45,7 +47,7 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
             });
           }
         } on Exception catch (e) {
-          print(e);
+          debugPrint(e.toString());
         }
       },
       child: Stack(
@@ -53,33 +55,49 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
         children: [
           Container(
             margin: EdgeInsets.only(
-                top:30,
-                right: imagePath!=null?5:15),
+              top: 30.h,
+              right: imagePath != null ? 5.w : 15.w,
+            ),
             child: imagePath != null
                 ? ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-
-                  child: SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.1,
-                      width: MediaQuery.sizeOf(context).width * 0.2,
-                      child: Image.file(imagePath!,fit: BoxFit.cover,),
-                    ),
-                )
+              borderRadius: BorderRadius.circular(10.r),
+              child: SizedBox(
+                height: 80.h,
+                width: 80.w,
+                child: Image.file(
+                  imagePath!,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            )
                 : networkImage != null
-                ? SizedBox(
-                    height: MediaQuery.sizeOf(context).height * 0.1,
-                    child: Image.network(networkImage!, fit: BoxFit.cover),
-                  )
-                : Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.photo_outlined,
-                        color: AppColor.mainColor,
-                        size: 40,
-                      ),
-                    ],
-                  ),
+                ? ClipRRect(
+              borderRadius: BorderRadius.circular(10.r),
+              child: SizedBox(
+                height: 80.h,
+                width: 80.w,
+                child: Image.network(
+                  networkImage!,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            )
+                : Container(
+              height: 80.h,
+              width: 80.w,
+              decoration: BoxDecoration(
+                color: AppColor.card,
+                borderRadius: BorderRadius.circular(10.r),
+                border: Border.all(
+                  color: AppColor.border,
+                ),
+              ),
+              child: Icon(
+                Icons.photo_outlined,
+                color: AppColor.mainColor,
+                size: 38.sp,
+              ),
+            ),
           ),
         ],
       ),

@@ -107,9 +107,15 @@ class ProductItem extends StatelessWidget {
                     child: CachedNetworkImage(
                       imageUrl: product.image ?? '',
                       fit: BoxFit.contain,
-                      placeholder: (context, url) => const Center(
-                        child: Skeletonizer(
-                          child: SizedBox(),
+                      placeholder: (context, url) => Skeletonizer(
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              color: AppColor.mainColor,
+                            ),
+                          ),
                         ),
                       ),
                       errorWidget: (context, url, error) => Center(

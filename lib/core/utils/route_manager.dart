@@ -1,5 +1,3 @@
-import 'package:page_transition/page_transition.dart';
-
 import 'package:fruit_hub_market/core/entities/order_entity.dart';
 import 'package:fruit_hub_market/core/enums/order_enum.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
@@ -7,6 +5,7 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_more_view.dart';
 import 'package:fruit_hub_market/features/profile/presentation/view/about_us_view.dart';
 import 'package:fruit_hub_market/features/profile/presentation/view/edit_profile_view.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../../features/cart/domain/entities/cart_entity.dart';
 import '../../features/checkout/presentation/view/checkout_view.dart';
@@ -15,9 +14,9 @@ import '../../features/favorite/presentation/view/favorite_view.dart';
 import '../../features/order_tracking/presentation/view/order_tracking_view.dart';
 import '../../features/product_details/presentation/view/product_details_view.dart';
 import '../../features/profile/presentation/view/orders_view.dart';
-import '../../features/profile/presentation/widgets/logout_loading_page.dart';
 import '../../features/reviews/presentation/view/reviews_view.dart';
 import '../../features/search/presentation/view/search_view.dart';
+import '../widgets/loading_page.dart';
 
 class RouteManager {
   static const String splash = '/splash';
@@ -37,7 +36,7 @@ class RouteManager {
   static const String orders = '/orders';
   static const String editProfile = '/editProfile';
   static const String aboutUs = '/aboutUs';
-  static const String logoutLoading = '/logoutLoading';
+  static const String loading = '/loading';
 }
 
 class GenerateRoute {
@@ -72,8 +71,10 @@ class GenerateRoute {
       case RouteManager.home:
         return _route(MainView());
 
-      case RouteManager.logoutLoading:
-        return _route(const LogoutLoadingPage());
+      case RouteManager.loading:
+        final args = settings.arguments as LoadingPageArgs;
+
+        return _route(LoadingPage(args: args,));
 
       case RouteManager.editProfile:
         return _route(EditProfileView());

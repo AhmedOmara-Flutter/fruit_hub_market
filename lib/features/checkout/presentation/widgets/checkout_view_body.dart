@@ -47,7 +47,7 @@ class CheckoutViewBody extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding:  EdgeInsets.symmetric(horizontal: 20.w),
                     child: Column(
                       children: [
                         CheckoutStepper(

@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/discount_bedge.dart';
-
 import '../../../../core/entities/offer_entity.dart';
 import '../../../../core/entities/product_entity.dart';
 import '../../../../core/utils/app_imports.dart';
@@ -24,7 +22,7 @@ class ProductImageSection extends StatelessWidget {
 
     return SliverToBoxAdapter(
       child: SizedBox(
-        height: 0.45.sh,
+        height: 0.44.sh,
         child: Stack(
           children: [
             SvgPicture.asset(
@@ -37,13 +35,13 @@ class ProductImageSection extends StatelessWidget {
             Center(
               child: CachedNetworkImage(
                 imageUrl: product.image ?? '',
-                height: 220.h,
+                height: 222.h,
                 fit: BoxFit.contain,
                 placeholder: (context, url) => Center(
                   child: Skeletonizer(
                     child: SizedBox(
-                      width: 220.w,
-                      height: 220.h,
+                      width: 222.w,
+                      height: 222.h,
                     ),
                   ),
                 ),

@@ -23,7 +23,7 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
             children: [
               PaymentMethodSection(),
               PaymentMethodButtonSection(),
-              SizedBox(height: 30),
+              SizedBox(height: 30.h),
             ],
           ),
         );

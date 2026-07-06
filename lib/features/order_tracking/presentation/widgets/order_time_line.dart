@@ -2,7 +2,6 @@ import '../../../../core/enums/order_enum.dart';
 import '../../../../core/utils/app_imports.dart';
 import '../../data/models/step_model.dart';
 
-
 class OrderTimeline extends StatefulWidget {
   final OrderStatus status;
 
@@ -29,20 +28,32 @@ class _OrderTimelineState extends State<OrderTimeline>
     }
   }
 
-  final steps = [
-    StepModel("تم استلام الطلب", "جاري مراجعة الطلب", Icons.shopping_bag_outlined),
+  final List<StepModel> steps = [
+    StepModel(
+      "تم استلام الطلب",
+      "جاري مراجعة الطلب",
+      Icons.shopping_bag_outlined,
+    ),
     StepModel("تم قبول الطلب", "بدأ تجهيز الطلب", Icons.check_circle_outline),
-    StepModel("تم الانتهاء", "انتهاء تجهيز الطلب", Icons.local_shipping_outlined),
+    StepModel(
+      "تم الانتهاء",
+      "انتهاء تجهيز الطلب",
+      Icons.local_shipping_outlined,
+    ),
   ];
+
+  bool get isCancelled => widget.status == OrderStatus.cancelled;
+
+  bool get isDelivered => widget.status == OrderStatus.delivered;
 
   @override
   void initState() {
     super.initState();
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 2),
-    )
-      ..repeat(reverse: true);
+    )..repeat(reverse: true);
   }
 
   @override
@@ -51,17 +62,14 @@ class _OrderTimelineState extends State<OrderTimeline>
     super.dispose();
   }
 
-  bool get isCancelled => widget.status == OrderStatus.cancelled;
-  bool get isDelivered => widget.status == OrderStatus.delivered;
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+      margin: EdgeInsets.symmetric(horizontal: 20.w),
       decoration: BoxDecoration(
-        color: const Color(0xffF7F8FA),
-        borderRadius: BorderRadius.circular(18),
+        color: AppColor.card,
+        borderRadius: BorderRadius.circular(18.r),
       ),
       child: Column(
         children: List.generate(steps.length, (index) {
@@ -73,74 +81,56 @@ class _OrderTimelineState extends State<OrderTimeline>
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-              /// ================= LEFT TIMELINE =================
               Column(
                 children: [
                   AnimatedBuilder(
                     animation: _controller,
                     builder: (context, child) {
-                      final pulse =
-                      (isActive && !isDelivered)
-                          ? 1.0 + (_controller.value * 0.1)
+                      final pulse = (isActive && !isDelivered)
+                          ? 1 + (_controller.value * .1)
                           : 1.0;
+
                       return Transform.scale(
                         scale: pulse,
                         child: Container(
-                          width: 65,
-                          height: 65,
+                          width: 65.w,
+                          height: 65.w,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-
-                            /// OUTER STATE
                             gradient: isPending
                                 ? null
                                 : LinearGradient(
-                              colors: isDone
-                                  ? [
-                                const Color(0xffE8F5FF),
-                                const Color(0xffD6EEFF)
-                              ]
-                                  : isActive
-                                  ? [
-                                const Color(0xffDFF7FF),
-                                const Color(0xffBFEFFF)
-                              ]
-                                  : [
-                                Colors.grey.shade200,
-                                Colors.grey.shade100
-                              ],
-                            ),
-                            boxShadow: (isActive && !isDelivered)
-                                ? [
-                              BoxShadow(
-                                color: AppColor.mainColor.withOpacity(0.35),
-                                blurRadius: 15,
-                                spreadRadius: 2,
-                              )
-                            ]
-                                : [],                          ),
+                                    colors: isDone
+                                        ? [
+                                            AppColor.mainColor.withOpacity(.22),
+                                            AppColor.mainColor.withOpacity(.14),
+                                          ]
+                                        : isActive
+                                        ? [
+                                            AppColor.mainColor.withOpacity(.18),
+                                            AppColor.mainColor.withOpacity(.10),
+                                          ]
+                                        : [AppColor.card, AppColor.background],
+                                  ),
+                          ),
                           child: Center(
                             child: Container(
-                              width: 65,
-                              height: 65,
-                              padding: const EdgeInsets.all(14),
+                              width: 65.w,
+                              height: 65.w,
+                              padding: EdgeInsets.all(14.w),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: isPending
-                                    ? Colors.grey.shade200
-                                    : isDelivered && index == steps.length - 1
-                                    ? Color(0xffEBF9F1)
-                                    : const Color(0xffEBF9F1),
+                                    ? AppColor.border
+                                    : AppColor.mainColor.withOpacity(.12),
                               ),
                               child: Icon(
                                 steps[index].icon,
-                                size: 28,
+                                size: 28.sp,
                                 color: isPending
-                                    ? Colors.grey.shade400
-                                    : isDelivered && index == steps.length - 1
-                                    ? AppColor.mainColor
-                                    : AppColor.mainColor,                              ),
+                                    ? AppColor.textSecondary
+                                    : AppColor.mainColor,
+                              ),
                             ),
                           ),
                         ),
@@ -148,129 +138,140 @@ class _OrderTimelineState extends State<OrderTimeline>
                     },
                   ),
 
-                  /// LINE
                   if (!isLast)
                     Container(
-                      width: 2.5,
-                      height: 70,
-                      margin: const EdgeInsets.symmetric(vertical: 6),
+                      width: 2.5.w,
+                      height: 70.h,
+                      margin: EdgeInsets.symmetric(vertical: 6.h),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.r),
                         gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
                           colors: isDone
-                              ? [Color(0xffEBF9F1),Color(0xffEBF9F1) ]
-                              : [Colors.grey.shade300, Colors.grey.shade200],
+                              ? [
+                                  AppColor.mainColor,
+                                  AppColor.mainColor.withOpacity(.35),
+                                ]
+                              : [
+                                  AppColor.border,
+                                  AppColor.border.withOpacity(.5),
+                                ],
                         ),
                       ),
                     ),
                 ],
               ),
 
-              const SizedBox(width: 14),
-
-              /// ================= RIGHT CONTENT =================
+              SizedBox(width: 14.w),
               Expanded(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 350),
-                  margin: const EdgeInsets.only(bottom: 18),
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 14, vertical: 12),
+                  margin: EdgeInsets.only(bottom: 18.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 14.w,
+                    vertical: 12.h,
+                  ),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
                     color: isActive
-                        ? AppColor.mainColor.withOpacity(0.06)
-                        : Colors.white,
+                        ? AppColor.mainColor.withOpacity(.08)
+                        : AppColor.card,
+                    borderRadius: BorderRadius.circular(16.r),
                     border: Border.all(
                       color: isActive
-                          ? AppColor.mainColor.withOpacity(0.25)
-                          : Colors.transparent,
+                          ? AppColor.mainColor.withOpacity(.30)
+                          : AppColor.border,
                     ),
                     boxShadow: isActive
                         ? [
-                      BoxShadow(
-                        color: AppColor.mainColor.withOpacity(0.10),
-                        blurRadius: 16,
-                      )
-                    ]
+                            BoxShadow(
+                              color: AppColor.mainColor.withOpacity(.12),
+                              blurRadius: 16.r,
+                              offset: const Offset(0, 4),
+                            ),
+                          ]
                         : [],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
-                      /// TITLE
                       Text(
-                          steps[index].title,
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .labelLarge!
-                              .copyWith(
-                            color: isCancelled
-                                ? Colors.red
-                                : isDone
-                                ? AppColor.mainColor
-                                : isActive
-                                ? AppColor.mainColor
-                                : Colors.grey,
-                          )
+                        steps[index].title,
+                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                          color: isCancelled
+                              ? AppColor.red
+                              : (isDone || isActive)
+                              ? AppColor.mainColor
+                              : AppColor.textSecondary,
+                        ),
                       ),
 
-                      const SizedBox(height: 6),
+                      SizedBox(height: 6.h),
 
-                      /// SUB CHIP
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 5),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10.w,
+                          vertical: 5.h,
+                        ),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(20.r),
                           color: isActive
-                              ? AppColor.mainColor.withOpacity(0.08)
-                              : Colors.grey.withOpacity(0.08),
+                              ? AppColor.mainColor.withOpacity(.12)
+                              : AppColor.border,
+                          border: Border.all(
+                            color: isActive
+                                ? AppColor.mainColor.withOpacity(.20)
+                                : AppColor.border,
+                          ),
                         ),
                         child: Text(
-                            steps[index].subtitle,
-                            style:Theme.of(context).textTheme.titleSmall!.copyWith(
-                              color: isActive
-                                  ? AppColor.mainColor
-                                  : Colors.grey.shade600,
-
-                            )
-
+                          steps[index].subtitle,
+                          style: Theme.of(context).textTheme.titleSmall!
+                              .copyWith(
+                                color: isActive
+                                    ? AppColor.mainColor
+                                    : AppColor.textSecondary,
+                              ),
                         ),
                       ),
 
                       if (isDelivered && index == steps.length - 1) ...[
-                        const SizedBox(height: 12),
+                        SizedBox(height: 12.h),
+
                         AnimatedContainer(
                           duration: const Duration(milliseconds: 400),
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12.w,
+                            vertical: 8.h,
+                          ),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            gradient: const LinearGradient(
-                              colors: [Color(0xffEBF9F1), Color(0xffEBF9F1)],
+                            borderRadius: BorderRadius.circular(25.r),
+                            color: AppColor.mainColor.withOpacity(.12),
+                            border: Border.all(
+                              color: AppColor.mainColor.withOpacity(.25),
                             ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.green.withOpacity(0.2),
-                                blurRadius: 12,
-                              )
-                            ],
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(Icons.check_circle, size: 16, color: AppColor.mainColor),
-                              SizedBox(width: 6),
+                              Icon(
+                                Icons.check_circle,
+                                color: AppColor.mainColor,
+                                size: 16.sp,
+                              ),
+
+                              SizedBox(width: 6.w),
+
                               Text(
                                 "تم انتهاء الطلب بنجاح",
-                                style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                                  color: AppColor.mainColor,
-                                )),
+                                style: Theme.of(context).textTheme.titleSmall!
+                                    .copyWith(color: AppColor.mainColor),
+                              ),
                             ],
                           ),
                         ),
-                      ]                    ],
+                      ],
+                    ],
                   ),
                 ),
               ),

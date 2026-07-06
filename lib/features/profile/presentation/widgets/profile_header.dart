@@ -1,5 +1,7 @@
 import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
+
 import '../../../../core/helper_function/get_user.dart';
 import '../../../../core/helper_function/pick_image.dart';
 import '../../../../core/utils/app_imports.dart';
@@ -19,47 +21,104 @@ class _ProfileHeaderState extends State<ProfileHeader> {
     final user = getUser();
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      padding: EdgeInsets.symmetric(
+        horizontal: 20.w,
+        vertical: 12.h,
+      ),
       child: Row(
         children: [
           Stack(
             clipBehavior: Clip.none,
             children: [
-              CircleAvatar(
-                radius: 40,
-                backgroundColor: Colors.grey.shade200,
-                backgroundImage: imagePath != null
-                    ? FileImage(imagePath!)
-                    : CachedNetworkImageProvider(user.image),
-              )
+              Container(
+                width: 82.w,
+                height: 82.w,
+                padding: EdgeInsets.all(3.w),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: AppColor.mainColor,
+                    width: 2.w,
+                  ),
+                ),
+                child: CircleAvatar(
+                  backgroundColor: AppColor.card,
+                  backgroundImage: imagePath != null
+                      ? FileImage(imagePath!)
+                      : CachedNetworkImageProvider(user.image),
+                ),
+              ),
+              //
+              // Positioned(
+              //   bottom: 2.h,
+              //   right: -2.w,
+              //   child: GestureDetector(
+              //     onTap: () async {
+              //       final image = await pickImage();
+              //       if (image != null) {
+              //         setState(() {
+              //           imagePath = image;
+              //         });
+              //       }
+              //     },
+              //     child: Container(
+              //       width: 28.w,
+              //       height: 28.w,
+              //       decoration: BoxDecoration(
+              //         color: AppColor.mainColor,
+              //         shape: BoxShape.circle,
+              //         border: Border.all(
+              //           color: AppColor.background,
+              //           width: 2.w,
+              //         ),
+              //       ),
+              //       child: Icon(
+              //         Icons.edit_rounded,
+              //         color: AppColor.white,
+              //         size: 15.sp,
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
-
-          const SizedBox(width: 12),
-
+          SizedBox(width: 16.w),
           Expanded(
-            child:Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   user.userName,
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    fontWeight: FontWeight.w700,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    color: AppColor.textPrimary,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
 
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
 
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.w,
+                    vertical: 6.h,
+                  ),
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
-                    borderRadius: BorderRadius.circular(20),
+                    color: AppColor.card,
+                    borderRadius: BorderRadius.circular(20.r),
+                    border: Border.all(
+                      color: AppColor.border,
+                    ),
                   ),
                   child: Text(
                     user.email,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: Colors.grey.shade600,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppColor.textSecondary,
+                      fontSize: 13.sp,
                     ),
                   ),
                 ),

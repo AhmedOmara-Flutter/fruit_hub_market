@@ -4,11 +4,19 @@ import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/offers/presentation/view_model/offer_cubit.dart';
 
+import '../../../../core/helper_function/get_greeting.dart';
+
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final offers = context
+        .watch<OfferCubit>()
+        .offers
+        .where((e) => e.isActive)
+        .toList();
+
     return Padding(
       padding: EdgeInsets.fromLTRB(20.w, 50.h, 20.w, 0),
       child: Row(
@@ -16,10 +24,7 @@ class HomeHeader extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(
-                color: AppColor.mainColor,
-                width: 2.w,
-              ),
+              border: Border.all(color: AppColor.mainColor, width: 2.w),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(.35),
@@ -62,62 +67,67 @@ class HomeHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "صباح الخير 👋",
-                  style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                    color: AppColor.textSecondary,
-                    fontWeight: FontWeight.w500,
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "${getGreeting()}  ",
+                        style: StyleManager.font13Weight600.copyWith(
+                          color: AppColor.textSecondary,
+                        ),
+                      ),
+                      TextSpan(
+                        text: "👋",
+                        style: TextStyle(fontSize: 15.sp),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 5.h),
                 Text(
                   getUser().userName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: StyleManager.font19Weight700.copyWith(
                     color: AppColor.textPrimary,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
           ),
-if(context.read<OfferCubit>().offers.isNotEmpty)
-          ClipRRect(
-            borderRadius: BorderRadius.circular(100.r),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(100.r),
-                onTap: () {
-                  Navigator.pushNamed(context, RouteManager.search);
-                },
-                child: Container(
-                  width: 60.w,
-                  height: 60.w,
-                  decoration: BoxDecoration(
-                    color: AppColor.card,
-                    borderRadius: BorderRadius.circular(100.r),
-                    border: Border.all(
-                      color: AppColor.border,
-                      width: 1.w,
+          if (offers.isNotEmpty)
+            ClipRRect(
+              borderRadius: BorderRadius.circular(100.r),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(100.r),
+                  onTap: () {
+                    Navigator.pushNamed(context, RouteManager.search);
+                  },
+                  child: Container(
+                    width: 60.w,
+                    height: 60.w,
+                    decoration: BoxDecoration(
+                      color: AppColor.card,
+                      borderRadius: BorderRadius.circular(100.r),
+                      border: Border.all(color: AppColor.border, width: 1.w),
                     ),
-                  ),
-                  child: Center(
-                    child: SvgPicture.asset(
-                      Assets.images.search.path,
-                      width: 24.w,
-                      height: 24.w,
-                      colorFilter: const ColorFilter.mode(
-                        AppColor.textPrimary,
-                        BlendMode.srcIn,
+                    child: Center(
+                      child: SvgPicture.asset(
+                        Assets.images.search.path,
+                        width: 24.w,
+                        height: 24.w,
+                        colorFilter: const ColorFilter.mode(
+                          AppColor.textPrimary,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
         ],
       ),
     );

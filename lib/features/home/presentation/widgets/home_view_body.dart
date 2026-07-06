@@ -33,6 +33,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   @override
   Widget build(BuildContext context) {
+    final offers = context.watch<OfferCubit>().offers.where((e) => e.isActive).toList();
+
     return CustomRefreshIndicator(
       onRefresh: () async {
         final bestSellingCubit = context.read<BestSellingCubit>();
@@ -50,11 +52,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 HomeHeader(),
-                if(context
-                    .read<OfferCubit>()
-                    .offers
-                    .isEmpty)
-                  Column(
+                if(offers.isEmpty)
+
+    Column(
                     children: [
                       SizedBox(height: 25,),
                       CustomSearchField(

@@ -11,28 +11,36 @@ class ActiveStepItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          height: 30,
-          width: 30,
-          decoration: const BoxDecoration(
+          width: 30.w,
+          height: 30.w,
+          decoration: BoxDecoration(
             color: AppColor.mainColor,
             shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: AppColor.mainColor.withOpacity(0.25),
+                blurRadius: 8.r,
+                offset: Offset(0, 3.h),
+              ),
+            ],
           ),
-          child: const Icon(
-            Icons.done,
+          child: Icon(
+            Icons.done_rounded,
             color: Colors.white,
-            size: 20,
+            size: 18.sp,
           ),
         ),
-        const SizedBox(width: 5),
+
+        SizedBox(width: 6.w),
+
         Text(
           text,
-          style: Theme.of(context)
-              .textTheme
-              .labelLarge!
-              .copyWith(
+          style: Theme.of(context).textTheme.labelLarge!.copyWith(
             color: AppColor.mainColor,
+            fontWeight: FontWeight.w700,
           ),
         ),
       ],

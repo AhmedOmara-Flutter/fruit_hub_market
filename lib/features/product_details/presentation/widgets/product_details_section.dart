@@ -1,8 +1,7 @@
-import 'package:fruit_hub_market/features/product_details/presentation/widgets/rating_and_reviews.dart';
-
-import '../../../../core/utils/app_imports.dart';
 import '../../../../core/entities/offer_entity.dart';
 import '../../../../core/entities/product_entity.dart';
+import '../../../../core/utils/app_imports.dart';
+import 'rating_and_reviews.dart';
 
 class ProductDetailsSection extends StatelessWidget {
   const ProductDetailsSection({
@@ -10,6 +9,7 @@ class ProductDetailsSection extends StatelessWidget {
     required this.product,
     required this.offer,
   });
+
   final ProductEntity product;
   final OfferEntity? offer;
 
@@ -17,58 +17,55 @@ class ProductDetailsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       product.name,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.labelSmall!.copyWith(color: Colors.black),
+                      style: StyleManager.font16Weight700.copyWith(
+                        color: AppColor.white,
+                      ),
                     ),
-                    const SizedBox(height: 5),
-                    RichText(
-                      text: TextSpan(
-                        text: '${product.price} جنيه / ',
-                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          color: Color(0xffF4A91F),
-                        ),
-                        children: [
-                          TextSpan(
-                            text: 'كيلو',
-                            style: Theme.of(context).textTheme.titleMedium!
-                                .copyWith(color: Color(0xffF4A91F)),
-                          ),
-                        ],
+                    SizedBox(height: 5.h),
+                    Text(
+                      '${product.price} ج.م',
+                      style: StyleManager.font16Weight600.copyWith(
+                        color: AppColor.accentColor,
                       ),
                     ),
                   ],
                 ),
-                if (offer != null && offer!.isActive)
-                buildSimplePrice(
-                  context: context,
-                  offer: offer,
-                  product: product,
-                ),
 
-                // QualityControl(buttonSize: 50, cartItemEntity: CartItemEntity(product: product, quantity: 1)),
+                if (offer != null && offer!.isActive)
+                  buildSimplePrice(
+                    context: context,
+                    offer: offer,
+                    product: product,
+                  ),
               ],
             ),
-            const SizedBox(height: 10),
+
+            SizedBox(height: 10.h),
+
             RatingAndReviews(product: product),
-            const SizedBox(height: 15),
+
+            SizedBox(height: 15.h),
+
             Text(
               product.description,
-              style: Theme.of(
-                context,
-              ).textTheme.titleSmall!.copyWith(color: Color(0xff979899)),
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                color: const Color(0xff979899),
+                fontSize: 13.sp,
+                height: 1.4,
+              ),
             ),
           ],
         ),
@@ -84,10 +81,10 @@ class ProductDetailsSection extends StatelessWidget {
     final hasOffer = offer != null && offer.isActive;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: Colors.red.shade50,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.r),
       ),
       child: Row(
         children: [
@@ -100,15 +97,17 @@ class ProductDetailsSection extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelLarge!.copyWith(
                     color: Colors.grey,
                     decoration: TextDecoration.lineThrough,
+                    fontSize: 12.sp,
                   ),
                 ),
               Text(
                 hasOffer
                     ? '${offer.priceAfterDiscount} جنيه'
                     : '${product.price} جنيه',
-                style: Theme.of(
-                  context,
-                ).textTheme.labelSmall!.copyWith(color: Color(0xffF4A91F)),
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: const Color(0xffF4A91F),
+                  fontSize: 13.sp,
+                ),
               ),
               if (hasOffer)
                 Text(
@@ -117,23 +116,25 @@ class ProductDetailsSection extends StatelessWidget {
                       : 'ينتهي اليوم',
                   style: StyleManager.font11Weight400.copyWith(
                     color: Colors.red.shade400,
+                    fontSize: 11.sp,
                   ),
                 ),
             ],
           ),
-          SizedBox(width: 15),
+          SizedBox(width: 15.w),
           if (hasOffer)
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
               decoration: BoxDecoration(
                 color: Colors.red,
-                borderRadius: BorderRadius.circular(6),
+                borderRadius: BorderRadius.circular(6.r),
               ),
               child: Text(
                 '-${offer.discountPercentage.toInt()}%',
-                style: Theme.of(
-                  context,
-                ).textTheme.labelLarge!.copyWith(color: Colors.white),
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                  color: Colors.white,
+                  fontSize: 12.sp,
+                ),
               ),
             ),
         ],

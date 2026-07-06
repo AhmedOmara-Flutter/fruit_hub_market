@@ -1,5 +1,4 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../../core/utils/app_imports.dart';
 
@@ -11,89 +10,46 @@ class CustomBottomNavBar extends StatelessWidget {
     return BlocBuilder<MainCubit, MainState>(
       builder: (context, state) {
         return Container(
-          margin: EdgeInsets.fromLTRB(12.w, 0, 12.w, 12.h),
           decoration: BoxDecoration(
             color: AppColor.card,
-            borderRadius: BorderRadius.circular(22.r),
-            border: Border.all(
-              color: AppColor.border,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(.25),
-                blurRadius: 18,
-                offset: const Offset(0, 6),
+            border: Border(
+              top: BorderSide(
+                color: AppColor.border,
+                width: 1,
               ),
-            ],
+            ),
           ),
-          child: SalomonBottomBar(
-            backgroundColor: Colors.transparent,
+          child: BottomNavigationBar(
             currentIndex: context.read<MainCubit>().currentIndex,
             onTap: (index) {
               context.read<MainCubit>().changeBottomNav(index);
             },
-
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: AppColor.card,
             selectedItemColor: AppColor.mainColor,
             unselectedItemColor: AppColor.textSecondary,
+            selectedFontSize: 12.sp,
+            unselectedFontSize: 12.sp,
+            elevation: 0,
+            selectedLabelStyle:StyleManager.font13Weight400.copyWith(color: AppColor.mainColor),
+            unselectedLabelStyle:StyleManager.font13Weight400.copyWith(color: AppColor.white),
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home_rounded),
+                label: 'الرئيسية',
 
-            margin: EdgeInsets.symmetric(
-              horizontal: 8.w,
-              vertical: 8.h,
-            ),
-
-            itemPadding: EdgeInsets.symmetric(
-              horizontal: 14.w,
-              vertical: 10.h,
-            ),
-
-            items: [
-              SalomonBottomBarItem(
-                icon: Icon(
-                  Icons.home_rounded,
-                  size: 25.sp,
-                ),
-                title: Text(
-                  "الرئيسية",
-                  style: StyleManager.font13Weight600.copyWith(
-                    color: AppColor.textPrimary,
-                  ),
-                ),
               ),
-              SalomonBottomBarItem(
-                icon: Icon(
-                  Icons.restaurant_menu_rounded,
-                  size: 25.sp,
-                ),
-                title: Text(
-                  "المنيو",
-                  style: StyleManager.font13Weight600.copyWith(
-                    color: AppColor.textPrimary,
-                  ),
-                ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.restaurant_menu_rounded),
+                label: 'المنيو',
               ),
-              SalomonBottomBarItem(
-                icon: Icon(
-                  Icons.shopping_cart_rounded,
-                  size: 25.sp,
-                ),
-                title: Text(
-                  "السلة",
-                  style: StyleManager.font13Weight600.copyWith(
-                    color: AppColor.textPrimary,
-                  ),
-                ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart_rounded),
+                label: 'السلة',
               ),
-              SalomonBottomBarItem(
-                icon: Icon(
-                  Icons.person_rounded,
-                  size: 25.sp,
-                ),
-                title: Text(
-                  "حسابي",
-                  style: StyleManager.font13Weight600.copyWith(
-                    color: AppColor.textPrimary,
-                  ),
-                ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person_rounded),
+                label: 'حسابي',
               ),
             ],
           ),

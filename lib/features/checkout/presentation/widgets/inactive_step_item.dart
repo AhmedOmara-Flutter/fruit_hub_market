@@ -13,32 +13,35 @@ class InActiveStepItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          height: 27,
-          width: 27,
-          decoration: const BoxDecoration(
-            color: Color(0xffF2F3F3),
+          width: 30.w,
+          height: 30.w,
+          decoration: BoxDecoration(
+            color: AppColor.card,
             shape: BoxShape.circle,
+            border: Border.all(
+              color: AppColor.border,
+            ),
           ),
           child: Center(
             child: Text(
               '$index',
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(color: Colors.black),
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                color: AppColor.textSecondary,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
         ),
-        const SizedBox(width: 5),
+
+        SizedBox(width: 6.w),
+
         Text(
           text,
-          style: Theme.of(context)
-              .textTheme
-              .labelLarge!
-              .copyWith(
-            color: AppColor.mainColor,
+          style: Theme.of(context).textTheme.labelLarge!.copyWith(
+            color: AppColor.textSecondary,
           ),
         ),
       ],

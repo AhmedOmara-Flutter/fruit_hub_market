@@ -20,24 +20,31 @@ class ProductButtonSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return SliverToBoxAdapter(
-     child: Container(
-       margin: EdgeInsets.only(
-           bottom: 20
-       ),
-       child: CustomButton(
-         child: Text(
-           'أضف الي السله',
-           style: Theme
-               .of(context)
-               .textTheme
-               .labelSmall,
-         ),
-         onPressed: () {
+   return SliverFillRemaining(
+     hasScrollBody: false,
+     child: Column(
+       children: [
 
-           context.read<CartCubit>().addProduct(product,offer,getUser().uId);
-         },
-       ),
+         const Spacer(),
+         Container(
+           margin: EdgeInsets.only(
+               bottom: 20
+           ),
+           child: CustomButton(
+             child: Text(
+               'أضف الي السله',
+               style: Theme
+                   .of(context)
+                   .textTheme
+                   .labelSmall,
+             ),
+             onPressed: () {
+         
+               context.read<CartCubit>().addProduct(product,offer,getUser().uId);
+             },
+           ),
+         ),
+       ],
      ),
    );
   }

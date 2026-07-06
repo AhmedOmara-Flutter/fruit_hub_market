@@ -17,7 +17,6 @@ class _AddressPageViewState extends State<AddressPageView>
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var addressController = TextEditingController();
-  var countryController = TextEditingController();
   var apartmentController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
@@ -40,7 +39,6 @@ class _AddressPageViewState extends State<AddressPageView>
                       nameController: nameController,
                       emailController: emailController,
                       addressController: addressController,
-                      countryController: countryController,
                       apartmentController: apartmentController,
                     ),
                     SizedBox(height: 30),
@@ -65,9 +63,8 @@ class _AddressPageViewState extends State<AddressPageView>
                               );
                               cubit.orderEntity.addressEntity = AddressEntity(
                                 name: nameController.text,
-                                email: emailController.text,
+                                phone: emailController.text,
                                 address: addressController.text,
-                                country: countryController.text,
                                 apartment: apartmentController.text,
                               );
                             } else {

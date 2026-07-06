@@ -48,29 +48,29 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   ];
   final List<SelectedLocationEntity> placesOptions = [
     SelectedLocationEntity(
-      title: 'طنطا',
-      subTitle: 'اختر عنوانك داخل طنطا',
+      title: 'كفر الشوربجي',
+      subTitle: 'اختر عنوانك داخل كفر الشوربجي',
+      cost: 5,
+    ),
+    SelectedLocationEntity(
+      title: 'كفر المنشي',
+      subTitle: 'اختر عنوانك داخل كفر المنشي',
       cost: 10,
     ),
     SelectedLocationEntity(
-      title: 'كفر الزيات',
-      subTitle: 'اختر عنوانك داخل كفر الزيات',
+      title: 'كفر المنصوره',
+      subTitle: 'اختر عنوانك داخل كفر المنصوره',
       cost: 15,
     ),
     SelectedLocationEntity(
-      title: 'بسيون',
-      subTitle: 'اختر عنوانك داخل بسيون',
+      title: 'شبرا',
+      subTitle: 'اختر عنوانك داخل شبرا',
       cost: 20,
     ),
     SelectedLocationEntity(
-      title: 'دفرة',
-      subTitle: 'اختر عنوانك داخل دفرة',
-      cost: 30,
-    ),
-    SelectedLocationEntity(
-      title: 'السنطة',
-      subTitle: 'اختر عنوانك داخل السنطة',
-      cost: 50,
+      title: 'برما',
+      subTitle: 'اختر عنوانك داخل برما',
+      cost: 25,
     ),
   ];
   void changePage(int index) {

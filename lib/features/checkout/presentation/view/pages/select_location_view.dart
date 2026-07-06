@@ -16,7 +16,7 @@ class SelectLocationView extends StatelessWidget {
             child: ListView.separated(
               physics: NeverScrollableScrollPhysics(),
               itemCount: cubit.placesOptions.length,
-              separatorBuilder: (_, _) => const SizedBox(height: 12),
+              separatorBuilder: (_, _) =>  SizedBox(height: 12.h),
               itemBuilder: (context, index) {
                 final item = cubit.placesOptions[index];
                 return SelectLocationCard(
@@ -64,7 +64,7 @@ class SelectLocationView extends StatelessWidget {
               style: Theme.of(context).textTheme.labelSmall,
             ),
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 30.h),
         ],
       ),
     );

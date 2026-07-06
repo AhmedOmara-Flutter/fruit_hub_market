@@ -6,7 +6,11 @@ import '../../../cart/presentation/view_model/cart_cubit.dart';
 
 class PaymentSuccessView extends StatelessWidget {
   final OrderEntity orderEntity;
-  const PaymentSuccessView({super.key, required this.orderEntity,});
+
+  const PaymentSuccessView({
+    super.key,
+    required this.orderEntity,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,53 +18,52 @@ class PaymentSuccessView extends StatelessWidget {
       body: Column(
         children: [
           InfoActionRow(text: 'الدفع'),
-          SizedBox(height: 35),
+
+          SizedBox(height: 35.h),
+
           AspectRatio(
             aspectRatio: 3,
-            child: SvgPicture.asset(Assets.images.paymentSuccess.path),
-          ),
-          SizedBox(height: 30),
-          Text(
-            'تم بنجاح !',
-            style: Theme.of(
-              context,
-            ).textTheme.labelSmall!.copyWith(color: Colors.black),
-          ),
-          SizedBox(height: 15),
-          Text(
-            'رقم الطلب : ${orderEntity.id}#',
-            style: Theme.of(
-              context,
-            ).textTheme.titleSmall!.copyWith(color: Color(0xff4E5556)),
-          ),
-          Spacer(),
-          GestureDetector(
-            onTap: (){
-              context.read<CartCubit>().cart.cartItems.clear();
-              context.read<CartCubit>().saveCart(getUser().uId);
-              context.read<MainCubit>().currentIndex=0;
-              Navigator.pushNamed(context, RouteManager.home,);
-            },
-            child: Text(
-                "الرئيسيه",
-                style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                    color: AppColor.mainColor,
-                    decoration: TextDecoration.underline
-                )
+            child: SvgPicture.asset(
+              Assets.images.paymentSuccess.path,
             ),
           ),
-          SizedBox(height: 10,),
+
+          SizedBox(height: 30.h),
+
+          Text(
+            'تم بنجاح !',
+            style: Theme.of(context).textTheme.labelSmall!.copyWith(
+              color: AppColor.textPrimary,
+            ),
+          ),
+
+          SizedBox(height: 15.h),
+
+          Text(
+            'رقم الطلب : ${orderEntity.id}#',
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+              color: AppColor.textSecondary,
+            ),
+          ),
+
+          const Spacer(),
           CustomButton(
             onPressed: () {
-              Navigator.pushNamed(context, RouteManager.orderTracking,arguments: orderEntity);
-
+              context.read<CartCubit>().cart.cartItems.clear();
+              context.read<CartCubit>().saveCart(getUser().uId);
+              context.read<MainCubit>().currentIndex = 0;
+              Navigator.pushNamed(
+                context,
+                RouteManager.home,
+              );
             },
             child: Text(
-              'تتبع الطلب',
+              'الرئيسيه',
               style: Theme.of(context).textTheme.labelSmall,
             ),
           ),
-          SizedBox(height: 20),
+
+          SizedBox(height: 20.h),
         ],
       ),
     );

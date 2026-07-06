@@ -1,5 +1,4 @@
 import 'package:fruit_hub_market/features/profile/presentation/widgets/profile_option_list.dart';
-import '../../../../core/services/printer_services.dart';
 import '../../../../core/utils/app_imports.dart';
 
 class ProfileGeneralSection extends StatelessWidget {
@@ -10,75 +9,48 @@ class ProfileGeneralSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: 14.h),
           Text(
             'عام',
-            style: Theme
-                .of(
-              context,
-            )
-                .textTheme
-                .labelLarge!
-                .copyWith(color: Colors.black),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+              color: AppColor.textSecondary,
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
+            ),
           ),
-          const SizedBox(height: 10),
+
+          SizedBox(height: 14.h),
+
           ProfileOptionsList(
             text: 'الملف الشخصي',
+            image: Assets.images.user.path,
             onTap: () {
               FocusManager.instance.primaryFocus?.unfocus();
               Navigator.pushNamed(context, RouteManager.editProfile);
             },
-            image: Assets.images.user.path,
           ),
+
           ProfileOptionsList(
             text: 'طلباتي',
+            image: Assets.images.box.path,
             onTap: () {
               FocusManager.instance.primaryFocus?.unfocus();
               Navigator.pushNamed(context, RouteManager.orders);
             },
-            image: Assets.images.box.path,
           ),
+
           ProfileOptionsList(
             text: 'المفضلة',
+            image: Assets.images.heart.path,
             onTap: () {
               FocusManager.instance.primaryFocus?.unfocus();
               Navigator.pushNamed(context, RouteManager.favorite);
             },
-            image: Assets.images.heart.path,
           ),
-          // Column(
-          //   children: [
-          //     ElevatedButton(
-          //       onPressed: () async {
-          //         final printers =
-          //         await PrinterService.instance.scanPrinters();
-          //
-          //         print(printers);
-          //       },
-          //       child: const Text("Scan"),
-          //     ),
-          //
-          //     ElevatedButton(
-          //       onPressed: () async {
-          //         final printers =
-          //         await PrinterService.instance.scanPrinters();
-          //
-          //         await PrinterService.instance.connect(printers.first);
-          //       },
-          //       child: const Text("Connect"),
-          //     ),
-          //
-          //     ElevatedButton(
-          //       onPressed: () async {
-          //         await PrinterService.instance.printTest();
-          //       },
-          //       child: const Text("Print Test"),
-          //     ),
-          //   ],
-          // )
         ],
       ),
     );

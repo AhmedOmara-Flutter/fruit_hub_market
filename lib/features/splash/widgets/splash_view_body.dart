@@ -22,26 +22,34 @@ class _SplashViewBodyState extends State<SplashViewBody>
   @override
   void initState() {
     super.initState();
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1200),
     );
+
     logoSlide = Tween<Offset>(
       begin: const Offset(0, 0.3),
       end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOut,
-    ));
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeOut,
+      ),
+    );
+
     logoFade = Tween<double>(
       begin: 0,
       end: 1,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeIn,
-    ));
+    ).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.easeIn,
+      ),
+    );
+
     _controller.forward();
-    goToHome();
+     goToHome();
   }
 
   @override
@@ -49,21 +57,84 @@ class _SplashViewBodyState extends State<SplashViewBody>
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(Assets.images.splashBackground.path),
+          image: AssetImage(Assets.images.splashBg.path),
           fit: BoxFit.cover,
         ),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          SizedBox(
+            height: 100.h,
+            width: 100.w,
+          ),
           FadeTransition(
             opacity: logoFade,
             child: SlideTransition(
               position: logoSlide,
-              child: Image.asset(
-                height: 300,
-                width: double.infinity,
-                Assets.images.splashLogo2.path,
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Image.asset(
+                    Assets.images.appLogo.path,
+                    height: 350.h,
+                    width: double.infinity,
+                  ),
+                  Positioned(
+                    bottom: 60.h,
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          WidgetSpan(
+                            alignment: PlaceholderAlignment.middle,
+                            child: Icon(
+                              Icons.star_rounded,
+                              color: AppColor.mainColor,
+                              size: 16.sp,
+                            ),
+                          ),
+                          const TextSpan(text: '  '),
+                          TextSpan(
+                            text: 'من أول لقمة تبدأ الحكاية',
+                            style: StyleManager.font14Weight600.copyWith(
+                              color: AppColor.mainColor,
+                            ),
+                          ),
+                          const TextSpan(text: '  '),
+                          WidgetSpan(
+                            alignment: PlaceholderAlignment.middle,
+                            child: Icon(
+                              Icons.star_rounded,
+                              color: AppColor.mainColor,
+                              size: 16.sp,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(20.r),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircularProgressIndicator(
+                    color: AppColor.mainColor,
+                    strokeWidth: 3.w,
+                  ),
+                  SizedBox(height: 10.h),
+                  Text(
+                    'جاري التحميل',
+                    style: StyleManager.font14Weight600.copyWith(
+                      color: AppColor.white,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

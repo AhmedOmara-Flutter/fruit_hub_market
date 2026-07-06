@@ -18,45 +18,52 @@ class ProfileOptionsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
+      color: AppColor.transparent,
+      child: GestureDetector(
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.w,
+            vertical: 14.h,
+          ),
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(
-                color: Colors.grey.withOpacity(0.15),
-                width: 1,
+                color: AppColor.border.withOpacity(.6),
+                width: 1.w,
               ),
             ),
           ),
           child: Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                width: 42.w,
+                height: 42.w,
                 decoration: BoxDecoration(
-                  color: AppColor.mainColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(10),
+                  color: AppColor.mainColor.withOpacity(.15),
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
-                child: SvgPicture.asset(
-                  image,
-                  color: AppColor.mainColor,
-                  width: 20,
-                  height: 20,
+                child: Center(
+                  child: SvgPicture.asset(
+                    image,
+                    width: 20.w,
+                    height: 20.w,
+                    colorFilter: const ColorFilter.mode(
+                      AppColor.mainColor,
+                      BlendMode.srcIn,
+                    ),
+                  ),
                 ),
               ),
 
-              const SizedBox(width: 12),
+              SizedBox(width: 14.w),
 
               Expanded(
                 child: Text(
                   text,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: const Color(0xff2C2C2C),
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: StyleManager.font13Weight600.copyWith(
+                    color: AppColor.textPrimary
+                  )
                 ),
               ),
 
@@ -65,8 +72,8 @@ class ProfileOptionsList extends StatelessWidget {
               else
                 Icon(
                   Icons.arrow_forward_ios_rounded,
-                  size: 16,
-                  color: Colors.grey.shade500,
+                  size: 17.sp,
+                  color: AppColor.textSecondary,
                 ),
             ],
           ),

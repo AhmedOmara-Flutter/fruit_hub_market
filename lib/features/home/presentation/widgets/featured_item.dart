@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub_market/core/entities/product_entity.dart';
 
 import '../../../../core/utils/app_imports.dart';
@@ -54,7 +53,7 @@ class FeaturedItem extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: EdgeInsets.only(
-                    top: 42.h,
+                    top: 39.h,
                     left: 10.w,
                     right: 10.w,
                     bottom: 15.h,
@@ -96,10 +95,22 @@ class FeaturedItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  errorWidget: (_, __, ___) => Icon(
-                    Icons.fastfood_rounded,
-                    size: 36.sp,
-                    color: AppColor.textSecondary,
+
+                  errorWidget: (_, __, ___) =>
+                      Container(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(60.r),
+                          child: SizedBox(
+                            width: 90.w,
+                            height: 90.w,
+                            child: Icon(
+                              Icons.fastfood_rounded,
+                              size: 36.sp,
+                              color: AppColor.textSecondary,
+                            ),
+                          ),
+                        ),
+
                   ),
                 ),
               ),

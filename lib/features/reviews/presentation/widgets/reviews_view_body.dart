@@ -84,38 +84,6 @@ class _ReviewsViewBodyState extends State<ReviewsViewBody> {
                 ),
               ),
               RatingBreakdownSection(),
-              SliverToBoxAdapter(
-                child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 10, top: 15, bottom: 20),
-                    child: Text(
-                      'التعليقات', style: Theme
-                        .of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: Colors.black),
-                    )),
-              ),
-              ConditionalBuilder(
-                condition: context
-                    .read<GetReviewCubit>()
-                    .reviews
-                    .isNotEmpty,
-                builder: (context) =>
-                    SliverList.separated(
-                      itemBuilder: (context, index) =>
-                          ReviewItem(review: context
-                              .read<GetReviewCubit>()
-                              .reviews[index]),
-                      separatorBuilder: (context, index) =>
-                          SizedBox(height: 10),
-                      itemCount: context
-                          .read<GetReviewCubit>()
-                          .reviews
-                          .length,
-                    ),
-                fallback: (context) => EmptyReviewWidget(),
-              ),
             ],
           ),
         );

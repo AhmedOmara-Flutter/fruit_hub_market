@@ -4,6 +4,7 @@ import '../../../../core/utils/app_imports.dart';
 import '../../../../core/entities/order_entity.dart';
 import 'order_item_content.dart';
 import 'order_item_image.dart';
+import 'order_status_badge.dart';
 
 class OrderItem extends StatelessWidget {
   final OrderEntity orderEntity;
@@ -13,44 +14,67 @@ class OrderItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Navigator.pushNamed(context, RouteManager.orderTracking,arguments: orderEntity);
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          RouteManager.orderTracking,
+          arguments: orderEntity,
+        );
       },
       child: Container(
-        padding: EdgeInsets.only(top: 10, bottom:10,left: 15),
-        margin: EdgeInsets.only(left:  20,right: 20,bottom: 15),
-        decoration: BoxDecoration(
-          color: Color(0xffF2F3F3),
-          borderRadius: BorderRadius.circular(10),
+        padding: EdgeInsets.only(
+          top: 12.h,
+          bottom: 12.h,
+          left: 15.w,
         ),
-      
+        margin: EdgeInsets.only(
+          left: 20.w,
+          right: 20.w,
+          bottom: 15.h,
+        ),
+        decoration: BoxDecoration(
+          color: AppColor.card,
+          borderRadius: BorderRadius.circular(14.r),
+          border: Border.all(
+            color: AppColor.border,
+          ),
+        ),
         child: Stack(
           children: [
             Padding(
-              padding: const EdgeInsets.only(right: 15),
+              padding: EdgeInsets.only(right: 15.w),
               child: Row(
                 children: [
-                  OrderItemImage(),
-                  SizedBox(width: 10),
+                  const OrderItemImage(),
+
+                  SizedBox(width: 12.w),
+
                   Expanded(
                     child: OrderItemContent(
-                      orderId: orderEntity.id??'',
-                      orderDate: getDateFormate(orderEntity.createdAt.toString()),
-                      numberOfOrders: orderEntity.cartEntity.getItemsCount(),
-                      ordersTotalPrice: orderEntity.cartEntity.getTotalPrice().toStringAsFixed(2),
+                      orderId: orderEntity.id ?? '',
+                      orderDate: getDateFormate(
+                        orderEntity.createdAt.toString(),
+                      ),
+                      numberOfOrders:
+                      orderEntity.cartEntity.getItemsCount(),
+                      ordersTotalPrice: orderEntity.cartEntity
+                          .getTotalPrice()
+                          .toStringAsFixed(2),
                       products: orderEntity.cartEntity.cartItems
                           .map((item) =>
                       '${item.product.name} × ${item.quantity}')
                           .join('\n'),
                       price: orderEntity.cartEntity.cartItems
-                          .map((item) => '${item.unitPrice} ج.م ')
+                          .map((item) => '${item.unitPrice} ج.م')
                           .join('\n'),
-                      deliveryCost: orderEntity.selectedLocationEntity!.cost,
+                      deliveryCost:
+                      orderEntity.selectedLocationEntity!.cost,
                     ),
                   ),
                 ],
               ),
             ),
+
             OrderStatusBadge(
               color: orderEntity.status.color,
               title: orderEntity.status.ar,
@@ -62,34 +86,3 @@ class OrderItem extends StatelessWidget {
   }
 }
 
-class OrderStatusBadge extends StatelessWidget {
-  const OrderStatusBadge({
-    super.key,
-    required this.title, required this.color,
-  });
-
-  final String title;
-  final Color color;
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 7),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 4,
-      ),
-      decoration: BoxDecoration(
-        color: color.withOpacity(.12),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        title,
-        style: Theme.of(context).textTheme.titleSmall!.copyWith(
-          color: color.withOpacity(0.9),
-        ),
-      ),
-    );
-  }
-}

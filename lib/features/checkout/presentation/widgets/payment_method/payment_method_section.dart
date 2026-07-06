@@ -1,4 +1,5 @@
 import 'package:fruit_hub_market/features/checkout/presentation/widgets/selection_card.dart';
+
 import '../../../../../core/utils/app_imports.dart';
 import '../../view_model/checkout_cubit.dart';
 
@@ -11,7 +12,7 @@ class PaymentMethodSection extends StatelessWidget {
     return Expanded(
       child: ListView.separated(
         itemCount: cubit.paymentOptions.length,
-        separatorBuilder: (_, _) => const SizedBox(height: 12),
+        separatorBuilder: (_, _) => SizedBox(height: 12.h),
         itemBuilder: (context, index) {
           final item = cubit.paymentOptions[index];
           final isSelected = cubit.isCashOnDelivery == (index == 0);
