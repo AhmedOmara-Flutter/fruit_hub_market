@@ -23,7 +23,11 @@ class ThemeManager {
         minimumSize: const Size(double.infinity, 65),
       ),
     ),
-
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: AppColor.mainColor,
+      selectionColor: AppColor.mainColor,
+      selectionHandleColor: AppColor.mainColor,
+    ),
     ///text theme
     textTheme: TextTheme(
       //title in onboarding

@@ -8,77 +8,109 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
+
   bool isPasswordVisible = true;
   bool isValid = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    emailController.addListener(_checkFields);
+    passwordController.addListener(_checkFields);
+  }
+
+  void _checkFields() {
+    final valid =
+        emailController.text.trim().isNotEmpty &&
+            passwordController.text.trim().isNotEmpty;
+
+    if (valid != isValid) {
+      setState(() {
+        isValid = valid;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      onChanged: () {
-        setState(() {
-          isValid = _formKey.currentState?.validate() ?? false;
-        });
-      },
       child: Column(
         children: [
           CustomTextFormField(
-            autoValidateMode: AutovalidateMode.onUserInteraction,
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
+            hintText: 'البريد الإلكتروني',
             prefixIcon: Icons.email_outlined,
+            autoValidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'من فضلك أدخل البريد الإلكتروني';
               }
+
               if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
                 return 'من فضلك أدخل بريد إلكتروني صحيح';
               }
+
               return null;
             },
-            controller: emailController,
-            keyboardType: TextInputType.emailAddress,
-            hintText: 'البريد الإلكتروني',
           ),
+
           const SizedBox(height: 15),
+
           CustomPasswordField(
-            autoValidateMode: AutovalidateMode.onUserInteraction,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'من فضلك أدخل كلمة المرور';
-              }
-              if (value.length < 6) {
-                return 'كلمة المرور يجب ألا تقل عن 6 أحرف';
-              }
-              return null;
-            },
             controller: passwordController,
             obscureText: isPasswordVisible,
+            autoValidateMode: AutovalidateMode.onUserInteraction,
             onSuffixTap: () {
               setState(() {
                 isPasswordVisible = !isPasswordVisible;
               });
             },
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'من فضلك أدخل كلمة المرور';
+              }
+
+              if (value.length < 6) {
+                return 'كلمة المرور يجب ألا تقل عن 6 أحرف';
+              }
+
+              return null;
+            },
           ),
+
           const SizedBox(height: 40),
+
           BlocBuilder<LoginCubit, LoginState>(
             builder: (context, state) {
               return CustomButton(
                 onPressed: isValid
                     ? () {
-                        if (_formKey.currentState!.validate()) {
-                          BlocProvider.of<LoginCubit>(context).login(
-                            email: emailController.text,
-                            password: passwordController.text,
-                          );
-                        }
-                      }
+                  if (_formKey.currentState!.validate()) {
+                    BlocProvider.of<LoginCubit>(context).login(
+                      email: emailController.text.trim(),
+                      password: passwordController.text,
+                    );
+                  }
+                }
                     : null,
-                child: state is !LoginLoading? Text(
+                child:Text(
                   'تسجيل دخول',
                   style: Theme.of(context).textTheme.labelSmall,
-                ):CircularProgressIndicator(color: Colors.white,),
+                ),
               );
             },
           ),

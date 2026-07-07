@@ -10,6 +10,7 @@ class CustomPasswordField extends StatelessWidget {
   final String? label;
 
   const CustomPasswordField({
+
     super.key,
     this.controller,
     this.obscureText = true,

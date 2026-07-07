@@ -10,7 +10,6 @@ class LoginViewBody extends StatefulWidget {
 class _LoginViewBodyState extends State<LoginViewBody>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-
   late Animation<double> _headerAnim;
   late Animation<double> _formAnim;
   late Animation<double> _socialAnim;
@@ -60,7 +59,7 @@ class _LoginViewBodyState extends State<LoginViewBody>
         child: child,
         builder: (context, child) {
           return Transform.translate(
-            offset: Offset(0, offset * (1 - animation.value)),
+            offset: Offset(0, offset.h * (1 - animation.value)),
             child: child,
           );
         },
@@ -70,62 +69,67 @@ class _LoginViewBodyState extends State<LoginViewBody>
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  _buildAnimated(
-                    animation: _headerAnim,
-                    child: Column(
-                      children: [
-
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(24),
-                          child: Hero(
-                            tag: 'appLogo',
-                            child: Image.asset(
-                              Assets.images.appLogo.path,
-                              height: 220,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+    return SafeArea(
+      child: Center(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(
+            horizontal: 20.w,
+            vertical: 20.h,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildAnimated(
+                animation: _headerAnim,
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(24.r),
+                      child: Hero(
+                        tag: 'appLogo',
+                        child: Image.asset(
+                          Assets.images.appLogo.path,
+                          height: 220.h,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
                         ),
-                        Text(
-                          "أهلاً بيك 👋",
-                          style: StyleManager.font19Weight700,
-                        ),
-
-                        const SizedBox(height: 8),
-
-                        Text(
-                          "سجل دخولك واستمتع بأفضل الكريبات والبيتزا",
-                          textAlign: TextAlign.center,
-                          style: StyleManager.font13Weight600,
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
 
-                  _buildAnimated(
-                    animation: _formAnim,
-                    child: const LoginForm(),
-                  ),
+                    Text(
+                      "أهلاً بيك 👋",
+                      style: StyleManager.font19Weight700,
+                    ),
 
-                  const SizedBox(height: 40),
-                  _buildAnimated(
-                    animation: _socialAnim,
-                    child: DontHaveAccountSection(),
-                  ),
-                ],
+                    SizedBox(height: 8.h),
+
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      child: Text(
+                        "سجل دخولك واستمتع بأفضل الكريبات والبيتزا",
+                        textAlign: TextAlign.center,
+                        style: StyleManager.font13Weight600,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+
+              SizedBox(height: 24.h),
+
+              _buildAnimated(
+                animation: _formAnim,
+                child: const LoginForm(),
+              ),
+
+              SizedBox(height: 32.h),
+
+              _buildAnimated(
+                animation: _socialAnim,
+                child: const DontHaveAccountSection(),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -30,7 +30,7 @@ export 'package:fruit_hub_market/features/auth/presentation/login/presentation/w
 export 'package:fruit_hub_market/features/auth/presentation/register/presentation/view/register_view.dart';
 export 'package:fruit_hub_market/features/auth/presentation/register/presentation/view_model/register_cubit.dart';
 export 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/custom_auth_footer.dart';
-export 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/custom_password_field.dart';
+export 'package:fruit_hub_market/core/widgets/custom_password_field.dart';
 export 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/custom_terms_and_conditions.dart';
 export 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/register_form.dart';
 export 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/register_view_body.dart';

@@ -1,5 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/services.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+
+import '../../../../../../core/widgets/loading_overlay.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -16,23 +20,36 @@ class LoginView extends StatelessWidget {
               AppSounds.playClickSound('success.mp3');
 
               customShowSnakeBar(
-                  context, color: AppColor.mainColor,
-                  label: 'تم التسجيل الدخول بنجاح');
-              CacheHelper.saveData(key: 'uId', value: state.user.uId).then((value){
-                Constants.uId=state.user.uId;
+                context,
+                color: AppColor.mainColor,
+                label: 'تم التسجيل الدخول بنجاح',
+              );
+              CacheHelper.saveData(key: 'uId', value: state.user.uId).then((
+                value,
+              ) {
+                Constants.uId = state.user.uId;
               });
-              Navigator.pushNamed(context, RouteManager.home,arguments: state.user);
+              Navigator.pushNamed(
+                context,
+                RouteManager.home,
+                arguments: state.user,
+              );
             }
             if (state is LoginError) {
               AppVibration.heavy();
               AppSounds.playClickSound('click_error.wav');
 
               customShowSnakeBar(
-                  context, color: AppColor.red, label: state.errMessage);
+                context,
+                color: AppColor.red,
+                label: state.errMessage,
+              );
             }
           },
           builder: (context, state) {
-            return AnnotatedRegion<SystemUiOverlayStyle>(value: SystemUiOverlayStyle.light,child: PopScope(
+            return AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle.light,
+              child: PopScope(
                 canPop: false,
                 onPopInvokedWithResult: (didPop, result) {
                   if (didPop) return;
@@ -40,17 +57,28 @@ class LoginView extends StatelessWidget {
                 },
                 child: Container(
                   height: double.infinity,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(Assets.images.splashBg.path),
-                        fit: BoxFit.cover,
-                      ),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(Assets.images.splashBg.path),
+                      fit: BoxFit.cover,
                     ),
-                child: LoginViewBody())));
+                  ),
+                  child: Stack(
+                    children: [
+                      LoginViewBody(),
+                      LoadingOverlay(
+                        isLoading: state is LoginLoading,
+                        title: 'جاري تسجيل الدخول...',
+                        subtitle: 'يرجى الانتظار قليلاً',
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
           },
         ),
       ),
     );
   }
-
 }
