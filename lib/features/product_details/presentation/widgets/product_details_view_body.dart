@@ -2,7 +2,6 @@ import 'package:fruit_hub_market/features/offers/presentation/view_model/offer_c
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_button_section.dart';
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_details_section.dart';
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_image_section.dart';
-import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_info_grid_section.dart';
 import 'package:fruit_hub_market/features/product_details/presentation/widgets/product_sub_images_section.dart';
 import '../../../../core/cubit/product_cubit/product_cubit.dart';
 import '../../../../core/utils/app_imports.dart';
@@ -35,8 +34,7 @@ class ProductDetailsViewBody extends StatelessWidget {
             orElse: () => throw Exception("المنتج غير موجود"),
           );
 
-          final offer =
-          context.watch<OfferCubit>().offersMap[product.id];
+          final offer = context.watch<OfferCubit>().offersMap[product.id];
 
           return CustomScrollView(
             slivers: [
@@ -46,7 +44,6 @@ class ProductDetailsViewBody extends StatelessWidget {
               ),
               ProductSubImagesSection(product: product),
               ProductDetailsSection(product: product, offer: offer),
-              //ProductInfoGridSection(product: product, offer: offer),
               ProductButtonSection(product: product, offer: offer),
             ],
           );

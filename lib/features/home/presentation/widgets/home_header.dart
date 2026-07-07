@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/offers/presentation/view_model/offer_cubit.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/helper_function/get_greeting.dart';
 
@@ -21,40 +22,53 @@ class HomeHeader extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(20.w, 50.h, 20.w, 0),
       child: Row(
         children: [
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: AppColor.mainColor, width: 2.w),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(.35),
-                  blurRadius: 15.r,
-                  offset: Offset(0, 6.h),
-                ),
-              ],
-            ),
-            child: ClipOval(
-              child: CachedNetworkImage(
-                imageUrl: getUser().image,
-                width: 68.w,
-                height: 68.w,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => Skeletonizer(
-                  enabled: true,
-                  child: Container(
-                    width: 68.w,
-                    height: 68.w,
-                    color: AppColor.card,
+          GestureDetector(
+            onTap: (){
+              context.read<MainCubit>().changeBottomNav(3);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: AppColor.mainColor, width: 2.w),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(.35),
+                    blurRadius: 15.r,
+                    offset: Offset(0, 6.h),
                   ),
-                ),
-                errorWidget: (context, url, error) => Container(
+                ],
+              ),
+              child: ClipOval(
+                child: CachedNetworkImage(
+                  imageUrl: getUser().image,
                   width: 68.w,
                   height: 68.w,
-                  color: AppColor.card,
-                  child: Icon(
-                    Icons.person,
-                    color: AppColor.mainColor,
-                    size: 34.sp,
+                  fit: BoxFit.cover,
+            
+                  placeholder: (context, url) => Shimmer.fromColors(
+                    baseColor: AppColor.card,
+                    highlightColor: AppColor.border,
+                    child: Container(
+                      width: 68.w,
+                      height: 68.w,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                    width: 68.w,
+                    height: 68.w,
+                    decoration: BoxDecoration(
+                      color: AppColor.card,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.person,
+                      color: AppColor.mainColor,
+                      size: 34.sp,
+                    ),
                   ),
                 ),
               ),

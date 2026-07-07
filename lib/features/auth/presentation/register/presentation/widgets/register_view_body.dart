@@ -8,7 +8,7 @@ class RegisterViewBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          InfoActionRow(text: 'حساب جديد',showBack: true,bottomPadding: 0,),
+          InfoActionRow(text: '',showBack: true,bottomPadding: 0,),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(

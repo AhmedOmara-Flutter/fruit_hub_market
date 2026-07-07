@@ -90,7 +90,6 @@ class $AssetsImagesGen {
   final SvgGenImage openPackage = const SvgGenImage(
     'assets/images/openPackage.svg',
   );
-  final SvgGenImage organic = const SvgGenImage('assets/images/organic.svg');
   final SvgGenImage package = const SvgGenImage('assets/images/package.svg');
   final SvgGenImage paymentSuccess = const SvgGenImage(
     'assets/images/paymentSuccess.svg',
@@ -100,9 +99,6 @@ class $AssetsImagesGen {
     'assets/images/productDetailsBg.svg',
   );
   final SvgGenImage rating = const SvgGenImage('assets/images/rating.svg');
-  final SvgGenImage reviewImage = const SvgGenImage(
-    'assets/images/reviewImage.svg',
-  );
   final SvgGenImage search = const SvgGenImage('assets/images/search.svg');
   final SvgGenImage searchImage = const SvgGenImage(
     'assets/images/searchImage.svg',
@@ -111,17 +107,8 @@ class $AssetsImagesGen {
     'assets/images/shippingTracking.svg',
   );
   final AssetGenImage sights = const AssetGenImage('assets/images/sights.png');
-  final AssetGenImage splashBackground = const AssetGenImage(
-    'assets/images/splash_background.png',
-  );
   final AssetGenImage splashBg = const AssetGenImage(
     'assets/images/splash_bg.png',
-  );
-  final AssetGenImage splashLogo = const AssetGenImage(
-    'assets/images/splash_logo.png',
-  );
-  final AssetGenImage splashLogo2 = const AssetGenImage(
-    'assets/images/splash_logo_2.png',
   );
   final AssetGenImage splashText = const AssetGenImage(
     'assets/images/splash_text.png',

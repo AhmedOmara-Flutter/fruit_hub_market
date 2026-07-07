@@ -1,7 +1,7 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class ThemeManager {
-  static ThemeData lightTheme = ThemeData(
+  static ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: AppColor.background,
 
     ///appBar
@@ -20,20 +20,6 @@ class ThemeManager {
         padding: EdgeInsets.symmetric(horizontal: 20),
         backgroundColor: AppColor.mainColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        minimumSize: const Size(double.infinity, 65),
-      ),
-    ),
-
-    ///outlined button
-    outlinedButtonTheme: OutlinedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-          side: BorderSide(color: Color(0xffDDDFDF)),
-        ),
         minimumSize: const Size(double.infinity, 65),
       ),
     ),

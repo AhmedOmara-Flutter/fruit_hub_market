@@ -61,21 +61,6 @@ class _LoginFormState extends State<LoginForm> {
               });
             },
           ),
-          const SizedBox(height: 15),
-          GestureDetector(
-            onTap: () {
-              Navigator.pushNamed(context, RouteManager.forgetPassword);
-            },
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "نسيت كلمة المرور؟",
-                style: Theme.of(
-                  context,
-                ).textTheme.titleMedium!.copyWith(color: AppColor.mainColor.withOpacity(0.7)),
-              ),
-            ),
-          ),
           const SizedBox(height: 40),
           BlocBuilder<LoginCubit, LoginState>(
             builder: (context, state) {

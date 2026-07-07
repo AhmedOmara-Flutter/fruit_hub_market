@@ -1,5 +1,4 @@
-import 'dart:async';
-
+import 'package:flutter/services.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -11,13 +10,9 @@ class SplashViewBody extends StatefulWidget {
 
 class _SplashViewBodyState extends State<SplashViewBody>
     with TickerProviderStateMixin {
-  Timer? _timer;
-
   late AnimationController _controller;
   late Animation<Offset> logoSlide;
   late Animation<double> logoFade;
-  late Animation<Offset> topSlide;
-  late Animation<Offset> bottomSlide;
 
   @override
   void initState() {
@@ -49,128 +44,132 @@ class _SplashViewBodyState extends State<SplashViewBody>
     );
 
     _controller.forward();
-     goToHome();
+    goToHome();
+  }
+
+  Future<void> goToHome() async {
+    await Future.delayed(const Duration(seconds: 3));
+
+    if (!mounted) return;
+
+    if (!Constants.onBoarding) {
+      Navigator.pushReplacementNamed(
+        context,
+        RouteManager.onBoarding,
+      );
+    } else {
+      final isLogged = isLoggedIn();
+
+      Navigator.pushReplacementNamed(
+        context,
+        isLogged ? RouteManager.home : RouteManager.login,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(Assets.images.splashBg.path),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-            height: 100.h,
-            width: 100.w,
+    return PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop) return;
+          SystemNavigator.pop();
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(Assets.images.splashBg.path),
+              fit: BoxFit.cover,
+            ),
           ),
-          FadeTransition(
-            opacity: logoFade,
-            child: SlideTransition(
-              position: logoSlide,
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Image.asset(
-                    Assets.images.appLogo.path,
-                    height: 350.h,
-                    width: double.infinity,
-                  ),
-                  Positioned(
-                    bottom: 60.h,
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          WidgetSpan(
-                            alignment: PlaceholderAlignment.middle,
-                            child: Icon(
-                              Icons.star_rounded,
-                              color: AppColor.mainColor,
-                              size: 16.sp,
-                            ),
-                          ),
-                          const TextSpan(text: '  '),
-                          TextSpan(
-                            text: 'من أول لقمة تبدأ الحكاية',
-                            style: StyleManager.font14Weight600.copyWith(
-                              color: AppColor.mainColor,
-                            ),
-                          ),
-                          const TextSpan(text: '  '),
-                          WidgetSpan(
-                            alignment: PlaceholderAlignment.middle,
-                            child: Icon(
-                              Icons.star_rounded,
-                              color: AppColor.mainColor,
-                              size: 16.sp,
-                            ),
-                          ),
-                        ],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                height: 100.h,
+                width: 100.w,
+              ),
+              FadeTransition(
+                opacity: logoFade,
+                child: SlideTransition(
+                  position: logoSlide,
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Hero(
+                        tag: 'appLogo',
+                        child: Image.asset(
+                          Assets.images.appLogo.path,
+                          height: 350.h,
+                          width: double.infinity,
+                        ),
                       ),
-                    ),
+                      Positioned(
+                        bottom: 60.h,
+                        child: Text.rich(
+                          TextSpan(
+                            children: [
+                              WidgetSpan(
+                                alignment: PlaceholderAlignment.middle,
+                                child: Icon(
+                                  Icons.star_rounded,
+                                  color: AppColor.mainColor,
+                                  size: 16.sp,
+                                ),
+                              ),
+                              const TextSpan(text: '  '),
+                              TextSpan(
+                                text: 'من أول لقمة تبدأ الحكاية',
+                                style: StyleManager.font14Weight600.copyWith(
+                                  color: AppColor.mainColor,
+                                ),
+                              ),
+                              const TextSpan(text: '  '),
+                              WidgetSpan(
+                                alignment: PlaceholderAlignment.middle,
+                                child: Icon(
+                                  Icons.star_rounded,
+                                  color: AppColor.mainColor,
+                                  size: 16.sp,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
-          SafeArea(
-            child: Padding(
-              padding: EdgeInsets.all(20.r),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  CircularProgressIndicator(
-                    color: AppColor.mainColor,
-                    strokeWidth: 3.w,
+              SafeArea(
+                child: Padding(
+                  padding: EdgeInsets.all(20.r),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CircularProgressIndicator(
+                        color: AppColor.mainColor,
+                        strokeWidth: 3.w,
+                      ),
+                      SizedBox(height: 10.h),
+                      Text(
+                        'جاري التحميل',
+                        style: StyleManager.font14Weight600.copyWith(
+                          color: AppColor.white,
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 10.h),
-                  Text(
-                    'جاري التحميل',
-                    style: StyleManager.font14Weight600.copyWith(
-                      color: AppColor.white,
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        )
     );
-  }
-
-  void goToHome() {
-    _timer = Timer(const Duration(seconds: 3), () {
-      if (!Constants.onBoarding) {
-        Navigator.pushReplacementNamed(
-          context,
-          RouteManager.onBoarding,
-        );
-      } else {
-        var isLogged = isLoggedIn();
-
-        if (isLogged) {
-          Navigator.pushReplacementNamed(
-            context,
-            RouteManager.home,
-          );
-        } else {
-          Navigator.pushReplacementNamed(
-            context,
-            RouteManager.login,
-          );
-        }
-      }
-    });
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
     _controller.dispose();
     super.dispose();
   }

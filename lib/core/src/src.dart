@@ -42,24 +42,17 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-
             locale: const Locale('ar'),
-
             supportedLocales: S.delegate.supportedLocales,
-
             localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,
             ],
-
-            theme: ThemeManager.lightTheme,
-
+            theme: ThemeManager.darkTheme,
             onGenerateRoute: GenerateRoute.generateRoute,
-
             initialRoute: RouteManager.splash,
-
             builder: (context, child) {
               return BlocBuilder<NetworkCubit, NetworkState>(
                 builder: (context, state) {

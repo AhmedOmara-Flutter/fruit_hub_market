@@ -21,7 +21,6 @@ export 'package:fruit_hub_market/features/auth/data/repos/auth_repo_impl.dart';
 export 'package:fruit_hub_market/features/auth/data/requests/auth_request.dart';
 export 'package:fruit_hub_market/features/auth/domain/entities/user_entity.dart';
 export 'package:fruit_hub_market/features/auth/domain/repos/auth_repo.dart';
-export 'package:fruit_hub_market/features/auth/presentation/forget_password/view/forget_password_view.dart';
 export 'package:fruit_hub_market/features/auth/presentation/login/presentation/view/login_view.dart';
 export 'package:fruit_hub_market/features/auth/presentation/login/presentation/view_model/login_cubit.dart';
 export 'package:fruit_hub_market/features/auth/presentation/login/presentation/widgets/dont_have_account_section.dart';

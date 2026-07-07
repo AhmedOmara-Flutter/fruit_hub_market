@@ -33,17 +33,21 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    final offers = context.watch<OfferCubit>().offers.where((e) => e.isActive).toList();
+    final offers = context
+        .watch<OfferCubit>()
+        .offers
+        .where((e) => e.isActive)
+        .toList();
 
     return CustomRefreshIndicator(
       onRefresh: () async {
         final bestSellingCubit = context.read<BestSellingCubit>();
         final featuredCubit = context.read<FeaturedCubit>();
         final offerCubit = context.read<OfferCubit>();
-         bestSellingCubit.getSellingProducts();
-         featuredCubit.getFeaturedProducts();
-         offerCubit.getOffers();
-         getUser();
+        bestSellingCubit.getSellingProducts();
+        featuredCubit.getFeaturedProducts();
+        offerCubit.getOffers();
+        getUser();
       },
       child: CustomScrollView(
         slivers: [
@@ -52,18 +56,18 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 HomeHeader(),
-                if(offers.isEmpty)
-
-    Column(
+                if (offers.isEmpty)
+                  Column(
                     children: [
-                      SizedBox(height: 25,),
+                      SizedBox(height: 25),
                       CustomSearchField(
                         borderSide: BorderSide.none,
-                        readOnly: true
-                        , onTap: () {
-                        Navigator.pushNamed(context, RouteManager.search);
-                      },),
-                      SizedBox(height: 10,),
+                        readOnly: true,
+                        onTap: () {
+                          Navigator.pushNamed(context, RouteManager.search);
+                        },
+                      ),
+                      SizedBox(height: 10),
                     ],
                   ),
                 OfferCarouselList(),

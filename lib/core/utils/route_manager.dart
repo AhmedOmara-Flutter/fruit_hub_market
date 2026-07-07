@@ -7,6 +7,7 @@ import 'package:fruit_hub_market/features/profile/presentation/view/about_us_vie
 import 'package:fruit_hub_market/features/profile/presentation/view/edit_profile_view.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../features/auth/presentation/forget_password/view/forget_password_view.dart';
 import '../../features/cart/domain/entities/cart_entity.dart';
 import '../../features/checkout/presentation/view/checkout_view.dart';
 import '../../features/checkout/presentation/view/payment_success_view.dart';
@@ -140,14 +141,40 @@ class GenerateRoute {
 
       default:
         return _route(
-          Scaffold(
-            appBar: AppBar(
-              title: const Text('Error'),
-            ),
-            body: const Center(
-              child: Text('Something went wrong!'),
-            ),
-          ),
+            Scaffold(
+              body: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.error_outline_rounded,
+                        size: 70,
+                        color: AppColor.mainColor,
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        'حدثت مشكلة',
+                        style: StyleManager.font23Weight700.copyWith(
+                          color: AppColor.white,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        'تعذر إكمال العملية في الوقت الحالي.\nيرجى إغلاق التطبيق وإعادة تشغيله ثم المحاولة مرة أخرى.',
+                        textAlign: TextAlign.center,
+                        style: StyleManager.font14Weight600.copyWith(
+                          color: AppColor.textSecondary,
+                          height: 1.6,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
+
         );
     }
   }

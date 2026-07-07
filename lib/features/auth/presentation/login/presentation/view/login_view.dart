@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class LoginView extends StatelessWidget {
@@ -31,7 +32,21 @@ class LoginView extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            return LoginViewBody();
+            return AnnotatedRegion<SystemUiOverlayStyle>(value: SystemUiOverlayStyle.light,child: PopScope(
+                canPop: false,
+                onPopInvokedWithResult: (didPop, result) {
+                  if (didPop) return;
+                  SystemNavigator.pop();
+                },
+                child: Container(
+                  height: double.infinity,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(Assets.images.splashBg.path),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                child: LoginViewBody())));
           },
         ),
       ),

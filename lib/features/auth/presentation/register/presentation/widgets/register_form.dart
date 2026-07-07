@@ -241,7 +241,10 @@ class _RegisterFormState extends State<RegisterForm> {
                         'إنشاء حساب جديد',
                         style: Theme.of(context).textTheme.labelSmall,
                       )
-                    : CircularProgressIndicator(color: Colors.white),
+                    : const CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: AppColor.mainColor,
+                )
               );
             },
           ),
