@@ -25,7 +25,7 @@ void initAppModule() {
   instance.registerLazySingleton<DatabaseServices>(() => FirestoreDatabase());
   instance.registerLazySingleton<StorageServices>(() => SupabaseStorage());
   instance.registerLazySingleton<AuthRepo>(
-    () => AuthRepoImpl(instance(), instance(), instance()),
+    () => AuthRepoImpl(instance(), instance()),
   );
 
   instance.registerLazySingleton<ProductRepo>(

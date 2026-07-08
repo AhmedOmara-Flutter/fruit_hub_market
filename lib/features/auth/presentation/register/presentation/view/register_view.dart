@@ -1,4 +1,7 @@
+import 'package:flutter/services.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+
+import '../../../../../../core/widgets/loading_overlay.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
@@ -29,7 +32,35 @@ class RegisterView extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              return RegisterViewBody();
+              return AnnotatedRegion<SystemUiOverlayStyle>(
+                  value: SystemUiOverlayStyle.light,
+                  child: PopScope(
+                    canPop: false,
+                    onPopInvokedWithResult: (didPop, result) {
+                      if (didPop) return;
+                      SystemNavigator.pop();
+                    },
+                    child: Container(
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(Assets.images.splashBg.path),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Stack(
+                        children: [
+                          RegisterViewBody(),
+                          LoadingOverlay(
+                            isLoading: state is RegisterLoading,
+                            title: 'جاري انشاء الحساب...',
+                            subtitle: 'يرجى الانتظار قليلاً',
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+              );
             },
           ),
         )

@@ -1,56 +1,134 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
-class RegisterViewBody extends StatelessWidget {
-  const RegisterViewBody({super.key,});
+class RegisterViewBody extends StatefulWidget {
+  const RegisterViewBody({super.key});
+
+  @override
+  State<RegisterViewBody> createState() => _RegisterViewBodyState();
+}
+
+class _RegisterViewBodyState extends State<RegisterViewBody>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  late Animation<double> _headerAnim;
+  late Animation<double> _formAnim;
+  late Animation<double> _footerAnim;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    );
+
+    _headerAnim = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.0, 0.4, curve: Curves.easeOut),
+    );
+
+    _formAnim = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.3, 0.7, curve: Curves.easeOut),
+    );
+
+    _footerAnim = CurvedAnimation(
+      parent: _controller,
+      curve: const Interval(0.6, 1.0, curve: Curves.easeOut),
+    );
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Widget _buildAnimated({
+    required Animation<double> animation,
+    required Widget child,
+    double offset = 20,
+  }) {
+    return FadeTransition(
+      opacity: animation,
+      child: AnimatedBuilder(
+        animation: animation,
+        child: child,
+        builder: (context, child) {
+          return Transform.translate(
+            offset: Offset(0, offset.h * (1 - animation.value)),
+            child: child,
+          );
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          InfoActionRow(text: '',showBack: true,bottomPadding: 0,),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                RegisterForm(),
-                const SizedBox(height: 40),
-                const CustomAuthFooter(),
-                const SizedBox(height: 20),
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: AppColor.mainColor.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: AppColor.mainColor),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.info_outline, color: AppColor.mainColor),
-                      SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          'يرجى التأكد من إدخال جميع البيانات المطلوبة، رفع الصورة، والموافقة على الشروط والأحكام لإتمام التسجيل.',
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .labelLarge!
-                              .copyWith(
-                              color: Color(0xff4E5556),
-                              fontSize: 11
+    return Column(
+      children: [
+        const InfoActionRow(text: '', showBack: true, bottomPadding: 0),
+
+        Expanded(
+          child: Center(
+            child: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _buildAnimated(
+                    animation: _headerAnim,
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(24.r),
+                          child: Hero(
+                            tag: 'appLogo',
+                            child: Image.asset(
+                              Assets.images.appLogo.path,
+                              height: 220.h,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-
                         ),
-                      ),
-                    ],
+                        Text('إنشاء حساب', style: StyleManager.font19Weight700),
+                        SizedBox(height: 8.h),
+                        Text(
+                          'أنشئ حسابك وابدأ رحلتك مع حكاية',
+                          textAlign: TextAlign.center,
+                          style: StyleManager.font13Weight600,
+                        ),
+                      ],
+                    ),
                   ),
-                )
 
-              ],
+                  SizedBox(height: 32.h),
+
+                  _buildAnimated(
+                    animation: _formAnim,
+                    child: const RegisterForm(),
+                  ),
+
+                  SizedBox(height: 32.h),
+
+                  _buildAnimated(
+                    animation: _footerAnim,
+                    child: const CustomAuthFooter(),
+                  ),
+
+                  SizedBox(height: 45.h),
+                ],
+              ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -1,10 +1,4 @@
-import 'dart:io';
-
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:fruit_hub_market/features/auth/presentation/register/presentation/widgets/image_picker_bottom_sheet.dart';
-import 'package:image_picker/image_picker.dart';
-
-import '../../../../../../core/helper_function/pick_image.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
@@ -14,237 +8,169 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-  var phoneController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final phoneController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool isTermsAndConditionsSelected = false;
   bool isPasswordVisible = true;
   bool isValid = false;
-  File? imagePath;
+
+  @override
+  void initState() {
+    super.initState();
+
+    nameController.addListener(_checkFields);
+    phoneController.addListener(_checkFields);
+    emailController.addListener(_checkFields);
+    passwordController.addListener(_checkFields);
+  }
+
+  void _checkFields() {
+    final valid =
+        nameController.text.trim().isNotEmpty &&
+        phoneController.text.trim().isNotEmpty &&
+        emailController.text.trim().isNotEmpty &&
+        passwordController.text.trim().isNotEmpty;
+
+    if (valid != isValid) {
+      setState(() {
+        isValid = valid;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    phoneController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-      onChanged: () {
-        setState(() {
-          isValid = _formKey.currentState?.validate() ?? false;
-        });
-      },
       child: Column(
         children: [
-          GestureDetector(
-            onTap: () {
-              showModalBottomSheet(
-                context: context,
-                backgroundColor: Colors.transparent,
-                builder: (context) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 20,),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(25),
-                      ),
-                    ),
-                    child: ImagePickerBottomSheet(
-                      onCameraTap: () async {
-                        Navigator.pop(context);
-
-                        final image = await pickImage();
-
-                        if (image != null) {
-                          setState(() {
-                            imagePath = image;
-                          });
-                        }
-                      },
-                      onGalleryTap: () async {
-                        Navigator.pop(context);
-
-                        final image =
-                        await pickImage(source: ImageSource.gallery);
-
-                        if (image != null) {
-                          setState(() {
-                            imagePath = image;
-                          });
-                        }
-                      },
-                    ),
-                  );
-                },
-              );
-            },
-            child: Stack(
-              alignment: Alignment.bottomRight,
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    color: Color(0xffF9FAFA),
-                    image: imagePath != null
-                        ? DecorationImage(
-                            image: FileImage(imagePath!),
-                            fit: BoxFit.cover,
-                          )
-                        : null,
-                    border: Border.all(color: Color(0xffE6E9EA)),
-                    shape: BoxShape.circle,
-                  ),
-                  child: imagePath != null
-                      ? null
-                      : Icon(
-                          Icons.add_a_photo_outlined,
-                          size: 40,
-                          color: AppColor.mainColor,
-                        ),
+          Row(
+            children: [
+              Expanded(
+                child: CustomTextFormField(
+                  controller: nameController,
+                  autoValidateMode: AutovalidateMode.onUserInteraction,
+                  keyboardType: TextInputType.name,
+                  hintText: 'الاسم',
+                  prefixIcon: Icons.person,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'أدخل الاسم';
+                    }
+                    if (value.trim().length < 3) {
+                      return '٣ أحرف على الأقل';
+                    }
+                    return null;
+                  },
                 ),
-                if (imagePath != null)
-                  CircleAvatar(radius: 15, backgroundColor: Colors.white),
-                if (imagePath != null)
-                  CircleAvatar(
-                    radius: 13.5,
-                    backgroundColor: AppColor.mainColor,
-                    child: Icon(Icons.edit, size: 15, color: Colors.white),
-                  ),
-              ],
-            ),
+              ),
+              SizedBox(width: 12.w),
+              Expanded(
+                child: CustomTextFormField(
+                  controller: phoneController,
+                  autoValidateMode: AutovalidateMode.onUserInteraction,
+                  keyboardType: TextInputType.phone,
+                  hintText: 'رقم الهاتف',
+                  prefixIcon: Icons.phone,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'أدخل الرقم';
+                    }
+
+                    if (!RegExp(r'^(010|011|012|015)\d{8}$')
+                        .hasMatch(value.trim())) {
+                      return 'رقم غير صحيح';
+                    }
+
+                    return null;
+                  },
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 25),
+          SizedBox(height: 15.h),
           CustomTextFormField(
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'من فضلك أدخل اسمك ثنائي';
-              }
-              if (value.trim().length < 3) {
-                return 'الاسم يجب أن يكون 3 أحرف على الأقل';
-              }
-              return null;
-            },
-            controller: nameController,
-            keyboardType: TextInputType.name,
-            hintText: 'الاسم ثنائي',
-            prefixIcon: Icons.person,
-          ),
-          const SizedBox(height: 15),
-
-          CustomTextFormField(
-            validator: (value) {
-              if (value == null || value.trim().isEmpty) {
-                return 'من فضلك أدخل رقم الهاتف';
-              }
-
-              final phone = value.trim();
-
-              if (!RegExp(r'^(010|011|012|015)\d{8}$').hasMatch(phone)) {
-                return 'من فضلك أدخل رقم هاتف صحيح';
-              }
-
-              return null;
-            },
-
-            controller: phoneController,
-            keyboardType: TextInputType.phone,
-            hintText: 'رقم الهاتف',
-            prefixIcon: Icons.phone,
-          ),
-          const SizedBox(height: 15),
-          CustomTextFormField(
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'من فضلك أدخل البريد الإلكتروني';
-              }
-              if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                return 'من فضلك أدخل بريد إلكتروني صحيح';
-              }
-              return null;
-            },
             controller: emailController,
-            prefixIcon: Icons.email_outlined,
+            autoValidateMode: AutovalidateMode.onUserInteraction,
             keyboardType: TextInputType.emailAddress,
             hintText: 'البريد الإلكتروني',
-          ),
-          const SizedBox(height: 15),
-          CustomPasswordField(
+            prefixIcon: Icons.email_outlined,
             validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'من فضلك أدخل كلمة المرور';
+              if (value == null || value.trim().isEmpty) {
+                return 'من فضلك أدخل البريد الإلكتروني';
               }
-              if (value.length < 6) {
-                return 'كلمة المرور يجب ألا تقل عن 6 أحرف';
+
+              if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value.trim())) {
+                return 'من فضلك أدخل بريد إلكتروني صحيح';
               }
+
               return null;
             },
+          ),
+          SizedBox(height: 15.h),
+          CustomPasswordField(
             controller: passwordController,
-            obscureText:isPasswordVisible ,
+            autoValidateMode: AutovalidateMode.onUserInteraction,
+            obscureText: isPasswordVisible,
             onSuffixTap: () {
               setState(() {
                 isPasswordVisible = !isPasswordVisible;
               });
             },
-          ),
-          const SizedBox(height: 15),
-          CustomTermsAndConditions(
-            isTermsAndConditionsSelected: isTermsAndConditionsSelected,
-            onTap: () {
-              setState(() {
-                isTermsAndConditionsSelected = !isTermsAndConditionsSelected;
-              });
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'من فضلك أدخل كلمة المرور';
+              }
+
+              if (value.length < 6) {
+                return 'كلمة المرور يجب ألا تقل عن 6 أحرف';
+              }
+
+              return null;
             },
           ),
-          const SizedBox(height: 40),
+          SizedBox(height: 40.h),
           BlocBuilder<RegisterCubit, RegisterState>(
             builder: (context, state) {
               return CustomButton(
-                onPressed:
-                    isTermsAndConditionsSelected && isValid && imagePath != null
+                onPressed: isValid
                     ? () {
-                    if (_formKey.currentState!.validate()) {
-                      if (isTermsAndConditionsSelected == true) {
-                        if(imagePath!=null){
-                              BlocProvider.of<RegisterCubit>(context).register(
-                                email: emailController.text,
-                                password: passwordController.text,
-                            userName: nameController.text,
-                            imageFile: imagePath!,
-                                phone: phoneController.text,
-                              );
-                        }else{
-                          AppVibration.heavy();
-                          AppSounds.playClickSound('click_error.wav');
-                          customShowSnakeBar(
-                            context,
-                            color: AppColor.red,
-                            label: 'يرجى اختيار صورة الملف الشخصي',
+                        FocusScope.of(context).unfocus();
+
+                        if (_formKey.currentState!.validate()) {
+                          context.read<RegisterCubit>().register(
+                            userName: nameController.text.trim(),
+                            email: emailController.text.trim(),
+                            phone: phoneController.text.trim(),
+                            password: passwordController.text,
                           );
                         }
-                      } else {
-                        AppVibration.heavy();
-                        AppSounds.playClickSound('click_error.wav');
-
-                        customShowSnakeBar(
-                          context,
-                          color: AppColor.red,
-                          label: 'يرجى الموافقة على الشروط والأحكام للمتابعه',
-                        );
                       }
-                    }
-                  }
-                : null,
-                child: state is! RegisterLoading
-                    ? Text(
+                    : null,
+                child: state is RegisterLoading
+                    ? const SizedBox(
+                        width: 22,
+                        height: 22,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2.5,
+                          color: Colors.white,
+                        ),
+                      )
+                    : Text(
                         'إنشاء حساب جديد',
                         style: Theme.of(context).textTheme.labelSmall,
-                      )
-                    : const CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: AppColor.mainColor,
-                )
+                      ),
               );
             },
           ),

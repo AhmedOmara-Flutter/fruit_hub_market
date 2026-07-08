@@ -11,12 +11,12 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String email,
     required String password,
     required String userName,
-    required File imageFile,
+ //   required File imageFile,
     required String phone,
   }) async {
     emit(RegisterLoading());
     final data = await _authRepo.createUserWithEmailAndPassword(
-      RegisterRequest(email: email, password: password, userName: userName, imageFile: imageFile, phone:phone),
+      RegisterRequest(email: email, password: password, userName: userName, phone:phone),
     );
     data.fold(
       (failure) {
