@@ -23,7 +23,7 @@ class ReviewsView extends StatelessWidget {
           if (state is AddReviewSuccess) {
             customShowSnakeBar(
                 context,
-                color:AppColor.mainColor,
+                color:AppColor.green,
                 label:'شكراً ليك! تم إضافة تعليقك بنجاح 👌'
             );
             context.read<AddReviewCubit>().reviewController.clear();

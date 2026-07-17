@@ -1,13 +1,8 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
-import 'package:fruit_hub_market/features/reviews/presentation/widgets/EmptyReviewWidget.dart';
 import 'package:fruit_hub_market/features/reviews/presentation/widgets/rating_breakdown_section.dart';
-import 'package:fruit_hub_market/features/reviews/presentation/widgets/review_item.dart';
-
 import '../../../../core/utils/app_imports.dart';
 import '../../domain/entities/review_entity.dart';
 import '../view_model/add_review_cubit/add_review_cubit.dart';
-import '../view_model/get_review_cubit/get_review_cubit.dart';
 import 'review_bar_section.dart';
 import 'review_field_section.dart';
 
@@ -47,7 +42,7 @@ class _ReviewsViewBodyState extends State<ReviewsViewBody> {
               ),
               SliverToBoxAdapter(
                 child: CustomButton(
-                  onPressed: () {
+                  onPressed: state is AddReviewLoading?null: () {
                     final textValid = cubit.reviewController.text
                         .trim()
                         .isNotEmpty;
@@ -56,7 +51,6 @@ class _ReviewsViewBodyState extends State<ReviewsViewBody> {
                     if (textValid && ratingValid) {
                       cubit.addReview(
                         ReviewEntity(
-                          image: getUser().image,
                           date: DateTime.now().toString(),
                           reviewDescription: cubit.reviewController.text,
                           rating: cubit.rate,

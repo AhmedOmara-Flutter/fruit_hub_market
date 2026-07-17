@@ -23,28 +23,17 @@ class _ProductViewBodyState extends State<ProductViewBody> {
   }
   @override
   Widget build(BuildContext context) {
-    return CustomRefreshIndicator(
-      onRefresh: () async {
-        final bestSellingCubit = context.read<BestSellingCubit>();
-        final featuredCubit = context.read<FeaturedCubit>();
-        final offerCubit = context.read<OfferCubit>();
-        bestSellingCubit.getSellingProducts();
-        featuredCubit.getFeaturedProducts();
-        offerCubit.getOffers();
-        getUser();
-      },
-      child: Column(
-        children: [
-          InfoActionRow(
-            text: 'المنتجات',
-            showSearch: true,
-            searchOnPressed: () {
-              Navigator.pushNamed(context, RouteManager.search);
-            },
-          ),
-          Expanded(child: CategoryTabs()),
-        ],
-      ),
+    return Column(
+      children: [
+        InfoActionRow(
+          text: 'المنتجات',
+          showSearch: true,
+          searchOnPressed: () {
+            Navigator.pushNamed(context, RouteManager.search);
+          },
+        ),
+        Expanded(child: CategoryTabs()),
+      ],
     );
   }
 }

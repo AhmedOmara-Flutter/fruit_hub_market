@@ -33,6 +33,9 @@ abstract class DatabaseServices {
     required String email,
     required String password,
   });
+
+  Future<void> deleteCollection(String collectionName);
+
 }
 
 class FirestoreDatabase implements DatabaseServices {
@@ -206,5 +209,18 @@ class FirestoreDatabase implements DatabaseServices {
     } catch (e) {
       throw Exception(e.toString());
     }
+  }
+
+  @override
+  Future<void> deleteCollection(String collectionName) async {
+    final snapshot = await FirebaseFirestore.instance.collection(collectionName).get();
+
+    final batch = FirebaseFirestore.instance.batch();
+
+    for (final doc in snapshot.docs) {
+      batch.delete(doc.reference);
+    }
+
+    await batch.commit();
   }
 }

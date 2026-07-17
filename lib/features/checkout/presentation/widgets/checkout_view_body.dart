@@ -18,7 +18,7 @@ class CheckoutViewBody extends StatelessWidget {
           AppSounds.playClickSound('payment.mp3');
           customShowSnakeBar(
             context,
-            color: AppColor.mainColor,
+            color: AppColor.green,
             label: 'تم تأكيد طلبك بنجاح',
           );
           context.read<CartCubit>().cart.cartItems.clear();

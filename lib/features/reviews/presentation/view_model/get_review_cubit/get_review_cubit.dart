@@ -10,8 +10,7 @@ class GetReviewCubit extends Cubit<GetReviewState> {
   StreamSubscription? _reviewSubscription;
   List<ReviewEntity> reviews = [];
   final ReviewRepo _repo;
-
-
+  
   void getReviews(String productId) {
     emit(GetReviewLoading());
 

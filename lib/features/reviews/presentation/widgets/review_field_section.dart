@@ -50,23 +50,25 @@ class CustomReviewFieldSection extends StatelessWidget {
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
               ),
-              child: ClipOval(
-                child: CachedNetworkImage(
-                  imageUrl: getUser().image,
-                  width: 40.w,
-                  height: 40.w,
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) =>
-                      Skeletonizer(
-                        enabled: true,
-                        child: Container(
-                          width: 40.w,
-                          height: 40.w,
-                          color: AppColor.card,
-                        ),
-                      ),
-                  errorWidget: (context, url, error) =>
-                  const Icon(Icons.error, color: AppColor.red),
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: AppColor.border, width: 2.w),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(.35),
+                      blurRadius: 15.r,
+                      offset: Offset(0, 6.h),
+                    ),
+                  ],
+                ),
+                child: ClipOval(
+                  child: Image.asset(
+                    Assets.images.customer.path,
+                    width: 40.w,
+                    height: 40.h,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),

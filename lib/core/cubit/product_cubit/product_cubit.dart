@@ -85,6 +85,18 @@ class ProductCubit extends Cubit<ProductState> {
     }
   }
 
+  Future<void> deleteCartCollectionForUser() async {
+    emit(DeleteCartLoadingState());
+
+    try {
+      await _productRepo.deleteCollection('carts');
+
+      emit(DeleteCartSuccessState());
+    } catch (e) {
+      emit(DeleteCartErrorState(e.toString()));
+    }
+  }
+
   @override
   Future<void> close() {
     _productsSubscription?.cancel();

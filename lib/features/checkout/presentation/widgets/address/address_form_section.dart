@@ -6,19 +6,18 @@ class AddressFormSection extends StatelessWidget {
     required this.nameController,
     required this.emailController,
     required this.addressController,
-    required this.apartmentController,
   });
 
   final TextEditingController nameController;
   final TextEditingController emailController;
   final TextEditingController addressController;
-  final TextEditingController apartmentController;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CustomTextFormField(
+          autoValidateMode: AutovalidateMode.onUserInteraction,
           label: 'الاسم الكامل',
           controller: nameController,
           prefixIcon: Icons.person,
@@ -27,9 +26,11 @@ class AddressFormSection extends StatelessWidget {
             if (value == null || value.trim().isEmpty) {
               return 'من فضلك أدخل الاسم الكامل';
             }
+
             if (value.trim().length < 3) {
               return 'الاسم قصير جدًا';
             }
+
             return null;
           },
         ),
@@ -37,6 +38,7 @@ class AddressFormSection extends StatelessWidget {
         SizedBox(height: 15.h),
 
         CustomTextFormField(
+          autoValidateMode: AutovalidateMode.onUserInteraction,
           label: 'رقم الهاتف',
           controller: emailController,
           prefixIcon: Icons.phone,
@@ -46,6 +48,12 @@ class AddressFormSection extends StatelessWidget {
             if (value == null || value.trim().isEmpty) {
               return 'من فضلك أدخل رقم الهاتف';
             }
+
+            if (!RegExp(r'^(010|011|012|015)\d{8}$')
+                .hasMatch(value.trim())) {
+              return 'من فضلك أدخل رقم هاتف صحيح';
+            }
+
             return null;
           },
         ),
@@ -53,6 +61,7 @@ class AddressFormSection extends StatelessWidget {
         SizedBox(height: 15.h),
 
         CustomTextFormField(
+          autoValidateMode: AutovalidateMode.onUserInteraction,
           label: 'العنوان',
           controller: addressController,
           prefixIcon: Icons.home_outlined,
@@ -61,21 +70,7 @@ class AddressFormSection extends StatelessWidget {
             if (value == null || value.trim().isEmpty) {
               return 'من فضلك أدخل العنوان';
             }
-            return null;
-          },
-        ),
 
-        SizedBox(height: 15.h),
-
-        CustomTextFormField(
-          label: 'تفاصيل الشقة',
-          controller: apartmentController,
-          prefixIcon: Icons.apartment,
-          hintText: 'رقم العمارة، الطابق، الشقة...',
-          validator: (value) {
-            if (value == null || value.trim().isEmpty) {
-              return 'من فضلك أدخل تفاصيل الشقة';
-            }
             return null;
           },
         ),

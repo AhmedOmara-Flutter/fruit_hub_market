@@ -1,5 +1,6 @@
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
 import '../widgets/values_card.dart';
 
 class AboutUsView extends StatefulWidget {
@@ -101,9 +102,7 @@ class _AboutUsViewState extends State<AboutUsView> {
                   image: Assets.images.sights.path,
                   icon: Icons.gps_fixed,
                 ),
-
                 SizedBox(height: 15.h),
-
                 AboutCard(
                   title: "رسالتنا",
                   description:
@@ -152,7 +151,7 @@ class _AboutUsViewState extends State<AboutUsView> {
                       _item(
                         Icons.place_outlined,
                         "العنوان",
-                        "كفر الشربيني - أرض السوق - الشارع العمومي",
+                        "كفر الشوربجي - أرض السوق - الشارع العمومي",
                       ),
 
                       SizedBox(height: 14.h),
@@ -173,19 +172,83 @@ class _AboutUsViewState extends State<AboutUsView> {
                     ],
                   ),
                 ),
+                SizedBox(height: 15.h),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20.w),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
+                  decoration: BoxDecoration(
+                    color: AppColor.mainColor.withOpacity(0.04),
+                    borderRadius: BorderRadius.circular(24.r),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 42.w,
+                        height: 42.w,
+                        decoration: BoxDecoration(
+                          color: AppColor.mainColor.withOpacity(.15),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          Icons.code_rounded,
+                          color: AppColor.mainColor,
+                          size: 22.sp,
+                        ),
+                      ),
+
+                      SizedBox(width: 14.w),
+
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'تم تطوير التطبيق بواسطة',
+                              style:StyleManager.font12Weight500,
+                            ),
+                            SizedBox(height: 2.h),
+                            Text(
+                              'Eng. Ahmed Omara',
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.bold,
+                                color: AppColor.mainColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const DeveloperImageView(),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'developer_image',
+                          child: CircleAvatar(
+                            radius: 22.r,
+                            backgroundColor: AppColor.mainColor.withOpacity(0.15),
+                            backgroundImage: AssetImage(Assets.images.me.path),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 SizedBox(height: 20.h),
                 Text(
                   'الإصدار $version',
                   style: TextStyle(color: AppColor.textSecondary),
                 ),
-
                 SizedBox(height: 8.h),
-
                 Text(
                   '© 2026 حكاية - جميع الحقوق محفوظة',
                   style: TextStyle(color: AppColor.textSecondary),
                 ),
-
                 SizedBox(height: 20.h),
               ],
             ),
@@ -317,6 +380,35 @@ class AboutCard extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+class DeveloperImageView extends StatelessWidget {
+  const DeveloperImageView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: Center(
+          child: Hero(
+            tag: 'developer_image',
+            child: InteractiveViewer(
+              minScale: 1,
+              maxScale: 5,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(
+                  Assets.images.me.path,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

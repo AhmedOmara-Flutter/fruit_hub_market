@@ -86,4 +86,8 @@ class ProductRepoImpl implements ProductRepo {
       return Left(ServerFailure(errMessage: e.toString()));
     }
   }
+  @override
+  Future<void> deleteCollection(String collectionName)async {
+    return await _databaseServices.deleteCollection(collectionName);
+  }
 }

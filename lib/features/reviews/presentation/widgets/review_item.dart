@@ -16,22 +16,27 @@ class ReviewItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipOval(
-              child: CachedNetworkImage(
-                imageUrl: review.image,
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover,
-                placeholder: (context, url) =>
-                    Skeletonizer(enabled: true,
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        color: Colors.grey,
-                      ),),
-                errorWidget: (context, url, error) =>
-                    Icon(Icons.error, color: AppColor.red),
-              ),),
+        Container(
+        decoration: BoxDecoration(
+        shape: BoxShape.circle,
+          border: Border.all(color: AppColor.border, width: 2.w),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(.35),
+              blurRadius: 15.r,
+              offset: Offset(0, 6.h),
+            ),
+          ],
+        ),
+        child: ClipOval(
+          child: Image.asset(
+            Assets.images.customer.path,
+            width: 50.w,
+            height: 50.w,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
             const SizedBox(width: 10),
             Expanded(
               child: Column(

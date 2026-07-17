@@ -81,7 +81,7 @@ class ProductModel extends ProductEntity {
       id: json['id'] ?? json['product_id'] ?? '',
       name: json['name'] ?? '',
       code: json['code'] ?? '',
-      price: json['price'] ?? 0,
+      // price: json['price'] ?? 0,
       description: json['description'] ?? '',
       isFeatured: json['isFeatured'] ?? false,
       image: json['image'],
@@ -94,9 +94,16 @@ class ProductModel extends ProductEntity {
       subImages: (json['subImages'] as List<dynamic>?)
           ?.map((e) => e.toString())
           .toList(),
-      averageRating: json['averageRating'] ?? 0.0,
+      price: (json['price'] as num?)?.toDouble() ?? 0.0,
+
+      averageRating:
+      (json['averageRating'] as num?)?.toDouble() ?? 0.0,
+
+      ratingSum:
+      (json['ratingSum'] as num?)?.toDouble() ?? 0.0,
+      // averageRating: json['averageRating'] ?? 0.0,
       reviewsCount: json['reviewsCount'] ?? 0,
-      ratingSum: json['ratingSum'] ?? 0.0,
+      // ratingSum: json['ratingSum'] ?? 0.0,
       createdAt: json['createdAt'] ?? '',
       offerId: json['offerId'],
     );

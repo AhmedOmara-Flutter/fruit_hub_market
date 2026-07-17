@@ -26,6 +26,8 @@ class OrderReviewButtonSection extends StatelessWidget {
               ),
               accept: () async {
                 Navigator.pop(context);
+                cubit.orderEntity.orderNote =
+                    cubit.notesController.text.trim();
                 await cubit.addOrder(cubit.orderEntity);
               },
               cancel: () {

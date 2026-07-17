@@ -18,7 +18,6 @@ class BestSellingProductsList extends StatelessWidget {
             child: Center(child: Text(state.errMessage)),
           );
         }
-
         if (state is GetSellingProductsLoadingState) {
           return Skeletonizer.sliver(
             effect: ShimmerEffect(

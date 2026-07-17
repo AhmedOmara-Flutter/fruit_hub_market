@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
+
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
@@ -11,7 +10,6 @@ class RegisterCubit extends Cubit<RegisterState> {
     required String email,
     required String password,
     required String userName,
- //   required File imageFile,
     required String phone,
   }) async {
     emit(RegisterLoading());
@@ -23,7 +21,9 @@ class RegisterCubit extends Cubit<RegisterState> {
         emit(RegisterError(failure.errMessage));
       },
       (data) {
-        emit(RegisterSuccess());
+        emit(RegisterSuccess(
+          data,
+        ));
       },
     );
   }

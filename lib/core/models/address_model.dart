@@ -5,7 +5,6 @@ class AddressModel extends AddressEntity {
     required super.name,
     required super.phone,
     required super.address,
-    required super.apartment,
   });
 
   factory AddressModel.fromJson(Map<String, dynamic> json) {
@@ -13,7 +12,6 @@ class AddressModel extends AddressEntity {
       name: json['name'],
       phone: json['phone'],
       address: json['address'],
-      apartment: json['apartment'],
     );
   }
 
@@ -22,7 +20,6 @@ class AddressModel extends AddressEntity {
       'name': name,
       'phone': phone,
       'address': address,
-      'apartment': apartment,
     };
   }
 
@@ -32,7 +29,6 @@ class AddressModel extends AddressEntity {
       name: entity.name,
       phone: entity.phone,
       address: entity.address,
-      apartment: entity.apartment,
     );
   }
 
@@ -42,7 +38,6 @@ class AddressModel extends AddressEntity {
       name: name,
       phone: phone,
       address: address,
-      apartment: apartment,
     );
   }
 

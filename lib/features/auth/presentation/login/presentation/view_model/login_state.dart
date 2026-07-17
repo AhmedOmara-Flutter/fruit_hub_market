@@ -8,7 +8,7 @@ final class LoginInitial extends LoginState {}
 final class LoginLoading extends LoginState {}
 
 final class LoginSuccess extends LoginState {
-UserEntity user;
+  final UserEntity user;
   LoginSuccess(this.user);
 }
 
@@ -19,7 +19,9 @@ final class LoginError extends LoginState {
 }
 
 final class SignInWithGoogleLoading extends LoginState {}
+
 final class SignInWithGoogleSuccess extends LoginState {}
+
 final class SignInWithGoogleError extends LoginState {
   final String errMessage;
 
@@ -27,7 +29,9 @@ final class SignInWithGoogleError extends LoginState {
 }
 
 final class SignInWithFacebookLoading extends LoginState {}
+
 final class SignInWithFacebookSuccess extends LoginState {}
+
 final class SignInWithFacebookError extends LoginState {
   final String errMessage;
 

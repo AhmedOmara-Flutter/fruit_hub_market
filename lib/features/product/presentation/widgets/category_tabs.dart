@@ -19,6 +19,7 @@ class _CategoryTabsState extends State<CategoryTabs>
     'بيتزا',
     'كريب لحوم',
     'كريب دجاج',
+    'كريب ميكس',
     'سندوتشات سوري',
     'مكرونات',
     'مشويات',
@@ -33,7 +34,6 @@ class _CategoryTabsState extends State<CategoryTabs>
   @override
   void initState() {
     super.initState();
-
     _tabController = TabController(
       length: categories.length,
       vsync: this,
@@ -94,7 +94,6 @@ class _CategoryTabsState extends State<CategoryTabs>
             splashBorderRadius: BorderRadius.circular(25.r),
             tabs: categories.map((e) {
               return Tab(
-
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 14.w,
@@ -106,9 +105,7 @@ class _CategoryTabsState extends State<CategoryTabs>
             }).toList(),
           ),
         ),
-
         SizedBox(height: 16.h),
-
         Expanded(
           child: TabBarView(
             controller: _tabController,

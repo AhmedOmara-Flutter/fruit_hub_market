@@ -62,14 +62,25 @@ class _RegisterFormState extends State<RegisterForm> {
                   controller: nameController,
                   autoValidateMode: AutovalidateMode.onUserInteraction,
                   keyboardType: TextInputType.name,
-                  hintText: 'الاسم',
+                  hintText: 'الاسم ثنائي',
                   prefixIcon: Icons.person,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return 'أدخل الاسم';
                     }
-                    if (value.trim().length < 3) {
-                      return '٣ أحرف على الأقل';
+                    if (!RegExp(r'^[\u0600-\u06FF\s]+$').hasMatch(value.trim())) {
+                      return 'يجب أن يكون باللغة العربية فقط';
+                    }
+                    final parts = value
+                        .trim()
+                        .split(RegExp(r'\s+'))
+                        .where((e) => e.isNotEmpty)
+                        .toList();
+                    if (parts.length < 2) {
+                      return 'أدخل الاسم ثنائي';
+                    }
+                    if (parts[0].length < 2 || parts[1].length < 2) {
+                      return 'يجب أن يكون حرفين على الأقل';
                     }
                     return null;
                   },
@@ -88,8 +99,9 @@ class _RegisterFormState extends State<RegisterForm> {
                       return 'أدخل الرقم';
                     }
 
-                    if (!RegExp(r'^(010|011|012|015)\d{8}$')
-                        .hasMatch(value.trim())) {
+                    if (!RegExp(
+                      r'^(010|011|012|015)\d{8}$',
+                    ).hasMatch(value.trim())) {
                       return 'رقم غير صحيح';
                     }
 
@@ -146,8 +158,7 @@ class _RegisterFormState extends State<RegisterForm> {
               return CustomButton(
                 onPressed: isValid
                     ? () {
-                        FocusScope.of(context).unfocus();
-
+                        FocusManager.instance.primaryFocus?.unfocus();
                         if (_formKey.currentState!.validate()) {
                           context.read<RegisterCubit>().register(
                             userName: nameController.text.trim(),
@@ -158,19 +169,10 @@ class _RegisterFormState extends State<RegisterForm> {
                         }
                       }
                     : null,
-                child: state is RegisterLoading
-                    ? const SizedBox(
-                        width: 22,
-                        height: 22,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2.5,
-                          color: Colors.white,
-                        ),
-                      )
-                    : Text(
-                        'إنشاء حساب جديد',
-                        style: Theme.of(context).textTheme.labelSmall,
-                      ),
+                child: Text(
+                  'إنشاء حساب جديد',
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
               );
             },
           ),

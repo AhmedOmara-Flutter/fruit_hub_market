@@ -33,9 +33,17 @@ class OfferEntity extends Equatable {
   }
   /// هل العرض انتهى؟
   bool get isExpired {
-    return DateTime.now().isAfter(endDate);
-  }
+    final today = DateTime.now();
+    final current = DateTime(today.year, today.month, today.day);
 
+    final end = DateTime(
+      endDate.year,
+      endDate.month,
+      endDate.day,
+    );
+
+    return current.isAfter(end);
+  }
   /// هل العرض لسه ما بدأش؟
   bool get isUpcoming {
     return DateTime.now().isBefore(startDate);

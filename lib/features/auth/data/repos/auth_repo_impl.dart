@@ -1,10 +1,7 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import '../../../../core/services/storage_services.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final AuthServices _authServices;
@@ -16,21 +13,30 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
-      RegisterRequest registerRequest,) async {
+      RegisterRequest registerRequest,
+      ) async {
     User? user;
 
     try {
       user = await _authServices.createUserWithEmailAndPassword(
         registerRequest,
       );
+
       final userEntity = UserEntity(
         userName: registerRequest.userName,
         email: registerRequest.email,
         uId: user.uid,
-        image: '',
         phone: registerRequest.phone,
+        password: registerRequest.password,
       );
+
       await addData(userEntity);
+      await saveUserData(userEntity);
+      await CacheHelper.saveData(
+        key: 'uId',
+        value: user.uid,
+      );
+      Constants.uId = user.uid;
       return Right(userEntity);
     } catch (e) {
       if (user != null) {
@@ -51,46 +57,53 @@ class AuthRepoImpl implements AuthRepo {
 
       await saveUserData(data);
 
+      await CacheHelper.saveData(
+        key: 'uId',
+        value: data.uId,
+      );
+
+      Constants.uId = data.uId;
+
       return Right(data);
     } on Exception catch (e) {
       print(e);
       return Left(ServerFailure(errMessage: e.toString()));
     }
   }
+  //
+  // @override
+  // Future<Either<Failure, UserEntity>> signInWithGoogle() async {
+  //   try {
+  //     final user = await _authServices.signInWithGoogle();
+  //     return Right(
+  //         UserModel.fromFirebaseUser(user)
+  //     );
+  //   } on GoogleSignInException catch (e) {
+  //     if (e.code == GoogleSignInExceptionCode.canceled) {
+  //       return Left(
+  //           ServerFailure(errMessage: 'تم إلغاء تسجيل الدخول من قبل المستخدم'));
+  //     } else {
+  //       return Left(ServerFailure(errMessage: 'حدث خطأ أثناء تسجيل الدخول'));
+  //     }
+  //   }
+  // }
 
-  @override
-  Future<Either<Failure, UserEntity>> signInWithGoogle() async {
-    try {
-      final user = await _authServices.signInWithGoogle();
-      return Right(
-          UserModel.fromFirebaseUser(user)
-      );
-    } on GoogleSignInException catch (e) {
-      if (e.code == GoogleSignInExceptionCode.canceled) {
-        return Left(
-            ServerFailure(errMessage: 'تم إلغاء تسجيل الدخول من قبل المستخدم'));
-      } else {
-        return Left(ServerFailure(errMessage: 'حدث خطأ أثناء تسجيل الدخول'));
-      }
-    }
-  }
-
-  @override
-  Future<Either<Failure, UserEntity>> signInWithFacebook() async {
-    try {
-      final user = await _authServices.signInWithFacebook();
-      return Right(
-          UserModel.fromFirebaseUser(user)
-      );
-    } catch (e) {
-      // if (e.code == GoogleSignInExceptionCode.canceled) {
-      //   return Left(ServerFailure(errMessage: 'تم إلغاء تسجيل الدخول من قبل المستخدم'));
-      // } else {
-      // return Left(ServerFailure(errMessage: 'حدث خطأ أثناء تسجيل الدخول'));
-      return Left(ServerFailure(errMessage: e.toString()));
-      //}
-    }
-  }
+  // @override
+  // Future<Either<Failure, UserEntity>> signInWithFacebook() async {
+  //   try {
+  //     final user = await _authServices.signInWithFacebook();
+  //     return Right(
+  //         UserModel.fromFirebaseUser(user)
+  //     );
+  //   } catch (e) {
+  //     // if (e.code == GoogleSignInExceptionCode.canceled) {
+  //     //   return Left(ServerFailure(errMessage: 'تم إلغاء تسجيل الدخول من قبل المستخدم'));
+  //     // } else {
+  //     // return Left(ServerFailure(errMessage: 'حدث خطأ أثناء تسجيل الدخول'));
+  //     return Left(ServerFailure(errMessage: e.toString()));
+  //     //}
+  //   }
+  // }
 
   @override
   Future<void> addData(UserEntity user) async {

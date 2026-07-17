@@ -1,9 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/services.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-
 import '../../../../../../core/widgets/loading_overlay.dart';
+
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -18,20 +16,15 @@ class LoginView extends StatelessWidget {
             if (state is LoginSuccess) {
               AppVibration.medium();
               AppSounds.playClickSound('success.mp3');
-
               customShowSnakeBar(
                 context,
-                color: AppColor.mainColor,
-                label: 'تم التسجيل الدخول بنجاح',
+                color: AppColor.green,
+                label: 'تم تسجيل الدخول بنجاح',
               );
-              CacheHelper.saveData(key: 'uId', value: state.user.uId).then((
-                value,
-              ) {
-                Constants.uId = state.user.uId;
-              });
-              Navigator.pushNamed(
+              Navigator.pushNamedAndRemoveUntil(
                 context,
                 RouteManager.home,
+                (route) => false,
                 arguments: state.user,
               );
             }
@@ -65,7 +58,8 @@ class LoginView extends StatelessWidget {
                   ),
                   child: Stack(
                     children: [
-                      LoginViewBody(),
+                      const LoginViewBody(),
+
                       LoadingOverlay(
                         isLoading: state is LoginLoading,
                         title: 'جاري تسجيل الدخول...',

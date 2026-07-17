@@ -19,6 +19,7 @@ class OrderEntity {
   final OrderStatus status;
   File ?paymentFileImage;
   String ?paymentImage;
+  String? orderNote;
 
 
 
@@ -32,9 +33,10 @@ class OrderEntity {
     required this.status,
     this.selectedLocationEntity,
     this.paymentImage,
+    this.orderNote,
   });
 
   String getFullAddress(){
-    return '${addressEntity!.address},${addressEntity!.apartment}';
+    return '${addressEntity!.address}';
   }
 }

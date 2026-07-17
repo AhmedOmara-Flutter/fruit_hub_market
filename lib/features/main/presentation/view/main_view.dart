@@ -1,9 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/cart/presentation/view_model/cart_cubit.dart';
-
 import '../../../favorite/presentation/view_model/favorite_cubit.dart';
-
 
 class MainView extends StatefulWidget {
   const MainView({super.key,});
@@ -24,14 +22,12 @@ class _MainViewState extends State<MainView> {
       canPop: false,
       onPopInvoked: (didPop) {
         final cubit = context.read<MainCubit>();
-
         if (cubit.currentIndex != 0) {
           cubit.changeBottomNav(0);
         } else {
           SystemNavigator.pop();
         }
       },
-
       child: Scaffold(
         bottomNavigationBar: CustomBottomNavBar(),
         body: AnnotatedRegion<SystemUiOverlayStyle>(
@@ -42,14 +38,14 @@ class _MainViewState extends State<MainView> {
                 if (state is CartAdded) {
                   AppSounds.playClickSound('click_song.wav');
                   AppVibration.light();
-                  customShowSnakeBar(context, color: AppColor.mainColor,
-                      label: 'تم إضافة المنتج إلى السلة');
+                  // customShowSnakeBar(context, color: AppColor.mainColor,
+                  //     label: 'تم إضافة المنتج إلى السلة');
                 }
                 if (state is CartRemoved) {
                   AppSounds.playClickSound('click_song.wav');
                   AppVibration.medium();
-                  customShowSnakeBar(context, color:AppColor.mainColor,
-                      label: 'تم حذف المنتج من السلة');
+                  // customShowSnakeBar(context, color:AppColor.mainColor,
+                  //     label: 'تم حذف المنتج من السلة');
                 }
               },),
               BlocListener<FavoriteCubit, FavoriteState>(
@@ -57,15 +53,15 @@ class _MainViewState extends State<MainView> {
                   if (state is FavoriteAddedState) {
                     AppSounds.playClickSound('click_song.wav');
                     AppVibration.light();
-                    customShowSnakeBar(
-                        context, color:AppColor.mainColor,
-                        label: 'تمت الإضافة للمفضلة');
+                    // customShowSnakeBar(
+                    //     context, color:AppColor.mainColor,
+                    //     label: 'تمت الإضافة للمفضلة');
                   }
                   if (state is FavoriteDeletedState) {
                     AppSounds.playClickSound('click_song.wav');
                     AppVibration.medium();
-                    customShowSnakeBar(
-                        context, color: AppColor.red, label: 'تم الحذف من المفضله');
+                    // customShowSnakeBar(
+                    //     context, color: AppColor.red, label: 'تم الحذف من المفضله');
                   }
                 },),
             ],

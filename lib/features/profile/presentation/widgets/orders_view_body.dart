@@ -1,5 +1,4 @@
 import 'package:fruit_hub_market/core/widgets/empty_widget.dart';
-
 import '../../../../core/utils/app_imports.dart';
 import '../view_model/profile_cubit.dart';
 import 'order_item.dart';
@@ -12,38 +11,48 @@ class OrdersViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
-            child: InfoActionRow(
-                text: 'طلباتي',
-                showBack: true
-            )
+        const SliverToBoxAdapter(
+          child: InfoActionRow(
+            text: 'طلباتي',
+            showBack: true,
+          ),
         ),
+
         BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {
-            if (state is ProfileGetOrdersLoading) {
-              return SliverList.builder(itemBuilder: (context, index) =>SkeletonizerOrderItem(),
-                itemCount: 7,);
-            }
             if (state is ProfileGetOrdersSuccess) {
               if (state.orders.isEmpty) {
                 return const SliverToBoxAdapter(
                   child: EmptyWidget(),
                 );
               }
+
               return SliverList.builder(
-                itemBuilder: (context, index) =>
-                    OrderItem(orderEntity: state.orders[index]),
                 itemCount: state.orders.length,
+                itemBuilder: (context, index) {
+                  return OrderItem(
+                    orderEntity: state.orders[index],
+                  );
+                },
               );
             }
+
             if (state is ProfileGetOrdersError) {
               return SliverToBoxAdapter(
-                child: Center(child: Text(state.errMessage)),
+                child: Center(
+                  child: Text(state.errMessage),
+                ),
               );
             }
-            return const SliverToBoxAdapter(child: SizedBox.shrink());
+
+            return SliverList.builder(
+              itemCount: 7,
+              itemBuilder: (context, index) {
+                return const SkeletonizerOrderItem();
+              },
+            );
           },
-        )
+        ),
       ],
     );
   }

@@ -8,7 +8,7 @@ void customShowSnakeBar(
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       behavior: SnackBarBehavior.floating,
-      duration: const Duration(milliseconds:1000),
+      duration: const Duration(milliseconds:900),
       backgroundColor: color,
       content: Text(label),
     ),

@@ -41,13 +41,13 @@ class TapBarViewBody extends StatelessWidget {
           return Center(child: Text(state.errMessage));
         }
         return GridView.builder(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 20.h),
           itemCount: products.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 0.7,
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 16,
+            childAspectRatio: .70,
+            mainAxisSpacing: 14.h,
+            crossAxisSpacing: 14.w,
           ),
           itemBuilder: (context, index) {
             return ProductItem(product: products[index]);

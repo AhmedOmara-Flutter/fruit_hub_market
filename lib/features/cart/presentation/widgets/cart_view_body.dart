@@ -27,7 +27,7 @@ class CartViewBody extends StatelessWidget {
                 children: [
                   InfoActionRow(text: 'السله'),
                   CartInfoBanner(productsInCart: cubit.cart.cartItems.length,),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                 ],
               ),
             ),
@@ -35,7 +35,7 @@ class CartViewBody extends StatelessWidget {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  SizedBox(height: 50),
+                  SizedBox(height: 40.h),
                   CustomButton(
                     child: Text(
                       'الدفع ${totalPrice.toStringAsFixed(2)} جنيه',
@@ -48,6 +48,7 @@ class CartViewBody extends StatelessWidget {
                       Navigator.pushNamed(context, RouteManager.checkout,arguments:cubit.cart );
                     },
                   ),
+                  SizedBox(height: 20.h),
                 ],
               ),
             ),

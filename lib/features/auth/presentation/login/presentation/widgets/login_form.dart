@@ -20,6 +20,7 @@ class _LoginFormState extends State<LoginForm> {
   void initState() {
     super.initState();
 
+    
     emailController.addListener(_checkFields);
     passwordController.addListener(_checkFields);
   }
@@ -99,6 +100,7 @@ class _LoginFormState extends State<LoginForm> {
               return CustomButton(
                 onPressed: isValid
                     ? () {
+                  FocusManager.instance.primaryFocus?.unfocus();
                   if (_formKey.currentState!.validate()) {
                     BlocProvider.of<LoginCubit>(context).login(
                       email: emailController.text.trim(),

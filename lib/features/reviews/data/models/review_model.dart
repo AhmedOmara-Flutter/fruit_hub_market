@@ -3,7 +3,6 @@ import 'package:fruit_hub_market/features/reviews/domain/entities/review_entity.
 class ReviewModel extends ReviewEntity {
   ReviewModel({
     required super.name,
-    required super.image,
     required super.reviewDescription,
     required super.rating,
     required super.date,
@@ -12,7 +11,6 @@ class ReviewModel extends ReviewEntity {
   factory ReviewModel.fromJson(Map<String, dynamic> json) {
     return ReviewModel(
       name: json['name'],
-      image: json['image'],
       reviewDescription: json['reviewDescription'],
       rating: json['rating'],
       date: json['date'],
@@ -22,7 +20,6 @@ class ReviewModel extends ReviewEntity {
   factory ReviewModel.fromEntity(ReviewEntity entity) {
     return ReviewModel(
       name: entity.name,
-      image: entity.image,
       reviewDescription: entity.reviewDescription,
       rating: entity.rating,
       date: entity.date,
@@ -32,7 +29,6 @@ class ReviewModel extends ReviewEntity {
   ReviewEntity toEntity() {
     return ReviewEntity(
       name: name,
-      image: image,
       reviewDescription: reviewDescription,
       rating: rating,
       date: date,
@@ -42,7 +38,6 @@ class ReviewModel extends ReviewEntity {
   Map<String, dynamic> toJson() {
     return {
       'name': name,
-      'image': image,
       'reviewDescription': reviewDescription,
       'rating': rating,
       'date': date,

@@ -8,9 +8,9 @@ UserEntity getUser() {
     return UserModel(
       userName: '',
       email: '',
-      image: '',
       phone: '',
       uId: '',
+      password: '',
     );
   }
 

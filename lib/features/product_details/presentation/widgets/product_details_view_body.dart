@@ -6,31 +6,17 @@ import 'package:fruit_hub_market/features/product_details/presentation/widgets/p
 import '../../../../core/cubit/product_cubit/product_cubit.dart';
 import '../../../../core/utils/app_imports.dart';
 
-
 class ProductDetailsViewBody extends StatelessWidget {
   final String productId;
 
-  const ProductDetailsViewBody({
-    super.key,
-    required this.productId,
-  });
-
-
+  const ProductDetailsViewBody({super.key, required this.productId});
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, state) {
-        if (state is GetProductsLoadingState) {
-          return const Center(child: CircularProgressIndicator(color: AppColor.mainColor,));
-        }
-
-        if (state is GetProductsErrorState) {
-          return Center(child: Text(state.errMessage));
-        }
-
         if (state is GetProductsSuccessState) {
           final product = state.products.firstWhere(
-                (p) => p.id == productId,
+            (p) => p.id == productId,
             orElse: () => throw Exception("المنتج غير موجود"),
           );
 
@@ -39,9 +25,7 @@ class ProductDetailsViewBody extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               ProductImageSection(product: product, offer: offer),
-              SliverToBoxAdapter(
-                child: SizedBox(height: 10.h),
-              ),
+              SliverToBoxAdapter(child: SizedBox(height: 10.h)),
               ProductSubImagesSection(product: product),
               ProductDetailsSection(product: product, offer: offer),
               ProductButtonSection(product: product, offer: offer),
@@ -49,11 +33,14 @@ class ProductDetailsViewBody extends StatelessWidget {
           );
         }
 
-        return const SizedBox();
+        if (state is GetProductsErrorState) {
+          return Center(child: Text(state.errMessage));
+        }
+
+        return const Center(
+          child: CircularProgressIndicator(color: AppColor.mainColor),
+        );
       },
     );
   }
 }
-
-
-

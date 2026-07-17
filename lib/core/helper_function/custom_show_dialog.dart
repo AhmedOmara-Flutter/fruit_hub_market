@@ -60,57 +60,57 @@ class CustomShowDialog {
               Row(
                 children: [
                   Expanded(
-                    child: OutlinedButton(
+                    child: ElevatedButton(
                       onPressed: cancel ?? () => Navigator.pop(context),
                       style: OutlinedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
+                        backgroundColor: AppColor.card,
                         foregroundColor: AppColor.textPrimary,
                         side: BorderSide(
                           color: AppColor.border,
-                          width: 1.5,
+                          width: 1.2,
                         ),
+                        elevation: 0,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14.r),
+                          borderRadius: BorderRadius.circular(16.r),
                         ),
-                        padding: EdgeInsets.symmetric(vertical: 14.h),
+                        padding: EdgeInsets.symmetric(vertical: 15.h),
                       ),
                       child: Text(
                         cancelText,
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           color: AppColor.textPrimary,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                   ),
+
                   SizedBox(width: 12.w),
 
                   Expanded(
                     child: ElevatedButton(
                       onPressed: accept,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        foregroundColor: color,
-                        elevation: 0,
-                        shadowColor: Colors.transparent,
-                        side: BorderSide(
-                          color: color,
-                          width: 1.5,
-                        ),
+                        backgroundColor: color,
+                        foregroundColor: Colors.white,
+                        elevation: 2,
+                        shadowColor: color.withOpacity(.35),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(14.r),
+                          borderRadius: BorderRadius.circular(16.r),
                         ),
-                        padding: EdgeInsets.symmetric(vertical: 14.h),
+                        padding: EdgeInsets.symmetric(vertical: 15.h),
                       ),
                       child: Text(
                         acceptText,
                         style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: color,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),
-                  ),                ],
-              ),
-            ],
+                  ),
+                ],
+              )            ],
           ),
         );
       },

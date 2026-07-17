@@ -22,6 +22,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   Timer? timer;
 
   OrderEntity orderEntity;
+  final notesController = TextEditingController();
   final PageController pageController = PageController();
   int currentIndex = 0;
   bool? isCashOnDelivery;
@@ -48,19 +49,29 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   ];
   final List<SelectedLocationEntity> placesOptions = [
     SelectedLocationEntity(
+      title: 'الاستلام من المطعم',
+      subTitle: 'استلم طلبك من المطعم',
+      cost: 0,
+    ),
+    SelectedLocationEntity(
       title: 'كفر الشوربجي',
       subTitle: 'اختر عنوانك داخل كفر الشوربجي',
-      cost: 5,
+      cost: 10,
+    ),
+    SelectedLocationEntity(
+      title: 'ديما',
+      subTitle: 'اختر عنوانك داخل ديما',
+      cost: 10,
     ),
     SelectedLocationEntity(
       title: 'كفر المنشي',
       subTitle: 'اختر عنوانك داخل كفر المنشي',
-      cost: 10,
+      cost: 20,
     ),
     SelectedLocationEntity(
       title: 'كفر المنصوره',
       subTitle: 'اختر عنوانك داخل كفر المنصوره',
-      cost: 15,
+      cost: 20,
     ),
     SelectedLocationEntity(
       title: 'شبرا',
@@ -86,12 +97,10 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     selectedLocationIndex = index;
     emit(CheckoutChangeLocationIndex());
   }
-
   void selectShipping(bool value) {
     isCashOnDelivery = value;
     emit(CheckoutSelectShipping());
   }
-
   Future<void> addOrder(OrderEntity orderEntity) async {
     emit(CheckoutAddOrderLoading());
 

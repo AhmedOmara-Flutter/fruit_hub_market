@@ -40,3 +40,11 @@ final class GetFilteredProductsSuccess extends ProductState {
 
   GetFilteredProductsSuccess({required this.filterProducts});
 }
+
+final class DeleteCartLoadingState extends ProductState {}
+final class DeleteCartSuccessState extends ProductState {}
+final class DeleteCartErrorState extends ProductState {
+  final String errMessage;
+  DeleteCartErrorState(this.errMessage);
+}
+

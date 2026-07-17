@@ -7,5 +7,7 @@ abstract class ProductRepo {
   Stream<Either<Failure, List<ProductEntity>>> getSellingProducts();
   Future<Either<Failure, List<ProductEntity>>> searchProducts(String query);
   Future<Either<Failure,void>>increaseSellingCount(String productId);
+  Future<void> deleteCollection(String collectionName);
+
 
 }

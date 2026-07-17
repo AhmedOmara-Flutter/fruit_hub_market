@@ -1,9 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
+import 'package:fruit_hub_market/core/helper_function/make_full_name.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
 import 'package:fruit_hub_market/features/offers/presentation/view_model/offer_cubit.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../../core/helper_function/get_greeting.dart';
 
@@ -29,7 +27,7 @@ class HomeHeader extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: AppColor.mainColor, width: 2.w),
+                border: Border.all(color: AppColor.border, width: 2.w),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(.35),
@@ -39,37 +37,11 @@ class HomeHeader extends StatelessWidget {
                 ],
               ),
               child: ClipOval(
-                child: CachedNetworkImage(
-                  imageUrl: getUser().image,
+                child: Image.asset(
+                  Assets.images.customer.path,
                   width: 68.w,
                   height: 68.w,
                   fit: BoxFit.cover,
-            
-                  placeholder: (context, url) => Shimmer.fromColors(
-                    baseColor: AppColor.card,
-                    highlightColor: AppColor.border,
-                    child: Container(
-                      width: 68.w,
-                      height: 68.w,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ),
-                  errorWidget: (context, url, error) => Container(
-                    width: 68.w,
-                    height: 68.w,
-                    decoration: BoxDecoration(
-                      color: AppColor.card,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      Icons.person,
-                      color: AppColor.mainColor,
-                      size: 34.sp,
-                    ),
-                  ),
                 ),
               ),
             ),
@@ -99,10 +71,8 @@ class HomeHeader extends StatelessWidget {
                 ),
                 SizedBox(height: 5.h),
                 Text(
-                  getUser().userName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: StyleManager.font19Weight700.copyWith(
+                  makeFullName(getUser().userName),
+                  style: StyleManager.font16Weight700.copyWith(
                     color: AppColor.textPrimary,
                   ),
                 ),

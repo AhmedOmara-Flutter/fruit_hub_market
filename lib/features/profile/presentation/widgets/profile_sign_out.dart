@@ -34,7 +34,6 @@ class ProfileSignOut extends StatelessWidget {
               accept: () async {
                 await instance<AuthRepo>().signOut();
                 context.read<MainCubit>().currentIndex = 0;
-
                 Navigator.pushNamed(
                   context,
                   RouteManager.loading,

@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) =>
-          ProfileCubit(instance(), instance())..getOrders(),
+              ProfileCubit(instance(), instance())..getOrders(),
         ),
         BlocProvider(create: (context) => AddReviewCubit(instance())),
         BlocProvider(create: (context) => GetReviewCubit(instance())),
@@ -59,13 +59,15 @@ class MyApp extends StatelessWidget {
                   return Stack(
                     children: [
                       child!,
-
                       AnimatedSwitcher(
                         duration: const Duration(milliseconds: 350),
-                        child: (state is NetworkDisconnected || state is NetworkLoading)
+                        child:
+                            (state is NetworkDisconnected ||
+                                state is NetworkLoading)
                             ? const NoInternetView()
                             : const SizedBox.shrink(),
-                      ),                    ],
+                      ),
+                    ],
                   );
                 },
               );

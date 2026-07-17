@@ -14,7 +14,8 @@ class SelectLocationView extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.separated(
-              physics: NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.only(bottom: 20.h),
+              physics:BouncingScrollPhysics(),
               itemCount: cubit.placesOptions.length,
               separatorBuilder: (_, _) =>  SizedBox(height: 12.h),
               itemBuilder: (context, index) {

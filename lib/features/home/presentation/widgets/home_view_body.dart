@@ -1,5 +1,4 @@
 import 'package:fruit_hub_market/core/helper_function/get_user.dart';
-import 'package:fruit_hub_market/core/widgets/search_section.dart';
 import 'package:fruit_hub_market/features/home/presentation/view_model/best_selling_cubit.dart';
 import 'package:fruit_hub_market/features/home/presentation/view_model/featured_cubit.dart';
 import 'package:fruit_hub_market/features/home/presentation/widgets/best_selling_section.dart';

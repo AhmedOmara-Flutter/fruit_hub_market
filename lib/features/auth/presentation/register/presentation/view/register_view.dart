@@ -13,15 +13,17 @@ class RegisterView extends StatelessWidget {
           create: (context) => RegisterCubit(instance()),
           child: BlocConsumer<RegisterCubit, RegisterState>(
             listener: (context, state) {
-              if(state is RegisterLoading){
-                CircularProgressIndicator();
-              }
               if (state is RegisterSuccess) {
                 AppVibration.medium();
                 AppSounds.playClickSound('success.mp3');
                 customShowSnakeBar(
-                    context, color:AppColor.mainColor, label: 'تم انشاء الحساب بنجاح');
-                Navigator.pushNamed(context, RouteManager.login);
+                    context, color:AppColor.green, label: 'تم انشاء الحساب بنجاح');
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  RouteManager.home,
+                      (route) => false,
+                  arguments: state.user,
+                );
               }
               if (state is RegisterError) {
                 AppVibration.heavy();

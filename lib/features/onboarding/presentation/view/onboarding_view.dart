@@ -8,7 +8,22 @@ class OnBoardingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnnotatedRegion<SystemUiOverlayStyle>(
-          value: SystemUiOverlayStyle.light, child: OnBoardingViewBody()),
+        value: SystemUiOverlayStyle.light,
+        child: PopScope(
+          canPop: false,
+          onPopInvoked: (didPop) {
+            final cubit = context.read<MainCubit>();
+
+            if (cubit.currentIndex != 0) {
+              cubit.changeBottomNav(0);
+            } else {
+              SystemNavigator.pop();
+            }
+          },
+
+          child: OnBoardingViewBody(),
+        ),
+      ),
     );
   }
 }

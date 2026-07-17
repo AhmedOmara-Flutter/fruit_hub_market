@@ -1,12 +1,10 @@
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fruit_hub_market/core/utils/app_imports.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthServices {
   Future<User> createUserWithEmailAndPassword(RegisterRequest registerRequest);
   Future<User> signInWithEmailAndPassword(LoginRequest loginRequest);
-  Future<User> signInWithGoogle();
-  Future<User> signInWithFacebook();
+//  Future<User> signInWithGoogle();
+  //Future<User> signInWithFacebook();
   Future<void>deleteUser();
   Future<void>signOut();
 }
@@ -73,37 +71,37 @@ class AuthWithFirebase implements AuthServices {
     }
   }
 
-  @override
-  Future<User> signInWithGoogle() async {
-    final googleSignIn = GoogleSignIn.instance;
+  // @override
+  // Future<User> signInWithGoogle() async {
+  //   final googleSignIn = GoogleSignIn.instance;
+  //
+  //   await googleSignIn.initialize(
+  //     serverClientId: '483648490647-htosbo706shgradj88qql1u8kd60a048.apps.googleusercontent.com'
+  //   );
+  //
+  //   final googleUser = await googleSignIn.authenticate();
+  //   final googleAuth = googleUser.authentication;
+  //
+  //   final credential = GoogleAuthProvider.credential(
+  //     idToken: googleAuth.idToken,
+  //   );
+  //
+  //   final userCredential =
+  //   await FirebaseAuth.instance.signInWithCredential(credential);
+  //
+  //   return userCredential.user!;
+  // }
 
-    await googleSignIn.initialize(
-      serverClientId: '483648490647-htosbo706shgradj88qql1u8kd60a048.apps.googleusercontent.com'
-    );
-
-    final googleUser = await googleSignIn.authenticate();
-    final googleAuth = googleUser.authentication;
-
-    final credential = GoogleAuthProvider.credential(
-      idToken: googleAuth.idToken,
-    );
-
-    final userCredential =
-    await FirebaseAuth.instance.signInWithCredential(credential);
-
-    return userCredential.user!;
-  }
-
-  @override
-  Future<User> signInWithFacebook() async {
-    final LoginResult loginResult = await FacebookAuth.instance.login(
-      permissions: ['email', 'public_profile'],
-    );
-    final OAuthCredential facebookAuthCredential = FacebookAuthProvider
-        .credential(loginResult.accessToken!.tokenString);
-    return (await FirebaseAuth.instance.signInWithCredential(
-        facebookAuthCredential)).user!;
-  }
+  // @override
+  // Future<User> signInWithFacebook() async {
+  //   final LoginResult loginResult = await FacebookAuth.instance.login(
+  //     permissions: ['email', 'public_profile'],
+  //   );
+  //   final OAuthCredential facebookAuthCredential = FacebookAuthProvider
+  //       .credential(loginResult.accessToken!.tokenString);
+  //   return (await FirebaseAuth.instance.signInWithCredential(
+  //       facebookAuthCredential)).user!;
+  // }
 
   bool isLoggedIn() {
     return FirebaseAuth.instance.currentUser != null;

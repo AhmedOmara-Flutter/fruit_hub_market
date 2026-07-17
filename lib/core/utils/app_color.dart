@@ -21,4 +21,9 @@ class AppColor {
   static const Color white = Colors.white;
   static const Color black = Colors.black;
   static const Color transparent = Colors.transparent;
+
+  //snake bar
+
+  static const Color green =  Color(0xFF2E7D32);
+
 }
