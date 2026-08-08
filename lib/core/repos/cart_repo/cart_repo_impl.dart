@@ -40,7 +40,6 @@ class CartRepoImpl extends CartRepo {
       path: _collection,
       uId: userId,
     );
-
     if (exists) {
       await databaseServices.updateData(
         path: _collection,

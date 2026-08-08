@@ -6,7 +6,6 @@ import 'package:fruit_hub_market/core/utils/app_imports.dart';
 
 class ProductRepoImpl implements ProductRepo {
   final DatabaseServices _databaseServices;
-
   ProductRepoImpl(this._databaseServices);
 
   @override
@@ -49,7 +48,8 @@ class ProductRepoImpl implements ProductRepo {
   @override
   Future<Either<Failure, List<ProductEntity>>> searchProducts(
     String query,
-  ) async {
+  )
+  async {
     try {
       final data =
           await _databaseServices.getData(path: 'products')
@@ -86,6 +86,7 @@ class ProductRepoImpl implements ProductRepo {
       return Left(ServerFailure(errMessage: e.toString()));
     }
   }
+
   @override
   Future<void> deleteCollection(String collectionName)async {
     return await _databaseServices.deleteCollection(collectionName);

@@ -35,7 +35,6 @@ abstract class DatabaseServices {
   });
 
   Future<void> deleteCollection(String collectionName);
-
 }
 
 class FirestoreDatabase implements DatabaseServices {
@@ -44,7 +43,8 @@ class FirestoreDatabase implements DatabaseServices {
     required String path,
     required Map<String, dynamic> data,
     String? uId,
-  }) async {
+  }) async
+  {
     try {
       if (uId != null) {
         await FirebaseFirestore.instance.collection(path).doc(uId).set(data);
@@ -65,7 +65,8 @@ class FirestoreDatabase implements DatabaseServices {
     required String path,
     String? uId,
     Map<String, dynamic>? query,
-  }) async {
+  }) async
+  {
     try {
       if (uId != null) {
         final user = await FirebaseFirestore.instance
@@ -136,15 +137,16 @@ class FirestoreDatabase implements DatabaseServices {
     required String path,
     required Map<String, dynamic> data,
     required String docId,
-  }) async {
+  }) async
+  {
     final userRef = FirebaseFirestore.instance.collection(path).doc(docId);
     await userRef.update(data);
   }
 
-
   @override
   Future<void> reAuthenticate(
-      {required String email, required String password}) async {
+      {required String email, required String password}) async
+  {
     final user = FirebaseAuth.instance.currentUser!;
 
     final credential = EmailAuthProvider.credential(

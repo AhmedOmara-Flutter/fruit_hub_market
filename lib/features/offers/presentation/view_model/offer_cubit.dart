@@ -5,13 +5,14 @@ import 'package:meta/meta.dart';
 
 import '../../../../core/entities/offer_entity.dart';
 import '../../../../core/repos/offer_repo/offer_repo.dart';
+import '../../../../core/repos/product_repo/product_repo.dart';
 
 part 'offer_state.dart';
 
 class OfferCubit extends Cubit<OfferState> {
-  OfferCubit(this._offerRepo) : super(OffersInitial());
+  OfferCubit(this._offerRepo, this._productRepo) : super(OffersInitial());
   final OfferRepo _offerRepo;
-
+  final ProductRepo _productRepo;
   List<OfferEntity> offers = [];
   Map<String, OfferEntity> offersMap = {};
   StreamSubscription ?_offerStreamSubscription;
@@ -30,6 +31,10 @@ class OfferCubit extends Cubit<OfferState> {
           for (var offer in offers) {
             offersMap[offer.productId] = offer;
           }
+          if (offers.any((offer) => offer.isExpired)) {
+             _productRepo.deleteCollection('carts');
+          }
+
           if (offers.isEmpty) {
             emit(GetOffersEmpty());
           } else {

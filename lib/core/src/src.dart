@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => AddReviewCubit(instance())),
         BlocProvider(create: (context) => GetReviewCubit(instance())),
-        BlocProvider(create: (context) => OfferCubit(instance())),
+        BlocProvider(create: (context) => OfferCubit(instance(), instance())),
       ],
       child: ScreenUtilInit(
         designSize: const Size(393, 852),
