@@ -107,9 +107,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody>
                       ],
                     ),
                   ),
-
                   SizedBox(height: 32.h),
-
                   _buildAnimated(
                     animation: _formAnim,
                     child: const RegisterForm(),

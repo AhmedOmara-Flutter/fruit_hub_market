@@ -95,14 +95,11 @@ class _LoginViewBodyState extends State<LoginViewBody>
                         ),
                       ),
                     ),
-
                     Text(
                       "أهلاً بيك 👋",
                       style: StyleManager.font19Weight700,
                     ),
-
                     SizedBox(height: 8.h),
-
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: Text(
